@@ -11,13 +11,15 @@ const Header = () => {
   return (
     <div className="flex justify-center text-blackPrimary lg:px-[96px] items-center lg:h-[80px]">
       <div className="flex items-center justify-between w-full">
-        <Image
-          src={logo}
-          width={80}
-          height={80}
-          alt="logo"
-          className="lg:size-[80px] "
-        />
+        <Link href={"/"}>
+          <Image
+            src={logo}
+            width={80}
+            height={80}
+            alt="logo"
+            className="lg:size-[80px] "
+          />
+        </Link>
         <div className="flex items-center gap-x-[24px] ">
           <div className="flex gap-x-[8px]">
             <span>All Categories</span>
