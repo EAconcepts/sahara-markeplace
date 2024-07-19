@@ -8,18 +8,20 @@ import art from "@/assets/images/art.png";
 import homeDecor from "@/assets/images/home-decor.png";
 import { VscArrowSmallRight } from "react-icons/vsc";
 import { twMerge } from "tailwind-merge";
+import Link from "next/link";
 
 const Department = () => {
   const departments = [
-    { title: " Fashion", image: fashion, className: "lg:w-[504px]" },
-    { title: "Food and Groceries", image: food, className: "w-[347px]" },
-    { title: "Beauty & Health", image: beauty, className: "w-[347px]" },
-    { title: "Kid & Baby", image: kidbabby, className: "w-[347px]" },
-    { title: "Art", image: art, className: "w-[347px]" },
+    { title: " Fashion", url:"/fashion", image: fashion, className: "lg:w-[504px]" },
+    { title: "Food and Groceries", url:"/food", image: food, className: "w-[347px]" },
+    { title: "Beauty & Health", image: beauty, url:"/beauty", className: "w-[347px]" },
+    { title: "Kid & Baby", image: kidbabby, className: "w-[347px]", url:"/kids", },
+    { title: "Art", image: art, className: "w-[347px]", url:"/art", },
     {
       title: "Home Decor",
       image: homeDecor,
       className: "lg:w-[504px] h-[240px]",
+      url: "decor"
     },
   ];
   return (
@@ -30,7 +32,7 @@ const Department = () => {
 
       <div className="flex flex-wrap gap-[24px] mt-[32px] ">
         {departments?.map((dept, index) => (
-          <div className="relative border" key={index}>
+          <Link href={dept.url} className="relative border" key={index}>
             <Image
               src={dept.image}
               alt=""
@@ -47,7 +49,7 @@ const Department = () => {
               </span>
               <VscArrowSmallRight className="text-white text-[36px]" />
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

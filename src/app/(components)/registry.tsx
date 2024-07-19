@@ -7,7 +7,7 @@ const Registry = ({ heading, products }: any) => {
     <div className="mt-[32px]">
       <ProductHeader heading={heading} />
       <div className="flex gap-x-[24px] mt-[32px]">
-        {products?.map((product:any, index:number) => (
+        {products?.slice(0,4).map((product:any, index:number) => (
           <div className="" key={index}>
             <Image
               src={product?.image}

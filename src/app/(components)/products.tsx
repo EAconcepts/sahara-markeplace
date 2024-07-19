@@ -10,7 +10,7 @@ const Products = ({ products, heading }: any) => {
         {/* Header */}
       <ProductHeader heading={heading}/>
       <div className="flex w-full gap-x-[24px] mt-[32px]">
-        {products?.map((product:any, index:any) => (
+        {products?.slice(0,4).map((product:any, index:any) => (
           <ProductCard key={index} product={product} />
         ))}
       </div>

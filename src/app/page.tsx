@@ -18,63 +18,93 @@ import Testimonies from "./(components)/testimonies";
 import { News_Cycle } from "next/font/google";
 import Newsletter from "./(components)/newsletter";
 
+export  const newArrivals = [
+  {
+    image: arrival1,
+    title: "Handmade Bag",
+    country: ghana,
+    rating: 10,
+    price: 59.99,
+  },
+  {
+    image: arrival2,
+    title: "Laboma rings",
+    country: ghana,
+    rating: 10,
+    price: 12.99,
+  },
+  {
+    image: arrival3,
+    title: "Maasai sandals",
+    country: ghana,
+    rating: 10,
+    price: 46.99,
+  },
+  {
+    image: arrival4,
+    title: "Bogolan Wax Fabrics",
+    country: ghana,
+    rating: 10,
+    price: 23.99,
+  },
+  {
+    image: arrival1,
+    title: "Handmade Bag",
+    country: ghana,
+    rating: 10,
+    price: 59.99,
+  },
+  {
+    image: arrival2,
+    title: "Laboma rings",
+    country: ghana,
+    rating: 10,
+    price: 12.99,
+  },
+  {
+    image: arrival3,
+    title: "Maasai sandals",
+    country: ghana,
+    rating: 10,
+    price: 46.99,
+  },
+  {
+    image: arrival4,
+    title: "Bogolan Wax Fabrics",
+    country: ghana,
+    rating: 10,
+    price: 23.99,
+  },
+];
+export  const blogs = [
+  {
+    image: blog1,
+    title: "The Language of Colors Spoken by the Maasai",
+    content:
+      "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
+  },
+  {
+    image: blog2,
+    title: "The Language of Colors Spoken by the Maasai",
+    content:
+      "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
+  },
+  {
+    image: blog3,
+    title: "The Language of Colors Spoken by the Maasai",
+    content:
+      "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
+  },
+  {
+    image: blog4,
+    title: "The Language of Colors Spoken by the Maasai",
+    content:
+      "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
+  },
+];
 export default function Home() {
-  const newArrivals = [
-    {
-      image: arrival1,
-      title: "Handmade Bag",
-      country: ghana,
-      rating: 10,
-      price: 59.99,
-    },
-    {
-      image: arrival2,
-      title: "Laboma rings",
-      country: ghana,
-      rating: 10,
-      price: 12.99,
-    },
-    {
-      image: arrival3,
-      title: "Maasai sandals",
-      country: ghana,
-      rating: 10,
-      price: 46.99,
-    },
-    {
-      image: arrival4,
-      title: "Bogolan Wax Fabrics",
-      country: ghana,
-      rating: 10,
-      price: 23.99,
-    },
-  ];
-  const blogs = [
-    {
-      image: blog1,
-      title: "The Language of Colors Spoken by the Maasai",
-      content:
-        "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
-    },
-    {
-      image: blog2,
-      title: "The Language of Colors Spoken by the Maasai",
-      content:
-        "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
-    },
-    {
-      image: blog3,
-      title: "The Language of Colors Spoken by the Maasai",
-      content:
-        "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
-    },
-    {
-      image: blog4,
-      title: "The Language of Colors Spoken by the Maasai",
-      content:
-        "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
-    },
-  ];
+ 
+ 
   return (
     <main className="lg:px-[96px] mt-[40px] pt-[12px] pb-[32px]">
       <Hero />
