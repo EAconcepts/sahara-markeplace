@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import logo from "@/assets/images/logo2.png";
 import twitter from "@/assets/images/twitter.svg";
-import linkedIn from "@/assets/images/linkedIn.svg";
+import linkedIn from "@/assets/images/linkedin.svg";
 import facebook from "@/assets/images/facebook.svg";
 import youtube from "@/assets/images/youtube.svg";
 import location from "@/assets/images/location.svg";
