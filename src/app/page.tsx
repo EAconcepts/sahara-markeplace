@@ -14,6 +14,9 @@ import blog2 from "@/assets/images/blog2.png";
 import blog3 from "@/assets/images/blog3.png";
 import blog4 from "@/assets/images/blog4.png";
 import BlogCard from "./(components)/blog-card";
+import Testimonies from "./(components)/testimonies";
+import { News_Cycle } from "next/font/google";
+import Newsletter from "./(components)/newsletter";
 
 export default function Home() {
   const newArrivals = [
@@ -87,11 +90,18 @@ export default function Home() {
       <div className="mt-[40px]">
         <SpecialTreats />
       </div>
+      {/* Blogs */}
       <div className="mt-[40px] pt-[16px]">
         <div className="flex mt-[32px] gap-[24px]">{
           blogs?.map((story, index)=>(
             <BlogCard key={index} story={story}/>
           ))}</div>
+      </div>
+      <div className="mt-[40px] py-[16px]">
+        <Testimonies />
+      </div>
+      <div className="mt-[40px] ">
+        <Newsletter />
       </div>
     </main>
   );
