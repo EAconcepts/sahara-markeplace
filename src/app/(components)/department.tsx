@@ -13,7 +13,7 @@ import Link from "next/link";
 const Department = () => {
   const departments = [
     { title: " Fashion", url:"/fashion", image: fashion, className: "lg:w-[504px]" },
-    { title: "Food and Groceries", url:"/food", image: food, className: "w-[347px]" },
+    { title: "Food and Groceries", url:"/food-groceries", image: food, className: "w-[347px]" },
     { title: "Beauty & Health", image: beauty, url:"/beauty", className: "w-[347px]" },
     { title: "Kid & Baby", image: kidbabby, className: "w-[347px]", url:"/kids", },
     { title: "Art", image: art, className: "w-[347px]", url:"/art", },
@@ -21,7 +21,7 @@ const Department = () => {
       title: "Home Decor",
       image: homeDecor,
       className: "lg:w-[504px] h-[240px]",
-      url: "decor"
+      url: "home-decoration"
     },
   ];
   return (

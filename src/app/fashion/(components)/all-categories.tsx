@@ -1,9 +1,8 @@
 import ProductCard from "@/app/(components)/productCard";
-import { newArrivals } from "@/app/page";
 import React from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-const AllCategories = () => {
+const AllCategories = ({products}:{products:any}) => {
   return (
     <div className="flex gap-x-[24px]">
       {/* Categories */}
@@ -60,7 +59,7 @@ const AllCategories = () => {
           </div>
           {/* Products */}
           <div className="grid lg:grid-cols-3 gap-x-[24px] gap-y-[24px]">
-            {newArrivals?.map((product, index)=>(
+            {products?.map((product:any, index:number)=>(
                 <ProductCard key={index} product={product}/>
             ))}
           </div>
