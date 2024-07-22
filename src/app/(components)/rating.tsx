@@ -6,7 +6,7 @@ const Rating = ({stars=5, rating=5, showRatingValue=true}: {stars?:number, ratin
     <div className="mt-[8px]">
     <div className="flex self-start gap-x-[8px] items-center">
       {/* Rating Stars */}
-      <div className="hidden lg:flex">
+      <div className="flex">
         {new Array(stars).fill(0).map((_, index) => (
           <FaStar
             key={index}
