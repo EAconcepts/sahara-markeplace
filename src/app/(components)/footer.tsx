@@ -18,25 +18,25 @@ const Footer = () => {
     { icon: youtube, url: "#" },
   ];
   return (
-    <footer className="bg-black px-[96px]">
+    <footer className="bg-black px-[24px] lg:px-[96px]">
       <div className="flex flex-col py-[32px]">
-        <div className="flex gap-x-[40px] pb-[16px]">
+        <div className="flex gap-x-[40px] pb-[16px] max-lg:flex-col">
           {/* Sahara Eagles */}
-          <div className="flex shrink-0 flex-col pr-[32px] lg:w-[506px]">
-            <div className="items-center gap-x-[8px]">
+          <div className="flex shrink-0 flex-col lg:w-[506px] lg:pr-[32px]">
+            <div className="items-center gap-x-[8px] max-lg:flex">
               <Image
                 src={logo}
                 width={80}
                 height={80}
                 alt="logo"
-                className="lg:size-[80px]"
+                className="size-[48px] lg:size-[80px]"
               />
-              <h2 className="text[40px] font-playfair font-[700] leading-[58px] text-white">
+              <h2 className="lg:text[40px] font-playfair text-[32px] font-[700] leading-[46.4px] text-white lg:leading-[58px]">
                 Sahara Eagles
               </h2>
             </div>
-            <div className="flex flex-col gap-y-[24px]">
-              <p className="font-openSans text-[14px] font-[400] leading-[20.3px] text-white">
+            <div className="flex flex-col gap-y-[24px] max-lg:mt-[12px]">
+              <p className="font-openSan text-wrap break-words text-[14px] font-[400] leading-[20.3px] text-white">
                 Sahara Eagle is a dynamic e-commerce platform connecting African
                 artisans, entrepreneurs, and farmers with global consumers.
                 Through our marketplace, we aim to celebrate the rich heritage
@@ -60,7 +60,7 @@ const Footer = () => {
             </div>
           </div>
           {/* Company */}
-          <div className="flex w-full flex-col">
+          <div className="w- flex flex-col max-lg:mt-[40px]">
             <h5 className="font-openSans text-[16px] font-[400] leading-[23.2px] text-[#8E97A6]">
               Company
             </h5>
@@ -107,7 +107,7 @@ const Footer = () => {
             </div>
           </div>
           {/* Sahara Eagles Products */}
-          <div className="flex w-full flex-col">
+          <div className="flex w-full flex-col max-lg:mt-[24px]">
             <h5 className="font-openSans text-[16px] font-[400] leading-[23.2px] text-[#8E97A6]">
               Sahara Eagles Products
             </h5>
@@ -140,7 +140,7 @@ const Footer = () => {
             </div>
           </div>
           {/* Legal */}
-          <div className="flex w-full flex-col">
+          <div className="flex w-full flex-col max-lg:mt-[24px]">
             <h5 className="font-openSans text-[16px] font-[400] leading-[23.2px] text-[#8E97A6]">
               Legal
             </h5>
@@ -174,13 +174,14 @@ const Footer = () => {
                 href={"#"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
-                FAQ
+                FAQs
               </Link>
             </div>
           </div>
         </div>
-        <div className="mt-[64px] flex w-full justify-between border-y-[1px] border-[#8E97A6] py-[25px] font-openSans">
-          <div className="flex gap-x-[32px] text-white">
+        {/* Address */}
+        <div className="mt-[64px] flex w-full justify-between border-y-[1px] border-[#8E97A6] py-[25px] font-openSans max-lg:flex-col">
+          <div className="flex gap-x-[32px] text-white max-lg:flex-col max-lg:gap-y-[16px]">
             <div className="flex gap-x-[8px]">
               <Image
                 src={location}
@@ -193,20 +194,30 @@ const Footer = () => {
                 Vack Sample No.815, Kita, UK 80361
               </span>
             </div>
-            <div className="flex gap-x-[8px]">
-              <Image src={phone} width={20} height={20} alt="" className="" />
-              <span className="font-openSans text-[14px] font-[600]">
-                +1 234 567-0000
-              </span>
-            </div>
-            <div className="flex gap-x-[8px]">
-              <Image src={message} width={20} height={20} alt="" className="" />
-              <span className="font-openSans text-[14px] font-[600]">
-                info@saharaeagles.com
-              </span>
+            <div className="justify-between max-lg:flex">
+              {/* Call */}
+              <div className="flex gap-x-[8px]">
+                <Image src={phone} width={20} height={20} alt="" className="" />
+                <span className="font-openSans text-[14px] font-[600]">
+                  +1 234 567-0000
+                </span>
+              </div>
+              {/* Email */}
+              <div className="flex gap-x-[8px]">
+                <Image
+                  src={message}
+                  width={20}
+                  height={20}
+                  alt=""
+                  className=""
+                />
+                <span className="font-openSans text-[14px] font-[600]">
+                  info@saharaeagles.com
+                </span>
+              </div>
             </div>
           </div>
-          <p className="text-[14px] font-[400] leading-[20.3px] text-[#8E97A6]">
+          <p className="text-[14px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:mt-[24px]">
             Copyrights © 2024 Sahara Eagles. All rights reserved.
           </p>
         </div>

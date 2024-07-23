@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import ghana from "@/assets/images/ghana.svg";
@@ -9,13 +9,20 @@ import { HiOutlineBadgeCheck } from "react-icons/hi";
 import { useState } from "react";
 import { TbMinus, TbPlus } from "react-icons/tb";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import policy from "@/assets/images/policy.svg"
-import plane from "@/assets/images/plane.svg"
-import details from "@/assets/images/details.png"
-import details1 from "@/assets/images/details1.png"
-import details2 from "@/assets/images/details2.png"
-import details3 from "@/assets/images/details3.png"
-import details4 from "@/assets/images/details4.png"
+import policy from "@/assets/images/policy.svg";
+import plane from "@/assets/images/plane.svg";
+import details from "@/assets/images/details.png";
+import details1 from "@/assets/images/details1.png";
+import details2 from "@/assets/images/details2.png";
+import details3 from "@/assets/images/details3.png";
+import details4 from "@/assets/images/details4.png";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import Banner from "@/app/(components)/banner";
+import ProductHeader from "@/app/(components)/product-header";
+import { newArrivals } from "@/app/page";
+import ProductCard from "@/app/(components)/productCard";
 
 const ProductDetails = () => {
   const product = {
@@ -34,11 +41,10 @@ const ProductDetails = () => {
     size: "l",
     inStock: true,
     colors: ["green", "purple", "gray", "yellow", "blue"],
-    sizes: ["S","M", "L", "XL", "2XL", "3XL"]
-   
+    sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
   };
-  const [chosenColor, setChosenColor] = useState('green')
-  const [chosenSize, setChosenSize] = useState('L')
+  const [chosenColor, setChosenColor] = useState("green");
+  const [chosenSize, setChosenSize] = useState("L");
   return (
     <div className="px-[24px] pt-[24px]">
       {/* Breadcrumb */}
@@ -47,14 +53,16 @@ const ProductDetails = () => {
         {/* Images */}
         <div className="flex flex-col gap-y-[16px]">
           <div className="relative">
-          <Image
-            src={product.image}
-            width={382}
-            height={360}
-            alt=""
-            className="h-[360px] w-full rounded-[8px] object-cover"
-          />
-          <div className="rounded-[4px] bg-[#A07E53] py-[8px] px-[24px] text-[14px] font-[600] leading-[16.8px] font-openSans text-white absolute left-[24px] top-[40px]">20% Off</div>
+            <Image
+              src={product.image}
+              width={382}
+              height={360}
+              alt=""
+              className="h-[360px] w-full rounded-[8px] object-cover"
+            />
+            <div className="absolute left-[24px] top-[40px] rounded-[4px] bg-[#A07E53] px-[24px] py-[8px] font-openSans text-[14px] font-[600] leading-[16.8px] text-white">
+              20% Off
+            </div>
           </div>
           <div className="mt[16px] flex justify-center gap-x-[16px]">
             {product.images?.map((image, index: number) => (
@@ -124,11 +132,20 @@ const ProductDetails = () => {
         <div className="flex flex-col gap-y-[16px] divide-y">
           {/* color */}
           <div className="flex flex-col gap-y-[12px]">
-            <h5 className="font-[600] text-[14px] leading-[20.3px] text-blackPrimary">Choose a Color</h5>
+            <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+              Choose a Color
+            </h5>
             <div className="flex items-center gap-x-[16px]">
-              {product.colors.map((color, index)=>(
-                <div onClick={()=>setChosenColor(color)} key={index} className={`${chosenColor ==color && " size-[36px] rounded-full flex items-center justify-center p-[4px] border border-black/60 "}`}>
-                <div  className={`size-[24px]  rounded-full `} style={{background: color}}></div>
+              {product.colors.map((color, index) => (
+                <div
+                  onClick={() => setChosenColor(color)}
+                  key={index}
+                  className={`${chosenColor == color && "flex size-[36px] items-center justify-center rounded-full border border-black/60 p-[4px]"}`}
+                >
+                  <div
+                    className={`size-[24px] rounded-full`}
+                    style={{ background: color }}
+                  ></div>
                 </div>
               ))}
             </div>
@@ -136,58 +153,178 @@ const ProductDetails = () => {
           {/* Select Size */}
           <div className="flex flex-col">
             <div className="flex justify-between py-[16px]">
-              <span className="font-openSans text-[14px] leading-[20.3px] font-[600] text-blackPrimary">Select Size</span>
-              <span className="font-[600] text-[12px] leading-[17.4px] text-[#8E97A6] underline ">Size Guide</span>
+              <span className="font-openSans text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+                Select Size
+              </span>
+              <span className="text-[12px] font-[600] leading-[17.4px] text-[#8E97A6] underline">
+                Size Guide
+              </span>
             </div>
             <div className="flex justify-between">
-                {product.sizes?.map((size, index)=>(
-                  <div onClick={()=>setChosenSize(size)} key={index} className={`${chosenSize ==size && "border border-[#7D9A37] rounded-full"}`}>
-                    <div className="bg-[#7D9A3733] rounded-full size-[32px] text-[#7D9A37] font-[600] text-[12px] font-openSans leading-[17.4px] flex items-center justify-center ">{size}</div>
+              {product.sizes?.map((size, index) => (
+                <div
+                  onClick={() => setChosenSize(size)}
+                  key={index}
+                  className={`${chosenSize == size && "rounded-full border border-[#7D9A37]"}`}
+                >
+                  <div className="flex size-[32px] items-center justify-center rounded-full bg-[#7D9A3733] font-openSans text-[12px] font-[600] leading-[17.4px] text-[#7D9A37]">
+                    {size}
                   </div>
-                ))}
+                </div>
+              ))}
             </div>
           </div>
           {/* Quantity */}
-          <div className="flex flex-col  py-[16px]">
-            <h4 className="text-blackPrimary font-[600] leading-[20.3px] font-openSans text-[14px]">Quantity</h4>
-            <div className="mt-[20px] w-fit border-[1px] rounded-[40px] py-[16px] flex items-center px-[26px] gap-[24px] border-[#E4E7EC]">
-              <TbMinus className="text-[#667185] text-[18px]"/>
-              <span className="text-[16px] font-[600] leading-[19.2px] text-[#7D9A37] font-openSans tracking-[2%]">1</span>
-              <TbPlus className="text-[#F56630] text-[18px]"/>
+          <div className="flex flex-col py-[16px]">
+            <h4 className="font-openSans text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+              Quantity
+            </h4>
+            <div className="mt-[20px] flex w-fit items-center gap-[24px] rounded-[40px] border-[1px] border-[#E4E7EC] px-[26px] py-[16px]">
+              <TbMinus className="text-[18px] text-[#667185]" />
+              <span className="font-openSans text-[16px] font-[600] leading-[19.2px] tracking-[2%] text-[#7D9A37]">
+                1
+              </span>
+              <TbPlus className="text-[18px] text-[#F56630]" />
             </div>
-            
           </div>
         </div>
-         {/* Description */}
-         <div className="flex flex-col mt-[24px] py-[24px]">
-          <h2 className="text-[20px] font-[600] leading-[24px] tracking-[2%] font-openSans text-blackPrimary">Product Description</h2>
-          <p className="text-[14px] text-[#787C83] mt-[16px] font-[400] leading-[20.3px] font-openSans line-clamp-6">This unique and eye-catching garment is handcrafted using traditional techniques and boasts a bold aesthetic perfect for the modern wardrobe. Mudcloth also known as bògòlanfini is made of pure, organic Malian cotton and natural dyes left to ferment for months. The process of creating mudcloth dates back to the 12th century, each...</p>
-          <button className="self-start text-[#787C83] text-[]14px font-[700] font-openSans leading-[20.3px] mt-[8px]">Read More...</button>
-         </div>
-         {/* Delivery & Return policy */}
-         <div className="flex flex-col mt-[32px] gap-y-[16px]">
+        {/* Description */}
+        <div className="mt-[24px] flex flex-col py-[24px]">
+          <h2 className="font-openSans text-[20px] font-[600] leading-[24px] tracking-[2%] text-blackPrimary">
+            Product Description
+          </h2>
+          <p className="mt-[16px] line-clamp-6 font-openSans text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
+            This unique and eye-catching garment is handcrafted using
+            traditional techniques and boasts a bold aesthetic perfect for the
+            modern wardrobe. Mudcloth also known as bògòlanfini is made of pure,
+            organic Malian cotton and natural dyes left to ferment for months.
+            The process of creating mudcloth dates back to the 12th century,
+            each...
+          </p>
+          <button className="text-[]14px mt-[8px] self-start font-openSans font-[700] leading-[20.3px] text-[#787C83]">
+            Read More...
+          </button>
+        </div>
+        {/* Delivery & Return policy */}
+        <div className="mt-[32px] flex flex-col gap-y-[16px]">
           {/* Delivery */}
-          <div className="flex flex-col p-[24px] gap-y-[12px] border-[1px] border-[#E4E7EC] rounded-[8px]">
+          <div className="flex flex-col gap-y-[12px] rounded-[8px] border-[1px] border-[#E4E7EC] p-[24px]">
             <div className="flex gap-x-[8px]">
-              <Image src={plane} width={16} height={16} alt="plane" className="size-[16px]"/>
-              <span className="text-[14px] font-[600] leading-[16.8px] tracking-[2%] text-blackPrimary font-openSans">Time of Delivery</span>
+              <Image
+                src={plane}
+                width={16}
+                height={16}
+                alt="plane"
+                className="size-[16px]"
+              />
+              <span className="font-openSans text-[14px] font-[600] leading-[16.8px] tracking-[2%] text-blackPrimary">
+                Time of Delivery
+              </span>
             </div>
-            <p className="text-[#787C83] text-[14px] font-[400] font-openSans leading-[20.3px] ">To be delivered on June 30, 2024.</p>
+            <p className="font-openSans text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
+              To be delivered on June 30, 2024.
+            </p>
           </div>
           {/* Return Policy */}
-          <div className="flex flex-col p-[24px] gap-y-[12px] border-[1px] border-[#E4E7EC] rounded-[8px]">
+          <div className="flex flex-col gap-y-[12px] rounded-[8px] border-[1px] border-[#E4E7EC] p-[24px]">
             <div className="flex gap-x-[8px]">
-              <Image src={policy} width={16} height={16} alt="plane" className="size-[16px]"/>
-              <span className="text-[14px] font-[600] leading-[16.8px] tracking-[2%] text-blackPrimary font-openSans">Return Policy</span>
+              <Image
+                src={policy}
+                width={16}
+                height={16}
+                alt="plane"
+                className="size-[16px]"
+              />
+              <span className="font-openSans text-[14px] font-[600] leading-[16.8px] tracking-[2%] text-blackPrimary">
+                Return Policy
+              </span>
             </div>
-            <p className="text-[#787C83] text-[14px] font-[400] font-openSans leading-[20.3px] ">We offer a flexible 90-day return window. If your purchase isn&apos;t the perfect fit, you can easily return it within 90 days (subject to our return policy details).</p>
-            <div className="flex gap-x-[8px] text-blackPrimary font-openSans items-center">
-              <span className="text-[14px] font-[400] leading-[20.3px]">Read Return Policy </span>
+            <p className="font-openSans text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
+              We offer a flexible 90-day return window. If your purchase
+              isn&apos;t the perfect fit, you can easily return it within 90
+              days (subject to our return policy details).
+            </p>
+            <div className="flex items-center gap-x-[8px] font-openSans text-blackPrimary">
+              <span className="text-[14px] font-[400] leading-[20.3px]">
+                Read Return Policy{" "}
+              </span>
               <IoIosArrowRoundForward className="text-[18px]" />
             </div>
           </div>
-         </div>
-
+        </div>
+        {/* Review */}
+        <div className="mt-[24px] flex flex-col pt-[24px] font-openSans">
+          {/* Reviews */}
+          <div className="flex flex-col gap-y-[8px]">
+            <div className="inline-flex items-center gap-x-[8px]">
+              <h5 className="font-openSans text-[20px] font-[600] leading-[24px] text-blackPrimary">
+                Reviews
+              </h5>
+              <MdKeyboardArrowDown className="text-[22px]text-[#7D9A37]" />
+            </div>
+            <p className="text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
+              Read customer reviews to see if this product is right for you!
+            </p>
+          </div>
+          {/* Leave a Review */}
+          <div className="mt-[32px] flex flex-col gap-y-[32px]">
+            {/* Leave a review */}
+            <div className="flex flex-col gap-y-[8px]">
+              <div className="inline-flex items-center gap-x-[8px]">
+                <h5 className="font-openSans text-[16px] font-[600] leading-[19.2px] text-blackPrimary">
+                  Leave a Review
+                </h5>
+                <MdKeyboardArrowUp className="text-[22px]text-[#7D9A37]" />
+              </div>
+              <p className="text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
+                Share your experience with this products to help customers.
+              </p>
+            </div>
+            {/* Form */}
+            <form className="flex flex-col gap-y-[24px]">
+              <div className="grid grid-cols-2 gap-x-[24px] font-openSans">
+                <label className="text-[14px] font-[600] leading-[20.3px] text-[#787C83]">
+                  Full Name
+                </label>
+                <label className="text-[14px] font-[600] leading-[20.3px] text-[#787C83]">
+                  Email Address
+                </label>
+                <Input
+                  type="text"
+                  placeholder="John Doe"
+                  className="text-[12px] font-[400] leading-[17.4px] text-[#8E97A6]"
+                />
+                <Input
+                  type="text"
+                  placeholder="john@example.com"
+                  className="text-[12px] font-[400] leading-[17.4px] text-[#8E97A6]"
+                />
+              </div>
+              {/* Experience */}
+              <div className="flex flex-col gap-y-[4px]">
+                <label className="text-[14px] font-[600] leading-[20.3px] text-[#787C83]">
+                  Share Your Experience
+                </label>
+                <textarea
+                  className="font-inter font h-[80px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-transparent p-[16px] text-[14px] font-[400] leading-[17.4px] text-[#8E97A6]"
+                  placeholder="Your experience..."
+                />
+              </div>
+              <Button className="bg-[#7D9A37] w-fit rounded px-[24px] py-[12px] text-[14px] font-[700] leading-[20.3px] font-openSans">Submit Review</Button>
+            </form>
+          </div>
+          <div className="mt-[24px]">
+            <Banner/>
+          </div>
+          <div className="py-[24px] flex flex-col gap-y-[16px]">
+            <ProductHeader heading="Other Items From Afritique" showBtn/>
+              <div className=" grid grid-cols-2 gap-[16px]">
+                {newArrivals?.slice(0, 4)?.map((product, index)=>(
+                  <ProductCard key={index} product={product}/>
+                ))}
+              </div>
+          </div>
+        </div>
       </div>
     </div>
   );

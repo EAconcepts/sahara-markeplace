@@ -6,19 +6,21 @@ import { PiShoppingCart } from "react-icons/pi";
 
 const ProductCard = ({ product }: { product: any }) => {
   return (
-    <div className="flex flex-col w-[294px]">
+    <div className="flex flex-col lg:w-[294px] pb-[12px]">
       <Image
         src={product?.image}
         width={294}
         alt=""
         height={180}
-        className="rounded-tr-[8px] rounded-tl-[8px] "
+        className="rounded-tr-[8px] max-lg:w-[183px] rounded-tl-[8px] "
       />
-      <div className="flex flex-col pr-[16px]">
-        <div className="flex justify-between text-[16px] font-[600] leading-[23.2px] font-openSans text-blackPrimary">
-          <h4 className="">{product?.title}</h4>
+      <div className="flex flex-col lg:pr-[16px] max-lg:mt-[16px]">
+        {/* product name & price */}
+        <div className="flex justify-between text-[14px] lg:text-[16px] font-[600] leading-[20px] lg:leading-[23.2px] font-openSans text-blackPrimary">
+          <h4 className="line-clamp-1">{product?.title}</h4>
           <span className="font-[700]">${product?.price}</span>
         </div>
+        {/* Made in */}
         <div className="flex items-center gap-x-[4px] mt-[8px]">
           <span>Made in Senegal</span>
           <Image src={product?.country} alt={product?.title}  width={15} height={10} className="w-[15px] h-[10px]"/>
@@ -27,7 +29,7 @@ const ProductCard = ({ product }: { product: any }) => {
         <div className="mt-[8px]">
           <div className="flex self-start gap-x-[8px] items-center">
             {/* Rating Stars */}
-            <div className="hidden lg:flex">
+            <div className="flex">
               {new Array(5).fill(0).map((_, index) => (
                 <FaStar
                   key={index}
