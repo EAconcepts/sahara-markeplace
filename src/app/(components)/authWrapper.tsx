@@ -8,7 +8,7 @@ type ProtectedPageProps = {
 };
 
 const withAuth = (Component: NextPage) => {
-  const ProtectedPage = (props: ProtectedPageProps) => {
+  const ProtectedPage = (props:any) => {
     const { token } = useAuth();
     const router = useRouter();
 
