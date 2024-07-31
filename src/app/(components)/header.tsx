@@ -88,7 +88,7 @@ const Header = () => {
         </div>
       </div>
     </div>
-    {showCart && <CartModal/>}
+    {showCart && <CartModal setShowCart={setShowCart}/>}
 
     </div>
   );

@@ -2,21 +2,23 @@ import Image from "next/image";
 import React from "react";
 import usa from "@/assets/images/usa.svg";
 import { TbMinus, TbPlus } from "react-icons/tb";
+import { twMerge } from "tailwind-merge";
+import details1 from "@/assets/images/details1.png"
 
-const CartCard = () => {
+const CartCard = ({showQuantity= true, showStore=true, imgClass}:{showQuantity?:boolean; imgClass?:string; showStore?:boolean}) => {
   return (
     <div className="flex w-full gap-x-[12px]">
       <Image
-        src={""}
+        src={details1}
         width={152}
         height={152}
         alt=""
-        className="size-[152px] rounded-[4px]"
+        className={twMerge("size-[152px] rounded-[4px]", imgClass)}
       />
       {/* Details */}
       <div className="flex w-full flex-col gap-y-[16px]">
         <div className="flex flex-col">
-          <div className="flex w-full items-center gap-x-[8px]">
+       {showStore &&   <div className="flex w-full items-center gap-x-[8px]">
             <span className="font-openSans text-[12px] font-[600] leading-[14.4px] tracking-[-2%] text-blackPrimary">
               Afritique-Benin
             </span>
@@ -31,6 +33,7 @@ const CartCard = () => {
               View Store
             </span>
           </div>
+}
           <div className="flex w-full flex-col gap-y-[8px]">
             <div className="flex w-full justify-between">
               <h4 className="font-openSans text-[16px] font-[600] leading-[19.2px] text-blackPrimary">
@@ -48,7 +51,7 @@ const CartCard = () => {
           </div>
         </div>
         {/* Quantity */}
-        <div className="flex justify-between">
+      {showQuantity &&  <div className="flex justify-between">
           {/* quantity */}
           <div className="flex w-fit items-center gap-[24px] rounded-[40px] border-[1px] border-[#E4E7EC] px-[17.5px] py-[12.5px] lg:gap-x-[27.5px]">
             <TbMinus className="text-[18px] text-[#8E97A6] lg:text-[24px]" />
@@ -74,6 +77,7 @@ const CartCard = () => {
             />
           </svg>
         </div>
+}
       </div>
     </div>
   );

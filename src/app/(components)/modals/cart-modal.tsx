@@ -1,14 +1,16 @@
 import { IoIosArrowRoundBack } from "react-icons/io";
 import CartCard from "../cart-card";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
-export const CartModal = () => {
+export const CartModal = ({setShowCart}:{setShowCart:React.Dispatch<React.SetStateAction<boolean>>}) => {
     const carts = [
         { id: 1, name: 'Product 1', price: 100, quantity: 2 },
         { id: 2, name: 'Product 2', price: 200, quantity: 1 },
         { id: 3, name: 'Product 3', price: 300, quantity: 3 },
       ];
     
+      const router = useRouter()
   return (
     <div className="fixed inset-0 z-40 flex w-full flex-col items-end bg-black/80">
       {/* cart */}
@@ -32,7 +34,7 @@ export const CartModal = () => {
         </div> 
         <div className='mt-[16px] flex flex-col gap-y-[28px] border-b-[2px] border-[#E4E7EC] pb-[28px]'>
             {carts?.map((cart)=>(
-                <CartCard key={cart.id} />
+                <CartCard key={cart.id}  showQuantity={true} />
             ))}
         </div>
         {/* Sub total */}
@@ -42,7 +44,9 @@ export const CartModal = () => {
                 <h4 className="text-[18px] font-[700] leading-[26.1px] text-blackPrimary">$492.97</h4>
             </div>
             <div className="pt-[24px]">
-            <Button className="bg-greenPrimary  py-[16px] w-full h-[55px] rounded-[12px] text-white text-[16px] font-[700] font-openSans leading-[23.2px]">Checkout</Button>
+            <Button onClick={()=>{router.push('/checkout')
+              setShowCart(false)
+            }} className="bg-greenPrimary  py-[16px] w-full h-[55px] rounded-[12px] text-white text-[16px] font-[700] font-openSans leading-[23.2px]">Checkout</Button>
             </div>
         </div>
       </div>
