@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (typeof window !== 'undefined') {
       token && localStorage.setItem("token", token );
       setToken(token);
-     user && localStorage.setItem("user", user);
+     user && localStorage.setItem("user", JSON.stringify(user));
       setToken(user);
     }
   };

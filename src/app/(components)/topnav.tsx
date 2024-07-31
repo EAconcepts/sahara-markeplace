@@ -7,10 +7,8 @@ import { CiMail } from "react-icons/ci";
 
 const Topnav = () => {
   const { token } = useAuth();
-  console.log(token);
-
   return (
-    <header className="flex h-[75px] w-full justify-between bg-[#C4D79B] px-[24px] py-[12px] font-openSans max-lg:flex-col lg:h-[62px] lg:px-[96px] lg:py-[12px]">
+    <header className="flex relative z-50 h-[75px] w-full justify-between bg-[#C4D79B] px-[24px] py-[12px] font-openSans max-lg:flex-col lg:h-[62px] lg:px-[96px] lg:py-[12px]">
       <div className="flex items-center gap-x-[4px] lg:hidden">
         <CiMail className="text-[12px]" />
         <span className="text-[12px] font-[400] leading-[16.34px] text-blackPrimary">

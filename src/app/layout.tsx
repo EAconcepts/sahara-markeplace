@@ -25,9 +25,8 @@ export default function RootLayout({
         <>
           <Providers>
             <Toaster />
-            <Topnav />
             <Header />
-            {children}
+            <div className="relative">{children}</div>
             <Footer />
           </Providers>
         </>

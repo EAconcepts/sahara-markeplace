@@ -1,5 +1,8 @@
+
+'use client'
+
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import logo from "@/assets/images/logo-sahara.png";
 import usEnglish from "@/assets/images/englishUS.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -7,10 +10,15 @@ import { CiHeart, CiSearch } from "react-icons/ci";
 import { PiShoppingCartLight } from "react-icons/pi";
 import Link from "next/link";
 import { RiMenu2Line } from "react-icons/ri";
+import { CartModal } from "./modals/cart-modal";
+import Topnav from "./topnav";
 
 const Header = () => {
+  const [showCart, setShowCart] = useState(false)
   return (
-    <div className="flex items-center justify-center px-[24px] text-blackPrimary max-lg:pt-[8px] lg:h-[80px] lg:px-[96px]">
+    <div className={`${showCart && 'sticky z-40 top-0 w-full'}`}>
+    <Topnav/>
+    <div className="flex bg-white relative items-center z-50 justify-center px-[24px] text-blackPrimary max-lg:pt-[8px] lg:h-[80px] lg:px-[96px]">
       <div className="flex w-full items-center justify-between">
         <Link href={"/"}>
           <Image
@@ -51,7 +59,7 @@ const Header = () => {
               </span>
               <CiHeart />
             </div>
-            <div className="relative">
+            <div onClick={()=>setShowCart((prev)=>!prev)} className="relative">
               <span className="absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-400 text-[10px] text-white lg:size-[12px]">
                 0
               </span>
@@ -79,6 +87,9 @@ const Header = () => {
           </Link>
         </div>
       </div>
+    </div>
+    {showCart && <CartModal/>}
+
     </div>
   );
 };
