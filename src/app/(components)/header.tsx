@@ -2,7 +2,7 @@
 'use client'
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "@/assets/images/logo-sahara.png";
 import usEnglish from "@/assets/images/englishUS.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -12,9 +12,16 @@ import Link from "next/link";
 import { RiMenu2Line } from "react-icons/ri";
 import { CartModal } from "./modals/cart-modal";
 import Topnav from "./topnav";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [showCart, setShowCart] = useState(false)
+  const path = usePathname()
+  // useEffect(()=>{
+    if(path.startsWith('/dashboard')){
+      return null
+    }
+  // })
   return (
     <div className={`${showCart && 'sticky z-40 top-0 w-full'}`}>
     <Topnav/>

@@ -11,6 +11,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
 import { useAuth } from "@/utils/useAuth";
+import { Welcome } from "@/app/(components)/Welcome";
 const Signin = () => {
   const [userDetails, setUserDetails] = useState({
     email: "",
@@ -140,11 +141,7 @@ const Signin = () => {
         </form>
       </div>
       {/* footer */}
-      <div className="mt-[40px] flex h-[53px] w-full justify-center bg-black py-[12px]">
-        <p className="text-center font-openSans text-[20px] font-[400] leading-[29px] text-white">
-          Welcome to Sahara Eagle
-        </p>
-      </div>
+     <Welcome/>
     </div>
   );
 };

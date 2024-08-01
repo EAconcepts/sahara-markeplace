@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import React from "react";
 import logo from "@/assets/images/logo2.png";
@@ -9,6 +11,7 @@ import location from "@/assets/images/location.svg";
 import phone from "@/assets/images/phone.svg";
 import message from "@/assets/images/message.svg";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
   const socials = [
@@ -17,6 +20,10 @@ const Footer = () => {
     { icon: facebook, url: "#" },
     { icon: youtube, url: "#" },
   ];
+  const path = usePathname()
+  if(path.startsWith('/dashboard')){
+    return null
+  }
   return (
     <footer className="bg-black px-[24px] lg:px-[96px]">
       <div className="flex flex-col py-[32px]">
