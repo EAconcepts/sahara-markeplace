@@ -1,11 +1,15 @@
+'use client'
+
 import React from "react";
 import { Header } from "../(components)/header";
 import { newArrivals } from "@/app/page";
 import Image from "next/image";
 import { HiOutlineEllipsisVertical } from "react-icons/hi2";
 import RecentSearches from "../(components)/recent-searches";
+import { useRouter } from "next/navigation";
 
 const MyOrders = () => {
+  const router = useRouter()
   return (
     <div className="w-full pt-[24px]">
       <Header title="My Order" />
@@ -26,6 +30,7 @@ const MyOrders = () => {
         <tbody className="divide-y divide-border px-[15px]">
           {newArrivals?.slice(0, 3).map((product, index) => (
             <tr
+            onClick={()=>router.push(`/dashboard/my-orders/SE2392922`)}
               key={index}
               className="h-[58px] gap-x-[24px] px-[15px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary"
             >

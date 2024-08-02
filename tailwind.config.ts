@@ -20,6 +20,7 @@ const config = {
     extend: {
       colors: {
         blackPrimary: "var(--black-primary)",
+        success: "var(--success)",
         greenPrimary: "var(--green-primary)",
         greenSecondary: "var(--green-secondary)",
         border: "var(--border)",
