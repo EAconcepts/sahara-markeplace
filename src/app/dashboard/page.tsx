@@ -3,8 +3,7 @@ import { Header } from "./(components)/header";
 import { MapsLocation01Icon } from "hugeicons-react";
 import { IoCallOutline } from "react-icons/io5";
 import { newArrivals } from "../page";
-import Image from "next/image";
-import { Welcome } from "../(components)/Welcome";
+import RecentSearches from "./(components)/recent-searches";
 
 const Dashboard = () => {
   return (
@@ -53,17 +52,7 @@ const Dashboard = () => {
         </div>
       </div>
       {/* Recent Searches */}
-      <div className="mt-[24px] flex flex-col py-[16px] font-openSans gap-y-[32px] pb-[16px]">
-        <Header title={"Recent Searches"}/>
-        <div className="flex gap-x-[24px]">
-            {newArrivals?.slice(0, 6).map((product, index)=>(
-                <div key={index} className="flex flex-col">
-                    <Image src={product.image} width={152.67} height={187} alt="" className="rounded-[4px] w-[152.67px] h-[185px] object-cover"/>
-                    <p className="text-[14px] font-[400] mt-[16px] text-center text-blackPrimary">Men</p>
-                </div>
-            ))}
-        </div>
-      </div>
+      <RecentSearches products={newArrivals}/>
     
     </div>
   );
