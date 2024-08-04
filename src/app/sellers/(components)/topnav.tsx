@@ -12,7 +12,7 @@ const Topnav = () => {
   const { token } = useAuth();
   const router = useRouter();
   const path = usePathname();
-  if(path.startsWith("/sellers/auth")){
+  if(path.startsWith("/sellers/auth")|| path.startsWith("/sellers/dashboard")){
     return null
   }
   return (
