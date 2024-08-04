@@ -2,16 +2,16 @@
 
 import Image from "next/image";
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import image from "@/assets/images/signin.png";
+import image from "@/assets/images/signin-seller.png";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import AuthCard from "../(components)/authCard";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
 import { useAuth } from "@/utils/useAuth";
 import { Welcome } from "@/app/(components)/Welcome";
+import AuthCard from "./(components)/authcard";
 const Signin = () => {
   const [userDetails, setUserDetails] = useState({
     email: "",
@@ -54,11 +54,9 @@ const Signin = () => {
   return (
     <div className="flex w-full flex-col pt-[40px] lg:pb-[300px]">
       <div className="flex w-full gap-x-[24px] px-[96px]">
-        <AuthCard
-          image={image}
-          header="Welcome Back!"
-          imgClassName="-mt-[120px] h-full"
-        />
+        <div className="w-full">
+          <AuthCard image={image} header="Welcome Back!!" />
+        </div>
         {/* signin form */}
         <form
           onSubmit={handleSignin}
@@ -124,7 +122,7 @@ const Signin = () => {
             disabled={loginMutation.isPending}
             className="mt-[40px] h-[55px] rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20"
           >
-            {loginMutation.isPending ? "Signing in..." : " Sign In"}
+            {loginMutation.isPending ? "Signing in..." : " Login"}
           </Button>
           <div className="mt-[24px] flex items-center justify-center gap-x-[12px] text-[20px]">
             <span className="font-[400] leading-[29px] text-[#787C83]">
@@ -135,7 +133,7 @@ const Signin = () => {
               onClick={() => router.push("/auth/signup")}
               className="font-[700] leading-[24px] text-[#7D9A37]"
             >
-              Sign up
+              Sign Up
             </button>
           </div>
         </form>
