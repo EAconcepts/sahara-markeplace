@@ -6,26 +6,16 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter } from "next/navigation";
 import {
-  PackageIcon,
-  DashboardSquare03Icon,
-  FavouriteIcon,
-  Message01Icon,
-  DiscountIcon,
   MarketingIcon,
   CustomerSupportIcon,
   Settings02Icon,
   UserCircleIcon,
   Logout02Icon,
 } from "hugeicons-react";
+import { NavlinksProps } from "@/app/sellers/dashboard/(components)/navlinks";
 
-const Sidemenu = () => {
-  const navlinks = [
-    { icon: DashboardSquare03Icon, title: "Dashboard", path: "/dashboard" },
-    { icon: PackageIcon, title: "My Orders", path: "/dashboard/my-orders" },
-    { icon: FavouriteIcon, title: "Wishlist", path: "/dashboard/wishlist" },
-    { icon: Message01Icon, title: "Quotes", path: "/dashboard/quotes" },
-    { icon: DiscountIcon, title: "Discounts", path: "/dashboard/discounts", value: 10 },
-  ];
+const Sidemenu = ({links}:{links:NavlinksProps[]}) => {
+ 
   const path = usePathname();
   const router = useRouter();
   return (
@@ -45,14 +35,14 @@ const Sidemenu = () => {
       </div>
       {/* Menu */}
       <div className="mt-[32px] flex w-full flex-col items-start gap-y-[4px] border-b-[1px] border-border pb-[12px] font-openSans text-[14px] font-[400] leading-[20.3px]">
-        {navlinks?.map((menu, index) => (
+        {links?.map((menu:any, index:number) => (
           <Button
             onClick={() => router.push(menu.path)}
             key={index}
             className={` ${path == menu.path ? "bg-greenPrimary text-white" : "bg-transparent text-blackPrimary"} flex h-[44px] w-full items-center justify-between rounded-[4px] px-[16px] py-[12px]`}
           >
             <div className="flex items-center gap-x-[12px]">
-              <menu.icon />{" "}
+             {menu.icon && <menu.icon />}
               <span
                 className={` ${path == menu.path && "font-[600]"} text-[14px] font-[400] leading-[20.3px]`}
               >
