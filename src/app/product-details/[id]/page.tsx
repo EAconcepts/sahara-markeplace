@@ -30,6 +30,26 @@ import review3 from "@/assets/images/review3.png";
 import usa from "@/assets/images/usa.svg"
 import withAuth from "@/app/(components)/authWrapper";
 
+export  const reviews = [
+  {
+    image: review1,
+    name: "Natalie Sharon",
+    review:
+      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
+  },
+  {
+    image: review2,
+    name: "Natalie Sharon",
+    review:
+      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
+  },
+  {
+    image: review3,
+    name: "Natalie Sharon",
+    review:
+      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
+  },
+];
 const ProductDetails = () => {
   // const { token } = useAuth();
   // console.log(token);
@@ -53,26 +73,7 @@ const ProductDetails = () => {
   };
   const [chosenColor, setChosenColor] = useState("green");
   const [chosenSize, setChosenSize] = useState("L");
-  const reviews = [
-    {
-      image: review1,
-      name: "Natalie Sharon",
-      review:
-        "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
-    },
-    {
-      image: review2,
-      name: "Natalie Sharon",
-      review:
-        "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
-    },
-    {
-      image: review3,
-      name: "Natalie Sharon",
-      review:
-        "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
-    },
-  ];
+ 
   return (
     <div className="pt-[24px] max-lg:px-[24px] lg:px-[96px]">
       {/* Breadcrumb */}

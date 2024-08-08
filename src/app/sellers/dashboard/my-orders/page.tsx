@@ -101,7 +101,7 @@ const MyOrders = () => {
                 <div className="fw-full lex items-end gap-x-[4px]">
                   <h2 className="text-[48px] font-[600] leading-[57.6px] tracking-[-2%] text-blackPrimary">
                     12
-                  </h2>
+                  </h2> 
                   <p className="pb-[8px] text-[16px] font-[400] leading-[19.36px] text-success">
                     +0.00%
                   </p>
