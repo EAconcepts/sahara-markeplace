@@ -9,7 +9,30 @@ import Rating from "./rating";
 import Image from "next/image";
 import usa from "@/assets/images/usa.svg";
 import { Input } from "@/components/ui/input";
+import review1 from "@/assets/images/review1.png";
+import review2 from "@/assets/images/review2.png";
+import review3 from "@/assets/images/review3.png";
 
+export const reviews = [
+  {
+    image: review1,
+    name: "Natalie Sharon",
+    review:
+      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
+  },
+  {
+    image: review2,
+    name: "Natalie Sharon",
+    review:
+      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
+  },
+  {
+    image: review3,
+    name: "Natalie Sharon",
+    review:
+      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
+  },
+];
 const Reviews = ({ reviews }: { reviews: any }) => {
   return (
     <div className="mt-[24px] flex flex-col pt-[24px] font-openSans">

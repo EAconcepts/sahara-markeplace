@@ -1,8 +1,8 @@
 'use client'
 
 import ReviewCard from "@/app/(components)/review-card"
+import { reviews } from "@/app/(components)/reviews"
 import { Header } from "@/app/dashboard/(components)/header"
-import { reviews } from "@/app/product-details/[id]/page"
 import { StarIcon } from "hugeicons-react"
 import { useState } from "react"
 

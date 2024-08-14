@@ -22,13 +22,11 @@ import ProductHeader from "@/app/(components)/product-header";
 import { newArrivals } from "@/app/page";
 import ProductCard from "@/app/(components)/productCard";
 import { useAuth } from "@/utils/useAuth";
-import review1 from "@/assets/images/review1.png";
-import review2 from "@/assets/images/review2.png";
-import review3 from "@/assets/images/review3.png";
 import usa from "@/assets/images/usa.svg";
 import withAuth from "@/app/(components)/authWrapper";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { reviews } from "@/app/(components)/reviews";
 
 
 const ProductDetails = () => {
@@ -422,25 +420,6 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default withAuth(ProductDetails)
 
-export const reviews = [
-  {
-    image: review1,
-    name: "Natalie Sharon",
-    review:
-      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
-  },
-  {
-    image: review2,
-    name: "Natalie Sharon",
-    review:
-      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
-  },
-  {
-    image: review3,
-    name: "Natalie Sharon",
-    review:
-      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
-  },
-];
+
