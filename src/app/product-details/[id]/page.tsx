@@ -27,12 +27,12 @@ import { useAuth } from "@/utils/useAuth";
 import review1 from "@/assets/images/review1.png";
 import review2 from "@/assets/images/review2.png";
 import review3 from "@/assets/images/review3.png";
-import usa from "@/assets/images/usa.svg"
+import usa from "@/assets/images/usa.svg";
 import withAuth from "@/app/(components)/authWrapper";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
-export  const reviews = [
+export const reviews = [
   {
     image: review1,
     name: "Natalie Sharon",
@@ -54,10 +54,10 @@ export  const reviews = [
 ];
 const ProductDetails = () => {
   const { token } = useAuth();
-  const headers ={
-    Authorization: "Bearer " + token
-  }
-  const apiUrl = process.env.NEXT_PUBLIC_API_R
+  const headers = {
+    Authorization: "Bearer " + token,
+  };
+  const apiUrl = process.env.NEXT_PUBLIC_API_R;
   // console.log(token);
   const product = {
     id: 1,
@@ -79,13 +79,11 @@ const ProductDetails = () => {
   };
   const [chosenColor, setChosenColor] = useState("green");
   const [chosenSize, setChosenSize] = useState("L");
-  const wishlistMutation=useMutation({
+  const wishlistMutation = useMutation({
     // mutationFn:()=>axios.post()
-  })
-  const handleWishList=()=>{
-   
-  }
- 
+  });
+  const handleWishList = () => {};
+
   return (
     <div className="pt-[24px] max-lg:px-[24px] lg:px-[96px]">
       {/* Breadcrumb */}
@@ -106,7 +104,7 @@ const ProductDetails = () => {
                 20% Off
               </div>
             </div>
-            <div className="max-lg:mt[16px] lg:mt-[32px] flex justify-center gap-x-[16px] lg:gap-x-[19px]">
+            <div className="max-lg:mt[16px] flex justify-center gap-x-[16px] lg:mt-[32px] lg:gap-x-[19px]">
               {product.images?.map((image, index: number) => (
                 <Image
                   key={index}
@@ -114,21 +112,21 @@ const ProductDetails = () => {
                   width={64}
                   height={85}
                   alt=""
-                  className="h-[85px] lg:size-[92px]  w-[64px] rounded-[2px] lg:rounded-[4px] lg:border-[1px] border-[#E4E7EC]"
+                  className="h-[85px] w-[64px] rounded-[2px] border-[#E4E7EC] lg:size-[92px] lg:rounded-[4px] lg:border-[1px]"
                 />
               ))}
             </div>
           </div>
           {/* Sub details */}
           <div>
-            <div className="max-lg:mt-[24px] flex flex-col gap-y-[32px]">
+            <div className="flex flex-col gap-y-[32px] max-lg:mt-[24px]">
               <div className="flex flex-col gap-y-[12px]">
                 {/* Title & Description */}
                 <div className="flex flex-col gap-y-[12px]">
-                  <h3 className="font-playfair lg:text-[32px] lg:leading-[38.4px] text-[20px] font-[600] leading-[24px] tracking-[2%] text-blackPrimary">
+                  <h3 className="font-playfair text-[20px] font-[600] leading-[24px] tracking-[2%] text-blackPrimary lg:text-[32px] lg:leading-[38.4px]">
                     {product.name}
                   </h3>
-                  <p className="font-openSans font-[400] leading-[17.6px] text-[#787C83] text-[12px] lg:text-[14px] lg:leading-[20.3px]">
+                  <p className="font-openSans text-[12px] font-[400] leading-[17.6px] text-[#787C83] lg:text-[14px] lg:leading-[20.3px]">
                     {product.description}
                   </p>
                 </div>
@@ -142,7 +140,7 @@ const ProductDetails = () => {
                     alt="country 
                             flag"
                   />
-                  <button className="font-openSans lg:text-[14px] lg:leading-[20.3px] text-[12px] font-[600] leading-[17.4px] text-[#787C83]">
+                  <button className="font-openSans text-[12px] font-[600] leading-[17.4px] text-[#787C83] lg:text-[14px] lg:leading-[20.3px]">
                     View Store
                   </button>
                 </div>
@@ -153,7 +151,7 @@ const ProductDetails = () => {
                     <HiOutlineBadgeCheck
                       className={"text-[16px] text-[#55C74B]"}
                     />
-                    <span className="px-[8px] py-[4px] font-openSans text-[12px] lg:text-[14px] leading-[20px] text-[#55C74B]">
+                    <span className="px-[8px] py-[4px] font-openSans text-[12px] leading-[20px] text-[#55C74B] lg:text-[14px]">
                       Trusted Seller
                     </span>
                   </div>
@@ -162,23 +160,23 @@ const ProductDetails = () => {
               {/* Prices */}
               <div className="flex flex-col gap-y-[4px]">
                 <div className="flex items-center gap-x-[8px]">
-                  <span className="font-openSans text-[12px] font-[600] leading-[14.4px] lg:text-[16px] tracking-[2%] text-[#787C83]">
+                  <span className="font-openSans text-[12px] font-[600] leading-[14.4px] tracking-[2%] text-[#787C83] lg:text-[16px]">
                     $81.99
                   </span>
-                  <span className="font-openSans lg:text-[24px] lg:leading-[28.8px] text-[16px] font-[700] leading-[19.2px] text-blackPrimary">
+                  <span className="font-openSans text-[16px] font-[700] leading-[19.2px] text-blackPrimary lg:text-[24px] lg:leading-[28.8px]">
                     $68.99
                   </span>
                 </div>
-                <div className="inline-flex gap-x-[3px] font-openSans text-[12px] font-[400] lg:leading-[20.3px] lg:text-[14px] leading-[17.4px] text-[#787C83]">
+                <div className="inline-flex gap-x-[3px] font-openSans text-[12px] font-[400] leading-[17.4px] text-[#787C83] lg:text-[14px] lg:leading-[20.3px]">
                   <span className="font-[700]">$64.99 </span>
                   <span>for more than 10 pieces</span>
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-y-[16px] lg:gap-y-[32px] divide-y">
+            <div className="flex flex-col gap-y-[16px] divide-y lg:gap-y-[32px]">
               {/* color */}
-              <div className="flex flex-col lg:mt-[32px] gap-y-[12px]">
-                <h5 className="text-[14px] lg:text-[16px] lg:leading-[23.2px] font-[600] leading-[20.3px] text-blackPrimary">
+              <div className="flex flex-col gap-y-[12px] lg:mt-[32px]">
+                <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary lg:text-[16px] lg:leading-[23.2px]">
                   Choose a Color
                 </h5>
                 <div className="flex items-center gap-x-[16px]">
@@ -186,10 +184,10 @@ const ProductDetails = () => {
                     <div
                       onClick={() => setChosenColor(color)}
                       key={index}
-                      className={`${chosenColor == color && "flex lg:size-[56px] size-[36px] items-center justify-center rounded-full border border-black/60 p-[4px] lg:p-[6px]"}`}
+                      className={`${chosenColor == color && "flex size-[36px] items-center justify-center rounded-full border border-black/60 p-[4px] lg:size-[56px] lg:p-[6px]"}`}
                     >
                       <div
-                        className={`size-[24px] lg:size-[44px] rounded-full`}
+                        className={`size-[24px] rounded-full lg:size-[44px]`}
                         style={{ background: color }}
                       ></div>
                     </div>
@@ -197,12 +195,12 @@ const ProductDetails = () => {
                 </div>
               </div>
               {/* Select Size */}
-              <div className="flex flex-col lg:w-[526px] ">
+              <div className="flex flex-col lg:w-[526px]">
                 <div className="flex justify-between py-[16px] lg:py-[32px]">
-                  <span className="font-openSans text-[14px] lg:text-[16px] lg:leading-[23.2px] font-[600] leading-[20.3px] text-blackPrimary">
+                  <span className="font-openSans text-[14px] font-[600] leading-[20.3px] text-blackPrimary lg:text-[16px] lg:leading-[23.2px]">
                     Select Size
                   </span>
-                  <span className="text-[12px] lg:text-[14px] lg:leading-[20.3px] font-[600] leading-[17.4px] text-[#8E97A6] underline">
+                  <span className="text-[12px] font-[600] leading-[17.4px] text-[#8E97A6] underline lg:text-[14px] lg:leading-[20.3px]">
                     Size Guide
                   </span>
                 </div>
@@ -213,7 +211,7 @@ const ProductDetails = () => {
                       key={index}
                       className={`${chosenSize == size && "rounded-full border border-[#7D9A37]"}`}
                     >
-                      <div className="flex size-[32px] lg:size-[44px] items-center justify-center rounded-full bg-[#7D9A3733] font-openSans lg:text-[14px] text-[12px] font-[600] leading-[17.4px] text-[#7D9A37]">
+                      <div className="flex size-[32px] items-center justify-center rounded-full bg-[#7D9A3733] font-openSans text-[12px] font-[600] leading-[17.4px] text-[#7D9A37] lg:size-[44px] lg:text-[14px]">
                         {size}
                       </div>
                     </div>
@@ -222,19 +220,30 @@ const ProductDetails = () => {
               </div>
               {/* Quantity */}
               <div className="flex flex-col py-[16px]">
-                <h4 className="font-openSans lg:text-[16px] lg:leading-[23.2px] text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+                <h4 className="font-openSans text-[14px] font-[600] leading-[20.3px] text-blackPrimary lg:text-[16px] lg:leading-[23.2px]">
                   Quantity
                 </h4>
-                <div className="mt-[20px] flex w-fit items-center gap-[24px] lg:gap-x-[44px] rounded-[40px] border-[1px] border-[#E4E7EC] px-[26px] py-[16px]">
-                  <TbMinus className="text-[18px] lg:text-[24px] text-[#667185]" />
-                  <span className="font-openSans lg:text-[20px] lg:leading-[24px] text-[16px] font-[600] leading-[19.2px] tracking-[2%] text-[#7D9A37]">
+                <div className="mt-[20px] flex w-fit items-center gap-[24px] rounded-[40px] border-[1px] border-[#E4E7EC] px-[26px] py-[16px] lg:gap-x-[44px]">
+                  <TbMinus className="text-[18px] text-[#667185] lg:text-[24px]" />
+                  <span className="font-openSans text-[16px] font-[600] leading-[19.2px] tracking-[2%] text-[#7D9A37] lg:text-[20px] lg:leading-[24px]">
                     1
                   </span>
-                  <TbPlus className="text-[18px] lg:text-[24px] text-[#F56630]" />
+                  <TbPlus className="text-[18px] text-[#F56630] lg:text-[24px]" />
                 </div>
-                <div className="max-lg:hidden mt-[32px] flex gap-x-[24px]">
-                  <Button className="bg-[#7D9A37] py-[16px] px-[24px] h-[55px] w-[294px] rounded-[12px] text-[16px] text-white font-[600] leading-[23.2px]" variant={"outline"}>Add to Cart</Button>
-                  <Button onClick={()=>handleWishList()} className=" py-[16px] rounded-[12px] px-[24px] h-[55px] w-[294px] text-[16px] text-[#7D9A37] border-[1.5px] border-[#7D9A37] font-[600] leading-[23.2px]" variant={"outline"}>Add to Wishlist</Button>
+                <div className="mt-[32px] flex gap-x-[24px] max-lg:hidden">
+                  <Button
+                    className="h-[55px] w-[294px] rounded-[12px] bg-[#7D9A37] px-[24px] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white"
+                    variant={"outline"}
+                  >
+                    Add to Cart
+                  </Button>
+                  <Button
+                    onClick={() => handleWishList()}
+                    className="h-[55px] w-[294px] rounded-[12px] border-[1.5px] border-[#7D9A37] px-[24px] py-[16px] text-[16px] font-[600] leading-[23.2px] text-[#7D9A37]"
+                    variant={"outline"}
+                  >
+                    Add to Wishlist
+                  </Button>
                 </div>
               </div>
             </div>
@@ -381,7 +390,7 @@ const ProductDetails = () => {
             </div>
             {/* Form */}
             <form className="flex flex-col gap-y-[24px]">
-              <div className="grid grid-cols-2 lg:gap-y-[8px] gap-x-[24px] font-openSans">
+              <div className="grid grid-cols-2 gap-x-[24px] font-openSans lg:gap-y-[8px]">
                 <label className="text-[14px] font-[600] leading-[20.3px] text-[#787C83]">
                   Full Name
                 </label>
@@ -405,11 +414,11 @@ const ProductDetails = () => {
                   Share Your Experience
                 </label>
                 <textarea
-                  className="font h-[80px] lg:h-[112px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-transparent p-[16px] font-inter text-[14px] font-[400] leading-[17.4px] text-[#8E97A6]"
+                  className="font h-[80px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-transparent p-[16px] font-inter text-[14px] font-[400] leading-[17.4px] text-[#8E97A6] lg:h-[112px]"
                   placeholder="Your experience..."
                 />
               </div>
-              <Button className="w-fit rounded bg-[#7D9A37] px-[24px] py-[12px] lg:py-[16px] lg:rounded-[20px] lg:text-[16px] lg:leading-[23.2px] font-openSans text-[14px] font-[700] leading-[20.3px]">
+              <Button className="w-fit rounded bg-[#7D9A37] px-[24px] py-[12px] font-openSans text-[14px] font-[700] leading-[20.3px] lg:rounded-[20px] lg:py-[16px] lg:text-[16px] lg:leading-[23.2px]">
                 Submit Review
               </Button>
             </form>
@@ -434,4 +443,4 @@ const ProductDetails = () => {
   );
 };
 
-export default withAuth( ProductDetails)
+export default ProductDetails;
