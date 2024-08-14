@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 import Image from "next/image";
 import Hero from "./(components)/hero";
@@ -108,8 +108,8 @@ export  const blogs = [
 ];
 export default function Home() {
  
-  const {data} = useGet("", "products")
-  console.log(data)
+  // const {data} = useGet("", "products")
+  // console.log(data)
 
 //   const getProducts=async()=>{
 //     try{
