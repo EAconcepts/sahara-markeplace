@@ -1,3 +1,4 @@
+import Calendarr from "@/app/(components)/calendar";
 import { Button } from "@/components/ui/button";
 import { AddCircleIcon, HugeiconsProps } from "hugeicons-react";
 import { FC, RefAttributes } from "react";
@@ -11,6 +12,7 @@ export const Header = ({
   btnClass,
   btnText,
   BtnIcon,
+  calendar
 }: {
   title: string;
   className?: string;
@@ -19,6 +21,7 @@ export const Header = ({
   BtnIcon?: FC<Omit<HugeiconsProps, "ref"> & RefAttributes<SVGSVGElement>> | undefined;
   btnText?: string;
   btnClass?: string;
+  calendar?:boolean
 }) => {
   return (
     <div className="flex w-full gap-x-[12px]">
@@ -42,6 +45,7 @@ export const Header = ({
          {btnText}
         </span>
       </Button>}
+      {calendar &&  <Calendarr/>}
     </div>
   );
 };

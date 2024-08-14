@@ -17,7 +17,7 @@ const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const path = usePathname();
   // useEffect(()=>{
-  if (path.startsWith("/dashboard") || path.startsWith("/sellers")) {
+  if (path.startsWith("/dashboard") || path.startsWith("/sellers") ||path.startsWith("/admin")) {
     return null;
   }
   // })
@@ -90,13 +90,13 @@ const Header = () => {
           <div className="flex gap-x-[32px] max-lg:hidden">
             <Link
               href={"/sellers-center"}
-              className="font-openSans text-[16px] font-[600] leading-[23.2px] text-black"
+              className="font-openSans cursor-pointer text-[16px] font-[600] leading-[23.2px] text-black"
             >
               Sellers Center
             </Link>
             <Link
-              href={"/my-account"}
-              className="font-openSans text-[16px] font-[600] leading-[23.2px] text-black"
+              href={"/dashboard"}
+              className="font-openSans cursor-pointer text-[16px] font-[600] leading-[23.2px] text-black"
             >
               My Account
             </Link>

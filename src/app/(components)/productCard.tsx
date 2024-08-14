@@ -1,12 +1,19 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { PiShoppingCart } from "react-icons/pi";
 
 const ProductCard = ({ product }: { product: any }) => {
+  const router = useRouter()
+  const handleAddToCart=(id:string )=>{
+    console.log(id)
+  }
   return (
-    <div className="flex flex-col lg:w-[294px] pb-[12px]">
+    <div onClick={()=>router.push(`/product-details/${product._id || 2}`)} className="flex flex-col lg:w-[294px] pb-[12px]">
       <Image
         src={product?.image}
         width={294}
@@ -44,7 +51,10 @@ const ProductCard = ({ product }: { product: any }) => {
             <span>({product?.rating})</span>
           </div>
         </div>
-        <Button variant={"outline"} className="flex gap-x-[8px] w-fit mt-[16px]">
+        <Button onClick={(e)=>{
+          e.stopPropagation()
+          handleAddToCart(product?._id)
+        }} variant={"outline"} className="flex gap-x-[8px] w-fit mt-[16px]">
           <PiShoppingCart className="text-[24px] text-blackPrimary" />
           <span className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary font-openSans">
             Add to Cart

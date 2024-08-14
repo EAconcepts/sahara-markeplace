@@ -1,6 +1,13 @@
+'use client'
+
+import { useAuth } from "@/utils/useAuth";
 import { Alert02Icon } from "hugeicons-react";
 
 export const ActiveStatusModal = () => {
+  const {user} = useAuth()
+  if(user?.email_verify_status !="0"){
+    return null
+  }
   return (
     <div className="flex flex-col gap-y-[8px] rounded-[8px] bg-[#F9E79F99] px-[24px] py-[16px] font-openSans">
       <div className="flex items-center gap-x-[8px]">

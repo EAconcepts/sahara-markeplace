@@ -21,7 +21,7 @@ const Footer = () => {
     { icon: youtube, url: "#" },
   ];
   const path = usePathname()
-  if(path.startsWith('/dashboard') || path.startsWith("/sellers/auth")){
+  if(path.startsWith('/dashboard') || path.startsWith("/sellers/auth")|| path.startsWith("/admin")){
     return null
   }
   return (

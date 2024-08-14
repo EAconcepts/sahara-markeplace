@@ -1,6 +1,6 @@
 'use client'
 
-import { DashboardSquare03Icon, DiscountIcon, FavouriteIcon, HugeiconsProps, Message01Icon, PackageIcon } from "hugeicons-react";
+import { AlignBoxMiddleLeftIcon, DashboardSquare03Icon, DiscountIcon, FavouriteIcon, HugeiconsProps, Message01Icon, News01Icon, PackageIcon, ProductLoadingIcon, Settings02Icon, UserAccountIcon, UserMultiple02Icon } from "hugeicons-react";
 import { FC, RefAttributes } from "react";
 
 
@@ -13,10 +13,10 @@ export interface NavlinksProps{
 export const sellersNavLinks: NavlinksProps[] =[
   
     { icon: DashboardSquare03Icon, title: "Dashboard", path: "sllers/dashboard" },
+    { icon: ProductLoadingIcon, title: "Products", path: "sellers/dashboard/product-listings" },
     { icon: PackageIcon, title: "My Orders", path: "sellers/dashboard/my-orders" },
-    { icon: FavouriteIcon, title: "Reviews", path: "sellers/dashboard/Reviews" },
-    { icon: Message01Icon, title: "Products", path: "sellers/dashboard/product-listings" },
-    { icon: DiscountIcon, title: "Discounts", path: "sellers/dashboard/discounts", value: 10 },
+    { icon: FavouriteIcon, title: "Reviews", path: "sellers/dashboard/Reviews" , value: 10 },
+    { icon: DiscountIcon, title: "Quotes", path: "sellers/dashboard/quotes" },
 
 ]
 
@@ -27,3 +27,19 @@ export const navlinks :NavlinksProps[] = [
     { icon: Message01Icon, title: "Quotes", path: "/dashboard/quotes" },
     { icon: DiscountIcon, title: "Discounts", path: "/dashboard/discounts", value: 10 },
   ];
+
+  export const adminNavLinks: NavlinksProps[] =[
+  
+    { icon: DashboardSquare03Icon, title: "Dashboard", path: "sllers/dashboard" },
+    { icon: Message01Icon, title: "Products", path: "admin/dashboard/product-listings" },
+    { icon: PackageIcon, title: "Order list", path: "admin/dashboard/my-orders" },
+    { icon: PackageIcon, title: "Transactions", path: "admin/dashboard/my-orders" },
+    { icon: UserMultiple02Icon, title: "Customers", path: "dashboard/customers" },
+    { icon: UserAccountIcon, title: "Sellers", path: "admin/dashboard/my-orders" },
+    { icon: AlignBoxMiddleLeftIcon, title: "Applications", path: "admin/dashboard/my-orders" },
+    { icon: News01Icon, title: "Blogs", path: "admin/dashboard/discounts", value: 10 },
+    { icon: DiscountIcon, title: "Coupons/Discounts", path: "admin/dashboard/discounts", value: 10 },
+    { icon: Message01Icon, title: "Reviews", path: "admin/dashboard/Reviews" },
+    { icon: Settings02Icon, title: "Settings", path: "admin/dashboard/Reviews" },
+
+]

@@ -1,3 +1,5 @@
+'use client'
+
 import { Header } from "@/app/dashboard/(components)/header";
 import {
   ArrowDown01Icon,
@@ -11,9 +13,13 @@ import products from "@/assets/images/products.svg";
 import RecentOrders from "./(components)/recent-orders";
 import Listings from "./(components)/listings";
 import LastUpdated from "./(components)/last-updated";
+import { useGet } from "@/utils/useGet.";
 
 const SellersDashboard = () => {
   const recentOrders = [];
+  const {data} = useGet('vendor/dashboard', 'vendorDashb')
+  // console.log(data)
+  
   return (
     <div className="font-openSans">
       {/* updated */}

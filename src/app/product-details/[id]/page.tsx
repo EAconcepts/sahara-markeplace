@@ -29,6 +29,8 @@ import review2 from "@/assets/images/review2.png";
 import review3 from "@/assets/images/review3.png";
 import usa from "@/assets/images/usa.svg"
 import withAuth from "@/app/(components)/authWrapper";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 
 export  const reviews = [
   {
@@ -51,7 +53,11 @@ export  const reviews = [
   },
 ];
 const ProductDetails = () => {
-  // const { token } = useAuth();
+  const { token } = useAuth();
+  const headers ={
+    Authorization: "Bearer " + token
+  }
+  const apiUrl = process.env.NEXT_PUBLIC_API_R
   // console.log(token);
   const product = {
     id: 1,
@@ -73,6 +79,12 @@ const ProductDetails = () => {
   };
   const [chosenColor, setChosenColor] = useState("green");
   const [chosenSize, setChosenSize] = useState("L");
+  const wishlistMutation=useMutation({
+    // mutationFn:()=>axios.post()
+  })
+  const handleWishList=()=>{
+   
+  }
  
   return (
     <div className="pt-[24px] max-lg:px-[24px] lg:px-[96px]">
@@ -222,7 +234,7 @@ const ProductDetails = () => {
                 </div>
                 <div className="max-lg:hidden mt-[32px] flex gap-x-[24px]">
                   <Button className="bg-[#7D9A37] py-[16px] px-[24px] h-[55px] w-[294px] rounded-[12px] text-[16px] text-white font-[600] leading-[23.2px]" variant={"outline"}>Add to Cart</Button>
-                  <Button className=" py-[16px] rounded-[12px] px-[24px] h-[55px] w-[294px] text-[16px] text-[#7D9A37] border-[1.5px] border-[#7D9A37] font-[600] leading-[23.2px]" variant={"outline"}>Add to Wishlist</Button>
+                  <Button onClick={()=>handleWishList()} className=" py-[16px] rounded-[12px] px-[24px] h-[55px] w-[294px] text-[16px] text-[#7D9A37] border-[1.5px] border-[#7D9A37] font-[600] leading-[23.2px]" variant={"outline"}>Add to Wishlist</Button>
                 </div>
               </div>
             </div>

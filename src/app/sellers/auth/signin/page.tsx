@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import image from "@/assets/images/signin-seller.png";
 import { Input } from "@/components/ui/input";
@@ -32,7 +31,7 @@ const Signin = () => {
     loginMutation.mutate();
   };
   const loginMutation = useMutation({
-    mutationFn: () => axios.post(`${baseUrl}/user-login`, userDetails),
+    mutationFn: () => axios.post(`${baseUrl}/vendor-login`, userDetails),
     onSuccess: (data) => {
       console.log("Signin successful!", data);
       if (data.status === 200) {
@@ -41,7 +40,7 @@ const Signin = () => {
         login(token, user);
         toast.success("Signin successful!");
         setTimeout(() => {
-          router.push("/dashboard");
+          router.push("/sellers/dashboard");
         }, 1000);
       }
     },
@@ -130,7 +129,7 @@ const Signin = () => {
             </span>{" "}
             <button
               type="button"
-              onClick={() => router.push("/auth/signup")}
+              onClick={() => router.push("/sellers/auth/signup")}
               className="font-[700] leading-[24px] text-[#7D9A37]"
             >
               Sign Up

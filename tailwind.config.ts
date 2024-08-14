@@ -21,6 +21,7 @@ const config = {
       colors: {
         blackPrimary: "var(--black-primary)",
         success: "var(--success)",
+        failure: "var(--failure)",
         greenPrimary: "var(--green-primary)",
         greenSecondary: "var(--green-secondary)",
         border: "var(--border)",

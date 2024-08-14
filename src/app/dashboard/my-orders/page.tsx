@@ -7,9 +7,24 @@ import Image from "next/image";
 import { HiOutlineEllipsisVertical } from "react-icons/hi2";
 import RecentSearches from "../(components)/recent-searches";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useAuth } from "@/utils/useAuth";
 
 const MyOrders = () => {
   const router = useRouter()
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+  const {token} = useAuth()
+ const headers = {
+    Authorization: `Bearer ${token}`
+  }
+  const dashboardQuery = useQuery({
+    queryKey: ["dashboard"],
+    queryFn: ()=>axios.get(`${apiUrl}/user/order`, {headers})
+  })
+  if(dashboardQuery.data){
+    console.log(dashboardQuery.data)
+  }else console.log(dashboardQuery.error)
   return (
     <div className="w-full pt-[24px]">
       <Header title="My Order" />

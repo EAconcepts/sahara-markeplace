@@ -1,11 +1,16 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
 import { Header } from "./(components)/header";
 import { MapsLocation01Icon } from "hugeicons-react";
 import { IoCallOutline } from "react-icons/io5";
 import { newArrivals } from "../page";
 import RecentSearches from "./(components)/recent-searches";
+import { useAuth } from "@/utils/useAuth";
 
 const Dashboard = () => {
+  const {user} = useAuth()
+  // console.log(user)
   return (
     <div className="pt-[40px]">
       <Header title={"Dashboard"} />
@@ -29,8 +34,8 @@ const Dashboard = () => {
           </h4>
           <div className="flex min-h-[187px] flex-col items-center justify-center gap-y-[24px] rounded-[10px] border-[1px] border-border p-[24px]">
             <div className="flex flex-col gap-y-[8px] font-[400]">
-              <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
-                Juan Anabel
+              <h6 className="text-[14px] capitalize font-[600] leading-[20.3px] text-blackPrimary">
+                {user?.first_name} {user?.last_name}
               </h6>
               <div className="flex items-center gap-x-[8px]">
                 <MapsLocation01Icon className="size-[20px] text-greenPrimary" />

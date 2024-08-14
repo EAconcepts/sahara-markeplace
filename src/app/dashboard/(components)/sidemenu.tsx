@@ -13,15 +13,17 @@ import {
   Logout02Icon,
 } from "hugeicons-react";
 import { NavlinksProps } from "@/app/sellers/dashboard/(components)/navlinks";
+import { useAuth } from "@/utils/useAuth";
+import Link from "next/link";
 
-const Sidemenu = ({links}:{links:NavlinksProps[]}) => {
- 
+const Sidemenu = ({links, settingsLink}:{links:NavlinksProps[]; settingsLink?:string}) => {
+  const {user} = useAuth()
   const path = usePathname();
   const router = useRouter();
   return (
     <div className="px-[24px] pt-[12px] border-r-[1px] border-border">
       {/* logo */}
-      <div className="flex items-center gap-x-[4px] pl-[24px]">
+      <Link href={'/'} className="flex items-center gap-x-[4px] pl-[24px]">
         <Image
           src={logo}
           width={56}
@@ -32,7 +34,7 @@ const Sidemenu = ({links}:{links:NavlinksProps[]}) => {
         <h3 className="font-playfair text-[24px] font-[600] leading-[34.8px] text-blackPrimary">
           Sahara Eagle
         </h3>
-      </div>
+      </Link>
       {/* Menu */}
       <div className="mt-[32px] flex w-full flex-col items-start gap-y-[4px] border-b-[1px] border-border pb-[12px] font-openSans text-[14px] font-[400] leading-[20.3px]">
         {links?.map((menu:any, index:number) => (
@@ -72,7 +74,7 @@ const Sidemenu = ({links}:{links:NavlinksProps[]}) => {
               Help & Support
             </span>
           </button>
-          <button className="flex items-center gap-x-[12px] px-[16px] py-[12px]">
+          <button onClick={()=>router.push(`${settingsLink}`)} className="flex items-center gap-x-[12px] px-[16px] py-[12px]">
             <Settings02Icon />{" "}
             <span className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
               Settings
@@ -86,7 +88,7 @@ const Sidemenu = ({links}:{links:NavlinksProps[]}) => {
             <UserCircleIcon />
             <div className="flex flex-col">
               <h6 className="text-[14px] font-[700] leading-[20.3px] text-blackPrimary">
-                Juan Anabel
+               {user?.first_name} {user?.last_name}
               </h6>
               <span className="text-[14px] font-[400] leading-[20.3px] text-[#787C83]">Verify email</span>
             </div>
