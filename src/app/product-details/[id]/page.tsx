@@ -3,8 +3,6 @@
 import Image from "next/image";
 import ghana from "@/assets/images/ghana.svg";
 import Rating from "@/app/(components)/rating";
-import { BsFillPatchCheckFill, BsPlus } from "react-icons/bs";
-import { twMerge } from "tailwind-merge";
 import { HiOutlineBadgeCheck } from "react-icons/hi";
 import { useState } from "react";
 import { TbMinus, TbPlus } from "react-icons/tb";
@@ -32,26 +30,7 @@ import withAuth from "@/app/(components)/authWrapper";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
-export const reviews = [
-  {
-    image: review1,
-    name: "Natalie Sharon",
-    review:
-      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
-  },
-  {
-    image: review2,
-    name: "Natalie Sharon",
-    review:
-      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
-  },
-  {
-    image: review3,
-    name: "Natalie Sharon",
-    review:
-      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
-  },
-];
+
 const ProductDetails = () => {
   const { token } = useAuth();
   const headers = {
@@ -444,3 +423,24 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
+export const reviews = [
+  {
+    image: review1,
+    name: "Natalie Sharon",
+    review:
+      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
+  },
+  {
+    image: review2,
+    name: "Natalie Sharon",
+    review:
+      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
+  },
+  {
+    image: review3,
+    name: "Natalie Sharon",
+    review:
+      "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
+  },
+];
