@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import { useAuth } from "./useAuth"
 
-
 export const useGet:any=(url:string, queryKey:String)=>{
 const {token} = useAuth()
 const headers={
@@ -14,7 +13,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
     const getQuery = useQuery({
         queryKey:[queryKey],
-        queryFn:()=>axios.get(`${apiUrl}/${url}`, {headers})
+        queryFn:()=>axios.get(`${apiUrl}/${url && url}`, {headers})
     })
     let data:any=''
     if(getQuery.data){

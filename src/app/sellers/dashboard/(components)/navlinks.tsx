@@ -35,7 +35,7 @@ export const navlinks :NavlinksProps[] = [
     { icon: PackageIcon, title: "Order list", path: "admin/dashboard/my-orders" },
     { icon: PackageIcon, title: "Transactions", path: "admin/dashboard/my-orders" },
     { icon: UserMultiple02Icon, title: "Customers", path: "dashboard/customers" },
-    { icon: UserAccountIcon, title: "Sellers", path: "admin/dashboard/my-orders" },
+    { icon: UserAccountIcon, title: "Sellers", path: "/admin/dashboard/sellers" },
     { icon: AlignBoxMiddleLeftIcon, title: "Applications", path: "admin/dashboard/my-orders" },
     { icon: News01Icon, title: "Blogs", path: "admin/dashboard/discounts", value: 10 },
     { icon: DiscountIcon, title: "Coupons/Discounts", path: "admin/dashboard/discounts", value: 10 },

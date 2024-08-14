@@ -6,7 +6,7 @@ import React from 'react'
 
 const Topbar = () => {
   const {user} = useAuth()
-  console.log(user)
+  // console.log(user)
 
   return (
     <header className='h-[66px] pt-[8px] w-full flex items-center justify-between pb-[16px] border-b-[1px] border-border'>

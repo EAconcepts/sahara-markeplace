@@ -4,6 +4,8 @@ import Image from "next/image";
 import avatar from "@/assets/images/avatar.png";
 import { FaCheckCircle } from "react-icons/fa";
 import { Calendar02Icon, CallIcon, Location01Icon } from "hugeicons-react";
+import OrderHistory from "../../(components)/order-history";
+import { reviews } from "@/app/(components)/reviews";
 
 const CustomerDetails = () => {
   return (
@@ -175,6 +177,10 @@ const CustomerDetails = () => {
                 </p>
               </div>
             </div>
+          </div>
+          {/* Order History */}
+          <div>
+            <OrderHistory orders={reviews}/>
           </div>
         </section>
       </div>

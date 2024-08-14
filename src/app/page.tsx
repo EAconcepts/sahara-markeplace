@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import Hero from "./(components)/hero";
 import Department from "./(components)/department";
@@ -15,8 +17,10 @@ import blog3 from "@/assets/images/blog3.png";
 import blog4 from "@/assets/images/blog4.png";
 import BlogCard from "./(components)/blog-card";
 import Testimonies from "./(components)/testimonies";
-import { News_Cycle } from "next/font/google";
 import Newsletter from "./(components)/newsletter";
+import { useGet } from "@/utils/useGet.";
+import axios from "axios";
+import { useEffect } from "react";
 
 export  const newArrivals = [
   {
@@ -104,7 +108,18 @@ export  const blogs = [
 ];
 export default function Home() {
  
- 
+  const {data} = useGet("", "products")
+  console.log(data)
+
+//   const getProducts=async()=>{
+//     try{
+//     const res = await axios.get("https://samcleans.com/sahara/api/v1/")
+//     console.log(res)
+//     }catch(e){console.log(e)
+//   }}
+//   useEffect(()=>{
+// getProducts()
+//   },[])
   return (
     <main className="lg:px-[96px] mt-[40px] pt-[12px] pb-[32px]">
       <Hero />
