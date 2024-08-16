@@ -179,7 +179,7 @@ const router = useRouter()
             type="submit"
             className="mt-[40px] h-[55px] rounded-[12px] bg-[#7D9A37] disabled:bg-[#7D9A37]/20 hover:bg-[#7D9A37]/50 py-[16px] text-[16px] font-[600] leading-[23.2px] text-white"
           >
-            {registerMutation.isPending ? "Signing up..." : " Sign In"}
+            {registerMutation.isPending ? "Signing up..." : " Sign up"}
           </Button>
           <div className="mt-[24px] flex items-center justify-center gap-x-[12px] text-[20px]">
             <span className="font-[400] leading-[29px] text-[#787C83]">

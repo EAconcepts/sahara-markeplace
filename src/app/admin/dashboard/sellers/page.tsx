@@ -1,3 +1,5 @@
+'use client'
+
 import { Header } from "@/app/dashboard/(components)/header";
 import Image from "next/image";
 import avatar from "@/assets/images/avatar.png";
@@ -13,8 +15,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useRouter } from "next/navigation";
 
 const Sellers = () => {
+  const router = useRouter()
   return (
     <div className="mt-[12px] flex flex-col gap-y-[32px] py-[16px] font-openSans">
       {/* Heading */}
@@ -84,7 +88,7 @@ const Sellers = () => {
                     </p>
                   </div>
                 </div>
-                <Button className="gap-[8px] rounded-[8px] border-[1px] border-border bg-white px-[16px] py-[8px] text-center text-[14px] font-[600] leading-[20.3px] text-black">
+                <Button onClick={()=>router.push('/admin/dashboard/sellers/2')} className="gap-[8px] rounded-[8px] border-[1px] border-border bg-white px-[16px] py-[8px] text-center text-[14px] font-[600] leading-[20.3px] text-black">
                   View Profile
                 </Button>
               </div>

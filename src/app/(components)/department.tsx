@@ -10,7 +10,7 @@ import { VscArrowSmallRight } from "react-icons/vsc";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 
-const Department = () => {
+const Department = ({categories}:{categories:any}) => {
   const departments = [
     { title: " Fashion", url:"/fashion", image: fashion, className: "lg:w-[504px]" },
     { title: "Food and Groceries", url:"/food-groceries", image: food, className: "w-[347px]" },
@@ -24,28 +24,30 @@ const Department = () => {
       url: "home-decoration"
     },
   ];
+  console.log(categories)
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+  // console.log(imageBaseUrl + `${categories[0].image}`)
   return (
     <div className="pt-[16px]">
       <h3 className="font-[700] text-[30px] leading-[43.5px] font-playfair text-blackPrimary">
         Choose Department
       </h3>
-
       <div className="flex flex-wrap gap-[24px] mt-[32px] ">
-        {departments?.map((dept, index) => (
-          <Link href={dept.url} className="relative border" key={index}>
+        {categories?.slice(0,6).map((dept:any) => (
+          <Link href={""} className="relative border" key={dept?.id}>
             <Image
-              src={dept.image}
-              alt=""
+              src={`${imageBaseUrl}/${dept?.image}`}
+              alt={dept?.name}
               width={504}
               height={240}
               className={twMerge(
-                ` rounded-[8px] lg:w-[] lg:h-[240px]`,
+                ` rounded-[8px] lg:w-[504p lg:h-[240px] object-cover`,
                 dept?.className
               )}
             />
             <div className="flex w-full justify-between items-center absolute  bottom-[12px] px-[36px]">
               <span className="text-white text-[24px] leading-[34.8px] font-[700] font-openSans">
-                {dept.title}
+                {dept?.name}
               </span>
               <VscArrowSmallRight className="text-white text-[36px]" />
             </div>

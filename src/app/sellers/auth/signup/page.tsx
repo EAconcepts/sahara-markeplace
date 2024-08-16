@@ -17,8 +17,9 @@ const Signup = () => {
     last_name: "",
     email: "",
     phone: "",
-    store: "",
+    company: "",
     address: "",
+    description: "",
     password: "",
     confirm_password: "",
   });
@@ -33,15 +34,16 @@ const Signup = () => {
   const handleSignup = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(userDetails);
-    registerMutation.mutate();
+    if(userDetails.password ===userDetails.confirm_password){
+    registerMutation.mutate()};
   };
   const registerMutation = useMutation({
-    mutationFn: () => axios.post(`${baseUrl}/register-status`, userDetails),
+    mutationFn: () => axios.post(`${baseUrl}/vendor-register`, userDetails),
     onSuccess: (data) => {
       console.log("Signup successful!", data);
       if (data.status === 200) {
         toast.success("Signup successful!");
-        router.push("/auth/signin");
+        router.push("/sellers/auth/signin");
       }
     },
     onError: (error) => {
@@ -101,7 +103,7 @@ const Signup = () => {
                 className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
               />
             </div>
-            {/* Email & Phone */}
+            {/* Email & Phone, store, description, address */}
             <div className="flex flex-col gap-y-[24px]">
               {/* Email */}
               <div className="flex flex-col gap-y-[4px]">
@@ -149,11 +151,45 @@ const Signup = () => {
                 </label>
                 <Input
                   type="text"
-                  id="store"
-                  name="store"
+                  id="company"
+                  name="company"
                   onChange={handleChange}
-                  value={userDetails.store}
+                  value={userDetails.company}
                   placeholder="store address"
+                  className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                />
+              </div>
+              {/* Description */}
+              <div className="flex flex-col gap-y-[4px]">
+                <label
+                  htmlFor="phone"
+                  className="text-[14px] font-[600] leading-[20.3px] after:text-[#E8112D] after:content-['**']"
+                >
+                  Store Description
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  onChange={(e)=>setUserDetails((prev)=>({...prev, description: e.target.value}))}
+                  value={userDetails.description}
+                  placeholder="description"
+                  className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                />
+              </div>
+              {/* Address */}
+              <div className="flex flex-col gap-y-[4px]">
+                <label
+                  htmlFor="phone"
+                  className="text-[14px] font-[600] leading-[20.3px] after:text-[#E8112D] after:content-['**']"
+                >
+                  Store Address
+                </label>
+                <textarea
+                  id="address"
+                  name="address"
+                  onChange={(e)=>setUserDetails((prev)=>({...prev, address: e.target.value}))}
+                  value={userDetails.address}
+                  placeholder="address"
                   className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
                 />
               </div>
@@ -177,7 +213,7 @@ const Signup = () => {
                   className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
                 />
               </div>
-              {/* Phone */}
+              {/* Confirm Password */}
               <div className="flex flex-col gap-y-[4px]">
                 <label
                   htmlFor=""

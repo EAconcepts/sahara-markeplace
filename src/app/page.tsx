@@ -1,4 +1,4 @@
-// 'use client'
+'use client'
 
 import Image from "next/image";
 import Hero from "./(components)/hero";
@@ -108,26 +108,18 @@ export  const blogs = [
 ];
 export default function Home() {
  
-  // const {data} = useGet("", "products")
-  // console.log(data)
+  const {data} = useGet("cata/prod", "products")
+  console.log(data)
 
-//   const getProducts=async()=>{
-//     try{
-//     const res = await axios.get("https://samcleans.com/sahara/api/v1/")
-//     console.log(res)
-//     }catch(e){console.log(e)
-//   }}
-//   useEffect(()=>{
-// getProducts()
-//   },[])
+
   return (
     <main className="lg:px-[96px] mt-[40px] pt-[12px] pb-[32px]">
       <Hero />
       <div className="mt-[40px]">
-        <Department />
+        <Department categories = {data?.data?.categories} />
       </div>
       <div className="mt-[40px]">
-        <NewArrival newArrivals={newArrivals} />
+        <NewArrival newArrivals={data?.data?.products} />
       </div>
       <div className="mt-[40px]">
         <Registry heading={"Shop by Registry"} products={newArrivals} />
