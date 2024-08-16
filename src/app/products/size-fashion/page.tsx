@@ -3,9 +3,10 @@ import React from "react";
 import plus from "@/assets/images/plus.png";
 import DeptHeader from "@/app/fashion/(components)/dept-header";
 import AllCategories from "@/app/fashion/(components)/all-categories";
-import { blogs, newArrivals } from "@/app/page";
+import { blogs } from "@/app/page";
 import ProductHeader from "@/app/(components)/product-header";
 import BlogCard from "@/app/(components)/blog-card";
+import { newArrivals } from "@/app/(components)/reviews";
 
 const SizeFashion = () => {
   return (

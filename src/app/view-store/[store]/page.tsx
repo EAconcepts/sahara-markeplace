@@ -6,12 +6,12 @@ import x from "@/assets/images/x-black.svg";
 import afritique from "@/assets/images/afritique.png";
 import usa from "@/assets/images/usa.svg";
 import { PiScissorsDuotone } from "react-icons/pi";
-import { newArrivals } from "@/app/page";
+// import { newArrivals } from "@/app/page";
 import ProductCard from "@/app/(components)/productCard";
 import review1 from "@/assets/images/review1.png"
 import review2 from "@/assets/images/review2.png"
 import review3 from "@/assets/images/review3.png"
-import Reviews from "@/app/(components)/reviews";
+import Reviews, { newArrivals } from "@/app/(components)/reviews";
 import Newsletter from "@/app/(components)/newsletter";
 
 const ViewStore = () => {

@@ -1,11 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import registry from "@/assets/images/registry.png";
-import { blogs, newArrivals } from "../page";
+import { blogs } from "../page";
 import BlogCard from "../(components)/blog-card";
 import ProductHeader from "../(components)/product-header";
 import DeptHeader from "../fashion/(components)/dept-header";
 import AllCategories from "../fashion/(components)/all-categories";
+import { newArrivals } from "../(components)/reviews";
 
 const Registry = () => {
   return (

@@ -2,7 +2,8 @@ import { Header } from "@/app/dashboard/(components)/header";
 import LastUpdated from "../(components)/last-updated";
 import { AddCircleIcon } from "hugeicons-react";
 import ProductCard from "../(components)/product-card";
-import { newArrivals } from "@/app/page";
+import { newArrivals } from "@/app/(components)/reviews";
+// import { newArrivals } from "@/app/page";
 
 const ProductListings = () => {
   return (

@@ -12,7 +12,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Orders from "./(components)/orders";
-import { newArrivals } from "@/app/page";
+import { newArrivals } from "@/app/(components)/reviews";
+// import { newArrivals } from "@/app/page";
 
 const MyOrders = () => {
   const orderStatus = [{}];

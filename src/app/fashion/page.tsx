@@ -2,10 +2,11 @@ import Image from "next/image";
 import React from "react";
 import woman from "@/assets/images/fashion-woman.png";
 import AllCategories from "./(components)/all-categories";
-import { blogs, newArrivals } from "../page";
+import { blogs } from "../page";
 import BlogCard from "../(components)/blog-card";
 import ProductHeader from "../(components)/product-header";
 import DeptHeader from "./(components)/dept-header";
+import { newArrivals } from "../(components)/reviews";
 
 const Fashion = () => {
   return (

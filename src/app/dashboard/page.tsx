@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Header } from "./(components)/header";
 import { MapsLocation01Icon } from "hugeicons-react";
 import { IoCallOutline } from "react-icons/io5";
-import { newArrivals } from "../page";
+// import { newArrivals } from "../page";
 import RecentSearches from "./(components)/recent-searches";
 import { useAuth } from "@/utils/useAuth";
+import { newArrivals } from "../(components)/reviews";
+// import { newArrivals } from "../(components)/reviews";
 
 const Dashboard = () => {
   const {user} = useAuth()

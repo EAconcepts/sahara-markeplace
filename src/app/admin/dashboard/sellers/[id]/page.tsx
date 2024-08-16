@@ -6,7 +6,7 @@ import Image from "next/image";
 import image from "@/assets/images/afritique.png";
 import usa from "@/assets/images/usa.svg";
 import OrderHistory from "../../(components)/order-history";
-import { newArrivals } from "@/app/page";
+// import { newArrivals } from "@/app/page";
 import Orders from "@/app/sellers/dashboard/my-orders/(components)/orders";
 import {
   Select,
@@ -20,6 +20,7 @@ import {
 import { Search01Icon } from "hugeicons-react";
 import { Input } from "@/components/ui/input";
 import SellerProductCard from "./(components)/Seller-products";
+import { newArrivals } from "@/app/(components)/reviews";
 
 const SellerDetails = () => {
   return (
