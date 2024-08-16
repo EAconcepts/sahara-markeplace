@@ -19,14 +19,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Banner from "@/app/(components)/banner";
 import ProductHeader from "@/app/(components)/product-header";
-import { newArrivals } from "@/app/page";
+// import { newArrivals } from "@/app/page";
 import ProductCard from "@/app/(components)/productCard";
 import { useAuth } from "@/utils/useAuth";
 import usa from "@/assets/images/usa.svg";
 import withAuth from "@/app/(components)/authWrapper";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { reviews } from "@/app/(components)/reviews";
+import { newArrivals, reviews } from "@/app/(components)/reviews";
 
 
 const ProductDetails = () => {
