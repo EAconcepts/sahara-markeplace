@@ -22,64 +22,7 @@ import { useGet } from "@/utils/useGet.";
 import axios from "axios";
 import { useEffect } from "react";
 
-export  const newArrivals = [
-  {
-    image: arrival1,
-    title: "Handmade Bag",
-    country: ghana,
-    rating: 10,
-    price: 59.99,
-  },
-  {
-    image: arrival2,
-    title: "Laboma rings",
-    country: ghana,
-    rating: 10,
-    price: 12.99,
-  },
-  {
-    image: arrival3,
-    title: "Maasai sandals",
-    country: ghana,
-    rating: 10,
-    price: 46.99,
-  },
-  {
-    image: arrival4,
-    title: "Bogolan Wax Fabrics",
-    country: ghana,
-    rating: 10,
-    price: 23.99,
-  },
-  {
-    image: arrival1,
-    title: "Handmade Bag",
-    country: ghana,
-    rating: 10,
-    price: 59.99,
-  },
-  {
-    image: arrival2,
-    title: "Laboma rings",
-    country: ghana,
-    rating: 10,
-    price: 12.99,
-  },
-  {
-    image: arrival3,
-    title: "Maasai sandals",
-    country: ghana,
-    rating: 10,
-    price: 46.99,
-  },
-  {
-    image: arrival4,
-    title: "Bogolan Wax Fabrics",
-    country: ghana,
-    rating: 10,
-    price: 23.99,
-  },
-];
+
 export  const blogs = [
   {
     image: blog1,

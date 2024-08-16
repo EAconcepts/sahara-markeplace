@@ -13,7 +13,7 @@ import { toast } from "sonner";
 const ProductCard = ({ product }: { product: any }) => {
   const router = useRouter();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const cartMutation = useMutation({
+  const cartMutation= useMutation({
     mutationFn: (product, quantity) =>
       axios.post(`${apiUrl}/add-to-cart`, { product, quantity }),
     onSuccess: (data) => {

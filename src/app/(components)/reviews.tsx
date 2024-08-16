@@ -1,6 +1,6 @@
 import React from "react";
 import ProductHeader from "./product-header";
-import { newArrivals } from "../page";
+// import { newArrivals } from "../page";
 import ProductCard from "./productCard";
 import Banner from "./banner";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,11 @@ import { Input } from "@/components/ui/input";
 import review1 from "@/assets/images/review1.png";
 import review2 from "@/assets/images/review2.png";
 import review3 from "@/assets/images/review3.png";
+import arrival1 from "@/assets/images/arrival1.png";
+import arrival2 from "@/assets/images/arrival2.png";
+import arrival3 from "@/assets/images/arrival3.png";
+import arrival4 from "@/assets/images/arrival4.png";
+import ghana from "@/assets/images/ghana.svg";
 
 export const reviews = [
   {
@@ -31,6 +36,64 @@ export const reviews = [
     name: "Natalie Sharon",
     review:
       "Magnificent fabric of great beauty and elegance. All in a beautiful bag that gives the impression of having received a gift ",
+  },
+];
+export  const newArrivals = [
+  {
+    image: arrival1,
+    title: "Handmade Bag",
+    country: ghana,
+    rating: 10,
+    price: 59.99,
+  },
+  {
+    image: arrival2,
+    title: "Laboma rings",
+    country: ghana,
+    rating: 10,
+    price: 12.99,
+  },
+  {
+    image: arrival3,
+    title: "Maasai sandals",
+    country: ghana,
+    rating: 10,
+    price: 46.99,
+  },
+  {
+    image: arrival4,
+    title: "Bogolan Wax Fabrics",
+    country: ghana,
+    rating: 10,
+    price: 23.99,
+  },
+  {
+    image: arrival1,
+    title: "Handmade Bag",
+    country: ghana,
+    rating: 10,
+    price: 59.99,
+  },
+  {
+    image: arrival2,
+    title: "Laboma rings",
+    country: ghana,
+    rating: 10,
+    price: 12.99,
+  },
+  {
+    image: arrival3,
+    title: "Maasai sandals",
+    country: ghana,
+    rating: 10,
+    price: 46.99,
+  },
+  {
+    image: arrival4,
+    title: "Bogolan Wax Fabrics",
+    country: ghana,
+    rating: 10,
+    price: 23.99,
   },
 ];
 const Reviews = ({ reviews }: { reviews: any }) => {
