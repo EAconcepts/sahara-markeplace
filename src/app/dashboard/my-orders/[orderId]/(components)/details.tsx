@@ -1,8 +1,9 @@
-import { newArrivals } from "@/app/page";
+// import { newArrivals } from "@/app/page";
 import Image from "next/image";
 import React from "react";
 import Delivery from "./delivery";
 import { Button } from "@/components/ui/button";
+import { newArrivals } from "@/app/(components)/reviews";
 
 const Details = () => {
   return (
