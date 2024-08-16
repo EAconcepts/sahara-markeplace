@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Header } from "../(components)/header";
-import { newArrivals } from "@/app/page";
+// import { newArrivals } from "@/app/page";
 import Image from "next/image";
 import { HiOutlineEllipsisVertical } from "react-icons/hi2";
 import RecentSearches from "../(components)/recent-searches";
@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useAuth } from "@/utils/useAuth";
+import { newArrivals } from "@/app/(components)/reviews";
 
 const MyOrders = () => {
   const router = useRouter()
