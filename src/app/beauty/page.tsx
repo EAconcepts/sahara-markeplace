@@ -3,8 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import beauty from "@/assets/images/beauty.png";
-import { blogs } from "../page";
-import BlogCard from "../(components)/blog-card";
+import BlogCard, { blogs } from "../(components)/blog-card";
 import ProductHeader from "../(components)/product-header";
 import DeptHeader from "../fashion/(components)/dept-header";
 import AllCategories from "../fashion/(components)/all-categories";
