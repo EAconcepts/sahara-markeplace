@@ -1,3 +1,5 @@
+'use client'
+
 import ProductCard from "@/app/(components)/productCard";
 import React from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";

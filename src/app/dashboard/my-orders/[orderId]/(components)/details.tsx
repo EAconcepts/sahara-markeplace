@@ -1,3 +1,5 @@
+'use client'
+
 // import { newArrivals } from "@/app/page";
 import Image from "next/image";
 import React from "react";

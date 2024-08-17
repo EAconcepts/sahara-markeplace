@@ -1,3 +1,5 @@
+'use client'
+
 import { Header } from "@/app/dashboard/(components)/header";
 import LastUpdated from "../(components)/last-updated";
 import { AddCircleIcon } from "hugeicons-react";

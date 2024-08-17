@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { CancelCircleIcon, CheckmarkCircle03Icon } from "hugeicons-react";

@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import React from "react";
 import testimony1 from "@/assets/images/testimony1.png"

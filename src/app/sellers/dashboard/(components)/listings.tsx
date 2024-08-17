@@ -1,3 +1,5 @@
+'use client'
+
 // import { newArrivals } from "@/app/page";
 import { newArrivals } from "@/app/(components)/reviews";
 import Image from "next/image";

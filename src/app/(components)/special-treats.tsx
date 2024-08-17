@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import ProductHeader from "./product-header";
 import Image from "next/image";

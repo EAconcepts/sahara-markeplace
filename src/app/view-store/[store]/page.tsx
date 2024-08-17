@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import check from "@/assets/images/checkmark.svg";
 import fb from "@/assets/images/fb-black.svg";

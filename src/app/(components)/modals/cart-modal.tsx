@@ -1,3 +1,5 @@
+'use client'
+
 import { IoIosArrowRoundBack } from "react-icons/io";
 import CartCard from "../cart-card";
 import { Button } from "@/components/ui/button";

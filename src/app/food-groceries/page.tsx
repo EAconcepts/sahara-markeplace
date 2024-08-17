@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import DeptHeader from '../fashion/(components)/dept-header'
 import AllCategories from '../fashion/(components)/all-categories'

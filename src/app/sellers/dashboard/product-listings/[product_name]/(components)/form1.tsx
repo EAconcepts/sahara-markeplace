@@ -1,3 +1,6 @@
+
+'use client'
+
 import { Input } from '@/components/ui/input'
 import { Cancel01Icon, Delete03Icon, PencilEdit01Icon } from 'hugeicons-react'
 import Image from 'next/image'

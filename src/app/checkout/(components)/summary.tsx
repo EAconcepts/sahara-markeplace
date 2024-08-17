@@ -1,3 +1,5 @@
+'use client'
+
 import CartCard from "@/app/(components)/cart-card";
 import { Button } from "@/components/ui/button";
 
