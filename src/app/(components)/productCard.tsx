@@ -13,25 +13,26 @@ import { toast } from "sonner";
 const ProductCard = ({ product }: { product: any }) => {
   const router = useRouter();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const cartMutation= useMutation({
-    mutationFn: (product, quantity) =>
-      axios.post(`${apiUrl}/add-to-cart`, { product, quantity }),
-    onSuccess: (data) => {
-      console.log(data);
-      if (data?.data?.message == "You need to login first") {
-        toast.success(data?.data?.message);
-      } else {
-        toast.success(data?.data?.message || "Added to cart successfully!");
-      }
-    },
-    onError: (error) => {
-      console.log(error);
-      toast.error(error.message);
-    },
-  });
+  // const cartMutation = useMutation({
+  //   // eslint-disable-next-line
+  //   mutationFn : (product:any, quantity:number) =>
+  //     axios.post(`${apiUrl}/add-to-cart`, { product, quantity }),
+  //   onSuccess: (data) => {
+  //     console.log(data);
+  //     if (data?.data?.message == "You need to login first") {
+  //       toast.success(data?.data?.message);
+  //     } else {
+  //       toast.success(data?.data?.message || "Added to cart successfully!");
+  //     }
+  //   },
+  //   onError: (error) => {
+  //     console.log(error);
+  //     toast.error(error.message);
+  //   },
+  // });
   const handleAddToCart = (id: string) => {
     console.log(id);
-    cartMutation.mutate(id, 1);
+    // cartMutation.mutate(id, 1);
   };
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   return (
