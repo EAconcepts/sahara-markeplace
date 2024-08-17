@@ -45,9 +45,9 @@ const Signin = () => {
         }, 1000);
       }
     },
-    onError: (error) => {
+    onError: (error:any) => {
       console.log(error);
-      toast.error("Signin failed!");
+      toast.error(error?.response?.data?.message || "Signin failed!");
     },
   });
 

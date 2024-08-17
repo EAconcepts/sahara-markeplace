@@ -46,7 +46,7 @@ const [chosenColor, setChosenColor] = useState("green");
 
   const { data } = useGet(`product/${product_url}`);
   let product = data?.data?.product;
-  console.log(product);
+  // console.log(product);
  
   const handleWishList = async() => {
     try {
@@ -70,9 +70,11 @@ const [chosenColor, setChosenColor] = useState("green");
         { product:id, quantity },
         { headers },
       );
+      console.log(response)
      toast.success(response?.data?.message);
     } catch (error:any) {
-      toast.error(error.message);
+      console.log(error)
+      toast.error(error?.response.data?.message || error?.message);
     }
   };
 
