@@ -34,8 +34,9 @@ import { toast } from "sonner";
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState<number>(1);
   const { token } = useAuth();
+  // console.log(token)
   const headers = {
-    Authorization: "Bearer " + token,
+    Authorization: `Bearer ${token}`,
   };
   const { product_url } = useParams();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -51,8 +52,8 @@ const [chosenColor, setChosenColor] = useState("green");
   const handleWishList = async() => {
     try {
       const response :any = await axios.post(
-        `${apiUrl}/add-to-cart`,
-        { product:product?.id, quantity },
+        `${apiUrl}/add-to-wishlist`,
+        { product:product?.id},
         { headers },
       );
       console.log(response);
