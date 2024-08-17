@@ -2,9 +2,10 @@ import React from 'react'
 import DeptHeader from '../fashion/(components)/dept-header'
 import AllCategories from '../fashion/(components)/all-categories'
 import ProductHeader from '../(components)/product-header'
-import { blogs, newArrivals } from '../page'
+import { blogs } from '../page'
 import BlogCard from '../(components)/blog-card'
 import basket from "@/assets/images/food.png"
+import { newArrivals } from '../(components)/reviews'
 
 const Food = () => {
   return (
