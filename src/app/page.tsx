@@ -19,7 +19,7 @@ import { newArrivals } from "./(components)/reviews";
 export default function Home() {
  
   const {data} = useGet("cata/prod", "products")
-  console.log(data)
+  // console.log(data)
 
 
   return (

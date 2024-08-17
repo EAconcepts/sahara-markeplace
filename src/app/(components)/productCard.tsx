@@ -37,7 +37,7 @@ const ProductCard = ({ product }: { product: any }) => {
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   return (
     <div
-      onClick={() => router.push(`/product-details/${product._id || 2}`)}
+      onClick={() => router.push(`/product-details/${product?.url || 2}`)}
       className="flex flex-col pb-[12px] lg:w-[294px]"
     >
       <Image

@@ -17,7 +17,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL
     })
     let data:any=''
     if(getQuery.data){
-        console.log(getQuery.data)
+        // console.log(getQuery.data)
         data = getQuery.data
         return data
     }if(getQuery.error)console.log(getQuery.error)

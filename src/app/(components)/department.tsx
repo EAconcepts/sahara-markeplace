@@ -2,33 +2,13 @@
 
 import Image from "next/image";
 import React from "react";
-import fashion from "@/assets/images/fashion.png";
-import food from "@/assets/images/food-groceries.png";
-import beauty from "@/assets/images/beauty-health.png";
-import kidbabby from "@/assets/images/kid-baby.png";
-import art from "@/assets/images/art.png";
-import homeDecor from "@/assets/images/home-decor.png";
 import { VscArrowSmallRight } from "react-icons/vsc";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 
 const Department = ({categories}:{categories:any}) => {
-  const departments = [
-    { title: " Fashion", url:"/fashion", image: fashion, className: "lg:w-[504px]" },
-    { title: "Food and Groceries", url:"/food-groceries", image: food, className: "w-[347px]" },
-    { title: "Beauty & Health", image: beauty, url:"/beauty", className: "w-[347px]" },
-    { title: "Kid & Baby", image: kidbabby, className: "w-[347px]", url:"/kids", },
-    { title: "Art", image: art, className: "w-[347px]", url:"/art", },
-    {
-      title: "Home Decor",
-      image: homeDecor,
-      className: "lg:w-[504px] h-[240px]",
-      url: "home-decoration"
-    },
-  ];
-  console.log(categories)
+ 
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
-  // console.log(imageBaseUrl + `${categories[0].image}`)
   return (
     <div className="pt-[16px]">
       <h3 className="font-[700] text-[30px] leading-[43.5px] font-playfair text-blackPrimary">
@@ -36,7 +16,7 @@ const Department = ({categories}:{categories:any}) => {
       </h3>
       <div className="flex flex-wrap gap-[24px] mt-[32px] ">
         {categories?.slice(0,6).map((dept:any) => (
-          <Link href={""} className="relative border" key={dept?.id}>
+          <Link href={""} className="relative border lg:w-[347px] first:w-[504px] last:w-[504px]" key={dept?.id}>
             <Image
               src={`${imageBaseUrl}/${dept?.image}`}
               alt={dept?.name}

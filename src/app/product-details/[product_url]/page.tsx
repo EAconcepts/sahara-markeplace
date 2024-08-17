@@ -27,39 +27,54 @@ import withAuth from "@/app/(components)/authWrapper";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { newArrivals, reviews } from "@/app/(components)/reviews";
-
+import { useGet } from "@/utils/useGet.";
+import { useParams } from "next/navigation";
+import { toast } from "sonner";
 
 const ProductDetails = () => {
+  const [quantity, setQuantity] = useState<number>(1);
   const { token } = useAuth();
   const headers = {
     Authorization: "Bearer " + token,
   };
-  const apiUrl = process.env.NEXT_PUBLIC_API_R;
+  const { product_url } = useParams();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   // console.log(token);
-  const product = {
-    id: 1,
-    name: "Ensemble Veste Pantalon",
-    price: 68.99,
-    image: details,
-    images: [details1, details2, details3, details4],
-    description:
-      "This unique and eye-catching garment is handcrafted using traditional techniques and boasts a bold aesthetic perfect for the modern wardrobe.",
-    category: "Category",
-    store: "Afritique-Benin",
-    rating: 4,
-    reviews: 100,
-    stock: 100,
-    size: "l",
-    inStock: true,
-    colors: ["green", "purple", "gray", "yellow", "blue"],
-    sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
-  };
-  const [chosenColor, setChosenColor] = useState("green");
+const [chosenColor, setChosenColor] = useState("green");
   const [chosenSize, setChosenSize] = useState("L");
-  const wishlistMutation = useMutation({
-    // mutationFn:()=>axios.post()
-  });
-  const handleWishList = () => {};
+
+  const { data } = useGet(`product/${product_url}`);
+  let product = data?.data?.product;
+  console.log(product);
+ 
+  const handleWishList = async() => {
+    try {
+      const response :any = await axios.post(
+        `${apiUrl}/add-to-cart`,
+        { product:product?.id, quantity },
+        { headers },
+      );
+      console.log(response);
+      toast.success(response?.data?.message)
+    } catch (error:any) {
+      console.log(error);
+      toast.error(error?.message);
+    }
+  };
+
+  const handleAddToCart = async(id: number) => {
+    try {
+      const response = await axios.post(
+        `${apiUrl}/add-to-cart`,
+        { product:id, quantity },
+        { headers },
+      );
+     toast.success(response?.data?.message);
+    } catch (error:any) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className="pt-[24px] max-lg:px-[24px] lg:px-[96px]">
@@ -71,10 +86,10 @@ const ProductDetails = () => {
           <div className="flex flex-col gap-y-[16px]">
             <div className="relative">
               <Image
-                src={product.image}
+                src={`${imageBaseUrl}/${product?.image}`}
                 width={506}
                 height={360}
-                alt=""
+                alt={product?.name}
                 className="max-lg::h-[360px] w-full rounded-[8px] object-cover lg:w-[506px]"
               />
               <div className="absolute left-[24px] top-[40px] rounded-[4px] bg-[#A07E53] px-[24px] py-[8px] font-openSans text-[14px] font-[600] leading-[16.8px] text-white">
@@ -82,7 +97,7 @@ const ProductDetails = () => {
               </div>
             </div>
             <div className="max-lg:mt[16px] flex justify-center gap-x-[16px] lg:mt-[32px] lg:gap-x-[19px]">
-              {product.images?.map((image, index: number) => (
+              {product?.images?.map((image: any, index: number) => (
                 <Image
                   key={index}
                   src={image}
@@ -101,15 +116,15 @@ const ProductDetails = () => {
                 {/* Title & Description */}
                 <div className="flex flex-col gap-y-[12px]">
                   <h3 className="font-playfair text-[20px] font-[600] leading-[24px] tracking-[2%] text-blackPrimary lg:text-[32px] lg:leading-[38.4px]">
-                    {product.name}
+                    {product?.name}
                   </h3>
                   <p className="font-openSans text-[12px] font-[400] leading-[17.6px] text-[#787C83] lg:text-[14px] lg:leading-[20.3px]">
-                    {product.description}
+                    {product?.description}
                   </p>
                 </div>
                 {/* Store */}
                 <div className="flex items-center gap-x-[12px]">
-                  <h6>{product.store}</h6>{" "}
+                  <h6>{product?.store}</h6>{" "}
                   <Image
                     src={ghana}
                     width={12}
@@ -157,7 +172,7 @@ const ProductDetails = () => {
                   Choose a Color
                 </h5>
                 <div className="flex items-center gap-x-[16px]">
-                  {product.colors.map((color, index) => (
+                  {product?.colors?.map((color: any, index: number) => (
                     <div
                       onClick={() => setChosenColor(color)}
                       key={index}
@@ -182,7 +197,7 @@ const ProductDetails = () => {
                   </span>
                 </div>
                 <div className="flex max-lg:justify-between lg:gap-x-[16px]">
-                  {product.sizes?.map((size, index) => (
+                  {product?.sizes?.map((size: any, index: any) => (
                     <div
                       onClick={() => setChosenSize(size)}
                       key={index}
@@ -201,14 +216,27 @@ const ProductDetails = () => {
                   Quantity
                 </h4>
                 <div className="mt-[20px] flex w-fit items-center gap-[24px] rounded-[40px] border-[1px] border-[#E4E7EC] px-[26px] py-[16px] lg:gap-x-[44px]">
-                  <TbMinus className="text-[18px] text-[#667185] lg:text-[24px]" />
+                  <TbMinus
+                    onClick={() =>
+                      setQuantity((prev: number) => {
+                        if (prev == 1) {
+                          return prev;
+                        } else return prev - 1;
+                      })
+                    }
+                    className="text-[18px] text-[#667185] lg:text-[24px]"
+                  />
                   <span className="font-openSans text-[16px] font-[600] leading-[19.2px] tracking-[2%] text-[#7D9A37] lg:text-[20px] lg:leading-[24px]">
-                    1
+                    {quantity || 1}
                   </span>
-                  <TbPlus className="text-[18px] text-[#F56630] lg:text-[24px]" />
+                  <TbPlus
+                    onClick={() => setQuantity((prev: number) => prev + 1)}
+                    className="text-[18px] text-[#F56630] lg:text-[24px]"
+                  />
                 </div>
                 <div className="mt-[32px] flex gap-x-[24px] max-lg:hidden">
                   <Button
+                    onClick={() => handleAddToCart(product?.id)}
                     className="h-[55px] w-[294px] rounded-[12px] bg-[#7D9A37] px-[24px] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white"
                     variant={"outline"}
                   >
@@ -420,6 +448,4 @@ const ProductDetails = () => {
   );
 };
 
-export default withAuth(ProductDetails)
-
-
+export default withAuth(ProductDetails);
