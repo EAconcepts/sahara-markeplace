@@ -21,6 +21,7 @@ import Newsletter from "./(components)/newsletter";
 import { useGet } from "@/utils/useGet.";
 import axios from "axios";
 import { useEffect } from "react";
+import { newArrivals } from "./(components)/reviews";
 
 
 export  const blogs = [
