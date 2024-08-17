@@ -5,17 +5,8 @@ import Hero from "./(components)/hero";
 import Department from "./(components)/department";
 import NewArrival from "./(components)/newArrival";
 import Registry from "./(components)/registry";
-import arrival1 from "@/assets/images/arrival1.png";
-import arrival2 from "@/assets/images/arrival2.png";
-import arrival3 from "@/assets/images/arrival3.png";
-import arrival4 from "@/assets/images/arrival4.png";
-import ghana from "@/assets/images/ghana.svg";
 import SpecialTreats from "./(components)/special-treats";
-import blog1 from "@/assets/images/blog1.png";
-import blog2 from "@/assets/images/blog2.png";
-import blog3 from "@/assets/images/blog3.png";
-import blog4 from "@/assets/images/blog4.png";
-import BlogCard from "./(components)/blog-card";
+import BlogCard, { blogs } from "./(components)/blog-card";
 import Testimonies from "./(components)/testimonies";
 import Newsletter from "./(components)/newsletter";
 import { useGet } from "@/utils/useGet.";
@@ -24,32 +15,7 @@ import { useEffect } from "react";
 import { newArrivals } from "./(components)/reviews";
 
 
-export  const blogs = [
-  {
-    image: blog1,
-    title: "The Language of Colors Spoken by the Maasai",
-    content:
-      "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
-  },
-  {
-    image: blog2,
-    title: "The Language of Colors Spoken by the Maasai",
-    content:
-      "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
-  },
-  {
-    image: blog3,
-    title: "The Language of Colors Spoken by the Maasai",
-    content:
-      "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
-  },
-  {
-    image: blog4,
-    title: "The Language of Colors Spoken by the Maasai",
-    content:
-      "Red isn't just a color in Maasai culture, it's a symbol of bravery, strength, and unity. Their vibrant garments, adorned with intricate beadwork, tell stories...",
-  },
-];
+
 export default function Home() {
  
   const {data} = useGet("cata/prod", "products")
