@@ -91,7 +91,7 @@ const Header = () => {
           {/* Account */}
           <div className="flex gap-x-[32px] max-lg:hidden">
             <Link
-              href={"/sellers-center"}
+              href={"/sellers/dashboard"}
               className="font-openSans cursor-pointer text-[16px] font-[600] leading-[23.2px] text-black"
             >
               Sellers Center

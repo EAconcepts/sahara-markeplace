@@ -4,15 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Header } from "./(components)/header";
 import { MapsLocation01Icon } from "hugeicons-react";
 import { IoCallOutline } from "react-icons/io5";
-// import { newArrivals } from "../page";
 import RecentSearches from "./(components)/recent-searches";
 import { useAuth } from "@/utils/useAuth";
 import { newArrivals } from "../(components)/reviews";
-// import { newArrivals } from "../(components)/reviews";
+import { useGet } from "@/utils/useGet.";
 
 const Dashboard = () => {
   const {user} = useAuth()
   // console.log(user)
+  const {data} = useGet("user/dashboard", "userDashboard")
+  console.log(data)
   return (
     <div className="pt-[40px]">
       <Header title={"Dashboard"} />

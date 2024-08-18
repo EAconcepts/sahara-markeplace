@@ -18,6 +18,7 @@ const CartCard = ({product, showQuantity= true, showStore=true, imgClass}:{showQ
     Authorization : `Bearer ${token}`
   }
   const queryClient = useQueryClient()
+  // Delete cart Item
   const deleteMutation=useMutation({
     mutationFn:(id:number)=> axios.get(`${baseUrl}/delete-cart-item/${id}`, {headers}),
     onSuccess: ((data:any)=>{
@@ -34,11 +35,11 @@ const CartCard = ({product, showQuantity= true, showStore=true, imgClass}:{showQ
   const deleteItem=async(id:number)=>{
   deleteMutation.mutate(id)    
   }
-
+// console.log(product)
   return (
     <div className="flex w-full gap-x-[12px]">
       <Image
-        src={`${imageBaseUrl}/${product?.product?.image}`}
+        src={`${imageBaseUrl}/${product?.product?.image} `}
         width={152}
         height={152}
         alt=""

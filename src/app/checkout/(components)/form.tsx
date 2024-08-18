@@ -1,7 +1,11 @@
+'use client'
+
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/utils/useAuth";
 import React from "react";
 
 const Form = () => {
+  const {user} = useAuth()
   return (
     <form className="flex w-full flex-col gap-y-[24px] font-openSans">
       {/* full name */}

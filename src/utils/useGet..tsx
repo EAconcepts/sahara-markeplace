@@ -9,7 +9,7 @@ export const useGet: any = (url: string, queryKey: String) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  // console.log(url, token)
+  // console.log(queryKey)
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const getQuery = useQuery({

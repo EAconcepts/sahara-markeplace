@@ -1,10 +1,14 @@
 'use client'
 
 import CartCard from "@/app/(components)/cart-card";
+import { getTotalPrice } from "@/app/(components)/modals/cart-modal";
 import { Button } from "@/components/ui/button";
+import { useGet } from "@/utils/useGet.";
 
 const OrderSummary = () => {
   const carts = [1, 2, 3];
+  const {data} = useGet("/my-cart", 'cart')
+  console.log(data)
   return (
     <div className="flex flex-col px-[24px] font-openSans">
       <div className="flex gap-x-[16px]">
@@ -17,12 +21,13 @@ const OrderSummary = () => {
         </p>
       </div>
       <div className="mt-[32px] flex flex-col gap-y-[16px] border-b-[2px] border-border pb-[28px]">
-        {carts?.map((cart, index) => (
+        {data?.data?.cart?.map((cart:any) => (
           <CartCard
-            key={index}
+            key={cart?.id}
             showStore={false}
             showQuantity={false}
             imgClass="size-[80px]"
+            product={cart}
           />
         ))}
       </div>
@@ -33,7 +38,7 @@ const OrderSummary = () => {
             Subtotal:{" "}
           </span>
           <h5 className="text-[16px font-[600] leading-[23.2px] text-blackPrimary">
-            $492.97
+            ${getTotalPrice(data?.data?.cart).toLocaleString()}
           </h5>
         </div>
         {/* Tax */}
@@ -42,16 +47,16 @@ const OrderSummary = () => {
             Tax:{" "}
           </span>
           <h5 className="text-[16px font-[600] leading-[23.2px] text-blackPrimary">
-            $9.97
+            $0.00
           </h5>
         </div>
         {/* Total */}
         <div className="flex justify-between pt-[24px]">
           <span className="#787C83 text-[16px] font-[500] leading-[23.2px]">
-            Total:{" "}
+            Total:
           </span>
           <h5 className="text-[16px font-[600] leading-[23.2px] text-blackPrimary">
-            $502.94
+            ${getTotalPrice(data?.data?.cart).toLocaleString()}
           </h5>
         </div>
         <div className="pt-[24px]">

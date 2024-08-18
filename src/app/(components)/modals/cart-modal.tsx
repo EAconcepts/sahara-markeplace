@@ -5,16 +5,17 @@ import CartCard from "../cart-card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
+
+export const getTotalPrice=(carts:any)=>{
+  let totalPrice = 0
+  carts?.forEach((item:any)=>totalPrice+=Number(item?.product?.price)*Number(item?.quantity))
+  return totalPrice
+}
+
 export const CartModal = ({carts, setShowCart}:{carts:any; setShowCart:React.Dispatch<React.SetStateAction<boolean>>}) => {
-    
+    console.log(carts)
       const router = useRouter()
         
-      const getTotalPrice=()=>{
-        let totalPrice = 0
-        carts?.forEach((item:any)=>totalPrice+=Number(item?.product?.price)*Number(item?.product?.quantity))
-        return totalPrice
-      }
-    
 
   return (
     <div className="fixed inset-0 z-40 flex w-full flex-col items-end bg-black/80">
@@ -46,7 +47,7 @@ export const CartModal = ({carts, setShowCart}:{carts:any; setShowCart:React.Dis
         <div className="flex flex-col gap-y-[24px] divide-y-[2px] divide-[#E4E7EC] mt-[16px]">
             <div className="flex justify-between">
                 <span className="text-[#787C83] font-[400] font-openSans text-[16px] leading-[23.2px] "> Subtotal:</span>
-                <h4 className="text-[18px] font-[700] leading-[26.1px] text-blackPrimary">${getTotalPrice().toLocaleString()}</h4>
+                <h4 className="text-[18px] font-[700] leading-[26.1px] text-blackPrimary">${getTotalPrice(carts).toLocaleString()}</h4>
             </div>
             <div className="pt-[24px]">
             <Button onClick={()=>{router.push('/checkout')

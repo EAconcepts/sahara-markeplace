@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Header } from "@/app/dashboard/(components)/header";
 import {
@@ -14,16 +14,19 @@ import RecentOrders from "./(components)/recent-orders";
 import Listings from "./(components)/listings";
 import LastUpdated from "./(components)/last-updated";
 import { useGet } from "@/utils/useGet.";
+import { useAuth } from "@/utils/useAuth";
 
 const SellersDashboard = () => {
   const recentOrders = [];
-  const {data} = useGet('vendor/dashboard', 'vendorDashb')
-  // console.log(data)
-  
+  const { data } = useGet("vendor/dashboard", "vendorDashb");
+  console.log(data);
+  const { user } = useAuth();
+  console.log(user)
+
   return (
     <div className="font-openSans">
       {/* updated */}
-     <LastUpdated/>
+      <LastUpdated />
       <div className="mt-[12px] py-[16px]">
         {/* Header */}
         <div>

@@ -58,7 +58,7 @@ const ProductCard = ({ product }: { product: any }) => {
           <span>Made in Senegal</span>
           <Image
             src={product?.country}
-            alt={product?.title}
+            alt={product?.name}
             width={15}
             height={10}
             className="h-[10px] w-[15px]"

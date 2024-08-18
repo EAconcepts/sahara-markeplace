@@ -11,21 +11,24 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useAuth } from "@/utils/useAuth";
 import { newArrivals } from "@/app/(components)/reviews";
+import { useGet } from "@/utils/useGet.";
 
 const MyOrders = () => {
   const router = useRouter()
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL
-  const {token} = useAuth()
- const headers = {
-    Authorization: `Bearer ${token}`
-  }
-  const dashboardQuery = useQuery({
-    queryKey: ["dashboard"],
-    queryFn: ()=>axios.get(`${apiUrl}/user/order`, {headers})
-  })
-  if(dashboardQuery.data){
-    console.log(dashboardQuery.data)
-  }else console.log(dashboardQuery.error)
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGe_URL
+//   const {token} = useAuth()
+//  const headers = {
+//     Authorization: `Bearer ${token}`
+//   }
+//   const dashboardQuery = useQuery({
+//     queryKey: ["dashboard"],
+//     queryFn: ()=>axios.get(`${apiUrl}/user/order`, {headers})
+//   })
+//   if(dashboardQuery.data){
+//     console.log(dashboardQuery.data)
+//   }else console.log(dashboardQuery.error)
+const {data} = useGet("user/order", "userOrders")
+console.log(data)
   return (
     <div className="w-full pt-[24px]">
       <Header title="My Order" />
@@ -44,7 +47,7 @@ const MyOrders = () => {
           </tr>
         </thead>
         <tbody className="divide-y divide-border px-[15px]">
-          {newArrivals?.slice(0, 3).map((product, index) => (
+          {data?.data?.orders?.map((product:any, index:any) => (
             <tr
             onClick={()=>router.push(`/dashboard/my-orders/SE2392922`)}
               key={index}

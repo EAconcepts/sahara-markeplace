@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Form from "./(components)/form";
-import OrderSummary from "./(components)/summary";
+import Form from "../(components)/form";
+import OrderSummary from "../(components)/summary";
 
-const Checkout = () => {
+const BillingInfo = () => {
   // const [shippingInfo, setShippingInfo] = useState({
 
   // })
@@ -34,4 +34,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default BillingInfo;
