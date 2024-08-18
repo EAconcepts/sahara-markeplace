@@ -9,7 +9,7 @@ import { useAuth } from "@/utils/useAuth";
 import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const CartCard = ({product, showQuantity= true, showStore=true, imgClass}:{showQuantity?:boolean; imgClass?:string; showStore?:boolean; product:any}) => {
+const CartCard = ({product, showQuantity= true, showStore=true, imgClass}:{showQuantity?:boolean; imgClass?:string; showStore?:boolean; product?:any}) => {
   const [quantity, setQuantity] = useState<number>(1)
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
   const {token} = useAuth()
