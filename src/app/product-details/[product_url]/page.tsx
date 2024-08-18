@@ -24,7 +24,7 @@ import ProductCard from "@/app/(components)/productCard";
 import { useAuth } from "@/utils/useAuth";
 import usa from "@/assets/images/usa.svg";
 import withAuth from "@/app/(components)/authWrapper";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { newArrivals, reviews } from "@/app/(components)/reviews";
 import { useGet } from "@/utils/useGet.";
@@ -45,7 +45,7 @@ const ProductDetails = () => {
 const [chosenColor, setChosenColor] = useState("green");
   const [chosenSize, setChosenSize] = useState("L");
 
-  const { data } = useGet(`product/${product_url}`);
+  const { data } = useGet(`product/${product_url}`, "prd-details");
   let product = data?.data?.product;
   // console.log(product);
  
@@ -64,6 +64,7 @@ const [chosenColor, setChosenColor] = useState("green");
     }
   };
 
+  const queryClient = useQueryClient()
   const handleAddToCart = async(id: number) => {
     try {
       const response = await axios.post(
@@ -72,6 +73,7 @@ const [chosenColor, setChosenColor] = useState("green");
         { headers },
       );
       console.log(response)
+      queryClient.invalidateQueries({queryKey: ['cart']})
      toast.success(response?.data?.message);
     } catch (error:any) {
       console.log(error)
@@ -156,10 +158,10 @@ const [chosenColor, setChosenColor] = useState("green");
               <div className="flex flex-col gap-y-[4px]">
                 <div className="flex items-center gap-x-[8px]">
                   <span className="font-openSans text-[12px] font-[600] leading-[14.4px] tracking-[2%] text-[#787C83] lg:text-[16px]">
-                    $81.99
+                    ${product?.price}
                   </span>
                   <span className="font-openSans text-[16px] font-[700] leading-[19.2px] text-blackPrimary lg:text-[24px] lg:leading-[28.8px]">
-                    $68.99
+                  ${product?.price}
                   </span>
                 </div>
                 <div className="inline-flex gap-x-[3px] font-openSans text-[12px] font-[400] leading-[17.4px] text-[#787C83] lg:text-[14px] lg:leading-[20.3px]">
@@ -227,14 +229,18 @@ const [chosenColor, setChosenColor] = useState("green");
                         } else return prev - 1;
                       })
                     }
-                    className="text-[18px] text-[#667185] lg:text-[24px]"
+                    className={`text-[18px] text-[#667185] lg:text-[24px] ${quantity ==1 && "opacity-50"} `}
                   />
                   <span className="font-openSans text-[16px] font-[600] leading-[19.2px] tracking-[2%] text-[#7D9A37] lg:text-[20px] lg:leading-[24px]">
                     {quantity || 1}
                   </span>
                   <TbPlus
-                    onClick={() => setQuantity((prev: number) => prev + 1)}
-                    className="text-[18px] text-[#F56630] lg:text-[24px]"
+                    onClick={() =>   setQuantity((prev: number) => {
+                      if (prev == product?.quantity) {
+                        return prev;
+                      } else return prev +1;
+                    })}
+                    className={`text-[18px] text-[#F56630] lg:text-[24px] ${quantity ==product?.quantity && "opacity-50"}`}
                   />
                 </div>
                 <div className="mt-[32px] flex gap-x-[24px] max-lg:hidden">
@@ -263,12 +269,7 @@ const [chosenColor, setChosenColor] = useState("green");
             Product Description
           </h2>
           <p className="mt-[16px] line-clamp-6 font-openSans text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
-            This unique and eye-catching garment is handcrafted using
-            traditional techniques and boasts a bold aesthetic perfect for the
-            modern wardrobe. Mudcloth also known as bògòlanfini is made of pure,
-            organic Malian cotton and natural dyes left to ferment for months.
-            The process of creating mudcloth dates back to the 12th century,
-            each...
+           {product?.description}
           </p>
           <button className="text-[]14px mt-[8px] self-start font-openSans font-[700] leading-[20.3px] text-[#787C83]">
             Read More...

@@ -12,15 +12,16 @@ import { RiMenu2Line } from "react-icons/ri";
 import { CartModal } from "./modals/cart-modal";
 import Topnav from "./topnav";
 import { usePathname } from "next/navigation";
+import { useGet } from "@/utils/useGet.";
 
 const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const path = usePathname();
-  // useEffect(()=>{
+  const {data} = useGet("my-cart", "cart")  
+  // console.log(data)
   if (path.startsWith("/dashboard") || path.startsWith("/sellers") ||path.startsWith("/admin")) {
     return null;
   }
-  // })
   return (
     <div className={`${showCart && "sticky top-0 z-40 w-full"}`}>
       <Topnav />
@@ -71,12 +72,13 @@ const Header = () => {
                 </span>
                 <CiHeart />
               </div>
+              {/* Cart */}
               <div
                 onClick={() => setShowCart((prev) => !prev)}
                 className="relative"
               >
                 <span className="absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-400 text-[10px] text-white lg:size-[12px]">
-                  0
+                  {data?.data?.cart?.length || 0}
                 </span>
                 <PiShoppingCartLight />
               </div>
@@ -103,7 +105,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {showCart && <CartModal setShowCart={setShowCart} />}
+      {showCart && <CartModal carts={data?.data?.cart} setShowCart={setShowCart} />}
     </div>
   );
 };

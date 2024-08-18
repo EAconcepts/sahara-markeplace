@@ -1,15 +1,44 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import usa from "@/assets/images/usa.svg";
 import { TbMinus, TbPlus } from "react-icons/tb";
 import { twMerge } from "tailwind-merge";
 import details1 from "@/assets/images/details1.png"
+import axios from "axios";
+import { useAuth } from "@/utils/useAuth";
+import { toast } from "sonner";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const CartCard = ({showQuantity= true, showStore=true, imgClass}:{showQuantity?:boolean; imgClass?:string; showStore?:boolean}) => {
+const CartCard = ({product, showQuantity= true, showStore=true, imgClass}:{showQuantity?:boolean; imgClass?:string; showStore?:boolean; product:any}) => {
+  const [quantity, setQuantity] = useState<number>(1)
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+  const {token} = useAuth()
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL
+  const headers= {
+    Authorization : `Bearer ${token}`
+  }
+  const queryClient = useQueryClient()
+  const deleteMutation=useMutation({
+    mutationFn:(id:number)=> axios.get(`${baseUrl}/delete-cart-item/${id}`, {headers}),
+    onSuccess: ((data:any)=>{
+      console.log(data)
+      queryClient.invalidateQueries({ queryKey: ['cart']})
+      toast.success(data?.data?.message)
+    }),
+    onError:((error:any)=>{
+      console.log(error)
+      toast.error(error?.response?.data?.message || error?.message)
+    })
+  })
+
+  const deleteItem=async(id:number)=>{
+  deleteMutation.mutate(id)    
+  }
+
   return (
     <div className="flex w-full gap-x-[12px]">
       <Image
-        src={details1}
+        src={`${imageBaseUrl}/${product?.product?.image}`}
         width={152}
         height={152}
         alt=""
@@ -37,10 +66,10 @@ const CartCard = ({showQuantity= true, showStore=true, imgClass}:{showQuantity?:
           <div className="flex w-full flex-col gap-y-[8px]">
             <div className="flex w-full justify-between">
               <h4 className="font-openSans text-[16px] font-[600] leading-[19.2px] text-blackPrimary">
-                Ensemble Veste Pantalon
+                {product?.product?.name}
               </h4>
               <h4 className="font-openSans text-[18px] font-[700] leading-[26.1px] text-blackPrimary">
-                $68.99
+                ${product?.product?.price}
               </h4>
             </div>
             {/* sizes */}
@@ -54,14 +83,28 @@ const CartCard = ({showQuantity= true, showStore=true, imgClass}:{showQuantity?:
       {showQuantity &&  <div className="flex justify-between">
           {/* quantity */}
           <div className="flex w-fit items-center gap-[24px] rounded-[40px] border-[1px] border-[#E4E7EC] px-[17.5px] py-[12.5px] lg:gap-x-[27.5px]">
-            <TbMinus className="text-[18px] text-[#8E97A6] lg:text-[24px]" />
+            <TbMinus
+            onClick={() =>   setQuantity((prev: number) => {
+              if (prev == 1) {
+                return prev;
+              } else return prev -1;
+            })}
+            className="text-[18px] text-[#8E97A6] lg:text-[24px]" />
             <span className="font-openSans text-[16px] font-[600] leading-[19.2px] tracking-[2%] text-[#7D9A37] lg:text-[20px] lg:leading-[24px]">
-              1
+              {product?.quantity}
             </span>
-            <TbPlus className="text-[18px] text-greenPrimary lg:text-[24px]" />
+            <TbPlus
+            onClick={() =>   setQuantity((prev: number) => {
+              if (prev == product?.quantity) {
+                return prev;
+              } else return prev +1;
+            })}
+             className="text-[18px] text-greenPrimary lg:text-[24px]" />
           </div>
           {/* trash */}
           <svg
+
+          onClick={()=>deleteItem(product?.id)}
             width="20"
             height="20"
             viewBox="0 0 20 20"

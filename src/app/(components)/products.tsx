@@ -7,7 +7,7 @@ import ProductCard from "./productCard";
 import ProductHeader from "./product-header";
 
 const Products = ({ products, heading }: any) => {
-  console.log(products)
+  // console.log(products)
   return (
     <div className="flex flex-col pt-[16px]">
         {/* Header */}

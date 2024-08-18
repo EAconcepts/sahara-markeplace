@@ -3,7 +3,7 @@ import React from "react";
 import Products from "./products";
 
 const NewArrival = ({ newArrivals }: any) => {
-  console.log(newArrivals)
+  // console.log(newArrivals)
 
   return (
     <div className="flex flex-col pt-[16px]">
