@@ -37,16 +37,16 @@ const Signin = () => {
       if (data.status === 200) {
         const token = data.data.data.token;
         const user = data.data.data.user;
-        login(token, user);
+        login(token, user, "seller");
         toast.success("Signin successful!");
         setTimeout(() => {
           router.push("/sellers/dashboard");
         }, 1000);
       }
     },
-    onError: (error) => {
+    onError: (error:any) => {
       console.log(error);
-      toast.error("Signin failed!");
+      toast.error(error?.response?.data?.message || "Signin failed!");
     },
   });
 

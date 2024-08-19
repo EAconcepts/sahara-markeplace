@@ -24,6 +24,7 @@ export interface NavlinksProps {
   path: string;
   value?: number;
   sublinks?: any;
+  // showSublinks?:boolean
 }
 export const sellersNavLinks: NavlinksProps[] = [
   {
@@ -35,10 +36,11 @@ export const sellersNavLinks: NavlinksProps[] = [
     icon: ProductLoadingIcon,
     title: "Products",
     path: "#",
+    // showSublinks: false,
     sublinks: [
       { title: "Product List", path: "/sellers/dashboard/product-listings",icon: PackageIcon, },
-      { title: "Categories", path: "/sellers/dashboard/categories",icon: FolderLibraryIcon, },
-      { title: "Add Products", path: "/sellers/dashboard/add-products", icon: PackageAddIcon, },
+      { title: "Categories", path: "#",icon: FolderLibraryIcon, },
+      { title: "Add Products", path: "/sellers/dashboard/add-product", icon: PackageAddIcon, },
     ],
   },
   {

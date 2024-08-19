@@ -13,10 +13,12 @@ import { CartModal } from "./modals/cart-modal";
 import Topnav from "./topnav";
 import { usePathname } from "next/navigation";
 import { useGet } from "@/utils/useGet.";
+import { useAuth } from "@/utils/useAuth";
 
 const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const path = usePathname();
+  const {userType}= useAuth()
   const {data} = useGet("my-cart", "cart")  
   // console.log(data)
   if (path.startsWith("/dashboard") || path.startsWith("/sellers") ||path.startsWith("/admin")) {
@@ -91,13 +93,13 @@ const Header = () => {
           {/* Account */}
           <div className="flex gap-x-[32px] max-lg:hidden">
             <Link
-              href={"/sellers/dashboard"}
+              href={"/sellers"}
               className="font-openSans cursor-pointer text-[16px] font-[600] leading-[23.2px] text-black"
             >
               Sellers Center
             </Link>
             <Link
-              href={"/dashboard"}
+              href={`${userType =="/seller/dashboard" ? 'seller' : "/dashboard"}`}
               className="font-openSans cursor-pointer text-[16px] font-[600] leading-[23.2px] text-black"
             >
               My Account

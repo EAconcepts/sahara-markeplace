@@ -38,7 +38,7 @@ const Signin = () => {
       if (data.status === 200) {
         const token = data.data.data.token;
         const user = data.data.data.user;
-        login(token, user);
+        login(token, user, "user");
         toast.success("Signin successful!");
         setTimeout(() => {
           router.push("/dashboard");

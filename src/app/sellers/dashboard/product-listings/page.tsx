@@ -5,9 +5,12 @@ import LastUpdated from "../(components)/last-updated";
 import { AddCircleIcon } from "hugeicons-react";
 import ProductCard from "../(components)/product-card";
 import { newArrivals } from "@/app/(components)/reviews";
+import { useGet } from "@/utils/useGet.";
 // import { newArrivals } from "@/app/page";
 
 const ProductListings = () => {
+  const {data } = useGet("vendor/products", 'vendorProducts')
+  console.log(data)
   return (
     <div className="pt-[8px]">
       {/* Updated */}

@@ -5,6 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 interface AuthProps {
   token: string | null;
   user: any | null;
+  userType: string | null
   login: (token: string, user: any) => void;
   logout: () => void;
 }
@@ -15,11 +16,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const tkn = typeof window !== "undefined" && localStorage.getItem("token");
   const [token, setToken] = useState(tkn || null);
   const [user, setUser] = useState((userData && JSON.parse(userData)) || null);
+  const [userType, setUserType] = useState<string | null>("")
 
-  const login = (token: string, user: any) => {
+  const login = (token: string, user: any, userType:string) => {
     if (typeof window !== 'undefined') {
       token && localStorage.setItem("token", token );
+      userType && localStorage.setItem("userType", userType );
       setToken(token);
+      setUserType(userType);
      user && localStorage.setItem("user", JSON.stringify(user));
       setToken(user);
     }
@@ -28,8 +32,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (typeof window !== 'undefined') {
       localStorage.removeItem("token");
       setToken(null);
-      localStorage.removeItem("token");
-      setToken(null);
+      setUser(null)
+      setUserType(null)
+      localStorage.removeItem("user");
+      localStorage.removeItem("userType");
     }
   };
 
@@ -41,7 +47,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ token, user, login, logout }}>
+    <AuthContext.Provider value={{ token, user, userType, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

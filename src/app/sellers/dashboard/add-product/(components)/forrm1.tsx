@@ -1,3 +1,5 @@
+'use client'
+
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -9,9 +11,24 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CloudUploadIcon } from "hugeicons-react";
-import React from "react";
+import Image from "next/image";
+import React, { ChangeEvent, useRef, useState } from "react";
 
 const Form1 = () => {
+  const [image, setImage] =useState<string>("")
+  const imageRef = useRef<any>(null)
+
+  const handleImageUpload=(e:ChangeEvent<HTMLInputElement>)=>{
+    const file = e.target.files && e.target.files[0]
+    console.log(file)
+
+    const imageUrl = file && URL.createObjectURL(file)
+    console.log(imageUrl)
+    imageUrl && setImage(imageUrl)
+  }
+  const handleUpload=()=>{
+    imageRef && imageRef.current?.click()
+  }
   return (
     <div className="flex w-full flex-col gap-y-[24px]">
       {/* product Image */}
@@ -19,8 +36,12 @@ const Form1 = () => {
         <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
           Product Image
         </h5>
-        <div className="flex h-[192px] w-[132px] flex-col items-center justify-center gap-y-[16px] rounded-[8px] border-[1px] border-dashed border-[#8E97A6] bg-[#E4E7EC] px-[8px]">
+        {image ?<Image onClick={handleUpload} src={image} width={132} height={192} alt="product-image" className="w-[132px] h-[192px] object-cover"/>
+        :
+        
+        <div onClick={handleUpload} className="flex h-[192px] w-[132px] flex-col items-center justify-center gap-y-[16px] rounded-[8px] border-[1px] border-dashed border-[#8E97A6] bg-[#E4E7EC] px-[8px]">
           <div className="flex flex-col items-center gap-y-[8px]">
+            <input type='file' onChange={handleImageUpload} hidden ref={imageRef}/>
             <CloudUploadIcon className="text-[20px] text-[#787C83]" />
             <h4 className="text-center text-[14px] font-[600] leading-[20.3px] text-[#787C83]">
               Upload
@@ -30,6 +51,7 @@ const Form1 = () => {
             </p>
           </div>
         </div>
+}
       </div>
       <div className="gap-y-[8px] rounded-[12px] border-[1px] border-border px-[16px] py-[24px]">
         <div className="flex flex-col gap-y-[24px]">

@@ -17,11 +17,13 @@ import { useGet } from "@/utils/useGet.";
 import { useAuth } from "@/utils/useAuth";
 
 const SellersDashboard = () => {
-  const recentOrders = [];
-  const { data } = useGet("vendor/dashboard", "vendorDashb");
+  // const recentOrders = [];
+  const { data } = useGet("vendor/dashboard", "vendorDashboard");
+  const { data:recentOrders } = useGet("vendor/orders", "vendorOrders");
   console.log(data);
+  console.log(recentOrders);
   const { user } = useAuth();
-  console.log(user)
+  // console.log(user)
 
   return (
     <div className="font-openSans">

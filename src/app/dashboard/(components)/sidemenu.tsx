@@ -23,9 +23,15 @@ const Sidemenu = ({
   links: NavlinksProps[];
   settingsLink?: string;
 }) => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const path = usePathname();
   const router = useRouter();
+
+  const handleLogout=()=>{
+    // localStorage.clear()
+    logout()
+    router.replace("/auth/signin")
+  }
   return (
     <div className="border-r-[1px] border-border px-[24px] pt-[12px]">
       {/* logo */}
@@ -124,7 +130,7 @@ const Sidemenu = ({
               </span>
             </div>
           </div>
-          <Logout02Icon />
+          <Logout02Icon onClick={handleLogout} />
         </div>
       </div>
     </div>

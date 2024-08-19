@@ -4,6 +4,7 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import CartCard from "../cart-card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { twMerge } from "tailwind-merge";
 
 
 export const getTotalPrice=(carts:any)=>{
@@ -12,7 +13,7 @@ export const getTotalPrice=(carts:any)=>{
   return totalPrice
 }
 
-export const CartModal = ({carts, setShowCart}:{carts:any; setShowCart:React.Dispatch<React.SetStateAction<boolean>>}) => {
+export const CartModal = ({carts, setShowCart, className}:{carts:any; setShowCart:React.Dispatch<React.SetStateAction<boolean>>; className?:string}) => {
     console.log(carts)
       const router = useRouter()
         
@@ -20,7 +21,7 @@ export const CartModal = ({carts, setShowCart}:{carts:any; setShowCart:React.Dis
   return (
     <div className="fixed inset-0 z-40 flex w-full flex-col items-end bg-black/80">
       {/* cart */}
-      <div className="z-20 mt-[143px] flex min-h-[300px] w-[571px] flex-col bg-white p-[40px] overflow-y-scroll">
+      <div className={twMerge("z-20 mt-[143px] flex min-h-[300px] w-[571px] flex-col bg-white p-[40px] overflow-y-scroll", className)}>
         {/* heading */}
         <div>
           <div onClick={()=>setShowCart(false)} className="flex items-center gap-x-[8px]">
