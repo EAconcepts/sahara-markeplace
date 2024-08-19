@@ -13,10 +13,13 @@ import {
 } from "@/components/ui/select";
 import Orders from "./(components)/orders";
 import { newArrivals } from "@/app/(components)/reviews";
+import { useGet } from "@/utils/useGet.";
 // import { newArrivals } from "@/app/page";
 
 const MyOrders = () => {
   const orderStatus = [{}];
+  const {data} = useGet("vendor/orders", "vendorOrders")
+  console.log(data)
   return (
     <div className="font-openSans">
       {/* Last updated */}

@@ -37,7 +37,7 @@ const Topnav = () => {
           Blog
         </Link>
         <Link
-          href={"become-seller"}
+          href={"/sellers/auth/signup"}
           className="font-openSans lg:text-[16px] lg:leading-[21.79px]"
         >
           Become A Seller
