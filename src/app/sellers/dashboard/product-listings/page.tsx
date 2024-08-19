@@ -20,7 +20,7 @@ const ProductListings = () => {
       <div className="mt-[12px] py-[16px]"></div>
       {/* Header */}
       <Header
-      onBtnClick={router.push("/sellers/dashboard/add-product")}
+      onBtnClick={()=>router.push("/sellers/dashboard/add-product")}
         title="Product List"
         BtnIcon={AddCircleIcon}
         btnText="Add Products"
