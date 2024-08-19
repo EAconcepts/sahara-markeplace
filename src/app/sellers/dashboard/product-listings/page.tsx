@@ -6,11 +6,13 @@ import { AddCircleIcon } from "hugeicons-react";
 import ProductCard from "../(components)/product-card";
 import { newArrivals } from "@/app/(components)/reviews";
 import { useGet } from "@/utils/useGet.";
+import { useRouter } from "next/navigation";
 // import { newArrivals } from "@/app/page";
 
 const ProductListings = () => {
   const {data } = useGet("vendor/products", 'vendorProducts')
   console.log(data)
+  const router = useRouter()
   return (
     <div className="pt-[8px]">
       {/* Updated */}
@@ -18,6 +20,7 @@ const ProductListings = () => {
       <div className="mt-[12px] py-[16px]"></div>
       {/* Header */}
       <Header
+      onBtnClick={router.push("/sellers/dashboard/add-product")}
         title="Product List"
         BtnIcon={AddCircleIcon}
         btnText="Add Products"
