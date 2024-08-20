@@ -19,6 +19,7 @@ const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const path = usePathname();
   const {userType}= useAuth()
+  // console.log(userType)
   const {data} = useGet("my-cart", "cart")  
   // console.log(data)
   if (path.startsWith("/dashboard") || path.startsWith("/sellers") ||path.startsWith("/admin")) {
@@ -99,7 +100,7 @@ const Header = () => {
               Sellers Center
             </Link>
             <Link
-              href={`${userType =="/seller/dashboard" ? 'seller' : "/dashboard"}`}
+              href={`${userType == "seller" ? "/sellers/dashboard" :  "/dashboard"}`}
               className="font-openSans cursor-pointer text-[16px] font-[600] leading-[23.2px] text-black"
             >
               My Account

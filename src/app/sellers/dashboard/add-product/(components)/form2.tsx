@@ -9,9 +9,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { AddCircleIcon } from "hugeicons-react";
-import React from "react";
+import React, { Dispatch, ChangeEvent } from "react";
 
-const Form2 = () => {
+const Form2 = ({
+  prdtDetails,
+  setPrdtDetails,
+  handleChange,
+}: {
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  setPrdtDetails?: Dispatch<any>;
+  prdtDetails: any;
+}) => {
   return (
     <div className="w-full gap-y-[24px] rounded-[12px] border-[1px] border-border px-[16px] py-[24px] font-openSans">
       {/* Variation */}
@@ -47,7 +55,7 @@ const Form2 = () => {
             </div>
             {/* Additional price */}
             <div className="flex w-full gap-x-[16px]">
-              <div className="flex w-full flex-col gap-x-[8px] ">
+              <div className="flex w-full flex-col gap-x-[8px]">
                 <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                   Additional Price
                 </h6>
@@ -145,7 +153,14 @@ const Form2 = () => {
             <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Price
             </h6>
-            <Input type="text" placeholder="0.00" className="w-full" />
+            <Input
+              type="text"
+              name="price"
+              value={prdtDetails.price}
+              onChange={handleChange}
+              placeholder="0.00"
+              className="w-full"
+            />
           </div>
           {/* Currency */}
           <div className="self-end">

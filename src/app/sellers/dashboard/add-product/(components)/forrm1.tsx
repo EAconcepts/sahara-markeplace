@@ -12,15 +12,17 @@ import {
 } from "@/components/ui/select";
 import { CloudUploadIcon } from "hugeicons-react";
 import Image from "next/image";
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, Dispatch, useRef, useState } from "react";
 
-const Form1 = () => {
+const Form1 = ({prdtDetails, setPrdtDetails, handleChange}:{handleChange:  (e: ChangeEvent<HTMLInputElement>) => void; setPrdtDetails?:Dispatch<any>; prdtDetails:any}) => {
   const [image, setImage] =useState<string>("")
   const imageRef = useRef<any>(null)
 
   const handleImageUpload=(e:ChangeEvent<HTMLInputElement>)=>{
     const file = e.target.files && e.target.files[0]
     console.log(file)
+    const formdata = new FormData()
+    file && formdata.append( "image", file)
 
     const imageUrl = file && URL.createObjectURL(file)
     console.log(imageUrl)
@@ -29,6 +31,9 @@ const Form1 = () => {
   const handleUpload=()=>{
     imageRef && imageRef.current?.click()
   }
+
+  
+ 
   return (
     <div className="flex w-full flex-col gap-y-[24px]">
       {/* product Image */}
@@ -62,6 +67,9 @@ const Form1 = () => {
             </h3>
             <Input
               type="text"
+              name={'name'}
+              value={prdtDetails.name}
+              onChange={handleChange}
               placeholder="Product title"
               className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
             />
@@ -72,6 +80,9 @@ const Form1 = () => {
               Product Description
             </h3>
             <textarea
+            name={'description'}
+            value={prdtDetails.description}
+            onChange={(e)=>setPrdtDetails && setPrdtDetails((prev:any)=>({...prev, description: e.target.value}))}
               placeholder="Product Description"
               className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
             />
@@ -83,6 +94,7 @@ const Form1 = () => {
             </h3>
             <Input
               type="text"
+              
               placeholder="Product Material"
               className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
             />
@@ -94,7 +106,15 @@ const Form1 = () => {
               <h4 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Product Category
               </h4>
-              <Select>
+              <Input
+              type="text"
+              name='category'
+              value={prdtDetails.category}
+              onChange={handleChange}
+              placeholder="Product Material"
+              className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
+            />
+              {/* <Select>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="--Select--" />
                 </SelectTrigger>
@@ -104,7 +124,7 @@ const Form1 = () => {
                     <SelectItem value="apple">Apple</SelectItem>
                   </SelectGroup>
                 </SelectContent>
-              </Select>
+              </Select> */}
             </div>
             {/* Sub-Category */}
             <div className="w-full flex flex-col">
@@ -166,7 +186,10 @@ const Form1 = () => {
                 Quantity
               </h3>
               <Input
-                type="text"
+                type="number"
+                name="quantity"
+                onChange={handleChange}
+                value={prdtDetails.quantity}
                 placeholder="Product title"
                 className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
               />

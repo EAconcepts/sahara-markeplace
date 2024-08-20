@@ -30,7 +30,7 @@ export const sellersNavLinks: NavlinksProps[] = [
   {
     icon: DashboardSquare03Icon,
     title: "Dashboard",
-    path: "sellers/dashboard",
+    path: "/sellers/dashboard",
   },
   {
     icon: ProductLoadingIcon,
