@@ -23,7 +23,7 @@ export const Header = ({
   btnText?: string;
   btnClass?: string;
   calendar?:boolean
-  onBtnClick?:any
+  onBtnClick?(): void
 }) => {
   return (
     <div className="flex w-full gap-x-[12px]">
@@ -37,7 +37,7 @@ export const Header = ({
       </h2>
       <div className="h-[1px] w-full self-end bg-border"></div>
      {btnText && <Button
-     onClick={()=>onBtnClick()}
+     onClick={onBtnClick && onBtnClick}
         className={twMerge(
           "flex gap-x-[12px] bg-greenPrimary px-[40px] py-[12px]",
           btnClass,
