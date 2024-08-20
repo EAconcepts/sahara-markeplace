@@ -28,13 +28,13 @@ const ProductListings = () => {
       />
       <div className="flex justify-between">
         <div className="flex gap-x-[12px] ">
-          <p className="bg-[#C4D79B] py-[8px] px-[12px] text-center rounded-[6px] border-[1px] border-border font-[600] text-[14px] leading-[20.3px] text-black">165 Products</p>
+          <p className="bg-[#C4D79B] py-[8px] px-[12px] text-center rounded-[6px] border-[1px] border-border font-[600] text-[14px] leading-[20.3px] text-black">{data?.data?.products?.length} Products</p>
         </div>
       </div>
       {/* Products */}
       <div className="flex flex-wrap gap-x-[16px] py-[24px]">
-        {newArrivals?.map((product, index)=>(
-          <ProductCard key={index} product={product}/>
+        {data?.data?.products?.map((product:any)=>(
+          <ProductCard key={product?.id} product={product}/>
         ))}
       </div>
     </div>
