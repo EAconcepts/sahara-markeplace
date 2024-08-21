@@ -51,10 +51,10 @@ export const sellersNavLinks: NavlinksProps[] = [
   {
     icon: FavouriteIcon,
     title: "Reviews",
-    path: "sellers/dashboard/Reviews",
+    path: "/sellers/dashboard/reviews",
     value: 10,
   },
-  { icon: DiscountIcon, title: "Quotes", path: "sellers/dashboard/quotes" },
+  { icon: DiscountIcon, title: "Quotes", path: "#" },
 ];
 
 export const navlinks: NavlinksProps[] = [
@@ -71,7 +71,7 @@ export const navlinks: NavlinksProps[] = [
 ];
 
 export const adminNavLinks: NavlinksProps[] = [
-  { icon: DashboardSquare03Icon, title: "Dashboard", path: "sllers/dashboard" },
+  { icon: DashboardSquare03Icon, title: "Dashboard", path: "admin/dashboard" },
   {
     icon: Message01Icon,
     title: "Products",
@@ -83,17 +83,17 @@ export const adminNavLinks: NavlinksProps[] = [
     title: "Transactions",
     path: "admin/dashboard/my-orders",
   },
-  { icon: UserMultiple02Icon, title: "Customers", path: "dashboard/customers" },
+  { icon: UserMultiple02Icon, title: "Customers", path: "/admin/dashboard/customers" },
   { icon: UserAccountIcon, title: "Sellers", path: "/admin/dashboard/sellers" },
   {
     icon: AlignBoxMiddleLeftIcon,
     title: "Applications",
-    path: "admin/dashboard/my-orders",
+    path: "/admin/dashboard/my-orders",
   },
   {
     icon: News01Icon,
     title: "Blogs",
-    path: "admin/dashboard/discounts",
+    path: "/admin/dashboard/discounts",
     value: 10,
   },
   {
@@ -102,6 +102,6 @@ export const adminNavLinks: NavlinksProps[] = [
     path: "admin/dashboard/discounts",
     value: 10,
   },
-  { icon: Message01Icon, title: "Reviews", path: "admin/dashboard/Reviews" },
-  { icon: Settings02Icon, title: "Settings", path: "admin/dashboard/Reviews" },
+  { icon: Message01Icon, title: "Reviews", path: "/admin/dashboard/reviews" },
+  { icon: Settings02Icon, title: "Settings", path: "/admin/dashboard/settings" },
 ];

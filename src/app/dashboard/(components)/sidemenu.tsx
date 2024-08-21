@@ -23,15 +23,20 @@ const Sidemenu = ({
   links: NavlinksProps[];
   settingsLink?: string;
 }) => {
-  const { user, logout } = useAuth();
+  const { user, logout, userType } = useAuth();
   const path = usePathname();
   const router = useRouter();
 
-  const handleLogout=()=>{
-    // localStorage.clear()
-    logout()
-    router.replace("/auth/signin")
-  }
+  const handleLogout = () => {
+    logout();
+    if (userType === "seller") {
+      router.replace("/sellers/auth/signin");
+    } else if (userType === "admin") {
+      router.replace("admin/auth/signin");
+    } else {
+      router.replace("/auth/signin");
+    }
+  };
   return (
     <div className="border-r-[1px] border-border px-[24px] pt-[12px]">
       {/* logo */}
@@ -50,34 +55,33 @@ const Sidemenu = ({
       {/* Menu */}
       <div className="mt-[32px] flex w-full flex-col items-start gap-y-[4px] border-b-[1px] border-border pb-[12px] font-openSans text-[14px] font-[400] leading-[20.3px]">
         {links?.map((menu: any, index: number) => (
-         <div   key={index}>
-         <Button
-            onClick={() => router.push(menu.path)}
-          
-            className={`relative ${path == menu.path ? "bg-greenPrimary text-white" : "bg-transparent text-blackPrimary"} flex h-[44px] w-full items-center justify-between rounded-[4px] px-[16px] py-[12px]`}
-          >
-            <div className="flex items-center gap-x-[12px]">
-              {menu.icon && <menu.icon />}
-              <span
-                className={` ${path == menu.path && "font-[600]"} text-[14px] font-[400] leading-[20.3px]`}
-              >
-                {menu.title}
-              </span>
-            </div>
-            {menu.value && (
-              <p className="rounded-[10px] bg-[#E4E7EC] px-[8px] text-[12px] font-[400] leading-[17.4px] tracking-[-0.5%] text-[#787C83]">
-                {menu.value}
-              </p>
-            )}
-          
-          </Button>
-          {menu?.sublinks && (
-              <div className="pl-[44px] flex flex-col gap-y-[8px] ">
+          <div key={index}>
+            <Button
+              onClick={() => router.push(menu.path)}
+              className={`relative ${path == menu.path ? "bg-greenPrimary text-white" : "bg-transparent text-blackPrimary"} flex h-[44px] w-full items-center justify-between rounded-[4px] px-[16px] py-[12px]`}
+            >
+              <div className="flex items-center gap-x-[12px]">
+                {menu.icon && <menu.icon />}
+                <span
+                  className={` ${path == menu.path && "font-[600]"} text-[14px] font-[400] leading-[20.3px]`}
+                >
+                  {menu.title}
+                </span>
+              </div>
+              {menu.value && (
+                <p className="rounded-[10px] bg-[#E4E7EC] px-[8px] text-[12px] font-[400] leading-[17.4px] tracking-[-0.5%] text-[#787C83]">
+                  {menu.value}
+                </p>
+              )}
+            </Button>
+            {menu?.sublinks && (
+              <div className="flex flex-col gap-y-[8px] pl-[44px]">
                 {menu?.sublinks?.map((sub: any, index: number) => (
-                  <div 
-            onClick={() => router.push(sub.path)}
-
-                  className="flex items-center gap-x-[12px]" key={index}>
+                  <div
+                    onClick={() => router.push(sub.path)}
+                    className="flex items-center gap-x-[12px]"
+                    key={index}
+                  >
                     {sub.icon && <sub.icon />}
                     <span
                       className={` ${path == sub.path && "font-[600]"} text-[14px] font-[400] leading-[20.3px]`}

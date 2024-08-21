@@ -16,9 +16,66 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useAuth } from "@/utils/useAuth";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { ChangeEvent, useRef, useState } from "react";
+import { toast } from "sonner";
 
 const UserSettings = () => {
-  const { user } = useAuth();
+  const { user, token } = useAuth();
+
+  const [userDetails, setUserDetails] = useState({
+    first_name: user?.first_name || "",
+    last_name: user?.last_name || "",
+    email: user?.email || "",
+    phone_number: user?.phone_number || "",
+    address: user?.address || "",
+    city: user?.city || "",
+    state: user?.state || "",
+    zip_code: user?.zip_code || "",
+    profile_photo: user?.profile_photo || "",
+  })
+  const [imageUrl, setImage] =useState<string>("")
+  const imageRef = useRef<any>(null)
+
+  const headers ={
+    Authorization: `Bearer ${token}`
+  }
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL
+  const profileMutation= useMutation({
+    mutationFn: ()=>axios.post(`${baseUrl}/user/profile/update`,userDetails, {headers}),
+    onSuccess:((data)=>{
+      console.log(data)
+      toast.success("Profile updated successfully!")
+    }),
+    onError:((error)=>{
+      console.log(error)
+      toast.error("An error occured!")
+    })
+  })
+  const handleUpdate=()=>{
+    console.log(userDetails)
+    profileMutation.mutate()
+  }
+  const handleChange=(e:ChangeEvent<HTMLInputElement>)=>{
+    const {name, value} = e.target
+    setUserDetails((prevVals:any)=>({...prevVals, [name]:value}))
+    }
+
+
+  const handleImageUpload=(e:ChangeEvent<HTMLInputElement>)=>{
+    const file = e.target.files && e.target.files[0]
+    console.log(file)
+    const formdata = new FormData()
+    file && formdata.append( "image", file)
+
+    const imageUrl = file && URL.createObjectURL(file)
+    console.log(imageUrl)
+    imageUrl && setImage(imageUrl)
+  }
+  const handleSelectImage=()=>{
+    imageRef && imageRef.current?.click()
+  }
   return (
     <div className="flex flex-col gap-y-[32px] px-[24px] py-[28px] font-openSans">
       {/* Logo Image upload */}
@@ -32,7 +89,7 @@ const UserSettings = () => {
               This image will be displayed on your profile
             </p>
           </div>
-          <Button className="flex w-fit gap-[10px] rounded-[8px] border-[1.5px] border-greenPrimary bg-white px-[12px] py-[8px] text-[14px] font-[600] leading-[20.3px] text-greenPrimary">
+          <Button onClick={handleSelectImage} className="flex w-fit gap-[10px] rounded-[8px] border-[1.5px] border-greenPrimary bg-white px-[12px] py-[8px] text-[14px] font-[600] leading-[20.3px] text-greenPrimary">
             <Image
               src={image}
               width={20}
@@ -42,15 +99,16 @@ const UserSettings = () => {
             />
             <span>Upload Photo</span>
           </Button>
+          <Input ref={imageRef} type="file" hidden className="hidden" onChange={handleImageUpload}/>
         </div>
         {/* image */}
         <div className="flex size-[120px] items-center justify-center rounded-full bg-[#E4E7EC]">
           <Image
-            src={avatar}
+            src={imageUrl || avatar}
             width={72}
             height={72}
             alt="image"
-            className="size-[72px]"
+            className={`${imageUrl ?' size-[120px] rounded-full' :'size-[72px] '} object-cover `}
           />
         </div>
       </div>
@@ -64,6 +122,9 @@ const UserSettings = () => {
             </label>
             <Input
               type="text"
+              name="first_name"
+              value={user?.first_name}
+              onChange={handleChange}
               className="h-[44px] w-full rounded-[6px] border-[1px] border-border p-[12px]"
               placeholder={user?.first_name}
             />
@@ -75,6 +136,9 @@ const UserSettings = () => {
             </label>
             <Input
               type="text"
+              name="last_name"
+              value={user?.last_name}
+              onChange={handleChange}
               className="h-[44px] w-full rounded-[6px] border-[1px] border-border p-[12px]"
               placeholder={user?.last_name}
             />
@@ -152,7 +216,7 @@ const UserSettings = () => {
          
         </div>
       </div>
-        <Button className="rounded-[8px] bg-[#E4E7EC] px-[16px] py-[8px] w-fit text-[14px] font-[600] leading-[20.3px] text-[#8E97A6]">
+        <Button onClick={handleUpdate} className="rounded-[8px] bg-[#E4E7EC] px-[16px] py-[8px] w-fit text-[14px] font-[600] leading-[20.3px] text-[#8E97A6]">
           Save Changes
         </Button>
        

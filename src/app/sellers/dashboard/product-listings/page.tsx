@@ -7,7 +7,6 @@ import ProductCard from "../(components)/product-card";
 import { newArrivals } from "@/app/(components)/reviews";
 import { useGet } from "@/utils/useGet.";
 import { useRouter } from "next/navigation";
-// import { newArrivals } from "@/app/page";
 
 const ProductListings = () => {
   const {data } = useGet("vendor/products", 'vendorProducts')
