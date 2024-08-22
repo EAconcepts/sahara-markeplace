@@ -15,7 +15,7 @@ const Rating = ({stars=5, rating=5, showRatingValue=true}: {stars?:number, ratin
             className={` ${
               rating && index <= rating - 1
                 ? " text-[#FFAD33] opacity-100 "
-                : "text-[20px] text-white opacity-25"
+                : "text-[14px] lg:text-[20px] text-white opacity-25"
             }`}
           />
         ))}

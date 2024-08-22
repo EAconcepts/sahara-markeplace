@@ -17,7 +17,7 @@ const Banner = () => {
         { icon: call, title: "24/7 Dedicated support" },
       ];
   return (
-    <div className="flex bg-[#F9E79F99] rounded-[200px] w-full justify-between  overflow-hidden max-lg:gap-x-[32px] px-[24px] py-[20px] text-blackPrimary">
+    <div className="flex bg-[#F9E79F99] rounded-[200px] w-full justify-between  overflow-hidden max-lg:gap-x-[32px] lg:px-[24px] py-[8.5px] lg:py-[20px] text-blackPrimary">
         {features?.map((feat, index) => (
           <div className="flex max-lg:shrink-0 items-center gap-x-[8px]" key={index}>
             <Image
@@ -25,7 +25,7 @@ const Banner = () => {
               width={24}
               height={24}
               alt={feat.title}
-              className="lg:size-[24px]"
+              className="size-[24px]"
             />
             <span className="font-[400] text-[16px] leading-[23.2px] font-openSans">
               {feat.title}

@@ -70,7 +70,7 @@ const Header = () => {
             {/* Fav & Cart */}
             <div className="flex items-center gap-x-[24px] text-[24px]">
               <div className="relative">
-                <span className="absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-400 text-[10px] text-white lg:size-[12px]">
+                <span className="absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-400 text-[10px] text-white size-[12px]">
                   0
                 </span>
                 <CiHeart />
@@ -80,7 +80,7 @@ const Header = () => {
                 onClick={() => setShowCart((prev) => !prev)}
                 className="relative"
               >
-                <span className="absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-400 text-[10px] text-white lg:size-[12px]">
+                <span className="absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-400 text-[10px] text-white size-[12px]">
                   {data?.data?.cart?.length || 0}
                 </span>
                 <PiShoppingCartLight />

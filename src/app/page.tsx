@@ -23,7 +23,7 @@ export default function Home() {
 
 
   return (
-    <main className="lg:px-[96px] mt-[40px] pt-[12px] pb-[32px]">
+    <main className="lg:px-[96px] lg:mt-[40px] max-lg:px-[24px] lg:pt-[12px] lg:pb-[32px]">
       <Hero />
       <div className="mt-[40px]">
         <Department categories = {data?.data?.categories} />
@@ -34,12 +34,12 @@ export default function Home() {
       <div className="mt-[40px]">
         <Registry heading={"Shop by Registry"} products={newArrivals} />
       </div>
-      <div className="mt-[40px]">
+      <div className="mt-[40px] max-lg:hidden">
         <SpecialTreats />
       </div>
       {/* Blogs */}
       <div className="mt-[40px] pt-[16px]">
-        <div className="flex mt-[32px] gap-[24px]">{
+        <div className="flex max-lg:flex-wrap mt-[32px] gap-[16px] lg:gap-[24px]">{
           blogs?.map((story, index)=>(
             <BlogCard key={index} story={story}/>
           ))}</div>
@@ -47,7 +47,7 @@ export default function Home() {
       <div className="mt-[40px] py-[16px]">
         <Testimonies />
       </div>
-      <div className="mt-[40px] ">
+      <div className="mt-[40px] max-lg:mb-[24px]">
         <Newsletter />
       </div>
     </main>

@@ -8,6 +8,7 @@ interface AuthProps {
   userType: string | null
   login: (token: string, user: any) => void;
   logout: () => void;
+  baseUrl: string;
 }
 export const AuthContext = createContext<any>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -18,6 +19,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState(tkn || null);
   const [user, setUser] = useState((userData && JSON.parse(userData)) || null);
   const [userType, setUserType] = useState<string | null>(user_type || null) 
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const login = (token: string, user: any, userType:string) => {
     if (typeof window !== 'undefined') {
@@ -48,7 +50,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ token, user, userType, login, logout }}>
+    <AuthContext.Provider value={{ token, user, userType, baseUrl, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

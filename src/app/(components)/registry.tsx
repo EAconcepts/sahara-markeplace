@@ -8,17 +8,17 @@ const Registry = ({ heading, products }: any) => {
   return (
     <div className="mt-[32px]">
       <ProductHeader heading={heading} />
-      <div className="flex gap-x-[24px] mt-[32px]">
+      <div className="flex max-lg:flex-wrap gap-[16px] lg:gap-x-[24px] mt-[32px]">
         {products?.slice(0,4).map((product:any, index:number) => (
-          <div className="" key={index}>
+          <div className="max-lg:w-[153px] max-lg:h-[259px]" key={index}>
             <Image
               src={product?.image}
               width={294}
               height={312}
               alt={product.title}
-              className="lg:w-[294px] lg:h-[312px] object-cover"
+              className="w-[100%] lg:w-[294px] max-lg:rounded-[4px] h-[220px] lg:h-[312px] object-cover"
             />
-            <p className="text-blackPrimary text-[24px] mt-[20px] font-[400] font-openSans text-center">
+            <p className="text-blackPrimary text-[16px] max-lg:leading-[23.3px] lg:text-[24px] mt-[16px] lg:mt-[20px] font-[400] font-openSans text-center">
               Wedding Attires
             </p>
           </div>

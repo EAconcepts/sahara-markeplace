@@ -108,7 +108,7 @@ const UserSettings = () => {
             width={72}
             height={72}
             alt="image"
-            className={`${imageUrl ?' size-[120px] rounded-full' :'size-[72px] '} object-cover `}
+            className={`${imageUrl ?' size-[120px] rounded-full' :'size-[72px] '} object-cover  `}
           />
         </div>
       </div>

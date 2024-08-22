@@ -34,26 +34,26 @@ export  const blogs = [
 ];
 const BlogCard = ({ story }: any) => {
   return (
-    <div className="rounded-[24px] flex flex-col bg-[#F9E79F99] text-blackPrimary font-openSans h-[394px] w-[294px] px-[16px] py-[12px]">
+    <div className="lg:rounded-[24px] flex flex-col bg-[#F9E79F99] text-blackPrimary font-openSans h-[268px] w-[155px] lg:h-[394px] lg:w-[294px] px-[8px] lg:px-[16px] rounded-[12px] py-[12px]">
       <Image
         src={story?.image}
         width={270}
         height={180}
         alt={story.title}
-        className="lg:w-[270px] h-[180px] rounded-[16px]"
+        className="lg:w-[270px] w-[167px] h-[102px] lg:h-[180px] lg:rounded-[16px] rounded-[8px]"
       />
-      <div className="pt-[4px] flex flex-col gap-y-[12px] px-[4px]">
-        <h3 className="font-[700] text-[20px] leading-[29px] text-blackPrimary">
+      <div className="pt-[4px] flex flex-col gap-y-[12px] lg:px-[4px]">
+        <h3 className="font-[700] line-clamp-2 text-[14px] lg:text-[20px] leading-[20.3px] lg:leading-[29px] text-blackPrimary">
           {story.title}
         </h3>
-        <p className="text-[14px] font-[400] leading-[20.3px]">
+        <p className="text-[12px] line-clamp-3 lg:text-[14px] font-[400] leading-[17.4px] lg:leading-[20.3px]">
           {story.content}
         </p>
         <div className="flex justify-between">
-          <button className="text-[16px] font-[600] leading-[23.2px] ">
+          <button className="text-[12px] lg:text-[16px] font-[600] leading-[23.2px] ">
             Read More...
           </button>
-          <IoArrowForwardCircleOutline className="text-[32px] text-blackPrimary" />
+          <IoArrowForwardCircleOutline className=" lg:text-[32px] text-blackPrimary" />
         </div>
       </div>
     </div>
