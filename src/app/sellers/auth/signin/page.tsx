@@ -51,15 +51,15 @@ const Signin = () => {
   });
 
   return (
-    <div className="flex w-full flex-col pt-[40px] lg:pb-[300px]">
-      <div className="flex w-full gap-x-[24px] px-[96px]">
+    <div className="flex max-lg:flex-col w-full flex-col max-lg:mt-[24px] lg:pt-[40px] lg:pb-[300px]">
+      <div className="flex w-full max-lg:flex-col gap-x-[24px] lg:px-[96px] px-[24px]">
         <div className="w-full">
           <AuthCard image={image} header="Welcome Back!!" />
         </div>
         {/* signin form */}
         <form
           onSubmit={handleSignin}
-          className="flex w-[90%] flex-col px-[40px] font-openSans"
+          className="flex lg:w-[90%] max-lg:mt-[40px] flex-col lg:px-[40px] font-openSans"
         >
           <h4 className="text-center text-[24px] font-[600] leading-[28.8px] text-blackPrimary">
             Sign In
@@ -119,11 +119,11 @@ const Signin = () => {
           <Button
             type="submit"
             disabled={loginMutation.isPending}
-            className="mt-[40px] h-[55px] rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20"
+            className="mt-[40px] h-[55px] rounded-[12px] bg-[#7D9A37] py-[16px] text-[14px] lg:text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20"
           >
             {loginMutation.isPending ? "Signing in..." : " Login"}
           </Button>
-          <div className="mt-[24px] flex items-center justify-center gap-x-[12px] text-[20px]">
+          <div className="mt-[24px] flex items-center justify-center gap-x-[8px] lg:gap-x-[12px] text-[14px] lg:text-[20px]">
             <span className="font-[400] leading-[29px] text-[#787C83]">
               Don&apos;t have an account yet?
             </span>{" "}

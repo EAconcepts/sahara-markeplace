@@ -13,26 +13,36 @@ import { useGet } from "@/utils/useGet.";
 import axios from "axios";
 import { useEffect } from "react";
 import { newArrivals } from "./(components)/reviews";
+import Loader from "./(components)/loader";
 
 
 
 export default function Home() {
  
   const {data} = useGet("cata/prod", "products")
-  // console.log(data)
+  console.log(data)
 
 
   return (
     <main className="lg:px-[96px] lg:mt-[40px] max-lg:px-[24px] lg:pt-[12px] lg:pb-[32px]">
       <Hero />
       <div className="mt-[40px]">
+      {data?.data?.categories ? 
+
         <Department categories = {data?.data?.categories} />
+        :<Loader/>
+      }
       </div>
       <div className="mt-[40px]">
+        {/* {data?.data?.products ?  */}
         <NewArrival newArrivals={data?.data?.products} />
+         {/* : <Loader/>} */}
       </div>
       <div className="mt-[40px]">
-        <Registry heading={"Shop by Registry"} products={newArrivals} />
+      {/* {data?.data?.products ?  */}
+
+        <Registry heading={"Shop by Registry"} products={data?.data?.products?.slice(10, 16)} />
+        {/* : <Loader/>} */}
       </div>
       <div className="mt-[40px] max-lg:hidden">
         <SpecialTreats />

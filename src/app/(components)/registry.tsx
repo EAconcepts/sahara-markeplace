@@ -5,6 +5,7 @@ import ProductHeader from "./product-header";
 import Image from "next/image";
 
 const Registry = ({ heading, products }: any) => {
+  const imgBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
   return (
     <div className="mt-[32px]">
       <ProductHeader heading={heading} />
@@ -12,7 +13,7 @@ const Registry = ({ heading, products }: any) => {
         {products?.slice(0,4).map((product:any, index:number) => (
           <div className="max-lg:w-[153px] max-lg:h-[259px]" key={index}>
             <Image
-              src={product?.image}
+              src={`${imgBaseUrl}/${product?.image}`}
               width={294}
               height={312}
               alt={product.title}

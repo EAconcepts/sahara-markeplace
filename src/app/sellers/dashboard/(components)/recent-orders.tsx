@@ -7,16 +7,16 @@ const RecentOrders = () => {
     <table className="w-full font-openSans">
       <thead className="w-full">
         <tr className="px[24px] py[12px] w-full bg-[#E4E7EC]">
-          <th className="w-fit shrink px-[24px] py-[12px] text-start text-[12px] font-[600] leading-[17.4px] tracking-[-0.5%] text-blackPrimary">
+          <th className="w-fit shrink lg:px-[24px] px-[12px] py-[12px] text-start text-[12px] font-[600] leading-[17.4px] tracking-[-0.5%] text-blackPrimary">
             Product
           </th>
-          <th className="px-[24px] py-[12px] text-start text-[12px] font-[600] leading-[17.4px] tracking-[-0.5%] text-blackPrimary">
+          <th className="lg:px-[24px] px-[12px] py-[12px] text-start text-[12px] font-[600] leading-[17.4px] tracking-[-0.5%] text-blackPrimary">
             Qty
           </th>
-          <th className="px-[24px] py-[12px] text-start text-[12px] font-[600] leading-[17.4px] tracking-[-0.5%] text-blackPrimary">
+          <th className="lg:px-[24px] px-[12px] py-[12px] text-start text-[12px] font-[600] leading-[17.4px] tracking-[-0.5%] text-blackPrimary">
             Status
           </th>
-          <th className="px-[24px] py-[12px] text-start text-[12px] font-[600] leading-[17.4px] tracking-[-0.5%] text-blackPrimary">
+          <th className="lg:px-[24px] px-[12px] py-[12px] text-start text-[12px] font-[600] leading-[17.4px] tracking-[-0.5%] text-blackPrimary">
             Amount
           </th>
         </tr>
@@ -25,8 +25,8 @@ const RecentOrders = () => {
         {[1, 2, 3, 4]?.map((order, index) => (
           <tr key={index} className="">
             <td className="">
-              <div className="flex flex-col px-[24px] py-[17.5px]">
-                <p className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+              <div className="flex flex-col px-[12px] lg:px-[24px] py-[17.5px]">
+                <p className="max-lg:line-clamp-1 text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                   Hand Painted Danshiki Black
                 </p>
                 <p className="font-[400 ] text-[12px] leading-[17.4px] text-[#787C83]">
@@ -34,11 +34,11 @@ const RecentOrders = () => {
                 </p>
               </div>
             </td>
-            <td className="px-[24px] py-[16px] text-[14px] leading-[20.3px] text-blackPrimary">
+            <td className="px-[12px] lg:px-[24px] py-[16px] text-[14px] leading-[20.3px] text-blackPrimary">
               2
             </td>
             <td
-              className={`${""} px-[24px] py-[16px] text-[14px] font-[600] leading-[20.3px] text-[#A07E53]`}
+              className={`${""} px-[12px] lg:px-[24px] py-[16px] text-[14px] font-[600] leading-[20.3px] text-[#A07E53]`}
             >
               Shipped
             </td>

@@ -9,8 +9,9 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import AuthCard from "./(components)/authcard";
+// import AuthCard from "./(components)/authcard";
 import img from "@/assets/images/signup-seller.png";
+import AuthCard from "../signin/(components)/authcard";
 const Signup = () => {
   const [userDetails, setUserDetails] = useState({
     first_name: "",
@@ -53,15 +54,15 @@ const Signup = () => {
   });
 
   return (
-    <div className="flex w-full flex-col pt-[40px] lg:pb-[300px]">
-      <div className="flex w-full gap-x-[24px] px-[96px]">
+    <div className="flex w-full flex-col pt-[40px] lg:pb-[300px] max-lg:px-[24px]">
+      <div className="flex max-lg:flex-col w-full gap-x-[24px] lg:px-[96px]">
         <div className="shrink- w-full">
           <AuthCard image={img} header="Join the Movement" />
         </div>
         {/* signup form */}
         <form
           onSubmit={handleSignup}
-          className="shrink0 flex w-full flex-col px-[40px] font-openSans"
+          className="shrink0 flex w-full max-lg:mt-[40px] flex-col lg:px-[40px] font-openSans"
         >
           <h4 className="text-center text-[24px] font-[600] leading-[28.8px] text-blackPrimary">
             Sign Up
@@ -236,11 +237,11 @@ const Signup = () => {
           <Button
             disabled={registerMutation.isPending}
             type="submit"
-            className="mt-[40px] h-[55px] rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20"
+            className="mt-[40px] max-lg:h-[48px] lg:h-[55px] rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20"
           >
             {registerMutation.isPending ? "Signing up..." : " Sign In"}
           </Button>
-          <div className="mt-[24px] flex items-center justify-center gap-x-[12px] text-[20px]">
+          <div className="mt-[24px] max-lg:text-[14px] flex items-center justify-center gap-x-[12px] lg:text-[20px]">
             <span className="font-[400] leading-[29px] text-[#787C83]">
               Already have an account?
             </span>{" "}
