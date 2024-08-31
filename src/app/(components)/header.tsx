@@ -14,17 +14,34 @@ import Topnav from "./topnav";
 import { usePathname } from "next/navigation";
 import { useGet } from "@/utils/useGet.";
 import { useAuth } from "@/utils/useAuth";
+import Sidemenu from "../dashboard/(components)/sidemenu";
+import {
+  adminNavLinks,
+  navlinks,
+  sellersNavLinks,
+} from "../sellers/dashboard/(components)/navlinks";
 
 const Header = () => {
-  const [showCart, setShowCart] = useState(false);
+  const [showCart, setShowCart] = useState<boolean>(false);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
   const path = usePathname();
-  const {userType}= useAuth()
+  const { userType } = useAuth();
   // console.log(userType)
-  const {data} = useGet("my-cart", "cart")  
+  const { data } = useGet("my-cart", "cart");
   // console.log(data)
-  if (path.startsWith("/dashboard") || path.startsWith("/sellers") ||path.startsWith("/admin")) {
+  if (
+    path.startsWith("/dashboard") ||
+    path.startsWith("/sellers") ||
+    path.startsWith("/admin")
+  ) {
     return null;
   }
+  const dashbLinks =
+    userType == "user"
+      ? navlinks
+      : userType == "seller"
+        ? sellersNavLinks
+        : adminNavLinks;
   return (
     <div className={`${showCart && "sticky top-0 z-40 w-full"}`}>
       <Topnav />
@@ -70,7 +87,7 @@ const Header = () => {
             {/* Fav & Cart */}
             <div className="flex items-center gap-x-[24px] text-[24px]">
               <div className="relative">
-                <span className="absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-400 text-[10px] text-white size-[12px]">
+                <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
                   0
                 </span>
                 <CiHeart />
@@ -78,16 +95,33 @@ const Header = () => {
               {/* Cart */}
               <div
                 onClick={() => setShowCart((prev) => !prev)}
-                className="relative"
+                className="relative max-lg:hidden"
               >
-                <span className="absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-400 text-[10px] text-white size-[12px]">
+                <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
                   {data?.data?.cart?.length || 0}
                 </span>
                 <PiShoppingCartLight />
               </div>
+              {/* Cart Mobile*/}
+              <Link href={"/cart"} className="relative lg:hidden">
+                <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
+                  {data?.data?.cart?.length || 0}
+                </span>
+                <PiShoppingCartLight />
+              </Link>
               {/* Mobile menu */}
               <div>
-                <RiMenu2Line className="text-[22px]" />
+                <RiMenu2Line
+                  onClick={() => setShowMenu(true)}
+                  className="text-[22px]"
+                />
+                {showMenu && (
+                  <div className="fixed inset-0 h-screen w-full bg-white lg:hidden">
+                    <div className="h-full overflow-y-scroll">
+                      <Sidemenu setShowMenu={setShowMenu} links={dashbLinks} />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -95,20 +129,22 @@ const Header = () => {
           <div className="flex gap-x-[32px] max-lg:hidden">
             <Link
               href={"/sellers"}
-              className="font-openSans cursor-pointer text-[16px] font-[600] leading-[23.2px] text-black"
+              className="cursor-pointer font-openSans text-[16px] font-[600] leading-[23.2px] text-black"
             >
               Sellers Center
             </Link>
             <Link
-              href={`${userType == "seller" ? "/sellers/dashboard" :  "/dashboard"}`}
-              className="font-openSans cursor-pointer text-[16px] font-[600] leading-[23.2px] text-black"
+              href={`${userType == "seller" ? "/sellers/dashboard" : "/dashboard"}`}
+              className="cursor-pointer font-openSans text-[16px] font-[600] leading-[23.2px] text-black"
             >
               My Account
             </Link>
           </div>
         </div>
       </div>
-      {showCart && <CartModal carts={data?.data?.cart} setShowCart={setShowCart} />}
+      {showCart && (
+        <CartModal carts={data?.data?.cart} setShowCart={setShowCart} />
+      )}
     </div>
   );
 };

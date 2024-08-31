@@ -9,6 +9,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { PiShoppingCart } from "react-icons/pi";
 import { toast } from "sonner";
+import usa from "@/assets/images/usa.svg";
 
 const ProductCard = ({ product }: { product: any }) => {
   const router = useRouter();
@@ -38,30 +39,30 @@ const ProductCard = ({ product }: { product: any }) => {
   return (
     <div
       onClick={() => router.push(`/product-details/${product?.url || 2}`)}
-      className="flex flex-col pb-[12px] lg:w-[294px]"
+      className="flex flex-col pb-[12px] max-lg:w-[180px] lg:w-[294px]"
     >
       <Image
         src={`${imageBaseUrl}/${product?.image}`}
         width={294}
         alt={product?.name}
         height={180}
-        className="l:w-[294px] rounded-tl-[8px] rounded-tr-[8px] object-cover max-lg:w-[183px] lg:h-[180px]"
+        className="lg:w-[294px] rounded-tl-[8px] rounded-tr-[8px] object-cover max-lg:w-[163px] lg:h-[160px]"
       />
       <div className="mt-[12px] flex flex-col max-lg:mt-[16px] lg:pr-[16px]">
         {/* product name & price */}
-        <div className="flex justify-between font-openSans text-[14px] font-[600] leading-[20px] text-blackPrimary lg:text-[16px] lg:leading-[23.2px]">
+        <div className="flex justify-between font-openSans text-[12px] font-[600] leading-[20px] text-blackPrimary lg:text-[16px] lg:leading-[23.2px]">
           <h4 className="line-clamp-1">{product?.name}</h4>
           <span className="font-[700]">${product?.price}</span>
         </div>
         {/* Made in */}
-        <div className="mt-[8px] flex items-center gap-x-[4px]">
-          <span>Made in Senegal</span>
+        <div className="mt-[2px] lg:mt-[8px] flex items-center gap-x-[4px]">
+          <span className="max-lg:text-[10px]">Made in Senegal</span>
           <Image
-            src={product?.country}
+            src={product?.country || usa}
             alt={product?.name}
             width={15}
             height={10}
-            className="h-[10px] w-[15px]"
+            className="max-lg:h-[8px] max-lg:w-[12px] lg:h-[10px] lg:w-[15px]"
           />
         </div>
         {/* Rating */}
@@ -73,10 +74,10 @@ const ProductCard = ({ product }: { product: any }) => {
                 <FaStar
                   key={index}
                   className={` ${
-                    product?.rating && index <= product?.rating - 1
+                    (product?.rating && index <= product?.rating - 1) || true
                       ? "text-[#FFAD33] opacity-100"
-                      : "text-[20px] text-white opacity-25"
-                  }`}
+                      : "text-white opacity-25"
+                  } max-lg:text-[12px] lg:text-[20px]`}
                 />
               ))}
             </div>
@@ -89,10 +90,10 @@ const ProductCard = ({ product }: { product: any }) => {
             handleAddToCart(product?.id);
           }}
           variant={"outline"}
-          className="mt-[16px] flex w-fit gap-x-[8px]"
+          className="mt-[12px] flex w-fit gap-x-[8px] lg:mt-[16px]"
         >
-          <PiShoppingCart className="text-[24px] text-blackPrimary" />
-          <span className="font-openSans text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+          <PiShoppingCart className="text-[18px] text-blackPrimary lg:text-[24px]" />
+          <span className="font-openSans text-[12px] font-[600] leading-[20.3px] text-blackPrimary lg:text-[14px]">
             Add to Cart
           </span>
         </Button>

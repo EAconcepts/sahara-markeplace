@@ -20,7 +20,7 @@ const DeptHeader = ({
       {/* header */}
       <div
         className={twMerge(
-          "flex h-[120px] items-center justify-center rounded-[8px] bg-[#F9C74F]",
+          "flex max-lg:h-[80px] lg:h-[120px] items-center justify-center rounded-[8px] bg-[#F9C74F]",
           className,
         )}
       >
@@ -29,13 +29,13 @@ const DeptHeader = ({
           height={254}
           alt="African woman"
           src={image}
-          className={twMerge("absolut lg:z-0 ", imageClass)
+          className={twMerge("absolut lg:z-0 max-lg:max-h-full  ", imageClass)
            } />
-        <h1 className="font-playfair text-[60px] ml-[-4px] font-[700] leading-[87px] ">
+        <h1 className="font-playfair max-lg:text-[40px] lg:text-[60px] ml-[-4px] font-[700] leading-[87px] ">
           {title}
         </h1>
       </div>
-      <p className="mt-[12px] font-openSans relative z-20 text-[16px] font-[400] leading-[23.2px] text-black">
+      <p className="mt-[12px] max-lg:hidden font-openSans relative z-20 text-[16px] font-[400] leading-[23.2px] text-black">
         {description}
       </p>
     </div>

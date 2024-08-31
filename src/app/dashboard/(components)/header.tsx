@@ -29,7 +29,7 @@ export const Header = ({
     <div className="flex w-full gap-x-[12px]">
       <h2
         className={twMerge(
-          "shrink-0 font-playfair text-[24px] font-[600] leading-[34.8px] text-blackPrimary",
+          "shrink-0 font-playfair text-[20px] leading-[29px] lg:text-[24px] font-[600] lg:leading-[34.8px] text-blackPrimary",
           className,
         )}
       >

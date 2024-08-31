@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useAuth } from "./useAuth";
+import { toast } from "sonner";
 
 export const useGet: any = (url: string, queryKey: String) => {
   const { token } = useAuth();
@@ -22,6 +23,8 @@ export const useGet: any = (url: string, queryKey: String) => {
     data = getQuery.data;
     return data;
   }
-  if (getQuery.error) console.log(getQuery.error);
+  if (getQuery.error) {
+    // toast.error(getQuery.error.message || "An error occured!")
+    console.log(getQuery.error)};
   return data;
 };

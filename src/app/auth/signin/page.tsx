@@ -52,17 +52,17 @@ const Signin = () => {
   });
 
   return (
-    <div className="flex w-full flex-col pt-[40px] lg:pb-[300px]">
-      <div className="flex w-full gap-x-[24px] px-[96px]">
+    <div className="flex w-full flex-col pt-[40px] max-lg:pb-[81px] lg:pb-[300px]">
+      <div className="lg:flex w-full gap-x-[24px] lg:px-[96px] max-lg:px-[24px]">
         <AuthCard
           image={image}
           header="Welcome Back!"
-          imgClassName="-mt-[120px] h-full"
+          imgClassName="-mt-[120px] h-full max-lg:hidden"
         />
         {/* signin form */}
         <form
           onSubmit={handleSignin}
-          className="flex w-[90%] flex-col px-[40px] font-openSans"
+          className="flex lg:w-[90%] max-lg:w-full max-lg:mt-[40px] flex-col lg:px-[40px] font-openSans"
         >
           <h4 className="text-center text-[24px] font-[600] leading-[28.8px] text-blackPrimary">
             Sign In
@@ -86,7 +86,7 @@ const Signin = () => {
                 onChange={handleChange}
                 value={userDetails.email}
                 placeholder="email address"
-                className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                className="h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
               />
             </div>
             {/*  Password  */}
@@ -104,7 +104,7 @@ const Signin = () => {
                 value={userDetails.password}
                 type="password"
                 placeholder="password"
-                className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                className="h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
               />
             </div>
           </div>
@@ -126,7 +126,7 @@ const Signin = () => {
           >
             {loginMutation.isPending ? "Signing in..." : " Sign In"}
           </Button>
-          <div className="mt-[24px] flex items-center justify-center gap-x-[12px] text-[20px]">
+          <div className="mt-[24px] flex items-center justify-center gap-x-[8px] lg:gap-x-[12px] text-[14px] lg:text-[20px]">
             <span className="font-[400] leading-[29px] text-[#787C83]">
               Don&apos;t have an account yet?
             </span>{" "}

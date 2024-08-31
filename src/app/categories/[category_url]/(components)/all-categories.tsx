@@ -1,21 +1,26 @@
 'use client'
 
 import ProductCard from "@/app/(components)/productCard";
+import { ChevronRight } from "lucide-react";
 import React from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 const AllCategories = ({products}:{products:any}) => {
   return (
-    <div className="flex gap-x-[24px]">
+    <div className="flex max-lg:flex-col gap-x-[24px]">
       {/* Categories */}
-      <aside className="flex w-[294px] shrink-0 flex-col">
-        <h4 className="font-openSans text-[20px] font-[600] leading-[24px] tracking-[2%] text-blackPrimary">
+      <aside className="flex lg:w-[294px] shrink-0 flex-col">
+        <div className="max-lg:flex max-lg:justify-between ">
+        <h4 className="font-openSans text-[16px] lg:text-[20px] font-[600] leading-[24px] tracking-[2%] text-blackPrimary">
           All Categories
         </h4>
-        <div className=""></div>
+        <ChevronRight className="lg:hidden size-[16px]" />
+        </div>
+        <div className="max-lg:hidden"></div>
       </aside>
+      <div className="lg:hidden mt-[16px] h-[1px] w-full bg-border"></div>
       {/* Products */}
-      <main className="flex w-full flex-col">
+      <main className="flex w-full flex-col max-lg:mt-[16px]">
         <div className="flex flex-col">
           {/* top heading / sort */}
           <div className="flex justify-between">
@@ -33,8 +38,8 @@ const AllCategories = ({products}:{products:any}) => {
             </div>
           </div>
           {/* Filters */}
-          <div className="flex gap-x-[24px] border-y-[1px] border-[#E4E7EC] mt-[24px] py-[12px]">
-            <span className="font-openSans text-[16px] font-[400] leading-[23.2px] text-[#787C83]">
+          <div className="flex items-center max:lg:text-[14px] gap-x-[12px] lg:gap-x-[24px] border-y-[1px] border-[#E4E7EC] mt-[24px] py-[12px]">
+            <span className="font-openSans lg:text-[16px] font-[400] leading-[23.2px] text-[#787C83]">
               Filters:
             </span>
             {/* Color */}
@@ -60,7 +65,7 @@ const AllCategories = ({products}:{products:any}) => {
             </div>
           </div>
           {/* Products */}
-          <div className="grid lg:grid-cols-3 mt-[32px] gap-x-[24px] gap-y-[24px]">
+          <div className="grid max-lg:grid-cols-2 lg:grid-cols-3 mt-[32px] gap-x-[24px] gap-y-[24px]">
             {products?.products?.map((product:any, index:number)=>(
                 <ProductCard key={index} product={product}/>
             ))}

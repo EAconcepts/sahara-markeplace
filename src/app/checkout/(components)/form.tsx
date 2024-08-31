@@ -9,7 +9,7 @@ const Form = () => {
   return (
     <form className="flex w-full flex-col gap-y-[24px] font-openSans">
       {/* full name */}
-      <div className="flex w-full gap-x-[24px]">
+      <div className="flex w-full gap-x-[16px] lg:gap-x-[24px]">
         {/* First name */}
         <div className="flex w-full flex-col gap-y-[8px]">
           <label
@@ -22,7 +22,7 @@ const Form = () => {
             id="first_name"
             type="text"
             placeholder="first name"
-            className="h-[56px] w-full rounded-[6px] border-[1px] border-border bg-white"
+            className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required
           />
         </div>
@@ -38,13 +38,13 @@ const Form = () => {
             id="last_name"
             type="text"
             placeholder="last name"
-            className="h-[56px] w-full rounded-[6px] border-[1px] border-border bg-white"
+            className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required
           />
         </div>
       </div>
       {/* Eamil & Phone */}
-      <div className="flex w-full gap-x-[24px]">
+      <div className="flex w-full gap-x-[16px] lg:gap-x-[24px]">
         {/*Email */}
         <div className="flex w-full flex-col gap-y-[8px]">
           <label
@@ -57,7 +57,7 @@ const Form = () => {
             id="email"
             type="email"
             placeholder="email"
-            className="h-[56px] w-full rounded-[6px] border-[1px] border-border bg-white"
+            className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required
           />
         </div>
@@ -73,7 +73,7 @@ const Form = () => {
             id="phone"
             type="tel"
             placeholder="phone number"
-            className="h-[56px] w-full rounded-[6px] border-[1px] border-border bg-white"
+            className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required
           />
         </div>
@@ -90,7 +90,7 @@ const Form = () => {
           id="address"
           type="text"
           placeholder="address"
-          className="h-[56px] w-full rounded-[6px] border-[1px] border-border bg-white"
+          className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
           required
         />
       </div>
@@ -106,11 +106,11 @@ const Form = () => {
           id="apartment"
           type="text"
           placeholder="apartment, suite, unit"
-          className="h-[56px] w-full rounded-[6px] border-[1px] border-border bg-white"
+          className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
         />
       </div>
       {/* Country & State */}
-      <div className="flex w-full gap-x-[24px]">
+      <div className="flex w-full gap-x-[16px] lg:gap-x-[24px]">
         {/*Country */}
         <div className="flex w-full flex-col gap-y-[8px]">
           <label
@@ -123,7 +123,7 @@ const Form = () => {
             id="country"
             type="text"
             placeholder="country"
-            className="h-[56px] w-full rounded-[6px] border-[1px] border-border bg-white"
+            className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required
           />
         </div>
@@ -139,12 +139,12 @@ const Form = () => {
             id="state"
             type="text"
             placeholder="state"
-            className="h-[56px] w-full rounded-[6px] border-[1px] border-border bg-white"
+            className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
           />
         </div>
       </div>
       {/* City & Zip code */}
-      <div className="flex w-full gap-x-[24px]">
+      <div className="flex w-full gap-x-[16px] lg:gap-x-[24px]">
         {/*City */}
         <div className="flex w-full flex-col gap-y-[8px]">
           <label
@@ -157,7 +157,7 @@ const Form = () => {
             id="city"
             type="text"
             placeholder="city"
-            className="h-[56px] w-full rounded-[6px] border-[1px] border-border bg-white"
+            className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required
           />
         </div>
@@ -173,7 +173,7 @@ const Form = () => {
             id="zip_code"
             type="text"
             placeholder="zip code"
-            className="h-[56px] w-full rounded-[6px] border-[1px] border-border bg-white"
+            className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
           />
         </div>
       </div>
@@ -188,7 +188,7 @@ const Form = () => {
         <textarea
           id="note"
           placeholder="additional notes"
-          className="h-[80px] w-full px-[16px] py-[30px] rounded-[6px] border-[1px] border-border bg-white"
+          className="h-[64px] lg:h-[80px] w-full px-[16px] py-[30px] rounded-[6px] border-[1px] border-border bg-white"
         />
       </div>
     </form>

@@ -12,6 +12,8 @@ import axios from "axios";
 import { useAuth } from "@/utils/useAuth";
 import { newArrivals } from "@/app/(components)/reviews";
 import { useGet } from "@/utils/useGet.";
+import OrderCard from "./(components)/order-card";
+import Loader from "@/app/(components)/loader";
 
 const MyOrders = () => {
   const router = useRouter()
@@ -32,7 +34,7 @@ console.log(data)
   return (
     <div className="w-full pt-[24px]">
       <Header title="My Order" />
-      <table className="mt-[32px] w-full font-openSans">
+      <table className="hidden lg:block mt-[32px] w-full font-openSans">
         <thead className="">
           <tr className="h-[42px] bg-[#E4E7EC] px-[24px] py-[12px] text-[12px] font-[400] leading-[17.4px] tracking-[-0.5%] text-blackPrimary">
             <th className="">Item</th>
@@ -88,6 +90,16 @@ console.log(data)
           ))}
         </tbody>
       </table>
+      <div className="lg:hidden flex flex-col mt-[24px] gap-[16px]">
+        { data?.data?.orders  ? data?.data?.orders?.map((order:any)=>(
+
+        <OrderCard product={order} key={order?.id}/>
+      ))
+      :
+      <Loader/>
+
+}
+      </div>
       <div>
         <RecentSearches products={newArrivals} />
       </div>

@@ -18,7 +18,7 @@ const Dashboard = () => {
     <div className="pt-[40px]">
       <Header title={"Dashboard"} />
       {/* Recent Orders & Default Address */}
-      <div className="mt-[32px] flex gap-x-[24px]">
+      <div className="mt-[32px] flex max-lg:flex-col gap-x-[24px]">
         {/* Recent Orders */}
         <div className="flex w-full flex-col gap-y-[12px]">
           <h4 className="px-[24px] text-[20px] font-[600] leading-[24px] tracking-[-2%] text-blackPrimary">
@@ -31,7 +31,7 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Default Address */}
-        <div className="flex w-[400px] shrink-0 flex-col gap-y-[12px]">
+        <div className="flex w-full lg:w-[400px] shrink-0 flex-col gap-y-[12px]">
           <h4 className="px-[24px] text-[20px] font-[600] leading-[24px] tracking-[-2%] text-blackPrimary">
             Default Address
           </h4>
