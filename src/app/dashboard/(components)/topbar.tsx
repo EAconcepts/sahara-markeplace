@@ -17,7 +17,7 @@ import Image from "next/image";
 import logo from "@/assets/images/logo-sahara.png";
 import Link from "next/link";
 
-const Topbar = ({links}:{links:any}) => {
+const Topbar = ({links}:{links?:any}) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const router = useRouter();
   const { user } = useAuth();
