@@ -48,26 +48,26 @@ export const sellersNavLinks: NavlinksProps[] = [
     title: "My Orders",
     path: "/sellers/dashboard/my-orders",
   },
-  {
-    icon: FavouriteIcon,
-    title: "Reviews",
-    path: "/sellers/dashboard/reviews",
-    value: 10,
-  },
-  { icon: DiscountIcon, title: "Quotes", path: "#" },
+  // {
+  //   icon: FavouriteIcon,
+  //   title: "Reviews",
+  //   path: "/sellers/dashboard/reviews",
+  //   value: 10,
+  // },
+  // { icon: DiscountIcon, title: "Quotes", path: "#" },
 ];
 
 export const navlinks: NavlinksProps[] = [
   { icon: DashboardSquare03Icon, title: "Dashboard", path: "/dashboard" },
   { icon: PackageIcon, title: "My Orders", path: "/dashboard/my-orders" },
-  { icon: FavouriteIcon, title: "Wishlist", path: "/dashboard/wishlist" },
-  { icon: Message01Icon, title: "Quotes", path: "/dashboard/quotes" },
-  {
-    icon: DiscountIcon,
-    title: "Discounts",
-    path: "/dashboard/discounts",
-    value: 10,
-  },
+  // { icon: FavouriteIcon, title: "Wishlist", path: "/dashboard/wishlist" },
+  // { icon: Message01Icon, title: "Quotes", path: "/dashboard/quotes" },
+  // {
+  //   icon: DiscountIcon,
+  //   title: "Discounts",
+  //   path: "/dashboard/discounts",
+  //   value: 10,
+  // },
 ];
 
 export const adminNavLinks: NavlinksProps[] = [

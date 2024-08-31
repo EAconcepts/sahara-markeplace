@@ -42,20 +42,20 @@ const Form2 = () => {
             </h6>
           </div>
           {/* Size */}
-          <div className="flex flex-col gap-y-[16px]">
+          <div className="flex flex-col gap-y-[16px] max-lg:mt-[12px]">
             {["S", "M", "L", "XL", "XXL", "2XL", "3XL"].map((size, index) => (
-              <div className="flex gap-x-[16px]" key={index}>
-                <p className="h-[44px] w-[127px] rounded-[6px] border-[1px] border-border p-[12px]">
+              <div className="flex max-lg:justify-between gap-x-[16px]" key={index}>
+                <p className="h-[44px] lg:w-[127px] rounded-[6px] border-[1px] border-border p-[12px]">
                   {size}
                 </p>
                 <Input
                   type="number"
-                  className="w-[194px] border-[1px] border-border p-[12px]"
+                  className="lg:w-[194px] max-lg:w-[80px] border-[1px] border-border p-[12px]"
                   placeholder="8.00"
                 />
                 <Select>
-                  <SelectTrigger className="">
-                    <SelectValue placeholder="USD" />
+                  <SelectTrigger className="max-lg:w-[80px] max-lg:text-[12px]">
+                    <SelectValue placeholder="USD" className="max-lg:text-[12px]" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
@@ -64,17 +64,17 @@ const Form2 = () => {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
-                <Delete03Icon className="h-[32.67px] w-[19px] text-[#E8112D]" />
+                <Delete03Icon className="lg:h-[32.67px] max-lg:size-[16px] lg:w-[19px] text-[#E8112D]" />
               </div>
             ))}
           </div>
           {/* Color */}
-          <div className="flex flex-col gap-y-[16px]">
-            <div className="relative h-[44px] w-full rounded-[6px] p-[12px]">
+          <div className="flex flex-col gap-y-[16px] max-lg:mt-[12px]">
+            <div className="relative h-[44px] max-lg:flex max-lg:justify-between w-full rounded-[6px] p-[12px]">
               <span className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
                 Color
               </span>
-              <Cancel01Icon className="absolute right-[12px] top-[-12px] size-[20px] text-[#8E97A6]" />
+              <Cancel01Icon className="lg:absolute right-[12px] top-[-12px] size-[20px] text-[#8E97A6]" />
             </div>
             {/* Colors */}
             <div className="grid grid-cols-3 gap-[16px]">

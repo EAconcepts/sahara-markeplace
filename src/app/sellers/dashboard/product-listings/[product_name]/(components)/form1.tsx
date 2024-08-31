@@ -93,11 +93,11 @@ const Form1 = () => {
         <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
           Tags
         </h5>
-        <div className="flex justify-between gap-x-[12px]">
+        <div className="flex max-lg:flex-wrap  max-lg:gap-x-[12px] lg:justify-between gap-x-[12px]">
           {[1, 2, 3].map((tag, index) => (
             <div
               key={index}
-              className="min-w-[141.35px] justify-between flex h-[44px] rounded-[6px] border-[1px] p-[12px]"
+              className="lg:min-w-[141.35px] gap-y-[12px] max-lg-[111.35px] justify-between flex h-[44px] rounded-[6px] border-[1px] p-[12px]"
             >
               <span className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
                 Plus-Size

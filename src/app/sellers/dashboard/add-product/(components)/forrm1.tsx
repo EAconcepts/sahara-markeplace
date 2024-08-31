@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Input } from "@/components/ui/input";
 import {
@@ -14,26 +14,32 @@ import { CloudUploadIcon } from "hugeicons-react";
 import Image from "next/image";
 import React, { ChangeEvent, Dispatch, useRef, useState } from "react";
 
-const Form1 = ({prdtDetails, setPrdtDetails, handleChange}:{handleChange:  (e: ChangeEvent<HTMLInputElement>) => void; setPrdtDetails?:Dispatch<any>; prdtDetails:any}) => {
-  const [image, setImage] =useState<string>("")
-  const imageRef = useRef<any>(null)
+const Form1 = ({
+  prdtDetails,
+  setPrdtDetails,
+  handleChange,
+}: {
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  setPrdtDetails?: Dispatch<any>;
+  prdtDetails: any;
+}) => {
+  const [image, setImage] = useState<string>("");
+  const imageRef = useRef<any>(null);
 
-  const handleImageUpload=(e:ChangeEvent<HTMLInputElement>)=>{
-    const file = e.target.files && e.target.files[0]
-    console.log(file)
-    const formdata = new FormData()
-    file && formdata.append( "image", file)
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    console.log(file);
+    const formdata = new FormData();
+    file && formdata.append("image", file);
 
-    const imageUrl = file && URL.createObjectURL(file)
-    console.log(imageUrl)
-    imageUrl && setImage(imageUrl)
-  }
-  const handleUpload=()=>{
-    imageRef && imageRef.current?.click()
-  }
+    const imageUrl = file && URL.createObjectURL(file);
+    console.log(imageUrl);
+    imageUrl && setImage(imageUrl);
+  };
+  const handleUpload = () => {
+    imageRef && imageRef.current?.click();
+  };
 
-  
- 
   return (
     <div className="flex w-full flex-col gap-y-[24px]">
       {/* product Image */}
@@ -41,22 +47,37 @@ const Form1 = ({prdtDetails, setPrdtDetails, handleChange}:{handleChange:  (e: C
         <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
           Product Image
         </h5>
-        {image ?<Image onClick={handleUpload} src={image} width={132} height={192} alt="product-image" className="w-[132px] h-[192px] object-cover"/>
-        :
-        
-        <div onClick={handleUpload} className="flex h-[192px] w-[132px] flex-col items-center justify-center gap-y-[16px] rounded-[8px] border-[1px] border-dashed border-[#8E97A6] bg-[#E4E7EC] px-[8px]">
-          <div className="flex flex-col items-center gap-y-[8px]">
-            <input type='file' onChange={handleImageUpload} hidden ref={imageRef}/>
-            <CloudUploadIcon className="text-[20px] text-[#787C83]" />
-            <h4 className="text-center text-[14px] font-[600] leading-[20.3px] text-[#787C83]">
-              Upload
-            </h4>
-            <p className="text-center text-[10px] font-[600] leading-[14.5px] text-[#787C83]">
-              png. or jpeg./mp4. or mp3.
-            </p>
+        {image ? (
+          <Image
+            onClick={handleUpload}
+            src={image}
+            width={132}
+            height={192}
+            alt="product-image"
+            className="w-[132px] object-cover max-lg:h-[139px] lg:h-[192px]"
+          />
+        ) : (
+          <div
+            onClick={handleUpload}
+            className="flex h-[192px] w-[132px] flex-col items-center justify-center gap-y-[16px] rounded-[8px] border-[1px] border-dashed border-[#8E97A6] bg-[#E4E7EC] px-[8px]"
+          >
+            <div className="flex flex-col items-center gap-y-[8px]">
+              <input
+                type="file"
+                onChange={handleImageUpload}
+                hidden
+                ref={imageRef}
+              />
+              <CloudUploadIcon className="max-lg:size-[20px] lg:text-[20px] text-[#787C83]" />
+              <h4 className="text-center text-[12px] lg:text-[14px] font-[600] leading-[20.3px] text-[#787C83]">
+                Upload
+              </h4>
+              <p className="text-center text-[10px] font-[600] leading-[14.5px] text-[#787C83]">
+                png. or jpeg./mp4. or mp3.
+              </p>
+            </div>
           </div>
-        </div>
-}
+        )}
       </div>
       <div className="gap-y-[8px] rounded-[12px] border-[1px] border-border px-[16px] py-[24px]">
         <div className="flex flex-col gap-y-[24px]">
@@ -67,7 +88,7 @@ const Form1 = ({prdtDetails, setPrdtDetails, handleChange}:{handleChange:  (e: C
             </h3>
             <Input
               type="text"
-              name={'name'}
+              name={"name"}
               value={prdtDetails.name}
               onChange={handleChange}
               placeholder="Product title"
@@ -80,9 +101,15 @@ const Form1 = ({prdtDetails, setPrdtDetails, handleChange}:{handleChange:  (e: C
               Product Description
             </h3>
             <textarea
-            name={'description'}
-            value={prdtDetails.description}
-            onChange={(e)=>setPrdtDetails && setPrdtDetails((prev:any)=>({...prev, description: e.target.value}))}
+              name={"description"}
+              value={prdtDetails.description}
+              onChange={(e) =>
+                setPrdtDetails &&
+                setPrdtDetails((prev: any) => ({
+                  ...prev,
+                  description: e.target.value,
+                }))
+              }
               placeholder="Product Description"
               className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
             />
@@ -94,7 +121,6 @@ const Form1 = ({prdtDetails, setPrdtDetails, handleChange}:{handleChange:  (e: C
             </h3>
             <Input
               type="text"
-              
               placeholder="Product Material"
               className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
             />
@@ -102,18 +128,18 @@ const Form1 = ({prdtDetails, setPrdtDetails, handleChange}:{handleChange:  (e: C
           {/* Category & Sub-category */}
           <div className="flex justify-between gap-x-[24px]">
             {/* Category */}
-            <div className="w-full flex flex-col">
+            <div className="flex w-full flex-col">
               <h4 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Product Category
               </h4>
               <Input
-              type="text"
-              name='category'
-              value={prdtDetails.category}
-              onChange={handleChange}
-              placeholder="Product Material"
-              className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
-            />
+                type="text"
+                name="category"
+                value={prdtDetails.category}
+                onChange={handleChange}
+                placeholder="Product Material"
+                className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
+              />
               {/* <Select>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="--Select--" />
@@ -127,7 +153,7 @@ const Form1 = ({prdtDetails, setPrdtDetails, handleChange}:{handleChange:  (e: C
               </Select> */}
             </div>
             {/* Sub-Category */}
-            <div className="w-full flex flex-col">
+            <div className="flex w-full flex-col">
               <h4 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Product Category
               </h4>
@@ -179,9 +205,9 @@ const Form1 = ({prdtDetails, setPrdtDetails, handleChange}:{handleChange:  (e: C
             </Select>
           </div>
           {/* Quantity & Availability */}
-          <div className="w-full flex justify-between gap-x-[32px]">
+          <div className="flex w-full justify-between gap-x-[32px]">
             {/* Quantity */}
-            <div className="w-full flex flex-col gap-y-[8px]">
+            <div className="flex w-full flex-col gap-y-[8px]">
               <h3 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Quantity
               </h3>
@@ -195,7 +221,7 @@ const Form1 = ({prdtDetails, setPrdtDetails, handleChange}:{handleChange:  (e: C
               />
             </div>
             {/* Availability */}
-            <div className="w-full flex flex-col gap-y-[8px]">
+            <div className="flex w-full flex-col gap-y-[8px]">
               <h3 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Availability
               </h3>

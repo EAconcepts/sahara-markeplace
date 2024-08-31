@@ -16,7 +16,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           <Sidemenu links={navlinks}settingsLink="/dashboard/settings" />
         </aside>
         <main className="h-full w-full lg:overflow-y-scroll">
-          <Topbar />
+          <Topbar links={navlinks} />
           <div className="mt-[24px]">
             <ActiveStatusModal />
           </div>

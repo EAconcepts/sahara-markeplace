@@ -57,10 +57,10 @@ const AddProduct=()=>{
         <div className="w-full font-openSans">
             {/* Breadcrumb */}
             <div></div>
-            <div className="w-full mt-[12px] gap-y-[32px] py-[16px]">
-                <Header title="Add Product"/>
-                <form onSubmit={handlePublish} className="flex flex-col gap-y-[32px]  ">
-                <div className="w-full flex gap-x-[16px] border-border border-b-[1px] pb-[32px]">
+            <div className="w-full mt-[12px] gap-y-[32px] py-[16px] max-lg:px-[24px]">
+                <Header title="Add Product" className="max-lg:text-[16px]"/>
+                <form onSubmit={handlePublish} className="flex max-lg:mt-[16px] flex-col gap-y-[32px]  ">
+                <div className="w-full flex max-lg:flex-col gap-y-[16px] gap-x-[16px] border-border border-b-[1px] pb-[32px]">
                     <div className="w-full">
                         <Form1 setPrdtDetails={setPrdtDetails} handleChange={handleChange} prdtDetails={prdtDetails}/>
                     </div>

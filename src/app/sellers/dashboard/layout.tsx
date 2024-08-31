@@ -16,7 +16,7 @@ export default function SellersDashboardLayout({
         <Sidemenu links={sellersNavLinks} settingsLink={"/sellers/dashboard/settings"} />
       </aside>
       <main className="h-full w-full lg:overflow-y-scroll">
-        <Topbar />
+        <Topbar links={sellersNavLinks} />
         {children}
         <Welcome/>
       </main>

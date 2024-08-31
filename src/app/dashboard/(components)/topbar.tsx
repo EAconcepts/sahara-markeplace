@@ -11,13 +11,13 @@ import {
 } from "hugeicons-react";
 import React, { useState } from "react";
 import Sidemenu from "./sidemenu";
-import { navlinks } from "@/app/sellers/dashboard/(components)/navlinks";
+// import { navlinks } from "@/app/sellers/dashboard/(components)/navlinks";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "@/assets/images/logo-sahara.png";
 import Link from "next/link";
 
-const Topbar = () => {
+const Topbar = ({links}:{links:any}) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const router = useRouter();
   const { user } = useAuth();
@@ -77,7 +77,7 @@ const Topbar = () => {
       {showMenu && (
         <div className="fixed inset-0 h-screen w-full bg-white lg:hidden">
           <div className="h-full overflow-y-scroll">
-            <Sidemenu setShowMenu={setShowMenu} links={navlinks} />
+            <Sidemenu setShowMenu={setShowMenu} links={links} />
           </div>
         </div>
       )}

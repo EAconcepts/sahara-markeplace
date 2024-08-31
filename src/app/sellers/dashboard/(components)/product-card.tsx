@@ -11,6 +11,7 @@ import { toast } from "sonner";
 
 const ProductCard = ({ product }: { product: any }) => {
   const {token, baseUrl} = useAuth()
+  const imgBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
   const router = useRouter()
   const headers ={
     Authorization : `Bearer ${token}`
@@ -36,13 +37,14 @@ const ProductCard = ({ product }: { product: any }) => {
   };
   return (
     <div className="flex h-[295px] w-[194px] flex-col gap-y-[12px] rounded-[12px] border-[1px] border-border pb-[24px] font-openSans">
-      <Image
-        src={product.image}
+    <Image
+        src={`${imgBaseUrl}/${ product?.image}`}
         width={194}
         height={160}
         className="h-[160px] w-[194px] rounded-t-[12px] object-cover"
         alt=""
       />
+    
       <div className="flex flex-col gap-y-[8px] px-[12px]">
         <div className="flex flex-col gap-y-[4px]">
           <p className="text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
@@ -55,16 +57,16 @@ const ProductCard = ({ product }: { product: any }) => {
             Available In-Stock
           </p>
         </div>
-        <div className="flex justify-between">
-          <button onClick={()=>handleDelete(product?.id)} className="flex rounded-[4px] px-[12px] py-[4px]">
+        <div className="flex max-lg:gap-x-[8px] lg:justify-between">
+          <button onClick={()=>handleDelete(product?.id)} className="flex max-lg:px-[8px] border-[1px] border-[#8E97A6] rounded-[4px] lg:px-[12px] py-[4px]">
             <Delete03Icon className="size-[16px] text-[#E8112D]" />
-            <span className="text-[12px] font-[600] leading-[17.4px] text-[#E8112D]">
+            <span className="max-lg:hidden text-[12px] font-[600] leading-[17.4px] text-[#E8112D]">
               Delete
             </span>
           </button>
-          <button onClick={()=>router.push(`/sellers/dashboard/product-listings/${product?.id}`)} className="flex rounded-[4px] px-[12px] py-[4px]">
+          <button onClick={()=>router.push(`/sellers/dashboard/product-listings/${product?.url}`)} className="max-lg:border-[1px] border-[#8E97A6] lg:rounded-[4px] flex rounded-[4px] px-[8px] lg:px-[12px] py-[4px]">
             <PencilEdit01Icon className="size-[16px] text-[#787C83]" />
-            <span className="text-[12px] font-[600] leading-[17.4px] text-[#787C83]">
+            <span className="max-lg:hidden text-[12px] font-[600] leading-[17.4px] text-[#787C83]">
               Edit
             </span>
           </button>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -10,43 +10,57 @@ import { FaStar } from "react-icons/fa";
 import { PiShoppingCart } from "react-icons/pi";
 import { toast } from "sonner";
 import usa from "@/assets/images/usa.svg";
+import { useAuth } from "@/utils/useAuth";
 
 const ProductCard = ({ product }: { product: any }) => {
   const router = useRouter();
+  const {token} = useAuth()
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const headers ={
+    Authorization: `Bearer ${token}`,
+  }
+  const queryClient= useQueryClient()
   // const cartMutation = useMutation({
   //   // eslint-disable-next-line
-  //   mutationFn : (product:any, quantity:number) =>
-  //     axios.post(`${apiUrl}/add-to-cart`, { product, quantity }),
-  //   onSuccess: (data) => {
-  //     console.log(data);
-  //     if (data?.data?.message == "You need to login first") {
-  //       toast.success(data?.data?.message);
-  //     } else {
-  //       toast.success(data?.data?.message || "Added to cart successfully!");
-  //     }
-  //   },
-  //   onError: (error) => {
-  //     console.log(error);
-  //     toast.error(error.message);
-  //   },
-  // });
+  //   mutationFn  : (product:any, quantity:number) =>
+  const addtocart = async (product: any, quantity: number) => {
+    try {
+      const data = await axios.post(`${apiUrl}/add-to-cart`, {
+        product,
+        quantity,
+      }, {headers});
+      // onSuccess: (data) => {
+      console.log(data);
+      if (data?.data?.message == "You need to login first") {
+        toast.success(data?.data?.message);
+      } else {
+        toast.success(data?.data?.message || "Added to cart successfully!");
+        queryClient.invalidateQueries({ queryKey: ["cart"] });
+
+      }
+    } catch (error: any) {
+      // onError: (error) => {
+      console.log(error);
+      toast.error(error.message);
+      // },
+    }
+  };
   const handleAddToCart = (id: string) => {
     console.log(id);
-    // cartMutation.mutate(id, 1);
+    addtocart(id, 1);
   };
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   return (
     <div
       onClick={() => router.push(`/product-details/${product?.url || 2}`)}
-      className="flex flex-col pb-[12px] max-lg:w-[180px] lg:w-[294px]"
+      className="flex flex-col pb-[12px] max-lg:w-[160px] lg:w-[294px]"
     >
       <Image
         src={`${imageBaseUrl}/${product?.image}`}
         width={294}
         alt={product?.name}
         height={180}
-        className="lg:w-[294px] rounded-tl-[8px] rounded-tr-[8px] object-cover max-lg:w-[163px] lg:h-[160px]"
+        className="rounded-tl-[8px] rounded-tr-[8px] object-cover max-lg:w-[153px] lg:h-[160px] lg:w-[294px]"
       />
       <div className="mt-[12px] flex flex-col max-lg:mt-[16px] lg:pr-[16px]">
         {/* product name & price */}
@@ -55,7 +69,7 @@ const ProductCard = ({ product }: { product: any }) => {
           <span className="font-[700]">${product?.price}</span>
         </div>
         {/* Made in */}
-        <div className="mt-[2px] lg:mt-[8px] flex items-center gap-x-[4px]">
+        <div className="mt-[2px] flex items-center gap-x-[4px] lg:mt-[8px]">
           <span className="max-lg:text-[10px]">Made in Senegal</span>
           <Image
             src={product?.country || usa}

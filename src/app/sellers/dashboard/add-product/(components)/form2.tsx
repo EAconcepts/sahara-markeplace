@@ -46,27 +46,28 @@ const Form2 = ({
             </Select>
           </div>
           {/* Options / Additional Price /  */}
-          <div className="grid w-full grid-cols-3 gap-x-[16px]">
+          <div className="grid w-full border grid-cols-3  max-lg:place-items-stretch gap-x-[12px] lg:gap-x-[16px]">
+            {/* Options */}
             <div className="flex w-fit flex-col gap-x-[8px]">
-              <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+              <h6 className="text-[12px] lg:text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Options
               </h6>
-              <Input type="text" placeholder="Options" className="w-[127px]" />
+              <Input type="text" placeholder="Options" className="w-[90px] lg:text-[12px] lg:w-[127px]" />
             </div>
             {/* Additional price */}
-            <div className="flex w-full gap-x-[16px]">
-              <div className="flex w-full flex-col gap-x-[8px]">
-                <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+            <div className="flex w-full max-lg:w-[112px] gap-x-[16px] max-lg:shrink-0">
+              <div className="flex w-full flex-col gap-x-[8px] max-lg:shrink-0">
+                <h6 className=" text-[12px] lg:text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                   Additional Price
                 </h6>
-                <Input type="text" placeholder="0.00" className="w-full" />
+                <Input type="text" placeholder="0.00" className="w-full max-lg:text-[12px]" />
               </div>
             </div>
             {/* USD */}
             <div className="flex w-fit flex-col justify-end gap-x-[8px]">
               <Select>
-                <SelectTrigger className="w-[120px]">
-                  <SelectValue placeholder="USD" />
+                <SelectTrigger className="lg:w-[120px] max-lg:text-[12px] w-fit">
+                  <SelectValue placeholder="USD" className="text-[#787C83] lg:text-[12px]" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>

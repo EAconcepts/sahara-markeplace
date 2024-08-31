@@ -67,7 +67,7 @@ const Sidemenu = ({
 
       <div className="lg:mt-[200px] flex flex-col">
         <div className="flex flex-col gap-y-[12px] pb-[12px] pl-[8px]">
-          <button className="flex items-center gap-x-[12px] px-[16px] py-[12px]">
+          {/* <button className="flex items-center gap-x-[12px] px-[16px] py-[12px]">
             <MarketingIcon />{" "}
             <span className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
               News
@@ -78,7 +78,7 @@ const Sidemenu = ({
             <span className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
               Help & Support
             </span>
-          </button>
+          </button> */}
           <button
             onClick={() => router.push(`${settingsLink}`)}
             className="flex items-center gap-x-[12px] px-[16px] py-[12px]"

@@ -39,7 +39,7 @@ export const Header = ({
      {btnText && <Button
      onClick={onBtnClick && onBtnClick}
         className={twMerge(
-          "flex gap-x-[12px] bg-greenPrimary px-[40px] py-[12px]",
+          "flex gap-x-[12px] bg-greenPrimary max-lg:px-[40px] py-[12px]",
           btnClass,
         )}
       >
