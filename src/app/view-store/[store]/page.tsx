@@ -123,7 +123,7 @@ const ViewStore = () => {
             <p className="font-openSans text-[16px] font-[600] leading-[23.2px] text-[#101928]">
               20 Products In Store
             </p>
-            <div className="flex items-center gap-x-[12px]">
+            {/* <div className="flex items-center gap-x-[12px]">
               {filters?.map((filter, index) => (
                 <button
                   key={index}
@@ -132,7 +132,7 @@ const ViewStore = () => {
                   {filter}
                 </button>
               ))}
-            </div>
+            </div> */}
           </div>
           {/* Products */}
           <div className="grid lg:grid-cols-4 mt-[32px] gap-y-[32px] gap-x-[24px]">

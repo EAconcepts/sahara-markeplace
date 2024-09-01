@@ -31,7 +31,7 @@ const DeptHeader = ({
           src={image}
           className={twMerge("absolut lg:z-0 max-lg:max-h-full  ", imageClass)
            } />
-        <h1 className="font-playfair max-lg:text-[40px] lg:text-[60px] ml-[-4px] font-[700] leading-[87px] ">
+        <h1 className="font-playfair max-lg:text-[32px] lg:text-[60px] ml-[-4px] font-[700] leading-[87px] ">
           {title}
         </h1>
       </div>

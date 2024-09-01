@@ -49,7 +49,7 @@ const CartCard = ({product, showQuantity= true, showStore=true, imgClass}:{showQ
       {/* Details */}
       <div className="flex w-full flex-col gap-y-[16px]">
         <div className="flex flex-col">
-       {showStore &&   <div className="flex w-full items-center gap-x-[8px]">
+       {/* {showStore &&   <div className="flex w-full items-center gap-x-[8px]">
             <span className="font-openSans text-[10px] lg:text-[12px] font-[600] leading-[14.4px] tracking-[-2%] text-blackPrimary">
               Afritique-Benin
             </span>
@@ -64,7 +64,7 @@ const CartCard = ({product, showQuantity= true, showStore=true, imgClass}:{showQ
               View Store
             </span>
           </div>
-}
+} */}
           <div className="flex w-full flex-col gap-y-[8px]">
             <div className="flex w-full justify-between">
               <h4 className="font-openSans text-[14px] lg:text-[16px] font-[600] leading-[19.2px] text-blackPrimary">

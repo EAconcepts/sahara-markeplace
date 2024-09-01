@@ -132,7 +132,7 @@ const ProductDetails = () => {
                     </p>
                   </div>
                   {/* Store */}
-                  <div className="flex items-center gap-x-[12px]">
+                  {/* <div className="flex items-center gap-x-[12px]">
                     <h6>{product?.store}</h6>{" "}
                     <Image
                       src={ghana}
@@ -144,7 +144,7 @@ const ProductDetails = () => {
                     <button className="font-openSans text-[12px] font-[600] leading-[17.4px] text-[#787C83] lg:text-[14px] lg:leading-[20.3px]">
                       View Store
                     </button>
-                  </div>
+                  </div> */}
                   {/* Ratings */}
                   <div className="flex items-center gap-x-[12px]">
                     <Rating />
@@ -249,7 +249,7 @@ const ProductDetails = () => {
                       className={`text-[18px] text-[#F56630] lg:text-[24px] ${quantity == product?.quantity && "opacity-50"}`}
                     />
                   </div>
-                  <div className="mt-[32px] flex gap-x-[24px] max-lg:hidden">
+                  <div className="mt-[32px] flex gap-x-[24px] max-lghidden">
                     <Button
                       onClick={() => handleAddToCart(product?.id)}
                       className="h-[55px] w-[294px] rounded-[12px] bg-[#7D9A37] px-[24px] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white"
@@ -297,9 +297,9 @@ const ProductDetails = () => {
                   Time of Delivery
                 </span>
               </div>
-              <p className="font-openSans text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
+              {/* <p className="font-openSans text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
                 To be delivered on June 30, 2024.
-              </p>
+              </p> */}
             </div>
             {/* Return Policy */}
             <div className="flex flex-col gap-y-[12px] rounded-[8px] border-[1px] border-[#E4E7EC] p-[24px] lg:w-full">

@@ -156,7 +156,7 @@ const Signup = () => {
                   name="company"
                   onChange={handleChange}
                   value={userDetails.company}
-                  placeholder="store address"
+                  placeholder="store name"
                   className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
                 />
               </div>
@@ -239,7 +239,7 @@ const Signup = () => {
             type="submit"
             className="mt-[40px] max-lg:h-[48px] lg:h-[55px] rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20"
           >
-            {registerMutation.isPending ? "Signing up..." : " Sign In"}
+            {registerMutation.isPending ? "Signing up..." : " Sign up"}
           </Button>
           <div className="mt-[24px] max-lg:text-[14px] flex items-center justify-center gap-x-[12px] lg:text-[20px]">
             <span className="font-[400] leading-[29px] text-[#787C83]">

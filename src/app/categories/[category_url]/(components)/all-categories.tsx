@@ -27,7 +27,8 @@ const AllCategories = ({products}:{products:any}) => {
             <p className="font-openSans text-[16px] font-[600] text-[#101928]">
               {products?.products?.length} Products
             </p>
-            <div className="flex items-center gap-x-[8px]">
+            {/* Sort */}
+            {/* <div className="flex items-center gap-x-[8px]">
               <span className="text-[16px] font-[400] leading-[23.2px]">
                 Sort by:
               </span>
@@ -35,35 +36,35 @@ const AllCategories = ({products}:{products:any}) => {
                 <span className="">Most popular</span>
                 <MdKeyboardArrowDown className="text-[24px]" />
               </div>
-            </div>
+            </div> */}
           </div>
           {/* Filters */}
-          <div className="flex items-center max:lg:text-[14px] gap-x-[12px] lg:gap-x-[24px] border-y-[1px] border-[#E4E7EC] mt-[24px] py-[12px]">
-            <span className="font-openSans lg:text-[16px] font-[400] leading-[23.2px] text-[#787C83]">
+          {/* <div className="flex items-center max:lg:text-[14px] gap-x-[12px] lg:gap-x-[24px] border-y-[1px] border-[#E4E7EC] mt-[24px] py-[12px]"> */}
+            {/* <span className="font-openSans lg:text-[16px] font-[400] leading-[23.2px] text-[#787C83]">
               Filters:
-            </span>
+            </span> */}
             {/* Color */}
-            <div className="flex items-center gap-x-[8px]">
+            {/* <div className="flex items-center gap-x-[8px]">
               <span className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Color
               </span>
               <MdKeyboardArrowDown className="text-[18px]" />
-            </div>
+            </div> */}
             {/* Price range */}
-            <div className="flex items-center gap-x-[8px]">
+            {/* <div className="flex items-center gap-x-[8px]">
               <span className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Price range
               </span>
               <MdKeyboardArrowDown className="text-[18px]" />
-            </div>
+            </div> */}
             {/* Country */}
-            <div className="flex items-center gap-x-[8px]">
+            {/* <div className="flex items-center gap-x-[8px]">
               <span className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Country
               </span>
               <MdKeyboardArrowDown className="text-[18px]" />
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
           {/* Products */}
           <div className="grid max-lg:grid-cols-2 lg:grid-cols-3 mt-[32px] gap-x-[24px] gap-y-[24px]">
             {products?.products?.map((product:any, index:number)=>(

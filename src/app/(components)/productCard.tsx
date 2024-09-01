@@ -60,7 +60,7 @@ const ProductCard = ({ product }: { product: any }) => {
         width={294}
         alt={product?.name}
         height={180}
-        className="rounded-tl-[8px] rounded-tr-[8px] object-cover max-lg:w-[153px] lg:h-[160px] lg:w-[294px]"
+        className="rounded-tl-[8px] rounded-tr-[8px] object-cover max-lg:w-[153px] max-lg:h-[160px] lg:h-[160px] lg:w-[294px]"
       />
       <div className="mt-[12px] flex flex-col max-lg:mt-[16px] lg:pr-[16px]">
         {/* product name & price */}
@@ -70,7 +70,7 @@ const ProductCard = ({ product }: { product: any }) => {
         </div>
         {/* Made in */}
         <div className="mt-[2px] flex items-center gap-x-[4px] lg:mt-[8px]">
-          <span className="max-lg:text-[10px]">Made in Senegal</span>
+          {/* <span className="max-lg:text-[10px]">Made in Senegal</span> */}
           <Image
             src={product?.country || usa}
             alt={product?.name}
