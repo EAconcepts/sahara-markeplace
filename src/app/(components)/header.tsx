@@ -25,7 +25,7 @@ const Header = () => {
   const [showCart, setShowCart] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const path = usePathname();
-  const { userType } = useAuth();
+  const { userType, token } = useAuth();
   // console.log(userType)
   const { data } = useGet("my-cart", "cart");
   // console.log(data)
@@ -110,7 +110,7 @@ const Header = () => {
                 <PiShoppingCartLight />
               </Link>
               {/* Mobile menu */}
-              <div>
+            {token&&   <div>
                 <RiMenu2Line
                   onClick={() => setShowMenu(true)}
                   className="text-[22px]"
@@ -122,7 +122,7 @@ const Header = () => {
                     </div>
                   </div>
                 )}
-              </div>
+              </div>}
             </div>
           </div>
           {/* Account */}

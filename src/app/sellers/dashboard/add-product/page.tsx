@@ -31,6 +31,7 @@ const AddProduct=()=>{
     const handlePublish=(e:FormEvent<HTMLFormElement> )=>{
         e.preventDefault()
         console.log(prdtDetails)
+       
         productMutation.mutate()
     }
 
@@ -39,10 +40,17 @@ const AddProduct=()=>{
         const {name, value} = e.target
        setPrdtDetails && setPrdtDetails((prevVals:any)=>({...prevVals, [name]:value}))
       }
+      const formdata = new FormData()
  
 
   const productMutation= useMutation({
-    mutationFn: ()=>axios.post(`${baseUrl}/vendor/add-product`,prdtDetails, {headers}),
+    mutationFn: ()=>{
+      formdata.append('name', prdtDetails.name)
+      formdata.append('price', prdtDetails.price)
+      formdata.append('image', prdtDetails.image)
+      formdata.append('quantity', prdtDetails.description)
+      formdata.append('category', prdtDetails.category)
+      return axios.post(`${baseUrl}/vendor/add-product`,formdata, {headers})},
     onSuccess:((data)=>{
       console.log(data)
       toast.success("product added successfully!")
@@ -62,7 +70,7 @@ const AddProduct=()=>{
                 <form onSubmit={handlePublish} className="flex max-lg:mt-[16px] flex-col gap-y-[32px]  ">
                 <div className="w-full flex max-lg:flex-col gap-y-[16px] gap-x-[16px] border-border border-b-[1px] pb-[32px]">
                     <div className="w-full">
-                        <Form1 setPrdtDetails={setPrdtDetails} handleChange={handleChange} prdtDetails={prdtDetails}/>
+                        <Form1 formdata={formdata} setPrdtDetails={setPrdtDetails} handleChange={handleChange} prdtDetails={prdtDetails}/>
                     </div>
                     <div className="w-full">
                     <Form2 setPrdtDetails={setPrdtDetails} handleChange={handleChange} prdtDetails={prdtDetails}/>

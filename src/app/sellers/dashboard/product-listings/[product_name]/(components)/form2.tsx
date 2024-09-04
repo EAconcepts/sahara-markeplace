@@ -14,7 +14,7 @@ import {
 import { Cancel01Icon, Delete03Icon } from "hugeicons-react";
 import React from "react";
 
-const Form2 = () => {
+const Form2 = ({product}:{product:any}) => {
   return (
     <div className="flex w-full flex-col gap-y-[24px] h-full rounded-[12px] border-[1px] border-border px-[16px] py-[24px] font-openSans">
       <div className="flex flex-col gap-y-[16px]">

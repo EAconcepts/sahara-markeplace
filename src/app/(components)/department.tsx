@@ -16,7 +16,7 @@ const Department = ({categories}:{categories:any}) => {
       </h3>
       <div className="flex flex-wrap gap-[24px] mt-[32px] ">
         {categories?.slice(0,6).map((dept:any) => (
-          <Link href={`/categories/${dept?.name}`} className="relative border lg:w-[347px] first:w-[504px] last:w-[504px]" key={dept?.id}>
+          <Link href={`/categories/${encodeURIComponent(dept?.name)}`} className="relative border lg:w-[347px] first:w-[504px] last:w-[504px]" key={dept?.id}>
             <Image
               src={`${imageBaseUrl}/${dept?.image}`}
               alt={dept?.name}

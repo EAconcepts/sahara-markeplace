@@ -15,7 +15,7 @@ import { useParams } from "next/navigation";
 const ProductDetails = () => {
   const {product_name} = useParams()
   const { data } = useGet(`product/${product_name}`, "prd-details");
-
+  console.log(data)
   return (
     <div>
       {/* Breadcrumb */}
@@ -25,8 +25,8 @@ const ProductDetails = () => {
         {/* Details */}
         <form className=" flex flex-col gap-y-[32px] pb-[32px]">
           <div className="flex max-lg:flex-col w-full gap-x-[16px]  border-b-[1px] border-border">
-           <Form1/>
-            <Form2 />
+           <Form1 product={data?.data?.product}/>
+            <Form2 product= {data?.data?.produt} />
           </div>
           <div className="flex items-center justify-center gap-x-[24px]">
             <Button className="text-[#787C83] h-[47px] border-[1px] border-[#8E97A6] rounded-[8px] px-[24px] py-[12px] bg-[#E4E7EC]">

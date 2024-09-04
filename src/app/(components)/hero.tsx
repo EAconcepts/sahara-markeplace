@@ -13,8 +13,8 @@ const Hero = () => {
   return (
     <div className="max-lg:pt-[24px]">
       <div className="flex flex-col max-lg:gap-y-[24px]">
-        <h1 className="text-center max-lg:text-[32px] max-lg:leading-[46.4px]  font-playfair lg:text-[60px] font-[700] lg:leading-[87px]">
-          Explore a world of taste sensations with African flavors
+        <h1 className="text-center max-lg:text-[24px] max-lg:leading-[36.4px]  font-playfair lg:text-[60px] font-[700] lg:leading-[87px]">
+          Bridging Global Cultures Through Discovery and Connections
         </h1>
         {/* Hero Images */}
         <div className="lg:mt-[32px] hidden lg:flex">

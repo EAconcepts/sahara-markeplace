@@ -18,10 +18,12 @@ const Form1 = ({
   prdtDetails,
   setPrdtDetails,
   handleChange,
+  formdata
 }: {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   setPrdtDetails?: Dispatch<any>;
   prdtDetails: any;
+  formdata?:any
 }) => {
   const [image, setImage] = useState<string>("");
   const imageRef = useRef<any>(null);
@@ -29,7 +31,8 @@ const Form1 = ({
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
     console.log(file);
-    const formdata = new FormData();
+    // const formdata = new FormData();
+    setPrdtDetails((prev)=>({...prev, image:file}))
     file && formdata.append("image", file);
 
     const imageUrl = file && URL.createObjectURL(file);
