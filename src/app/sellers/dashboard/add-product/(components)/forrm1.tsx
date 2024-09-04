@@ -32,7 +32,7 @@ const Form1 = ({
     const file = e.target.files && e.target.files[0];
     console.log(file);
     // const formdata = new FormData();
-    setPrdtDetails((prev)=>({...prev, image:file}))
+   setPrdtDetails && setPrdtDetails((prev:any)=>({...prev, image:file}))
     file && formdata.append("image", file);
 
     const imageUrl = file && URL.createObjectURL(file);
