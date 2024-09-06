@@ -9,6 +9,7 @@ import { useAuth } from "@/utils/useAuth"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 const AddProduct=()=>{
     const [prdtDetails, setPrdtDetails] = useState<any>({
@@ -21,6 +22,7 @@ const AddProduct=()=>{
     })
 
     const {token} = useAuth()
+    const router = useRouter()
     const headers = {
         Authorization: `Bearer ${token}`
       }
@@ -54,6 +56,7 @@ const AddProduct=()=>{
     onSuccess:((data)=>{
       console.log(data)
       toast.success("product added successfully!")
+      router.push("/sellers/dashboard/product-listings")
     }),
     onError:((error)=>{
       console.log(error)

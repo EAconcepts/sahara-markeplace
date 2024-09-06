@@ -1,13 +1,22 @@
+import { QueryClient } from '@tanstack/react-query'
 import { RefreshIcon } from 'hugeicons-react'
 import React from 'react'
 
-const LastUpdated = () => {
+const LastUpdated = ({queryKey, updatedAt}:{updatedAt?:string; queryKey?:string}) => {
+  const queryClient = new QueryClient()
+  console.log(queryKey)
+  const update =async()=>{
+    console.log('refresh')
+    await queryClient.refetchQueries({queryKey:[queryKey],  type: 'active',
+      exact: true,})
+
+  }
   return (
     <div className="mt-[16px] flex justify-between">
     <div className="flex items-center gap-x-[12px]">
-      <RefreshIcon className="size-[20px] text-[#8E97A6]" />
+      <RefreshIcon  onClick={update} className="size-[20px] active:animate-spin text-[#8E97A6]" />
       <span className="font-openSans  max-lg:text-[12px] lg:text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
-        Last updated on Tuesday, 25th Jun. 12:03pm
+        Last updated on {updatedAt && updatedAt.slice(0, updatedAt.length-7)}
       </span>
     </div>
     <div className="inline-flex max-lg:hidden items-center gap-x-[2px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]">

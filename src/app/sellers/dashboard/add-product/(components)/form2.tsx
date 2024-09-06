@@ -39,20 +39,20 @@ const Form2 = ({
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
+                  <SelectLabel>Variation</SelectLabel>
+                  <SelectItem value="--">--</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
           </div>
           {/* Options / Additional Price /  */}
-          <div className="grid w-full border grid-cols-3  max-lg:place-items-stretch gap-x-[12px] lg:gap-x-[16px]">
+          <div className="grid w-full lg:border grid-cols-3  max-lg:place-items-stretch gap-x-[12px] lg:gap-x-[16px]">
             {/* Options */}
             <div className="flex w-fit flex-col gap-x-[8px]">
               <h6 className="text-[12px] lg:text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Options
               </h6>
-              <Input type="text" placeholder="Options" className="w-[90px] lg:text-[12px] lg:w-[127px]" />
+              <Input type="text" placeholder="Options" className="w-[90px] text-[10px] lg:text-[12px] lg:w-[127px]" />
             </div>
             {/* Additional price */}
             <div className="flex w-full max-lg:w-[112px] gap-x-[16px] max-lg:shrink-0">
@@ -60,7 +60,7 @@ const Form2 = ({
                 <h6 className=" text-[12px] lg:text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                   Additional Price
                 </h6>
-                <Input type="text" placeholder="0.00" className="w-full max-lg:text-[12px]" />
+                <Input type="text" placeholder="0.00" className="max-lg:w-[80px] lg:w-full max-lg:text-[12px]" />
               </div>
             </div>
             {/* USD */}
@@ -71,12 +71,9 @@ const Form2 = ({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Fruits</SelectLabel>
-                    <SelectItem value="apple">Apple</SelectItem>
-                    <SelectItem value="banana">Banana</SelectItem>
-                    <SelectItem value="blueberry">Blueberry</SelectItem>
-                    <SelectItem value="grapes">Grapes</SelectItem>
-                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                    <SelectLabel>Currency</SelectLabel>
+                    <SelectItem value="usd">USD</SelectItem>
+                    <SelectItem value="ngn">NGN</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -84,7 +81,7 @@ const Form2 = ({
           </div>
         </div>
         {/* Add Another option */}
-        <div className="flex h-[44px] w-full items-center justify-center gap-y-[12px] rounded-[6px] border-[1px] border-dashed border-[#8E97A6] p-[12px]">
+        <div className="max-lg:hidden flex h-[44px] w-full items-center justify-center gap-y-[12px] rounded-[6px] border-[1px] border-dashed border-[#8E97A6] p-[12px]">
           <span className="text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
             Add Another Option
           </span>
@@ -114,8 +111,9 @@ const Form2 = ({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Fruits</SelectLabel>
-                    <SelectItem value="apple">Apple</SelectItem>
+                    <SelectLabel>Weight</SelectLabel>
+                    <SelectItem value="kg">KG</SelectItem>
+                    <SelectItem value="lbs">lbs</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -139,8 +137,9 @@ const Form2 = ({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Fruits</SelectLabel>
-                    <SelectItem value="apple">Apple</SelectItem>
+                    <SelectLabel>Currency</SelectLabel>
+                    <SelectItem value="usd">USD</SelectItem>
+                    <SelectItem value="ngn">NGN</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -155,7 +154,7 @@ const Form2 = ({
               Price
             </h6>
             <Input
-              type="text"
+              type="number"
               name="price"
               value={prdtDetails.price}
               onChange={handleChange}
@@ -167,30 +166,31 @@ const Form2 = ({
           <div className="self-end">
             {/* USD */}
             <Select>
-              <SelectTrigger className="h-[44px] w-[120px]">
+              <SelectTrigger className="h-[44px] w-[70px] lg:w-[120px]">
                 <SelectValue placeholder="USD" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
+                  <SelectLabel>Currency</SelectLabel>
+                  <SelectItem value="usd">USD</SelectItem>
+                  <SelectItem value="ngn">NGN</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
           </div>
           {/* Discount */}
-          <div className="flex w-full flex-col gap-y-[8px]">
+          <div className="flex lg:w-full flex-col gap-y-[8px]">
             <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Discount
             </h6>
             <Select>
-              <SelectTrigger className="h-[44px] w-[120px]">
+              <SelectTrigger className="h-[44px] w-full lg:w-[120px]">
                 <SelectValue placeholder="---" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
+                  <SelectLabel>--</SelectLabel>
+                  <SelectItem value="--">--</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -224,8 +224,9 @@ const Form2 = ({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Fruits</SelectLabel>
-                    <SelectItem value="apple">Apple</SelectItem>
+                    <SelectLabel>Currency</SelectLabel>
+                    <SelectItem value="usd">USD</SelectItem>
+                    <SelectItem value="ngn">NGN</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>

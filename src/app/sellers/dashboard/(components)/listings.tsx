@@ -1,11 +1,10 @@
 'use client'
 
-// import { newArrivals } from "@/app/page";
-import { newArrivals } from "@/app/(components)/reviews";
 import Image from "next/image";
 import React from "react";
 
-const Listings = () => {
+const Listings = ({products}:{products:any}) => {
+  const imageBaseUrl= process.env.NEXT_PUBLIC_IMAGE_URL
   return (
     <table className="w-full font-openSans">
       <thead className="w-full">
@@ -25,29 +24,29 @@ const Listings = () => {
         </tr>
       </thead>
       <tbody>
-        {newArrivals?.slice(0, 5)?.map((order, index) => (
-          <tr key={index} className="">
+        {products?.slice(0, 5)?.map((order:any) => (
+          <tr key={order?.id} className="">
             <td className="px-[12px] lg:px-[24px] py-[12px]">
               <Image
-                src={order.image}
+                src={`${imageBaseUrl}/${order?.image}`}
                 width={48}
                 height={48}
-                alt={order?.title}
+                alt={order?.name}
                 className="size-[48px] shrink-0 rounded-[4px] object-cover"
               />
             </td>
             <td className="">
               <div className="flex flex-col gap-y-[12px] px-[12px] lg:px-[24px] py-[17.5px]">
                 <p className="text-[14px] font-[600] leading-[20.3px] max-lg:line-clamp-1 text-blackPrimary">
-                  Hand Painted Danshiki Black
+                 {order?.name}
                 </p>
                 <p className="text-[12px] font-[400] leading-[17.4px] text-[#787C83]">
-                  #SE2024003
+                  #{order?.code}
                 </p>
               </div>
             </td>
             <td className="px-[12px] lg:px-[24px] py-[16px] text-[14px] leading-[20.3px] text-blackPrimary">
-              7
+              {order?.quantity}
             </td>
             <td
               className={`${""} px-[12px] lg:px-[24px] py-[16px] text-[14px] font-[600] leading-[20.3px] text-[#A07E53]`}

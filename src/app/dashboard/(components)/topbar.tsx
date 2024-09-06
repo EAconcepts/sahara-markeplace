@@ -20,13 +20,13 @@ import Link from "next/link";
 const Topbar = ({links}:{links?:any}) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, userType } = useAuth();
   const [showCart, setShowCart] = useState<boolean>(false);
   // console.log(user)
   const { data } = useGet("my-cart", "cart");
 
   return (
-    <header className="flex h-[66px] w-full items-center justify-between border-b-[1px] border-border pb-[16px] pt-[8px]">
+    <header className="flex h-[66px] max-lg:px-[24px] w-full items-center justify-between border-b-[1px] border-border pb-[16px] pt-[8px]">
       <h2 className="hidden font-playfair text-[28px] font-[600] capitalize leading-[40.6px] text-blackPrimary lg:block">
         Welcome, {user?.first_name}
       </h2>
@@ -59,6 +59,8 @@ const Topbar = ({links}:{links?:any}) => {
             />
           )}
         </div>
+        {/* Cart  Mobile*/}
+          {userType =='user' &&
         <div
           onClick={() => router.push("/cart")}
           className="relative lg:hidden"
@@ -68,6 +70,7 @@ const Topbar = ({links}:{links?:any}) => {
           </span>
           <ShoppingCart01Icon />
         </div>
+}
         <UserCircleIcon className="hidden lg:block" />
         <Menu11Icon
           onClick={() => setShowMenu((prev) => true)}

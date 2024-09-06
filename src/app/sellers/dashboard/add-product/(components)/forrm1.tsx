@@ -57,7 +57,7 @@ const Form1 = ({
             width={132}
             height={192}
             alt="product-image"
-            className="w-[132px] object-cover max-lg:h-[139px] lg:h-[192px]"
+            className="w-[132px] rounded-[12px] object-cover max-lg:h-[139px] lg:h-[192px]"
           />
         ) : (
           <div
@@ -166,8 +166,8 @@ const Form1 = ({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Fruits</SelectLabel>
-                    <SelectItem value="apple">Apple</SelectItem>
+                    <SelectLabel>--</SelectLabel>
+                    <SelectItem value="apple">--</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -184,8 +184,8 @@ const Form1 = ({
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
+                  <SelectLabel>--</SelectLabel>
+                  <SelectItem value="apple">--</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -201,8 +201,8 @@ const Form1 = ({
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
+                  <SelectLabel>--</SelectLabel>
+                  <SelectItem value="apple">--</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -234,8 +234,9 @@ const Form1 = ({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Fruits</SelectLabel>
-                    <SelectItem value="apple">Apple</SelectItem>
+                    <SelectLabel>Availability</SelectLabel>
+                    <SelectItem value="in_stock">In stock</SelectItem>
+                    <SelectItem value="out_stock">Out of stock</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>

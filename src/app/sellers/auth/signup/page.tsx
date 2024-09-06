@@ -247,6 +247,7 @@ const Signup = () => {
             </span>{" "}
             <button
               type="button"
+              onClick={()=>router.push("/sellers/auth/signin")}
               className="font-[700] leading-[24px] text-[#7D9A37]"
             >
               Sign in

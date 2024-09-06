@@ -9,13 +9,13 @@ import { useGet } from "@/utils/useGet.";
 import { useRouter } from "next/navigation";
 
 const ProductListings = () => {
-  const {data } = useGet("vendor/products", 'vendorProducts')
+  const {data, updatedAt } = useGet("vendor/products", 'vendorProducts')
   console.log(data)
   const router = useRouter()
   return (
     <div className="pt-[8px] max-lg:px-[24px]">
       {/* Updated */}
-      <LastUpdated />
+      <LastUpdated updatedAt={updatedAt} queryKey={"vendorProducts"} />
       <div className="mt-[12px] py-[16px]"></div>
       {/* Header */}
       <div className="hidden lg:block">
@@ -43,8 +43,8 @@ const ProductListings = () => {
         </div>
       </div>
       {/* Products */}
-      <div className="flex flex-wrap gap-x-[16px] py-[24px]">
-        {data && data?.data?.products?.map((product:any)=>(
+      <div className="flex flex-wrap max-lg:gap-y-[16px] gap-x-[16px] py-[24px]">
+        {data && data?.data?.data?.products?.map((product:any)=>(
           <ProductCard key={product?.id} product={product}/>
         ))}
       </div>

@@ -15,6 +15,7 @@ import Listings from "./(components)/listings";
 import LastUpdated from "./(components)/last-updated";
 import { useGet } from "@/utils/useGet.";
 import { useAuth } from "@/utils/useAuth";
+import { useRouter } from "next/navigation";
 
 const SellersDashboard = () => {
   // const recentOrders = [];
@@ -24,7 +25,7 @@ const SellersDashboard = () => {
   console.log(recentOrders);
   const { user } = useAuth();
   // console.log(user)
-
+  const router = useRouter()
   return (
     <div className="font-openSans max-lg:px-[24px]">
       {/* updated */}
@@ -126,28 +127,34 @@ const SellersDashboard = () => {
                 <h5 className="justify-center px-[12px] text-[16px] font-[600] leading-[24px] text-blackPrimary lg:text-[20px]">
                   Product Listings
                 </h5>
-                <div className="flex items-center justify-between px-[12px]">
-                  <div className="flex items-center gap-x-[2px] text-[10px] font-[400] leading-[14.5px] tracking-[-0.5%] text-black">
+                <div className="flex items-center justify-end px-[12px]">
+                  {/* Sort */}
+                  <div className=" flex hidden items-center gap-x-[2px] text-[10px] font-[400] leading-[14.5px] tracking-[-0.5%] text-black">
                     <span>Sort by:</span>
                     <select className="font-[600] text-black">
                       <option className="font-[600]">Top Selling</option>
                       <option className="font-[600]">Best Selling</option>
                     </select>
                   </div>
-                  <div className="flex items-center gap-x-[2px]">
+                  <button onClick={()=>router.push("/sellers/dashboard/product-listings")} className="flex items-center gap-x-[2px]">
                     <span className="text-[12px] font-[400] leading-[17.4px] tracking-[-0.5%] text-black">
                       See all
                     </span>
                     <ArrowRight01Icon className="size-[16px] text-[#666666]" />
-                  </div>
+                  </button>
                 </div>
               </div>
+              {
+                data?.data?.products?.length >0 ?
+            
               <div className="mt-[24px]">
-                <Listings />
+                <Listings products={data?.data?.products} />
               </div>
-              <p className="flex hidden h-full w-full items-center px-[12px] text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                You have no order yet
+              :
+              <p className="flex max-lg:h-[44px] h-full w-full items-center px-[12px] text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
+                You have no product listings yet
               </p>
+}
             </div>
           </div>
           {/* Ratings */}

@@ -86,6 +86,7 @@ const Header = () => {
             </div>
             {/* Fav & Cart */}
             <div className="flex items-center gap-x-[24px] text-[24px]">
+              {/* Fav */}
               <div className="relative">
                 <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
                   0
@@ -93,6 +94,7 @@ const Header = () => {
                 <CiHeart />
               </div>
               {/* Cart */}
+              {userType =='user' &&
               <div
                 onClick={() => setShowCart((prev) => !prev)}
                 className="relative max-lg:hidden"
@@ -102,13 +104,16 @@ const Header = () => {
                 </span>
                 <PiShoppingCartLight />
               </div>
+}
               {/* Cart Mobile*/}
+              {userType ==='user' &&             
               <Link href={"/cart"} className="relative lg:hidden">
                 <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
                   {data?.data?.cart?.length || 0}
                 </span>
                 <PiShoppingCartLight />
               </Link>
+              }
               {/* Mobile menu */}
             {token&&   <div>
                 <RiMenu2Line
