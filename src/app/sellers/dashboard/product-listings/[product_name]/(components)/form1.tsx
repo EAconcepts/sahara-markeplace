@@ -3,20 +3,18 @@
 import { Input } from "@/components/ui/input";
 import { Cancel01Icon, CloudUploadIcon, Delete03Icon, PencilEdit01Icon } from "hugeicons-react";
 import Image from "next/image";
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, Dispatch, useRef, useState } from "react";
 import img1 from "@/assets/images/seller-details1.png";
 import img2 from "@/assets/images/sellers-details2.png";
 
-const Form1 = ({ product }: { product: any }) => {
+const Form1 = ({ product,setPrdtDetails, prdtDetails, handleChange }: { prdtDetails:any; product: any;setPrdtDetails: Dispatch<any>; handleChange:(e:ChangeEvent<HTMLInputElement>) => void }) => {
   const [image, setImage] = useState<string>("");
   const imageRef = useRef<any>(null);
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
-    console.log(file);
-    const formdata = new FormData();
-    file && formdata.append("image", file);
-
+    // console.log(file);
+    setPrdtDetails && setPrdtDetails((prev:any)=>({...prev, image:file}))
     const imageUrl = file && URL.createObjectURL(file);
     console.log(imageUrl);
     imageUrl && setImage(imageUrl);
@@ -36,18 +34,17 @@ const Form1 = ({ product }: { product: any }) => {
             className="relative"
             // key={index}
           >
-            {product?.image && (
+            {product?.image || image && (
               <>
-                {" "}
                 <Image
-                  // src={index == 1 ? img1 : img2}
-                  src={product?.image}
+                onClick={handleUpload}
+                  src={product?.image || image}
                   width={132}
                   height={192}
                   alt=""
-                  className="h-[192px] w-[132px] rounded-[8px] border-[1px] border-dashed border-border"
+                  className="h-[192px] w-[132px] object-cover rounded-[8px] border-[1px] border-dashed border-border"
                 />
-                <Delete03Icon className="absolute bottom-[8px] right-[8px] size-[16px] text-[#E8112D]" />
+                <Delete03Icon onClick={()=>setImage("")} className="absolute bottom-[8px] right-[8px] size-[16px] text-[#E8112D]" />
               </>
             )}
           </div>
@@ -78,29 +75,34 @@ const Form1 = ({ product }: { product: any }) => {
       {/* Desc */}
       <div className="flex flex-col gap-y-[24px] rounded-[12px] border-[1px] border-border px-[16px] py-[24px]">
         {/* Title */}
-        <div className="flex flex-col gap-y-[24px]">
+        <div className="flex flex-col gap-y-[12px] lg:gap-y-[24px]">
           <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
             Product Title
           </h5>
           <Input
             type="text"
+            name={'name'}
             placeholder={product?.name}
+            value={prdtDetails.name}
+            onChange={handleChange}
             className="h-[] w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
           />
         </div>
         {/* Description */}
-        <div className="flex flex-col gap-y-[24px]">
+        <div className="flex flex-col gap-y-[12px] lg:gap-y-[24px]">
           <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
             Product Description
           </h5>
           <textarea
             placeholder={product?.description}
-            className="h-[] w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
+            name={"description"}
+            onChange={(e)=>setPrdtDetails((prev:any)=>({...prev, description: e.target.value}))}
+            className="h-[] p-[8px] border-[1px] border-border rounded-[12px] w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
           />
         </div>
         {/* MAterial  */}
         {product?.material &&
-        <div className="flex flex-col gap-y-[24px]">
+        <div className="flex flex-col gap-y-[12px] lg:gap-y-[24px]">
           <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
             Material
           </h5>
@@ -112,30 +114,33 @@ const Form1 = ({ product }: { product: any }) => {
         </div>
 }
         {/* Category & Sub */}
-        <div className="flex w-full justify-between gap-[24px]">
-          <div className="flex w-full flex-col gap-y-[24px]">
+        <div className="flex w-full items-center justify-between gap-[24px]">
+          <div className="flex w-full flex-col gap-y-[12px] lg:gap-y-[24px]">
             <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Product Category
             </h5>
             <Input
               type="text"
+              onChange={handleChange}
+              name={'category'}
+              value={prdtDetails?.category}
               placeholder={product?.category}
               className="h-[] w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
             />
           </div>
           {/* Sub Category */}
-          {product?.sub_category &&
-          <div className="flex w-full flex-col gap-y-[24px]">
+          {/* {product?.sub_category && */}
+          <div className="flex w-full flex-col justify-center gap-y-[12px] lg:gap-y-[24px]">
             <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Sub Category
             </h5>
             <Input
               type="text"
-              placeholder="Women's Wear"
+              placeholder=""
               className="h-[] w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
             />
           </div>
-}
+{/* } */}
         </div>
         {/* Tags */}
         {product?.tags &&
@@ -187,14 +192,17 @@ const Form1 = ({ product }: { product: any }) => {
               Quantity
             </h5>
             <Input
-              type="text"
+              type="number"
+              name={"quantity"}
               placeholder={product?.quantity}
+              onChange={handleChange}
+              value={prdtDetails?.quantity}
               className="h-[] w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
             />
           </div>
 }
           {/* Availabilty*/}
-          <div className="flex w-full flex-col gap-y-[24px]">
+          <div className="flex w-full flex-col gap-y-[12px] lg:gap-y-[24px]">
             <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Availability
             </h5>

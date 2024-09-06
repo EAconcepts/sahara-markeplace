@@ -1,14 +1,12 @@
 'use client'
 
-import { QueryClient } from '@tanstack/react-query'
+import { useQueryClient } from '@tanstack/react-query'
 import { RefreshIcon } from 'hugeicons-react'
 import React from 'react'
 
 const LastUpdated = ({queryKey, updatedAt}:{updatedAt?:string; queryKey?:string}) => {
-  const queryClient = new QueryClient()
-  console.log(queryKey)
+  const queryClient = useQueryClient()
   const update =async()=>{
-    console.log('refresh')
     queryKey &&  queryClient.invalidateQueries({queryKey:[queryKey.toString()], refetchType: 'all',
     })
 

@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 const ProductListings = () => {
   const {data, updatedAt } = useGet("vendor/products", 'vendorProducts')
-  console.log(data)
+  // console.log(data)
   const router = useRouter()
   return (
     <div className="pt-[8px] max-lg:px-[24px]">

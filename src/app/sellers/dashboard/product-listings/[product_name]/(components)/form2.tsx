@@ -12,9 +12,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Cancel01Icon, Delete03Icon } from "hugeicons-react";
-import React from "react";
+import React, { ChangeEvent, Dispatch } from "react";
 
-const Form2 = ({product}:{product:any}) => {
+const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any; prdtDetails:any, setPrdtDetails:Dispatch<any>; handleChange:(e:ChangeEvent<HTMLInputElement>)=>void}) => {
   return (
     <div className="flex w-full flex-col gap-y-[24px] h-full rounded-[12px] border-[1px] border-border px-[16px] py-[24px] font-openSans">
       <div className="flex flex-col gap-y-[16px]">
@@ -29,11 +29,11 @@ const Form2 = ({product}:{product:any}) => {
               className="rounded-[6px] border-border p-[12px]"
               placeholder="Size"
             />
-            <Cancel01Icon className="absolute right-[12px] top-[-50%] translate-y-[50%] size-[20px] text-[#8E97A6]" />
+            <Cancel01Icon className="absolute right-[12px] top-[14px] lg:top-[-50%] lg:translate-y-[50%] size-[20px] text-[#8E97A6]" />
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="flex gap-x-[16px]">
+        <div className=" flex flex-col">
+          <div className="hidden lex gap-x-[16px]">
             <h6 className="w-[127px] text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Options
             </h6>
@@ -42,7 +42,7 @@ const Form2 = ({product}:{product:any}) => {
             </h6>
           </div>
           {/* Size */}
-          <div className="flex flex-col gap-y-[16px] max-lg:mt-[12px]">
+          <div className="hidden lex flex-col gap-y-[16px] max-lg:mt-[12px]">
             {["S", "M", "L", "XL", "XXL", "2XL", "3XL"].map((size, index) => (
               <div className="flex max-lg:justify-between gap-x-[16px]" key={index}>
                 <p className="h-[44px] lg:w-[127px] rounded-[6px] border-[1px] border-border p-[12px]">
@@ -77,7 +77,7 @@ const Form2 = ({product}:{product:any}) => {
               <Cancel01Icon className="lg:absolute right-[12px] top-[-12px] size-[20px] text-[#8E97A6]" />
             </div>
             {/* Colors */}
-            <div className="grid grid-cols-3 gap-[16px]">
+            <div className="max-lg:hidden grid grid-cols-3 gap-[16px]">
               {/*color Option */}
               <div className="flex flex-col gap-y-[8px]">
                 <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
@@ -85,19 +85,19 @@ const Form2 = ({product}:{product:any}) => {
                 </h6>
                 <Input
                   type="text"
-                  className="w-[194px] rounded-[6px] border-[1px] p-[12px]"
+                  className="lg:w-[194px] rounded-[6px] border-[1px] p-[12px]"
                   placeholder="Gold"
                 />
                 <Delete03Icon className="h-[32.67px] w-[19px] text-[#E8112D]" />
               </div>
-              {/* price */}
+              {/* options */}
               <div className="flex flex-col gap-y-[8px]">
                 <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                   Options
                 </h6>
                 <Input
                   type="text"
-                  className="w-[194px] rounded-[6px] border-[1px] p-[12px]"
+                  className="lg:w-[194px] rounded-[6px] border-[1px] p-[12px]"
                   placeholder="Red"
                 />
                 <Delete03Icon className="h-[32.67px] w-[19px] text-[#E8112D]" />
@@ -153,8 +153,9 @@ const Form2 = ({product}:{product:any}) => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectLabel>Fruits</SelectLabel>
-                      <SelectItem value="apple">Apple</SelectItem>
+                      <SelectLabel>Currency</SelectLabel>
+                      <SelectItem value="usd">USD</SelectItem>
+                      <SelectItem value="ngn">NGN</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -164,22 +165,26 @@ const Form2 = ({product}:{product:any}) => {
           {/* Price & Discount */}
           <div className="flex flex-col gap-y-[12px]">
             {/* price & Discount */}
-            <div className="grid grid-cols-3 gap-x-[16px]">
+            <div className="max-lg grid grid-cols-3  max-lg:mt-[8px] gap-x-[16px]">
+              {/* Price */}
               <div className="flex flex-col gap-y-[8px]">
                 <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                   Price
                 </h6>
                 <Input
                   type="number"
+                  name={'price'}
+                  value={prdtDetails?.price}
+                  onChange={handleChange}
                   className="rounded-[6px] border-[1px] border-border p-[12px]"
                   placeholder="103.99"
                 />
               </div>
               {/* Currency */}
-              <div className="flex flex-col gap-y-[8px]">
+              <div className="flex self-end flex-col gap-y-[8px]">
                 <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary"></h6>
                 <Select>
-                  <SelectTrigger className="h-[44px] w-[120px] rounded-[6px] border-[1px] border-border">
+                  <SelectTrigger className="h-[44px] lg:w-[120px] rounded-[6px] border-[1px] border-border">
                     <SelectValue placeholder="USD" />
                   </SelectTrigger>
                   <SelectContent>
@@ -203,7 +208,7 @@ const Form2 = ({product}:{product:any}) => {
               </div>
             </div>
             {/* Quantity discount price */}
-            <div className="grid grid-cols-2 gap-x-[16px]">
+            <div className="grid max-lg:hidden grid-cols-2 gap-x-[16px]">
               <div className="flex flex-col gap-y-[8px]">
                 <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                   Quantity Discount Price (over 5 items)
@@ -223,8 +228,9 @@ const Form2 = ({product}:{product:any}) => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectLabel>Fruits</SelectLabel>
-                      <SelectItem value="apple">Apple</SelectItem>
+                      <SelectLabel>Currency</SelectLabel>
+                      <SelectItem value="usd">USD</SelectItem>
+                      <SelectItem value="ngn">NGN</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
