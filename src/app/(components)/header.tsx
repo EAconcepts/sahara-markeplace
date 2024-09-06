@@ -100,7 +100,7 @@ const Header = () => {
                 className="relative max-lg:hidden"
               >
                 <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
-                  {data?.data?.cart?.length || 0}
+                  {data?.data?.data?.cart?.length || 0}
                 </span>
                 <PiShoppingCartLight />
               </div>
@@ -109,7 +109,7 @@ const Header = () => {
               {userType ==='user' &&             
               <Link href={"/cart"} className="relative lg:hidden">
                 <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
-                  {data?.data?.cart?.length || 0}
+                  {data?.data?.data?.cart?.length || 0}
                 </span>
                 <PiShoppingCartLight />
               </Link>
@@ -148,7 +148,7 @@ const Header = () => {
         </div>
       </div>
       {showCart && (
-        <CartModal carts={data?.data?.cart} setShowCart={setShowCart} />
+        <CartModal carts={data?.data?.data?.cart} setShowCart={setShowCart} />
       )}
     </div>
   );

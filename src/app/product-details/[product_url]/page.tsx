@@ -47,7 +47,7 @@ const ProductDetails = () => {
   const [chosenSize, setChosenSize] = useState("L");
 
   const { data } = useGet(`product/${product_url}`, "prd-details");
-  let product = data?.data?.product;
+  let product = data?.data?.data?.product;
   // console.log(data?.data);
 
   const handleWishList = async () => {

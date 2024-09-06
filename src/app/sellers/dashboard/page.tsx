@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 const SellersDashboard = () => {
   // const recentOrders = [];
   const { data } = useGet("vendor/dashboard", "vendorDashboard");
-  const { data: recentOrders } = useGet("vendor/orders", "vendorOrders");
+  const { data: recentOrders, updatedAt } = useGet("vendor/orders", "vendorOrders");
   console.log(data);
   console.log(recentOrders);
   const { user } = useAuth();
@@ -29,7 +29,7 @@ const SellersDashboard = () => {
   return (
     <div className="font-openSans max-lg:px-[24px]">
       {/* updated */}
-      <LastUpdated />
+      <LastUpdated queryKey="vendorOrders"  updatedAt={updatedAt} />
       <div className="mt-[12px] py-[16px]">
         {/* Header */}
         <div>
@@ -111,7 +111,7 @@ const SellersDashboard = () => {
               <h5 className="px-[12px] text-[16px] font-[600] leading-[24px] text-blackPrimary lg:text-[20px]">
                 Recent Orders
               </h5>
-              {recentOrders?.data?.orders?.length > 0 ? (
+              {recentOrders?.data?.data?.orders?.length > 0 ? (
                 <div className="mt-[12px] w-full lg:mt-[24px]">
                   <RecentOrders />
                 </div>
@@ -145,10 +145,10 @@ const SellersDashboard = () => {
                 </div>
               </div>
               {
-                data?.data?.products?.length >0 ?
+                data?.data?.data?.products?.length >0 ?
             
               <div className="mt-[24px]">
-                <Listings products={data?.data?.products} />
+                <Listings products={data?.data?.data?.products} />
               </div>
               :
               <p className="flex max-lg:h-[44px] h-full w-full items-center px-[12px] text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary">

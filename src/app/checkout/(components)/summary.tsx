@@ -18,16 +18,16 @@ const OrderSummary = () => {
         <h4 className="text-[20px] lg:text-[24px] font-[600] leading-[28.8px] tracking-[-2%] text-blackPrimary">
           Order Summary
         </h4>
-        {data?.data?.cart &&
+        {data?.data?.data?.cart &&
         <p className="flex max-lg:size-[24px] lg:size-[30px] items-center justify-center rounded-full bg-greenPrimary px-[10px] py-[10px] text-[16px] font-[600] leading-[23.2px] text-white">
           {" "}
-          {data?.data?.cart?.length}
+          {data?.data?.data?.cart?.length}
         </p>
 }
       </div>
       { data ?  <> 
       <div className="mt-[32px] flex flex-col gap-y-[16px] border-b-[2px] border-border pb-[28px]">
-        {data?.data?.cart?.map((cart:any) => (
+        {data?.data?.data?.cart?.map((cart:any) => (
           <CartCard
             key={cart?.id}
             showStore={false}
@@ -44,7 +44,7 @@ const OrderSummary = () => {
             Subtotal:{" "}
           </span>
           <h5 className="font-[600] leading-[23.2px] text-blackPrimary">
-            ${getTotalPrice(data?.data?.cart).toLocaleString()}
+            ${getTotalPrice(data?.data?.dat?.cart).toLocaleString()}
           </h5>
         </div>
         {/* Tax */}
@@ -62,7 +62,7 @@ const OrderSummary = () => {
             Total:
           </span>
           <h5 className=" font-[600] leading-[23.2px] text-blackPrimary">
-            ${getTotalPrice(data?.data?.cart).toLocaleString()}
+            ${getTotalPrice(data?.data?.data?.cart).toLocaleString()}
           </h5>
         </div>
         <div className="pt-[24px]">

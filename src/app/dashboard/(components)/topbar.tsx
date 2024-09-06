@@ -48,14 +48,14 @@ const Topbar = ({links}:{links?:any}) => {
           className="relative hidden lg:block"
         >
           <span className="absolute right-0 top-0 flex items-center justify-center rounded-full bg-red-400 text-[10px] text-white lg:size-[12px]">
-            {data?.data?.cart?.length || 0}
+            {data?.data?.data?.cart?.length || 0}
           </span>
           <ShoppingCart01Icon />
           {showCart && (
             <CartModal
               className="mt-[65px]"
               setShowCart={setShowCart}
-              carts={data?.data?.cart}
+              carts={data?.data?.data?.cart}
             />
           )}
         </div>
@@ -66,7 +66,7 @@ const Topbar = ({links}:{links?:any}) => {
           className="relative lg:hidden"
         >
           <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
-            {data?.data?.cart?.length || 0}
+            {data?.data?.data?.cart?.length || 0}
           </span>
           <ShoppingCart01Icon />
         </div>

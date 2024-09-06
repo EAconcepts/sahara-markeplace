@@ -39,7 +39,7 @@ const ProductListings = () => {
       </div>
       <div className="flex justify-between max-lg:mt-[16px]">
         <div className="flex gap-x-[12px] ">
-          <p className="bg-[#C4D79B] py-[8px] px-[12px] text-center rounded-[6px] border-[1px] border-border font-[600] text-[14px] leading-[20.3px] text-black">{data && data?.data?.products?.length} Products</p>
+          <p className="bg-[#C4D79B] py-[8px] px-[12px] text-center rounded-[6px] border-[1px] border-border font-[600] text-[14px] leading-[20.3px] text-black">{data && data?.data?.data?.products?.length} Products</p>
         </div>
       </div>
       {/* Products */}

@@ -20,7 +20,7 @@ const Cart = () => {
     }
   },[])
   const { data } = useGet("my-cart", "cart");
-  let carts = data && data?.data?.cart;
+  let carts = data && data?.data?.data?.cart;
   // console.log(cart)
 
   return (

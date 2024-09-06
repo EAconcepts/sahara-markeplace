@@ -27,21 +27,21 @@ export default function Home() {
     <main className="lg:px-[96px] lg:mt-[40px] max-lg:px-[24px] lg:pt-[12px] lg:pb-[32px]">
       <Hero />
       <div className="mt-[40px]">
-      {data?.data?.categories ? 
+      {data?.data?.data?.categories ? 
 
-        <Department categories = {data?.data?.categories} />
+        <Department categories = {data?.data?.data?.categories} />
         :<Loader/>
       }
       </div>
       <div className="mt-[40px]">
         {/* {data?.data?.products ?  */}
-        <NewArrival newArrivals={data?.data?.products} />
+        <NewArrival newArrivals={data?.data?.data?.products} />
          {/* : <Loader/>} */}
       </div>
       <div className="mt-[40px]">
       {/* {data?.data?.products ?  */}
 
-        <Registry heading={"Shop by Registry"} products={data?.data?.products?.slice(10, 16)} />
+        <Registry heading={"Shop by Registry"} products={data?.data?.data?.products?.slice(10, 16)} />
         {/* : <Loader/>} */}
       </div>
       <div className="mt-[40px] max-lg:hidden">

@@ -22,7 +22,7 @@ const Fashion = () => {
       <div className="flex flex-col">
        <DeptHeader image={woman} title={decodeURIComponent( category_url.toString())} description="Discover a world of captivating and traditional fashion, from stunning wax dresses and modern loincloths to handcrafted gold and cowrie shell jewelry, rich bogolan accessories, and dazzling wedding outfits. We offer fast worldwide delivery, bringing a touch of African elegance straight to your doorstep." className=" text-blackPrimary" imageClass="lg:absolute max-lg:w-[50%] lg:left-[23%] lg:h-[254px object-cover"/>
         <div className="mt-[40px]">
-          <AllCategories products={data?.data}/>
+          <AllCategories products={data?.data?.data}/>
         </div>
         <div className="my-[40px] py-[16px]">
             <ProductHeader heading="Blog" showBtn={true}/>
