@@ -5,6 +5,7 @@ import blog1 from "@/assets/images/blog1.png";
 import blog2 from "@/assets/images/blog2.png";
 import blog3 from "@/assets/images/blog3.png";
 import blog4 from "@/assets/images/blog4.png";
+import { useRouter } from "next/navigation";
 
 export  const blogs = [
   {
@@ -33,8 +34,9 @@ export  const blogs = [
   },
 ];
 const BlogCard = ({ story }: any) => {
+  const router= useRouter()
   return (
-    <div className="lg:rounded-[24px] flex flex-col bg-[#F9E79F99] text-blackPrimary font-openSans h-[268px] w-[155px] lg:h-[394px] lg:w-[294px] px-[8px] lg:px-[16px] rounded-[12px] py-[12px]">
+    <div onClick={()=>router.push(`/blogs`)} className="lg:rounded-[24px] flex flex-col bg-[#F9E79F99] text-blackPrimary font-openSans h-[268px] w-[155px] lg:h-[394px] lg:w-[294px] px-[8px] lg:px-[16px] rounded-[12px] py-[12px]">
       <Image
         src={story?.image}
         width={270}
@@ -50,7 +52,7 @@ const BlogCard = ({ story }: any) => {
           {story.content}
         </p>
         <div className="flex justify-between">
-          <button className="text-[12px] lg:text-[16px] font-[600] leading-[23.2px] ">
+          <button className="w-fit text-[12px] lg:text-[16px] font-[600] leading-[23.2px] ">
             Read More...
           </button>
           <IoArrowForwardCircleOutline className=" lg:text-[32px] text-blackPrimary" />
