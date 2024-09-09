@@ -62,7 +62,7 @@ const Header = () => {
               <MdOutlineKeyboardArrowDown />
             </div>
             {/* Search box */}
-            <form className="flex h-[36px] items-center gap-x-[12px] rounded-[24px] border-[0.5px] border-[#8E97A6] bg-white px-[12px] py-[8px] max-lg:hidden lg:w-[375px]">
+            <form className="invisible flex h-[36px] items-center gap-x-[12px] rounded-[24px] border-[0.5px] border-[#8E97A6] bg-white px-[12px] py-[8px] max-lg:hidden lg:w-[375px]">
               <CiSearch className="text-[24px] text-[#8E97A6]" />
               <input
                 type="text"

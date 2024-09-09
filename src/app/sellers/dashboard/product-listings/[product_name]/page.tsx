@@ -38,6 +38,7 @@ const ProductDetails = () => {
   const formdata = new FormData();
   const updateMutation =useMutation({
     mutationFn: ()=>{
+      formdata.append('sid', data?.data?.data?.product?.id)
       formdata.append('name', prdtDetails.name)
       formdata.append('price', prdtDetails.price)
       formdata.append('image', prdtDetails.image)

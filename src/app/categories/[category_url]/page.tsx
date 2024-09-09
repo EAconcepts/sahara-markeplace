@@ -14,7 +14,8 @@ import { useGet } from "@/utils/useGet.";
 const Fashion = () => {
   const {category_url} = useParams()
   const {data} = useGet(`category/${decodeURIComponent(category_url.toString())}`,decodeURIComponent(category_url.toString()))
-  // console.log(data)
+  console.log(data)
+  const categories = data?.data?.data?.categories
   return (
     <div className="flex flex-col px-[24px] lg:px-[96px]">
       {/* BreadCrumb */}

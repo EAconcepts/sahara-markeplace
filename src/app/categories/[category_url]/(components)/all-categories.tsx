@@ -1,5 +1,6 @@
 'use client'
 
+import Loader from "@/app/(components)/loader";
 import ProductCard from "@/app/(components)/productCard";
 import { ChevronRight } from "lucide-react";
 import React from "react";
@@ -20,6 +21,7 @@ const AllCategories = ({products}:{products:any}) => {
       </aside>
       <div className="lg:hidden mt-[16px] h-[1px] w-full bg-border"></div>
       {/* Products */}
+      {products ?
       <main className="flex w-full flex-col max-lg:mt-[16px]">
         <div className="flex flex-col">
           {/* top heading / sort */}
@@ -73,6 +75,8 @@ const AllCategories = ({products}:{products:any}) => {
           </div>
         </div>
       </main>
+      : <Loader/>
+          }
     </div>
   );
 };
