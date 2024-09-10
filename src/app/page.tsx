@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import Hero from "./(components)/hero";
@@ -6,7 +6,7 @@ import Department from "./(components)/department";
 import NewArrival from "./(components)/newArrival";
 import Registry from "./(components)/registry";
 import SpecialTreats from "./(components)/special-treats";
-import BlogCard, { blogs } from "./(components)/blog-card";
+import BlogCard from "./(components)/blog-card";
 import Testimonies from "./(components)/testimonies";
 import Newsletter from "./(components)/newsletter";
 import { useGet } from "@/utils/useGet.";
@@ -15,33 +15,35 @@ import { useEffect } from "react";
 import { newArrivals } from "./(components)/reviews";
 import Loader from "./(components)/loader";
 
-
-
 export default function Home() {
- 
-  const {data} = useGet("cata/prod", "products")
-  // console.log(data)
+  const { data } = useGet("cata/prod", "products");
+  const { data: blogPosts } = useGet("blog-posts", "blogpost");
+  let blogs = blogPosts?.data?.data?.posts;
+  console.log(blogPosts)
 
 
   return (
-    <main className="lg:px-[96px] lg:mt-[40px] max-lg:px-[24px] lg:pt-[12px] lg:pb-[32px]">
+    <main className="max-lg:px-[24px] lg:mt-[40px] lg:px-[96px] lg:pb-[32px] lg:pt-[12px]">
       <Hero />
       <div className="mt-[40px]">
-      {data?.data?.data?.categories ? 
-
-        <Department categories = {data?.data?.data?.categories} />
-        :<Loader/>
-      }
+        {data?.data?.data?.categories ? (
+          <Department categories={data?.data?.data?.categories} />
+        ) : (
+          <Loader />
+        )}
       </div>
       <div className="mt-[40px]">
         {/* {data?.data?.products ?  */}
         <NewArrival newArrivals={data?.data?.data?.products} />
-         {/* : <Loader/>} */}
+        {/* : <Loader/>} */}
       </div>
       <div className="mt-[40px]">
-      {/* {data?.data?.products ?  */}
+        {/* {data?.data?.products ?  */}
 
-        <Registry heading={"Shop by Registry"} products={data?.data?.data?.products?.slice(10, 16)} />
+        <Registry
+          heading={"Shop by Registry"}
+          products={data?.data?.data?.products?.slice(10, 16)}
+        />
         {/* : <Loader/>} */}
       </div>
       <div className="mt-[40px] max-lg:hidden">
@@ -49,10 +51,15 @@ export default function Home() {
       </div>
       {/* Blogs */}
       <div className="mt-[40px] pt-[16px]">
-        <div className="flex max-lg:flex-wrap mt-[32px] gap-[16px] lg:gap-[24px]">{
-          blogs?.map((story, index)=>(
-            <BlogCard key={index} story={story}/>
-          ))}</div>
+        {blogs ? (
+          <div className="mt-[32px] flex gap-[16px] max-lg:flex-wrap lg:gap-[24px]">
+            {blogs?.map((story: any) => (
+              <BlogCard key={story?.id} story={story} />
+            ))}
+          </div>
+        ) : (
+          <Loader />
+        )}
       </div>
       <div className="mt-[40px] py-[16px]">
         <Testimonies />
