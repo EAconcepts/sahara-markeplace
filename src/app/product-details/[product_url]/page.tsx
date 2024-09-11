@@ -34,7 +34,8 @@ import {DotLoader} from "react-spinners"
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState<number>(1);
-  const { token } = useAuth();
+  const [showReview, setShowReview] = useState<boolean>(false);
+  const { token, user } = useAuth();
   // console.log(token)
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -101,7 +102,8 @@ const ProductDetails = () => {
                     className="max-lg::h-[360px] w-full rounded-[8px] object-cover lg:w-[506px]"
                   />
                 )}
-                <div className="absolute left-[24px] top-[40px] rounded-[4px] bg-[#A07E53] px-[24px] py-[8px] font-openSans text-[14px] font-[600] leading-[16.8px] text-white">
+                {/* off */}
+                <div className="hidden absolute  left-[24px] top-[40px] rounded-[4px] bg-[#A07E53] px-[24px] py-[8px] font-openSans text-[14px] font-[600] leading-[16.8px] text-white">
                   20% Off
                 </div>
               </div>
@@ -393,17 +395,20 @@ const ProductDetails = () => {
             <div className="mt-[32px] flex flex-col gap-y-[32px]">
               {/* Leave a review */}
               <div className="flex flex-col gap-y-[8px]">
-                <div className="inline-flex items-center gap-x-[8px]">
+                <div onClick={()=>setShowReview((prev)=>!prev)} className="inline-flex items-center gap-x-[8px]">
                   <h5 className="font-openSans text-[16px] font-[600] leading-[19.2px] text-blackPrimary">
                     Leave a Review
                   </h5>
-                  <MdKeyboardArrowUp className="text-[22px]text-[#7D9A37]" />
+                  {showReview ? <MdKeyboardArrowUp className="text-[22px]text-[#7D9A37]" />
+                  : <MdKeyboardArrowDown className="text-[22px]text-[#7D9A37]" />
+}
                 </div>
                 <p className="text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
                   Share your experience with this products to help customers.
                 </p>
               </div>
               {/* Form */}
+              {showReview &&
               <form className="flex flex-col gap-y-[24px]">
                 <div className="grid grid-cols-2 gap-x-[24px] font-openSans lg:gap-y-[8px]">
                   <label className="text-[14px] font-[600] leading-[20.3px] text-[#787C83]">
@@ -414,12 +419,14 @@ const ProductDetails = () => {
                   </label>
                   <Input
                     type="text"
-                    placeholder="John Doe"
+                    placeholder={`${user?.first_name} ${user?.last_name}`}
+                    value={`${user?.first_name} ${user?.last_name}`}
                     className="text-[12px] font-[400] leading-[17.4px] text-[#8E97A6] lg:h-[56px]"
                   />
                   <Input
-                    type="text"
-                    placeholder="john@example.com"
+                    type="email"
+                    placeholder={user?.email}
+                    value={user?.email}
                     className="text-[12px] font-[400] leading-[17.4px] text-[#8E97A6] lg:h-[56px]"
                   />
                 </div>
@@ -437,6 +444,7 @@ const ProductDetails = () => {
                   Submit Review
                 </Button>
               </form>
+      }
             </div>
             {/* Banner */}
             <div className="mt-[24px]">

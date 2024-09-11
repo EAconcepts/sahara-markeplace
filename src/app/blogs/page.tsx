@@ -11,7 +11,7 @@ import Loader from "../(components)/loader";
 const Blogs =()=>{
     const router = useRouter()
     const {data} = useGet("blog-posts", "blogpost")
-    console.log(data)
+    // console.log(data)
     return(
         <div className=" flex flex-col w-full font-openSans">
             {/* Heading */}

@@ -19,7 +19,7 @@ export default function Home() {
   const { data } = useGet("cata/prod", "products");
   const { data: blogPosts } = useGet("blog-posts", "blogpost");
   let blogs = blogPosts?.data?.data?.posts;
-  console.log(blogPosts)
+  // console.log(blogPosts)
 
 
   return (

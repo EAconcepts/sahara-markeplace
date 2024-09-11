@@ -5,13 +5,12 @@ import Loader from "@/app/(components)/loader";
 import { getTotalPrice } from "@/app/(components)/modals/cart-modal";
 import { Button } from "@/components/ui/button";
 import { useGet } from "@/utils/useGet.";
-import { useRouter } from "next/navigation";
 
-const OrderSummary = () => {
+const OrderSummary = ({onClick}:{onClick?:()=>void}) => {
   const carts = [1, 2, 3];
   const {data} = useGet("my-cart", 'cart')
-  console.log(data)
-  const router = useRouter()
+  // console.log(data)
+
   return (
     <div className="flex flex-col px-[24px] font-openSans">
       <div className="flex gap-x-[16px]">
@@ -66,7 +65,7 @@ const OrderSummary = () => {
           </h5>
         </div>
         <div className="pt-[24px]">
-          <Button onClick={()=>router.push("/checkout/billing-info")} className="h-[44px] lg:h-[55px] w-full rounded-[12px] bg-greenPrimary py-[16px] font-openSans text-[16px] font-[700] leading-[23.2px] text-white">
+          <Button onClick={onClick} className="h-[44px] lg:h-[55px] w-full rounded-[12px] bg-greenPrimary py-[16px] font-openSans text-[16px] font-[700] leading-[23.2px] text-white">
             Continue to Payment
           </Button>
         </div>

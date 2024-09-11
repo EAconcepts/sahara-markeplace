@@ -1,11 +1,15 @@
+'use client'
+
 import { useState } from "react";
 import Form from "./(components)/form";
 import OrderSummary from "./(components)/summary";
+import { useCheckout } from "@/utils/useCheckout";
+import { useRouter } from "next/navigation";
 
 const Checkout = () => {
-  // const [shippingInfo, setShippingInfo] = useState({
-
-  // })
+  const {shippingInfo} = useCheckout()
+  // console.log(shippingInfo)
+  const router = useRouter()
   return (
     <div className="lg:px-[96px] lg:py-[40px]">
       {/* Breadcrumb */}
@@ -27,7 +31,7 @@ const Checkout = () => {
         </div>
         {/* Order Summary */}
         <div className="lg:w-[45%] max-lg:mt-[24px] shrink-0">
-          <OrderSummary />
+          <OrderSummary onClick={()=>router.push("/checkout/billing-info")} />
         </div>
       </div>
     </div>

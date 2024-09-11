@@ -16,7 +16,7 @@ export const useGet: any = (url: string, queryKey: String) => {
   const getQuery = useQuery({
     queryKey: [queryKey],
     queryFn: () => axios.get(`${apiUrl}/${url && url}`, { headers }),
-    staleTime:10 * 60 * 1000
+    staleTime:30 * 60 * 1000
   });
   let data: any = "";
   let updatedAt = ""
@@ -26,9 +26,9 @@ export const useGet: any = (url: string, queryKey: String) => {
     updatedAt = new Date().toUTCString()
     // console.log(updatedAt)
     return {data, updatedAt};
-  }
+  } 
   if (getQuery.error) {
     // toast.error(getQuery.error.message || "An error occured!")
     console.log(getQuery.error)};
-  return {data, updatedAt};
+  return {data, updatedAt, isPending:getQuery.isPending};
 };

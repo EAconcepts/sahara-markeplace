@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import { Header } from "../(components)/header";
@@ -16,25 +16,25 @@ import OrderCard from "./(components)/order-card";
 import Loader from "@/app/(components)/loader";
 
 const MyOrders = () => {
-  const router = useRouter()
-  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGe_URL
-//   const {token} = useAuth()
-//  const headers = {
-//     Authorization: `Bearer ${token}`
-//   }
-//   const dashboardQuery = useQuery({
-//     queryKey: ["dashboard"],
-//     queryFn: ()=>axios.get(`${apiUrl}/user/order`, {headers})
-//   })
-//   if(dashboardQuery.data){
-//     console.log(dashboardQuery.data)
-//   }else console.log(dashboardQuery.error)
-const {data} = useGet("user/order", "userOrders")
-console.log(data)
+  const router = useRouter();
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGe_URL;
+  //   const {token} = useAuth()
+  //  const headers = {
+  //     Authorization: `Bearer ${token}`
+  //   }
+  //   const dashboardQuery = useQuery({
+  //     queryKey: ["dashboard"],
+  //     queryFn: ()=>axios.get(`${apiUrl}/user/order`, {headers})
+  //   })
+  //   if(dashboardQuery.data){
+  //     console.log(dashboardQuery.data)
+  //   }else console.log(dashboardQuery.error)
+  const { data } = useGet("user/order", "userOrders");
+  console.log(data);
   return (
     <div className="w-full pt-[24px]">
       <Header title="My Order" />
-      <table className="hidden lg:block mt-[32px] w-full font-openSans">
+      <table className="mt-[32px] hidden w-full font-openSans lg:block">
         <thead className="">
           <tr className="h-[42px] bg-[#E4E7EC] px-[24px] py-[12px] text-[12px] font-[400] leading-[17.4px] tracking-[-0.5%] text-blackPrimary">
             <th className="">Item</th>
@@ -49,9 +49,9 @@ console.log(data)
           </tr>
         </thead>
         <tbody className="divide-y divide-border px-[15px]">
-          {data?.data?.orders?.map((product:any, index:any) => (
+          {data?.data?.orders?.map((product: any, index: any) => (
             <tr
-            onClick={()=>router.push(`/dashboard/my-orders/SE2392922`)}
+              onClick={() => router.push(`/dashboard/my-orders/SE2392922`)}
               key={index}
               className="h-[58px] gap-x-[24px] px-[15px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary"
             >
@@ -90,15 +90,14 @@ console.log(data)
           ))}
         </tbody>
       </table>
-      <div className="lg:hidden flex flex-col mt-[24px] gap-[16px]">
-        { data?.data?.data?.orders  ? data?.data?.data?.orders?.map((order:any)=>(
-
-        <OrderCard product={order} key={order?.id}/>
-      ))
-      :
-      <Loader/>
-
-}
+      <div className="mt-[24px] flex flex-col gap-[16px] lg:hidden">
+        {data?.data?.data?.orders ? (
+          data?.data?.data?.orders?.map((order: any) => (
+            <OrderCard date={order?.created_at} product={order?.products} key={order?.id} />
+          ))
+        ) : (
+          <Loader />
+        )}
       </div>
       <div>
         <RecentSearches products={newArrivals} />

@@ -10,7 +10,7 @@ import Loader from "@/app/(components)/loader";
 const BlogDetails = () => {
   const { url } = useParams();
   const { data } = useGet(`blog/${url}`, decodeURIComponent(url.toString()));
-  console.log(data)
+//   console.log(data)
   let blog = data?.data?.data?.post;
   const imgBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 

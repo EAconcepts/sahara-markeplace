@@ -2,10 +2,17 @@
 
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/utils/useAuth";
-import React from "react";
+import { useCheckout } from "@/utils/useCheckout";
+import React, { ChangeEvent, useState } from "react";
 
 const Form = () => {
+
+const {setShippingInfo, shippingInfo} = useCheckout()
   const {user} = useAuth()
+  const handleChange=(e: ChangeEvent<HTMLInputElement>)=>{
+    const {name, value} = e.target
+    setShippingInfo((prevVals:any)=>({...prevVals,[name]:value}))
+  }
   return (
     <form className="flex w-full flex-col gap-y-[24px] font-openSans">
       {/* full name */}
@@ -21,6 +28,9 @@ const Form = () => {
           <Input
             id="first_name"
             type="text"
+            name="first_name"
+            value={shippingInfo.first_name}
+            onChange={handleChange}
             placeholder="first name"
             className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required
@@ -38,6 +48,9 @@ const Form = () => {
             id="last_name"
             type="text"
             placeholder="last name"
+            name="last_name"
+            onChange={handleChange}
+            value={shippingInfo.last_name}
             className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required
           />
@@ -56,12 +69,15 @@ const Form = () => {
           <Input
             id="email"
             type="email"
+            name="email"
+            onChange={handleChange}
+            value={shippingInfo.email}
             placeholder="email"
             className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required
           />
         </div>
-        {/* Last name */}
+        {/* Phone */}
         <div className="flex w-full flex-col gap-y-[8px]">
           <label
             htmlFor="phone"
@@ -72,6 +88,9 @@ const Form = () => {
           <Input
             id="phone"
             type="tel"
+            name="phone"
+            onChange={handleChange}
+            value={shippingInfo.phone}
             placeholder="phone number"
             className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required
@@ -89,6 +108,9 @@ const Form = () => {
         <Input
           id="address"
           type="text"
+          name="address"
+          onChange={handleChange}
+          value={shippingInfo.address}
           placeholder="address"
           className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
           required
@@ -122,6 +144,9 @@ const Form = () => {
           <Input
             id="country"
             type="text"
+            name="country"
+            value={shippingInfo.country}
+            onChange={handleChange}
             placeholder="country"
             className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required
@@ -138,6 +163,9 @@ const Form = () => {
           <Input
             id="state"
             type="text"
+            name="state"
+            onChange={handleChange}
+            value={shippingInfo.state}
             placeholder="state"
             className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
           />
@@ -187,6 +215,9 @@ const Form = () => {
         </label>
         <textarea
           id="note"
+          name="notes"
+          value={shippingInfo.notes}
+          onChange={(e)=>setShippingInfo((prev:any)=>({...prev, notes:e.target.value}))}
           placeholder="additional notes"
           className="h-[64px] lg:h-[80px] w-full px-[16px] py-[30px] rounded-[6px] border-[1px] border-border bg-white"
         />

@@ -1,5 +1,6 @@
 "use client";
 import { AuthProvider } from "@/utils/useAuth";
+import { CheckoutProvider } from "@/utils/useCheckout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 
@@ -8,7 +9,9 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <CheckoutProvider>{children}</CheckoutProvider>
+        </AuthProvider>
       </QueryClientProvider>
     </>
   );
