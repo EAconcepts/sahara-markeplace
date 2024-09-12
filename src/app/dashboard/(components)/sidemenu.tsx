@@ -80,7 +80,9 @@ const Sidemenu = ({
             </span>
           </button> */}
           <button
-            onClick={() => settingsLink && router.push(settingsLink)}
+            onClick={() =>{
+              setShowMenu && setShowMenu(false); 
+              settingsLink && router.push(settingsLink)}}
             className="flex items-center gap-x-[12px] px-[16px] py-[12px]"
           >
             <Settings02Icon />{" "}
