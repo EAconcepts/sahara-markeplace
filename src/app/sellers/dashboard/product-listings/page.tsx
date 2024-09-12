@@ -7,9 +7,10 @@ import ProductCard from "../(components)/product-card";
 // import { newArrivals } from "@/app/(components)/reviews";
 import { useGet } from "@/utils/useGet.";
 import { useRouter } from "next/navigation";
+import Loader from "@/app/(components)/loader";
 
 const ProductListings = () => {
-  const {data, updatedAt } = useGet("vendor/products", 'vendorProducts')
+  const {data, updatedAt, isPending } = useGet("vendor/products", 'vendorProducts')
   // console.log(data)
   const router = useRouter()
   return (
@@ -43,11 +44,17 @@ const ProductListings = () => {
         </div>
       </div>
       {/* Products */}
+      { isPending ? <Loader />
+      :
       <div className="flex flex-wrap max-lg:gap-y-[16px] gap-x-[16px] py-[24px]">
-        {data && data?.data?.data?.products?.map((product:any)=>(
+        {data ? data?.data?.data?.products?.map((product:any)=>(
           <ProductCard key={product?.id} product={product}/>
-        ))}
+         
+        ))
+        : <>No products Available</>
+      }
       </div>
+}
     </div>
   );
 };

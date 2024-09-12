@@ -10,6 +10,7 @@ import img2 from "@/assets/images/sellers-details2.png";
 const Form1 = ({ product,setPrdtDetails, prdtDetails, handleChange }: { prdtDetails:any; product: any;setPrdtDetails: Dispatch<any>; handleChange:(e:ChangeEvent<HTMLInputElement>) => void }) => {
   const [image, setImage] = useState<string>("");
   const imageRef = useRef<any>(null);
+  const imgBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -22,31 +23,43 @@ const Form1 = ({ product,setPrdtDetails, prdtDetails, handleChange }: { prdtDeta
   const handleUpload = () => {
     imageRef && imageRef.current?.click();
   };
+  // console.log(imgBaseUrl)
   return (
     <div className="flex h-full w-full flex-col gap-[24px] pb-[24px]">
+      {/* Images */}
       <div className="flex flex-col gap-y-[16px] rounded-[12px] border-[1px] border-border p-[16px]">
         <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
           Product Image
         </h5>
+        {/* Image */}
         <div className="flex w-full flex-wrap gap-[16px]">
-          {/* {[1, 2, 3].map((pic, index) => ( */}
           <div
             className="relative"
-            // key={index}
           >
-            {product?.image || image && (
+            {product?.image ?
               <>
                 <Image
                 onClick={handleUpload}
-                  src={product?.image || image}
+                  src={`${imgBaseUrl}/${product?.image} `}
                   width={132}
                   height={192}
-                  alt=""
+                  alt={product?.name || prdtDetails.name}
                   className="h-[192px] w-[132px] object-cover rounded-[8px] border-[1px] border-dashed border-border"
                 />
                 <Delete03Icon onClick={()=>setImage("")} className="absolute bottom-[8px] right-[8px] size-[16px] text-[#E8112D]" />
               </>
-            )}
+              : image && <>
+              <Image
+              onClick={handleUpload}
+                src={image }
+                width={132}
+                height={192}
+                alt={product?.name || prdtDetails.name}
+                className="h-[192px] w-[132px] object-cover rounded-[8px] border-[1px] border-dashed border-border"
+              />
+              <Delete03Icon onClick={()=>setImage("")} className="absolute bottom-[8px] right-[8px] size-[16px] text-[#E8112D]" />
+            </>
+             } 
           </div>
           {/* new image */}
           <div
@@ -83,8 +96,9 @@ const Form1 = ({ product,setPrdtDetails, prdtDetails, handleChange }: { prdtDeta
             type="text"
             name={'name'}
             placeholder={product?.name}
-            value={prdtDetails.name}
+            value={prdtDetails.name || product?.name}
             onChange={handleChange}
+            required
             className="h-[] w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
           />
         </div>
@@ -97,6 +111,7 @@ const Form1 = ({ product,setPrdtDetails, prdtDetails, handleChange }: { prdtDeta
             placeholder={product?.description}
             name={"description"}
             onChange={(e)=>setPrdtDetails((prev:any)=>({...prev, description: e.target.value}))}
+            value={prdtDetails.description || product?.description}
             className="h-[] p-[8px] border-[1px] border-border rounded-[12px] w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
           />
         </div>
@@ -123,7 +138,7 @@ const Form1 = ({ product,setPrdtDetails, prdtDetails, handleChange }: { prdtDeta
               type="text"
               onChange={handleChange}
               name={'category'}
-              value={prdtDetails?.category}
+              value={prdtDetails?.category || product?.category}
               placeholder={product?.category}
               className="h-[] w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
             />
@@ -185,22 +200,22 @@ const Form1 = ({ product,setPrdtDetails, prdtDetails, handleChange }: { prdtDeta
         </div>
 }
         {/* Quantity & Availability */}
-        <div className="flex justify-between gap-[24px]">
-          {product?.quantity &&
-          <div className="flex w-full flex-col gap-y-[24px]">
+        <div className="flex it justify-between gap-[24px]">
+          {/* {product?.quantity && */}
+          <div className="flex w-full flex-col gap-y-[12px] lg:gap-y-[24px]">
             <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Quantity
             </h5>
             <Input
               type="number"
               name={"quantity"}
-              placeholder={product?.quantity}
+              placeholder={''}
               onChange={handleChange}
-              value={prdtDetails?.quantity}
+              value={prdtDetails?.quantity || product?.quantity }
               className="h-[] w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
             />
           </div>
-}
+{/* } */}
           {/* Availabilty*/}
           <div className="flex w-full flex-col gap-y-[12px] lg:gap-y-[24px]">
             <h5 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
@@ -210,7 +225,7 @@ const Form1 = ({ product,setPrdtDetails, prdtDetails, handleChange }: { prdtDeta
               <Input
                 type="text"
                 placeholder="In-Stock"
-                className="h-[] w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
+                className="h-full w-full text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
               />
               <div className="absolute right-[12px] top-[50%] flex translate-y-[-50%] items-center gap-x-[2px]">
                 <PencilEdit01Icon className="size-[16px text-greenPrimary" />

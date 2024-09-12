@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 interface AuthProps {
   token: string | null;
@@ -39,6 +40,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setUserType(null)
       localStorage.removeItem("user");
       localStorage.removeItem("userType");
+      toast.success('Logout Successful!')
     }
   };
 

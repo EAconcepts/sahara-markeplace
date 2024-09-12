@@ -16,7 +16,7 @@ export const useGet: any = (url: string, queryKey: String) => {
   const getQuery = useQuery({
     queryKey: [queryKey],
     queryFn: () => axios.get(`${apiUrl}/${url && url}`, { headers }),
-    staleTime:30 * 60 * 1000
+    // staleTime:30 * 60 * 1000
   });
   let data: any = "";
   let updatedAt = ""

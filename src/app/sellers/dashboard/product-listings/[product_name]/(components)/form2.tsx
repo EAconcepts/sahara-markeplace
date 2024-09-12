@@ -174,10 +174,10 @@ const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any
                 <Input
                   type="number"
                   name={'price'}
-                  value={prdtDetails?.price}
+                  value={prdtDetails?.price || product?.price}
                   onChange={handleChange}
                   className="rounded-[6px] border-[1px] border-border p-[12px]"
-                  placeholder="103.99"
+                  // placeholder="103.99"
                 />
               </div>
               {/* Currency */}

@@ -18,17 +18,19 @@ import { toast } from "sonner";
 import { useAuth } from "@/utils/useAuth";
 
 const ProductDetails = () => {
+  const {product_name} = useParams()
+  const { data } = useGet(`product/${product_name}`, "prd-details");
+  // console.log(data?.data?.data?.product?.id)
   const [prdtDetails, setPrdtDetails] = useState<any>({
     name: '',
         price: '',
         image: '',
         quantity: 1,
         description: '',
-        category :''
+        category :'',
+        sid: data && data?.data?.data?.product?.id
   })
-  const {product_name} = useParams()
   const {token, baseUrl} = useAuth()
-  const { data } = useGet(`product/${product_name}`, "prd-details");
   console.log(data)
   const headers={
     Authorization: 'Bearer ' + token
@@ -38,16 +40,16 @@ const ProductDetails = () => {
   const formdata = new FormData();
   const updateMutation =useMutation({
     mutationFn: ()=>{
-      formdata.append('sid', data?.data?.data?.product?.id)
       formdata.append('name', prdtDetails.name)
+      formdata.append('sid', data?.data?.data?.product?.id)
       formdata.append('price', prdtDetails.price)
-      formdata.append('image', prdtDetails.image)
+      formdata.append('image', prdtDetails?.image && prdtDetails?.image)
       formdata.append('quantity', prdtDetails.description)
       formdata.append('category', prdtDetails.category)
-      return axios.post(`${baseUrl}/vendor/update-product/${data?.data?.data?.product?.id}`,formdata, {headers})},
+      return axios.post(`${baseUrl}/vendor/update-product`,formdata, {headers})},
     onSuccess:((data)=>{
       console.log(data)
-      toast.success("product added successfully!")
+      toast.success("product updated successfully!")
       router.push("/sellers/dashboard/product-listings")
     }),
     onError:((error)=>{
