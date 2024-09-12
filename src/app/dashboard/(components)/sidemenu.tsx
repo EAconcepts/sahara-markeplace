@@ -30,7 +30,7 @@ const Sidemenu = ({
   const { user, logout, userType } = useAuth();
   const path = usePathname();
   const router = useRouter();
-
+// console.log(settingsLink)
   const handleLogout = () => {
     logout();
     if (userType === "seller") {
@@ -80,7 +80,7 @@ const Sidemenu = ({
             </span>
           </button> */}
           <button
-            onClick={() => router.push(`${settingsLink}`)}
+            onClick={() => settingsLink && router.push(settingsLink)}
             className="flex items-center gap-x-[12px] px-[16px] py-[12px]"
           >
             <Settings02Icon />{" "}

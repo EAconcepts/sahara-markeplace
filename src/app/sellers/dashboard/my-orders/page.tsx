@@ -115,8 +115,10 @@ const MyOrders = () => {
               </div>
             </div>
           </div>
-          {/* Orders table */}
-          <div className="flex flex-col gap-y-[32px]">
+         
+        </div>
+         {/* Orders table */}
+         <div className="flex flex-col gap-y-[32px]">
             {/* sort by */}
             <Select >
               <SelectTrigger className="hidden h-[36px] w-[181px] self-end rounded-[6px] border-[#8E97A6] px-[8px] py-[12px]">
@@ -142,7 +144,6 @@ const MyOrders = () => {
               <div className=""></div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );

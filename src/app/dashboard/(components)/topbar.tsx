@@ -17,7 +17,7 @@ import Image from "next/image";
 import logo from "@/assets/images/logo-sahara.png";
 import Link from "next/link";
 
-const Topbar = ({links}:{links?:any}) => {
+const Topbar = ({links, settingsLink}:{links?:any; settingsLink?:string}) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const router = useRouter();
   const { user, userType } = useAuth();
@@ -80,7 +80,7 @@ const Topbar = ({links}:{links?:any}) => {
       {showMenu && (
         <div className="fixed inset-0 h-screen w-full bg-white lg:hidden">
           <div className="h-full overflow-y-scroll">
-            <Sidemenu setShowMenu={setShowMenu} links={links} />
+            <Sidemenu settingsLink={settingsLink} setShowMenu={setShowMenu} links={links} />
           </div>
         </div>
       )}

@@ -9,7 +9,7 @@ import { newArrivals } from "@/app/(components)/reviews";
 
 const Details = () => {
   return (
-    <div className="flex w-full justify-between gap-x-[16px]">
+    <div className="flex w-full max-lg:flex-col max-lg:gap-y-[16px] lg:justify-between gap-x-[16px]">
       <div className="flex w-full flex-col gap-y-[24px] rounded-[12px] border-[1px] py-[16px]">
         <h3 className="px-[12px] text-[20px] font-[600] leading-[24px] tracking-[-2%] text-blackPrimary">
           Order details

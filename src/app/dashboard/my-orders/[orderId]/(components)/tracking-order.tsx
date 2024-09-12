@@ -21,11 +21,11 @@ const TrackingOrder = () => {
         {/* ordered */}
         <div className="relative flex flex-col">
           <CheckmarkCircle01Icon className="fill-success size-[38px] shrink-0 text-white" />
-          <div className="absolute bottom-[-44px] left-0 flex w-max shrink-0 flex-col gap-y-[5px]">
-            <h6 className="font-openSans text-[16px] font-[600] leading-[19.2px] tracking-[-2%] text-black">
+          <div className="absolute bottom-[-44px] left-0 flex w-max shrink-0 flex-col gap-y-[2px] lg:gap-y-[5px]">
+            <h6 className="font-openSans text-[12px] lg:text-[16px] font-[600] leading-[19.2px] tracking-[-2%] text-black">
               Ordered
             </h6>
-            <span className="shrink-0 text-[14px] font-[400] leading-[16.8px]">
+            <span className="shrink-0 text-[8px] lg:text-[14px] font-[400] leading-[16.8px]">
               10th Jun. 2024
             </span>
           </div>
@@ -35,23 +35,23 @@ const TrackingOrder = () => {
         <div className="relative flex flex-col">
           <CheckmarkCircle01Icon className="fill-success size-[38px] shrink-0 text-white" />
           <div className="absolute bottom-[-44px] left-0 flex w-max flex-col">
-            <h6 className="font-openSans text-[16px] font-[600] leading-[19.2px] tracking-[-2%] text-black">
+            <h6 className="font-openSans text-[10px] lg:text-[16px] font-[600] leading-[19.2px] tracking-[-2%] text-black">
               Ready
             </h6>
-            <span className="text-[14px] font-[400] leading-[16.8px]">
+            <span className="text-[8px] lg:text-[14px] font-[400] leading-[16.8px]">
               11th Jun. 2024
             </span>
           </div>
         </div>
         {/* Shipped */}
         <div className="bg-success h-[1px] w-full"></div>
-        <div className="relative flex flex-col">
+        <div className=" relative flex flex-col">
           <CheckmarkCircle01Icon className="size-[38px] shrink-0 fill-[#F9C74F] text-white" />
-          <div className="absolute bottom-[-44px] left-0 flex w-max flex-col">
-            <h6 className="font-openSans text-[16px] font-[600] leading-[19.2px] tracking-[-2%] text-black">
+          <div className="absolute bottom-[-44px] max-lg:left-[-18px] left-0 flex w-max flex-col">
+            <h6 className="font-openSans text-[10px] lg:text-[16px] font-[600] leading-[19.2px] tracking-[-2%] text-black">
               Shipped
             </h6>
-            <span className="text-[14px] font-[400] leading-[16.8px]">
+            <span className="text-[8px] text-center lg:text-[14px] font-[400] leading-[16.8px]">
               .....
             </span>
           </div>
@@ -61,10 +61,10 @@ const TrackingOrder = () => {
         <div className="relative flex flex-col">
           <CheckmarkCircle01Icon className="size-[38px] shrink-0 fill-[#8E97A6] text-white" />
           <div className="absolute bottom-[-44px] right-0 flex w-max flex-col text-end">
-            <h6 className="font-openSans text-[16px] font-[600] leading-[19.2px] tracking-[-2%] text-black">
+            <h6 className="font-openSans text-[10px] lg:text-[16px] font-[600] leading-[19.2px] tracking-[-2%] text-black">
               Estimated Delivery
             </h6>
-            <span className="text-[14px] font-[400] leading-[16.8px]">
+            <span className="text-[8px] lg:text-[14px] font-[400] leading-[16.8px]">
               21st Jun. 2024
             </span>
           </div>
