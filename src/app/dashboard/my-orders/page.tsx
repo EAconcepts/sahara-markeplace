@@ -17,23 +17,19 @@ import Loader from "@/app/(components)/loader";
 
 const MyOrders = () => {
   const router = useRouter();
-  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGe_URL;
-  //   const {token} = useAuth()
-  //  const headers = {
-  //     Authorization: `Bearer ${token}`
-  //   }
-  //   const dashboardQuery = useQuery({
-  //     queryKey: ["dashboard"],
-  //     queryFn: ()=>axios.get(`${apiUrl}/user/order`, {headers})
-  //   })
-  //   if(dashboardQuery.data){
-  //     console.log(dashboardQuery.data)
-  //   }else console.log(dashboardQuery.error)
-  const { data } = useGet("user/order", "userOrders");
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+ 
+  const { data, isPending } = useGet("user/order", "userOrders");
   console.log(data);
   return (
     <div className="w-full pt-[24px]">
       <Header title="My Order" />
+      {isPending ?
+      <Loader/>
+      : 
+      data?.data?.data?.orders?.length ==0 ?
+      <h4 className="mt-[24px] text-[16px] text-center">No order has been made yet</h4> :
+      data?.data?.data?.orders ?
       <table className="mt-[32px] hidden w-full font-openSans lg:block">
         <thead className="">
           <tr className="h-[42px] bg-[#E4E7EC] px-[24px] py-[12px] text-[12px] font-[400] leading-[17.4px] tracking-[-0.5%] text-blackPrimary">
@@ -49,15 +45,15 @@ const MyOrders = () => {
           </tr>
         </thead>
         <tbody className="divide-y divide-border px-[15px]">
-          {data?.data?.orders?.map((product: any, index: any) => (
+          {data?.data?.data?.orders?.map((order: any) => (
             <tr
               onClick={() => router.push(`/dashboard/my-orders/SE2392922`)}
-              key={index}
+              key={order?.id}
               className="h-[58px] gap-x-[24px] px-[15px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary"
             >
               <td className="w-fit pl-[15px] pr-[24px]">
                 <Image
-                  src={product.image}
+                  src={`${imageBaseUrl}/${order?.products?.image}`}
                   width={44}
                   height={44}
                   alt=""
@@ -65,21 +61,21 @@ const MyOrders = () => {
                 />
               </td>
               <td className="w-fit px-[24px] text-[14px] font-[400] leading-[16.8px] text-blackPrimary">
-                Ensemble Veste Pantalon
+             {order?.products?.name}
               </td>
               <td className="py-[15px] pl-[16px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                1
+                {order?.products?.quantity}
               </td>
               <td className="px-[24px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                $68.99
+                ${order?.products?.price}
               </td>
-              <td className="px-[24px]">SE202401</td>
-              <td className="px-[24px]">Jun 20, 2024</td>
-              <td className="px-[24px]">Jun 20, 2024</td>
+              <td className="px-[24px]">SE{order?.trx_id}</td>
+              <td className="px-[24px]">{order?.created_at.slice(0,11)}</td>
+              <td className="px-[24px]">---</td>
               <td className="pr-[15px]">
                 <div className="flex items-center gap-x-[32px] align-middle">
                   <span className="w-fit shrink-0 rounded-[24px] bg-[#F9E79F66] px-[16px] py-[4px] font-[600]">
-                    In-Preparation
+                    {order?.current}
                   </span>
                   <div className="flex size-[24px] items-center justify-center rounded-[8px] border-[1px] border-border">
                     <HiOutlineEllipsisVertical className="text-[14px] text-blackPrimary" />
@@ -90,6 +86,11 @@ const MyOrders = () => {
           ))}
         </tbody>
       </table>
+      : 
+      <h4 className="mt-[24px] text-[16px] text-center">An error occured!</h4>
+      
+}
+      {/* Mobile */}
       <div className="mt-[24px] flex flex-col gap-[16px] lg:hidden">
         {data?.data?.data?.orders ? (
           data?.data?.data?.orders?.map((order: any) => (
@@ -99,7 +100,7 @@ const MyOrders = () => {
           <Loader />
         )}
       </div>
-      <div>
+      <div className="hidden">
         <RecentSearches products={newArrivals} />
       </div>
     </div>

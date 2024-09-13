@@ -36,7 +36,7 @@ const Topbar = ({links, settingsLink}:{links?:any; settingsLink?:string}) => {
           width={80}
           height={80}
           alt="logo"
-          className="size-[48px] lg:size-[80px]"
+          className="size-[48px] lg:hidden lg:size-[80px]"
         />
       </Link>
       <div className="flex items-center gap-x-[24px]">

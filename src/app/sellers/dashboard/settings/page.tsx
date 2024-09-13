@@ -15,11 +15,11 @@ import {
 
 const StoreSettings = () => {
   return (
-    <div className="flex flex-col gap-y-[32px] px-[24px] py-[28px] font-openSans">
+    <div className="flex flex-col gap-y-[32px] px-[24px] py-[16px] lg:py-[28px] font-openSans">
       {/* Logo Image upload */}
-      <div className="flex gap-x-[56px]">
-        <div className="flex w-[305px] flex-col gap-y-[20px]">
-          <div className="flex flex-col gap-y-[6px] pr-[65px]">
+      <div className="flex max-lg:flex-col-reverse max-lg:gap-y-[16px] lg:gap-x-[56px]">
+        <div className="flex lg:w-[305px] flex-col gap-y-[20px]">
+          <div className="flex flex-col gap-y-[6px] lg:pr-[65px]">
             <h6 className="text-[16px] font-[600] leading-[23.2px] text-[#101928]">
               Logo image
             </h6>
@@ -40,18 +40,18 @@ const StoreSettings = () => {
           </Button>
         </div>
         {/* image */}
-        <div className="flex size-[120px] items-center justify-center rounded-full bg-[#E4E7EC]">
+        <div className="flex size-[80px] lg:size-[120px] items-center justify-center rounded-full bg-[#E4E7EC]">
           <Image
             src={imageBig}
             width={72}
             height={72}
             alt="image"
-            className="size-[72px]"
+            className="size-[44px] lg:size-[72px]"
           />
         </div>
       </div>
 <div className="bg-border h-[1px] w-full"></div>
-      <div className="w-full flex flex-col gap-y-[24px] pr-[134px]">
+      <div className="w-full flex flex-col gap-y-[24px] lg:pr-[134px]">
         {/* Store Name */}
         <div className="w-full flex flex-col gap-y-[8px]">
           <label className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
@@ -101,8 +101,8 @@ const StoreSettings = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Fruits</SelectLabel>
-                <SelectItem value="apple">Apple</SelectItem>
+                <SelectLabel>---</SelectLabel>
+                <SelectItem value="apple">---</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -119,8 +119,10 @@ const StoreSettings = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
+                  <SelectLabel>---</SelectLabel>
+                  <SelectItem value="facebook">Facebook</SelectItem>
+                  <SelectItem value="instagram">Instagram</SelectItem>
+                  <SelectItem value="x">X</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -134,7 +136,7 @@ const StoreSettings = () => {
           </div>
         </div>
         {/* Add another */}
-        <div className="h-[44px] w-full rounded-[6px] border-dashed border-[#787C83] p-[12px]">
+        <div className="hidden h-[44px] w-full rounded-[6px] border-dashed border-[#787C83] p-[12px]">
           <span className="text-center text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
             Add another handle
           </span>

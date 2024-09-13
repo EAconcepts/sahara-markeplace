@@ -30,7 +30,7 @@ const Dashboard = () => {
           {isPending ? (
             <Loader />
           ) : data?.data?.data?.orders ? (
-            <div className="mt[24px] flex flex-col gap-[16px] lg:hidden">
+            <div className="mt[24px] lg:mt-[16px] flex flex-col gap-[16px] lg:gap-y-[24px] idden">
               {data?.data?.data?.orders?.slice(0,3)?.map((order: any) => (
                 <OrderCard date={order?.created_at} product={order?.products} key={order?.id} />
               ))}
