@@ -23,15 +23,15 @@ const Department = ({categories}:{categories:any}) => {
               width={504}
               height={240}
               className={twMerge(
-                ` rounded-[8px] lg:w-[504p lg:h-[240px] object-cover`,
+                ` rounded-[8px] max-lg:h-[200px] lg:w-[504p lg:h-[240px] object-cover`,
                 dept?.className
               )}
             />
             <div className="flex w-full justify-between items-center absolute  bottom-[12px] px-[36px]">
-              <span className="text-white text-[24px] leading-[34.8px] font-[700] font-openSans">
+              <span className="text-white  text-[16px] lg:text-[24px] leading-[34.8px] font-[700] font-openSans">
                 {dept?.name}
               </span>
-              <VscArrowSmallRight className="text-white text-[36px]" />
+              <VscArrowSmallRight className="text-white text-[24px] lg:text-[36px]" />
             </div>
           </Link>
         ))}
