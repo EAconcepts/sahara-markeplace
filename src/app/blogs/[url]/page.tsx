@@ -10,12 +10,13 @@ import Loader from "@/app/(components)/loader";
 const BlogDetails = () => {
   const { url } = useParams();
   const { data } = useGet(`blog/${url}`, decodeURIComponent(url.toString()));
-//   console.log(data)
   let blog = data?.data?.data?.post;
+  // console.log(blog)
+
   const imgBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
   return (
-    <div className="flex flex-col gap-y-[24px] p-[24px]">
+    <div className="flex flex-col lg:px-[96px] gap-y-[24px] p-[24px]">
       {/*  breadcrumb*/}
       <div></div>
       {data ? (
@@ -29,11 +30,11 @@ const BlogDetails = () => {
               className="h-[400px] w-full rounded-[8px] object-cover lg:h-[740px] lg:w-[608px] lg:rounded-[12px]"
             />
             <div className="flex flex-col gap-y-[12px]">
-              <h4 className="text-[24px] font-[700] leading-[34.8px] text-blackPrimary lg:text-[40px] lg:leading-[58px]">
+              <h4 className="text-[24px] font-playfair font-[700] leading-[34.8px] text-blackPrimary lg:text-[40px] lg:leading-[58px]">
                 {blog?.title}
               </h4>
               <p className="text-[12px] font-[400] leading-[17.4px] text-[#787C83]">
-                {blog?.time}
+                {blog?.created_at.slice(0,10)}
               </p>
               <div className="flex flex-col gap-[8px]">
                 <span className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">

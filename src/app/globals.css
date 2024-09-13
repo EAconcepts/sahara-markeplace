@@ -78,8 +78,8 @@
 
     /* For WebKit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-  width: 2px; /* Width of the vertical scrollbar */
-  height: 2px; /* Height of the horizontal scrollbar */
+  width: 1px; /* Width of the vertical scrollbar */
+  height: 1px; /* Height of the horizontal scrollbar */
   display: none;
 }
 
@@ -110,14 +110,14 @@
 
 /* For WebKit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-  width: 6px; /* Width of the vertical scrollbar */
-  height: 6px; /* Height of the horizontal scrollbar */
+  width: 1px; /* Width of the vertical scrollbar */
+  height: 1px; /* Height of the horizontal scrollbar */
   display: none;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #888; /* Color of the scrollbar thumb */
-  border-radius: 10px; /* Rounded corners for the thumb */
+  border-radius: 4px; /* Rounded corners for the thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {

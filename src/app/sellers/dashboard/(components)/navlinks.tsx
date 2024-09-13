@@ -39,7 +39,7 @@ export const sellersNavLinks: NavlinksProps[] = [
     // showSublinks: false,
     sublinks: [
       { title: "Product List", path: "/sellers/dashboard/product-listings",icon: PackageIcon, },
-      { title: "Categories", path: "#",icon: FolderLibraryIcon, },
+      // { title: "Categories", path: "#",icon: FolderLibraryIcon, },
       { title: "Add Products", path: "/sellers/dashboard/add-product", icon: PackageAddIcon, },
     ],
   },

@@ -44,7 +44,7 @@ const ProductDetails = () => {
       formdata.append('sid', data?.data?.data?.product?.id)
       formdata.append('price', prdtDetails.price)
       formdata.append('image', prdtDetails?.image && prdtDetails?.image)
-      formdata.append('quantity', prdtDetails.description)
+      formdata.append('quantity', prdtDetails?.quantity)
       formdata.append('category', prdtDetails.category)
       return axios.post(`${baseUrl}/vendor/update-product`,formdata, {headers})},
     onSuccess:((data)=>{
