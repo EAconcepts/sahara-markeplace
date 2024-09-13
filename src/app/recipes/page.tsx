@@ -1,10 +1,15 @@
+'use client'
+
 import Image from "next/image";
 import recipeBg from "@/assets/images/recipe-bg.png";
 import pizza from "@/assets/images/pizza.png";
 import { Button } from "@/components/ui/button";
 import { Search01Icon } from "hugeicons-react";
+import Newsletter from "../(components)/newsletter";
+import { useRouter } from "next/navigation";
 
 const Recipes = () => {
+  const router = useRouter()
   const keywords = [
     "breakfast",
     "Lunch",
@@ -74,7 +79,7 @@ const Recipes = () => {
       <div className="flex lg:px-[96px] lg:gap-y-[32px] lg:flex-wrap max-lg:flex-col gap-y-[24px] px-[24px] py-[40px] lg:justify-around lg:W-full">
         {[1,2,3,4,5].map((recipe, index)=>(
 
-        <div className="flex lg:h-[398px] h-[360px] flex-col  gap-[16px] rounded-[8px] border-[1px] border-border pb-[24px] lg:w-[400px] max-lg:w-full">
+        <div  key={index} className="flex lg:h-[398px] h-[360px] flex-col  gap-[16px] rounded-[8px] border-[1px] border-border pb-[24px] lg:w-[400px] max-lg:w-full">
           <video src={""} width={382} height={240} controls className="w-full h-[240px] rounded-[8px]" />
           <div className="flex flex-col gap-[16px] px-[16px]">
             <div className="flex flex-col gap-[12px]">
@@ -91,13 +96,17 @@ const Recipes = () => {
               South African bunny chow which comprises curry in a hollowed out
               bread loaf, is a bud...
             </p>
-            <button className="leading-[20.3px] lg:self-center border-border rouned-[8px] w-fit border-[1px] px-[16px] py-[6px] text-center text-[14px] font-[600] text-blackPrimary">
+            <button onClick={()=>router.push(`/recipes/1`)} className="leading-[20.3px] lg:self-center border-border rouned-[8px] w-fit border-[1px] px-[16px] py-[6px] text-center text-[14px] font-[600] text-blackPrimary">
               View Content
             </button>
           </div>
         </div>
         ))}
 
+      </div>
+      {/* Newsletter */}
+      <div className="lg:px-[96px]">
+        <Newsletter/>
       </div>
     </div>
   );
