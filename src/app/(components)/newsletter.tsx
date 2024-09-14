@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const Newsletter = () => {
   return (
-    <div className="flex bg-[#F9E79F99] lg:px-[48px] max-lg:rounded-[8px] relative">
+    <div className="flex lg:w-full bg-[#F9E79F99] lg:px-[48px] max-lg:rounded-[8px] relative">
       <div className="flex flex-col gap-y-[32px] py-[40px]">
         <div className="flex flex-col max-lg:w-[65%] gap-y-[4px] max-lg:pl-[12px]">
           <h4 className="font-playfair text-[20px] leading-[29px] lg:text-[28px] font-[600] lg:leading-[40.6px] text-blackPrimary">
@@ -34,7 +34,7 @@ const Newsletter = () => {
         width={833}
         height={728}
         alt="afican map with face"
-        className="max-lg:hidden object-cover max-lg:w-[200px]"
+        className="max-lg:hidden object-cover lg:w-[50%] max-lg:w-[200px]"
       />
       <Image
         src={maskedImage}

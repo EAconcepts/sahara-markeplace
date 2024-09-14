@@ -19,21 +19,21 @@ const Hero = () => {
         {/* Hero Images */}
         <div className="lg:mt-[32px] hidden lg:flex">
           <Image
-            src={hero1}
+            src={woman}
             alt="woman wearing beads"
             width={400}
             height={400}
             className="lg:size-[400px]"
           />
           <Image
-            src={hero2}
+            src={food}
             alt="african dish"
             width={400}
             height={400}
             className="lg:size-[400px]"
           />
           <Image
-            src={hero3}
+            src={drum}
             alt="men beating drums"
             width={400}
             height={400}
@@ -41,25 +41,25 @@ const Hero = () => {
           />
         </div>
         {/* Hero Images mobile */}
-        <div className="max-lg:w-full lg:mt-[32px] lg:hidden flex">
+        <div className="max-lg:w-full overflow-hidden over lg:mt-[32px] lg:hidden flex">
           <Image
             src={hero1}
             alt="woman wearing beads"
-            width={400}
-            height={400}
-            className="max-lg:w-full object-cover object-top"
+            width={100}
+            height={120}
+            className="max-lg:w-full flex-1 shrink object-cover object-top"
           />
           <Image
             src={hero2}
             alt="african dish"
-            width={120}
+            width={100}
             height={120}
             className=" max-lg:w-full object-cover object-top"
           />
           <Image
             src={hero3}
             alt="men beating drums"
-            width={120}
+            width={100}
             height={120}
             className=" max-lg:w-full object-cover object-top"
           />

@@ -11,17 +11,17 @@ const Testimonies = () => {
       <ProductHeader heading="Testimonies" showBtn={false} />
       <div className="mt-[32px] flex w-full flex-col">
         <div className="h-[4px] max-lg:w-[64px] lg:w-[40px] rounded-[24px] bg-[#A27A4D]"></div>
-        <div className="flex max-lg:flex flex-col w-full gap-x-[24px]">
+        <div className="flex max-lg:flex-col w-full gap-x-[24px]">
           {/* Picture Card */}
-          <div className="mt-[12px] flex shrink-0 rounded-[8px] font-openSans">
+          <div className="mt-[12px] max-lg:w-full  flex shrink-0 rounded-[8px] font-openSans">
             <Image
               src={testimony}
               width={270}
               height={180}
               alt=""
-              className="rounded-y-[8px] lg:h-[180px] lg:w-[270px]"
+              className="rounded-y-[8px] lg:h-[180px] lg:w-[270px] max-lg:w-[40%]"
             />
-            <div className="flex flex-col justify-center bg-[#7D9A37] pl-[24px] pr-[85px]">
+            <div className="flex flex-col max-lg:w-full rounded-r-[8px] justify-center bg-[#7D9A37] pl-[24px] lg:pr-[85px]">
               <h6 className="font-openSans max-lg:shrink-0 text-nowrap text-[14px] leading-[20.3px] lg:text-[18px] font-[600] lg:leading-[26.1px] text-white">
                 Chloe Fletcher
               </h6>
