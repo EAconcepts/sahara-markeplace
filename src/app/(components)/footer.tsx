@@ -164,12 +164,6 @@ const Footer = () => {
               >
                 Privacy Policy
               </Link>
-              <Link
-                href={"#"}
-                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
-              >
-                Sitemap
-              </Link>
 
               <Link
                 href={"#"}

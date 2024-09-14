@@ -3,21 +3,31 @@
 import Loader from "@/app/(components)/loader";
 import ProductCard from "@/app/(components)/productCard";
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 const AllCategories = ({products}:{products:any}) => {
+  console.log(products)
   return (
     <div className="flex max-lg:flex-col gap-x-[24px]">
       {/* Categories */}
-      <aside className="flex lg:w-[294px] shrink-0 flex-col">
+      <aside className="flex lg:w-[294px] shrink-0 flex-col pr-[12px]">
         <div className="max-lg:flex max-lg:justify-between ">
         <h4 className="font-openSans text-[16px] lg:text-[20px] font-[600] leading-[24px] tracking-[2%] text-blackPrimary">
           All Categories
         </h4>
         <ChevronRight className="lg:hidden size-[16px]" />
         </div>
-        <div className="max-lg:hidden"></div>
+        <div className="max-lg:hidden mt-[24px] flex flex-col gap-[16px] ">
+          {
+            products?.categories?.map((catg:any)=>(
+          <Link href={`/categories/${catg.name}`} className="text-start pb-[24px] border-border border-b-[1px]" key={catg?.id}>{catg.name}</Link>
+
+            ))
+          
+}
+        </div>
       </aside>
       <div className="lg:hidden mt-[16px] h-[1px] w-full bg-border"></div>
       {/* Products */}

@@ -57,10 +57,10 @@ const Header = () => {
             />
           </Link>
           <div className="flex items-center gap-x-[24px]">
-            <div className="flex gap-x-[8px] max-lg:hidden">
+            <Link href={'/categories'} className="flex gap-x-[8px] max-lg:hidden">
               <span>All Categories</span>
               <MdOutlineKeyboardArrowDown />
-            </div>
+            </Link>
             {/* Search box */}
             <form className="invisible flex h-[36px] items-center gap-x-[12px] rounded-[24px] border-[0.5px] border-[#8E97A6] bg-white px-[12px] py-[8px] max-lg:hidden lg:w-[375px]">
               <CiSearch className="text-[24px] text-[#8E97A6]" />
