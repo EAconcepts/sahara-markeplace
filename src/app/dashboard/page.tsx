@@ -29,13 +29,14 @@ const Dashboard = () => {
           </h4>
           {isPending ? (
             <Loader />
-          ) : data?.data?.data?.orders ? (
+          ) : data?.data?.data?.orders.length > 0 ? (
             <div className="mt[24px] lg:mt-[16px] flex flex-col gap-[16px] lg:gap-y-[24px] idden">
               {data?.data?.data?.orders?.slice(0,3)?.map((order: any) => (
                 <OrderCard date={order?.created_at} product={order?.products} key={order?.id} />
               ))}
             </div>
-          ) : (
+          ) : data?.data?.data?.orders?.length==0 &&(
+            // NO orders yet
             <div className="flex min-h-[187px] flex-col items-center justify-center rounded-[10px] border-[1px] border-border p-[24px]">
               <span className="text-[14px] font-[400] leading-[20.3px]">
                 You have place no order yet

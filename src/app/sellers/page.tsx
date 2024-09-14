@@ -9,7 +9,7 @@ import Testimonies from "./(components)/testimonies";
 import PricingModal from "./(components)/modals/pricing-modal";
 
 const SellerHome = () => {
-    const [showPricing, setShowPricing]= useState<boolean>(false)
+    const [showPricing, setShowPricing]= useState<boolean>(true)
 
   return (
     <div className="my-[40px] flex flex-col">

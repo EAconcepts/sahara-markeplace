@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Search01Icon } from "hugeicons-react";
 import Newsletter from "../(components)/newsletter";
 import { useRouter } from "next/navigation";
+import { useGet } from "@/utils/useGet.";
+import Loader from "../(components)/loader";
 
 const Recipes = () => {
   const router = useRouter()
@@ -23,6 +25,14 @@ const Recipes = () => {
     "Meat & Chicken",
     "Snacks & Sides",
   ];
+     const {data, isPending} = useGet("blog-posts", "blogpost")
+    //  console.log(data)
+const extractRecipe  = (blogs:any)=>{
+  // console.log(blogs)
+  const recipes = blogs?.filter((blog:any)=>blog?.type=='recipie');
+  // console.log(recipes)
+  return recipes
+}
   return (
     <div className="font-openSans w-full ">
       <div className="w-full flex max-lg:flex-col lg:h-[440px]">
@@ -76,10 +86,11 @@ const Recipes = () => {
         </div>
       </div>
       {/* Recipes */}
-      <div className="flex lg:px-[96px] lg:gap-y-[32px] lg:flex-wrap max-lg:flex-col gap-y-[24px] px-[24px] py-[40px] lg:justify-around lg:W-full">
-        {[1,2,3,4,5].map((recipe, index)=>(
+      {data ?
+      <div className="grid lg:px-[96px] lg:gap-y-[32px] lg:grid-cols-4 grid-cols-1 gap-y-[24px] px-[24px] py-[40px] lg:justify-around lg:W-full">
+        {data && extractRecipe(data?.data?.data?.posts).map((recipe:any)=>(
 
-        <div  key={index} className="flex lg:h-[398px] h-[360px] flex-col  gap-[16px] rounded-[8px] border-[1px] border-border pb-[24px] lg:w-[400px] max-lg:w-full">
+        <div  key={recipe?.id} className="flex lg:h-[398px] h-[360px] flex-col  gap-[16px] rounded-[8px] border-[1px] border-border pb-[24px] lg:w-[400px] max-lg:w-full">
           <video src={""} width={382} height={240} controls className="w-full h-[240px] rounded-[8px]" />
           <div className="flex flex-col gap-[16px] px-[16px]">
             <div className="flex flex-col gap-[12px]">
@@ -101,9 +112,14 @@ const Recipes = () => {
             </button>
           </div>
         </div>
-        ))}
-
+        ))
+      }
       </div>
+
+      : isPending && <Loader/>
+      }
+
+
       {/* Newsletter */}
       <div className="lg:px-[96px]">
         <Newsletter/>

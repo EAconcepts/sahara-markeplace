@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Loader from "@/app/(components)/loader";
 import ProductCard from "@/app/(components)/productCard";
@@ -7,40 +7,42 @@ import Link from "next/link";
 import React from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-const AllCategories = ({products}:{products:any}) => {
-  console.log(products)
+const AllCategories = ({ products }: { products: any }) => {
+  // console.log(products)
   return (
-    <div className="flex max-lg:flex-col gap-x-[24px]">
+    <div className="flex gap-x-[24px] max-lg:flex-col">
       {/* Categories */}
-      <aside className="flex lg:w-[294px] shrink-0 flex-col pr-[12px]">
-        <div className="max-lg:flex max-lg:justify-between ">
-        <h4 className="font-openSans text-[16px] lg:text-[20px] font-[600] leading-[24px] tracking-[2%] text-blackPrimary">
-          All Categories
-        </h4>
-        <ChevronRight className="lg:hidden size-[16px]" />
+      <aside className="flex shrink-0 flex-col pr-[12px] lg:w-[294px]">
+        <div className="max-lg:flex max-lg:justify-between">
+          <h4 className="font-openSans text-[16px] font-[600] leading-[24px] tracking-[2%] text-blackPrimary lg:text-[20px]">
+            All Categories
+          </h4>
+          <ChevronRight className="size-[16px] lg:hidden" />
         </div>
-        <div className="max-lg:hidden mt-[24px] flex flex-col gap-[16px] ">
-          {
-            products?.categories?.map((catg:any)=>(
-          <Link href={`/categories/${catg.name}`} className="text-start pb-[24px] border-border border-b-[1px]" key={catg?.id}>{catg.name}</Link>
-
-            ))
-          
-}
+        <div className="sticky top-[76px] mt-[24px] flex h-[calc(100vh-76px)] flex-col gap-[16px] overflow-hidden overflow-y-scroll max-lg:hidden">
+          {products?.categories?.map((catg: any) => (
+            <Link
+              href={`/categories/${catg.name}`}
+              className="border-b-[1px] border-border pb-[24px] text-start"
+              key={catg?.id}
+            >
+              {catg.name}
+            </Link>
+          ))}
         </div>
       </aside>
-      <div className="lg:hidden mt-[16px] h-[1px] w-full bg-border"></div>
+      <div className="mt-[16px] h-[1px] w-full bg-border lg:hidden"></div>
       {/* Products */}
-      {products ?
-      <main className="flex w-full flex-col max-lg:mt-[16px]">
-        <div className="flex flex-col">
-          {/* top heading / sort */}
-          <div className="flex justify-between">
-            <p className="font-openSans text-[16px] font-[600] text-[#101928]">
-              {products?.products?.length} Products
-            </p>
-            {/* Sort */}
-            {/* <div className="flex items-center gap-x-[8px]">
+      {products ? (
+        <main className="flex w-full flex-col max-lg:mt-[16px]">
+          <div className="flex flex-col">
+            {/* top heading / sort */}
+            <div className="flex justify-between">
+              <p className="font-openSans text-[16px] font-[600] text-[#101928]">
+                {products?.products?.length} Products
+              </p>
+              {/* Sort */}
+              {/* <div className="flex items-center gap-x-[8px]">
               <span className="text-[16px] font-[400] leading-[23.2px]">
                 Sort by:
               </span>
@@ -49,9 +51,9 @@ const AllCategories = ({products}:{products:any}) => {
                 <MdKeyboardArrowDown className="text-[24px]" />
               </div>
             </div> */}
-          </div>
-          {/* Filters */}
-          {/* <div className="flex items-center max:lg:text-[14px] gap-x-[12px] lg:gap-x-[24px] border-y-[1px] border-[#E4E7EC] mt-[24px] py-[12px]"> */}
+            </div>
+            {/* Filters */}
+            {/* <div className="flex items-center max:lg:text-[14px] gap-x-[12px] lg:gap-x-[24px] border-y-[1px] border-[#E4E7EC] mt-[24px] py-[12px]"> */}
             {/* <span className="font-openSans lg:text-[16px] font-[400] leading-[23.2px] text-[#787C83]">
               Filters:
             </span> */}
@@ -76,17 +78,18 @@ const AllCategories = ({products}:{products:any}) => {
               </span>
               <MdKeyboardArrowDown className="text-[18px]" />
             </div> */}
-          {/* </div> */}
-          {/* Products */}
-          <div className="grid max-lg:grid-cols-2 lg:grid-cols-3 mt-[32px] gap-x-[24px] gap-y-[24px]">
-            {products?.products?.map((product:any, index:number)=>(
-                <ProductCard key={index} product={product}/>
-            ))}
+            {/* </div> */}
+            {/* Products */}
+            <div className="mt-[32px] grid gap-x-[24px] gap-y-[24px] max-lg:grid-cols-2 lg:grid-cols-3">
+              {products?.products?.map((product: any, index: number) => (
+                <ProductCard key={index} product={product} />
+              ))}
+            </div>
           </div>
-        </div>
-      </main>
-      : <Loader/>
-          }
+        </main>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

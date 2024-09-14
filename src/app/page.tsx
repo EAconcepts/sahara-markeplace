@@ -11,9 +11,9 @@ import Testimonies from "./(components)/testimonies";
 import Newsletter from "./(components)/newsletter";
 import { useGet } from "@/utils/useGet.";
 import axios from "axios";
-import { useEffect } from "react";
-import { newArrivals } from "./(components)/reviews";
 import Loader from "./(components)/loader";
+import Header from "./(components)/header";
+import ProductHeader from "./(components)/product-header";
 
 export default function Home() {
   const { data } = useGet("cata/prod", "products");
@@ -46,13 +46,15 @@ export default function Home() {
         />
         {/* : <Loader/>} */}
       </div>
-      <div className="mt-[40px] max-lg:hidden">
+      <div className="mt-[40px] hidden">
         <SpecialTreats />
       </div>
       {/* Blogs */}
       <div className="mt-[40px] pt-[16px]">
+      <ProductHeader heading="Blogs" showBtn={true} />
+
         {blogs ? (
-          <div className="mt-[32px] flex gap-[16px] max-lg:flex-wrap lg:gap-[24px]">
+          <div className="mt-[32px] grid lg:grid-cols-4 grid-cols-2 gap-[16px] max-lg:flex-wrap lg:gap-[24px]">
             {blogs?.map((story: any) => (
               <BlogCard key={story?.id} story={story} />
             ))}

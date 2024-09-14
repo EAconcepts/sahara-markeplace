@@ -9,20 +9,13 @@ const Topnav = () => {
   const { token } = useAuth();
   return (
     <header className="flex relative z-50 h-[75px] w-full justify-between bg-[#C4D79B] px-[24px] py-[12px] font-openSans max-lg:flex-col lg:h-[62px] lg:px-[96px] lg:py-[12px]">
-      <div className="flex items-center gap-x-[4px] lg:hidden">
-        <CiMail className="text-[12px]" />
-        <span className="text-[12px] font-[400] leading-[16.34px] text-blackPrimary">
+      <div className="flex items-center gap-x-[4px] ">
+        <CiMail className="lg:text-[16px] text-[12px]" />
+        <span className="lg:text-[16px]  text-[12px] font-[400] leading-[16.34px] text-blackPrimary">
           info@saharaeagles.com
         </span>
       </div>
-      <div className="hidden items-center text-[#201812] lg:flex lg:gap-x-[8px] lg:p-[8px]">
-        <h6 className="font-[700] lg:text-[16px] lg:leading-[21.79px]">
-          CALL US NOW:
-        </h6>
-        <span className="font-[400] lg:text-[16px] lg:leading-[21.79px]">
-          +1 234 567-0000
-        </span>
-      </div>
+     
       <nav className="flex gap-x-[20px] text-[14px] text-blackPrimary max-lg:mt-[12px] max-lg:font-[600] max-lg:leading-[19.07px] lg:gap-x-[32px] lg:p-[8px]">
         <Link
           href={"/recipes"}
@@ -37,10 +30,10 @@ const Topnav = () => {
           Blog
         </Link>
         <Link
-          href={"/sellers/auth/signup"}
+          href={"/sellers"}
           className="font-openSans lg:text-[16px] lg:leading-[21.79px]"
         >
-          Become A Seller
+          Sellers Account
         </Link>
         <Link
           href={"faqs"}

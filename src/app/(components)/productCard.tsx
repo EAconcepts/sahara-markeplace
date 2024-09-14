@@ -53,14 +53,14 @@ const ProductCard = ({ product }: { product: any }) => {
   return (
     <div
       onClick={() => router.push(`/product-details/${product?.url || 2}`)}
-      className="flex flex-col pb-[12px] max-lg:w-[140px] lg:w-[294px]"
+      className="flex flex-col pb-[12px] xs:w-[170px] max-lg:w[140px] w-full lgw-[294px]"
     >
       <Image
         src={`${imageBaseUrl}/${product?.image}`}
         width={294}
         alt={product?.name}
         height={180}
-        className="rounded-tl-[8px] rounded-tr-[8px] object-cover max-lg:w-[153px] max-lg:h-[160px] lg:h-[160px] lg:w-[294px]"
+        className="rounded-tl-[8px] rounded-tr-[8px] object-cover max-lg:w[153px] w-full max-lg:h-[160px] lg:h-[160px] lg:w-[294px"
       />
       <div className="mt-[12px] flex flex-col max-lg:mt-[16px] lg:pr-[16px]">
         {/* product name & price */}

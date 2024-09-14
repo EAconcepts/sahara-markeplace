@@ -37,13 +37,13 @@ const BlogCard = ({ story }: any) => {
   const router = useRouter();
   const imgBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   return (
-    <div className="flex h-[268px] w-[155px] flex-col rounded-[12px] bg-[#F9E79F99] px-[8px] py-[12px] font-openSans text-blackPrimary lg:h-[394px] lg:w-[294px] lg:rounded-[24px] lg:px-[16px]">
+    <div className="flex h-[268px] w-full w[155px] flex-col rounded-[12px] bg-[#F9E79F99] px-[8px] py-[12px] font-openSans text-blackPrimary lg:h-[394px] lg:w[294px] lg:rounded-[24px] lg:px-[16px]">
       <Image
         src={`${imgBaseUrl}/${story?.image}`}
         width={270}
         height={180}
         alt={story.title}
-        className="h-[102px] w-[167px] rounded-[8px] lg:h-[180px] lg:w-[270px] lg:rounded-[16px]"
+        className="h-[102px] w-full w[167px] rounded-[8px] lg:h-[180px] lg:w[270px] lg:rounded-[16px]"
       />
       <div className="flex flex-col gap-y-[12px] pt-[4px] lg:px-[4px]">
         <h3 className="line-clamp-2 text-[14px] font-[700] leading-[20.3px] text-blackPrimary lg:text-[20px] lg:leading-[29px]">

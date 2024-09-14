@@ -95,7 +95,7 @@ const Footer = () => {
                 className="pr-[33.3px flex gap-x-[12px] font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 <span>Career </span>{" "}
-                <span className="rounded-[12px] bg-[#E4E7EC] px-[12px] py-[2px] text-[14px] font-[600] leading-[20.3px] text-[#7D9A37]">
+                <span className="rounded-[12px] shrink-0 text-nowrap bg-[#E4E7EC] px-[12px] py-[2px] text-[14px] font-[600] leading-[20.3px] text-[#7D9A37]">
                   We&apos;re hiring
                 </span>
               </Link>
