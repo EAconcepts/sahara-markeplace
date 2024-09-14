@@ -16,11 +16,12 @@ import {
 import Orders from "./(components)/orders";
 import { newArrivals } from "@/app/(components)/reviews";
 import { useGet } from "@/utils/useGet.";
+import Loader from "@/app/(components)/loader";
 // import { newArrivals } from "@/app/page";
 
 const MyOrders = () => {
   const orderStatus = [{}];
-  const {data} = useGet("vendor/orders", "vendorOrders")
+  const {data, isPending} = useGet("vendor/orders", "vendorOrders")
   console.log(data)
   return (
     <div className="font-openSans max-lg:px-[24px]">
@@ -138,11 +139,17 @@ const MyOrders = () => {
               </SelectContent>
             </Select>
             {/* Orders */}
+            {isPending ?
+            <Loader/>
+            : data?.data?.data?.trx.length > 0 ? 
+          
             <div className="flex flex-col gap-y-[16px]">
-              <Orders orders={newArrivals} />
+              <Orders orders={data?.data?.data?.trx} />
               {/* Pagination */}
               <div className=""></div>
             </div>
+            : <p className="text-[12px] font-[400] leading-[20.3px] text-[#787C83]">No orders found.</p>
+}
           </div>
       </div>
     </div>

@@ -52,6 +52,7 @@ const BillingInfo = () => {
       {/* Breadcrumb */}
       <div></div>
       <div className="mt-[40px] flex gap-[24px] max-lg:flex-col max-lg:gap-[24px]">
+      <div className="flex lg:flex-col gap-[24px] w-full ">
         {/* Delivery Info */}
         <div className="flex flex-col">
           <div className="flex flex-col gap-[16px] rounded-[10px] bg-[#C4D79B33] p-[16px]">
@@ -61,7 +62,7 @@ const BillingInfo = () => {
               </h4>
               <div
                 onClick={() => router.back()}
-                className="flex items-center gap-[8px] text-greenPrimary"
+                className="flex items-end gap-[8px] text-greenPrimary"
               >
                 <PencilEdit01Icon />
                 <span className="text-[12px] font-[600] leading-[17.4px]">
@@ -103,6 +104,7 @@ const BillingInfo = () => {
             Stripe
           </p>
         </div>
+        {/* discount */}
         <form className="flex flex-col gap-[24px]">
           {/* Discount */}
           <div className="flex flex-col gap-[4px]">
@@ -182,6 +184,7 @@ const BillingInfo = () => {
             </div>
           </div>
         </form>
+        </div>
         {/* Order Summary */}
         <div className="shrink-0 lg:w-[45%]">
           <OrderSummary onClick={handlePlaceOrder} />

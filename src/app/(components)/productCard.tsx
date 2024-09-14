@@ -30,7 +30,7 @@ const ProductCard = ({ product }: { product: any }) => {
         quantity,
       }, {headers});
       // onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       if (data?.data?.message == "You need to login first") {
         toast.success(data?.data?.message);
       } else {
@@ -46,7 +46,7 @@ const ProductCard = ({ product }: { product: any }) => {
     }
   };
   const handleAddToCart = (id: string) => {
-    console.log(id);
+    // console.log(id);
     addtocart(id, 1);
   };
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
@@ -101,7 +101,11 @@ const ProductCard = ({ product }: { product: any }) => {
         <Button
           onClick={(e) => {
             e.stopPropagation();
+            if(token){
             handleAddToCart(product?.id);
+            }else{
+              router.push('/auth/signin')
+            }
           }}
           variant={"outline"}
           className="mt-[12px] flex w-fit gap-x-[8px] lg:mt-[16px]"

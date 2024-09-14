@@ -29,7 +29,7 @@ const {setShippingInfo, shippingInfo} = useCheckout()
             id="first_name"
             type="text"
             name="first_name"
-            value={shippingInfo.first_name}
+            value={shippingInfo.first_name || user?.first_name}
             onChange={handleChange}
             placeholder="first name"
             className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
@@ -71,7 +71,7 @@ const {setShippingInfo, shippingInfo} = useCheckout()
             type="email"
             name="email"
             onChange={handleChange}
-            value={shippingInfo.email}
+            value={shippingInfo.email }
             placeholder="email"
             className="lg:h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-border bg-white"
             required

@@ -5,6 +5,7 @@ import Form from "./(components)/form";
 import OrderSummary from "./(components)/summary";
 import { useCheckout } from "@/utils/useCheckout";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/utils/useAuth";
 
 const Checkout = () => {
   const {shippingInfo} = useCheckout()
