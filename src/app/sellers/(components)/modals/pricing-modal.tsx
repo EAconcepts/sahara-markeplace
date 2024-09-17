@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -41,25 +41,26 @@ const PricingModal = ({
   ];
   return (
     <div className="fixed inset-0 z-10 w-full overflow-y-scroll bg-white font-openSans">
-      <div className="px-[96px]">
-        <button className="absolute right-[96px] mt-[24px]">
-          <CancelCircleIcon
-            onClick={() => setShowPricing(false)}
-            className="size-[48px] text-black accent-white"
-          />
+      <div className="px-[24px] lg:px-[96px]">
+        {/* Close button */}
+        <button
+          onClick={() => setShowPricing(false)}
+          className="absolute right-[24px] lg:right-[96px] lg:mt-[24px]"
+        >
+          <CancelCircleIcon className="size-[20px] text-black accent-white lg:size-[48px]" />
         </button>
-        <div className="mt-[72px] flex flex-col items-center gap-y-[24px]">
+        <div className="mt-[24px] flex flex-col items-center gap-y-[24px] lg:mt-[72px]">
           {/* heading */}
           <div className="flex flex-col gap-y-[16px]">
-            <div className="flex flex-col gap-y-[8px]">
-              <p className="text-[16px] font-[400] leading-[23.2px] text-greenPrimary">
+            <div className="flex flex-col gap-y-[8px] max-lg:px-[43.5px]">
+              <p className="text-[12px] font-[400] leading-[17.4px] text-greenPrimary lg:text-[16px] lg:leading-[23.2px]">
                 Pricing:
               </p>
-              <h3 className="text-[36px] font-[600] leading-[43.2px] text-blackPrimary">
+              <h3 className="text-[24px] font-[600] leading-[24px] text-blackPrimary lg:text-[36px] lg:leading-[43.2px]">
                 Ready to sell with Sahara Eagle?
               </h3>
             </div>
-            <p className="font-openSans text-[16px] font-[400] leading-[23.2px] text-blackPrimary">
+            <p className="font-openSans text-[14px] font-[400] leading-[20.3px] text-blackPrimary lg:text-[16px] lg:leading-[23.2px]">
               Take your Idea and creativity to the next level. Choose a selling
               plan that aligns with your growth potential and goals
             </p>
@@ -76,37 +77,37 @@ const PricingModal = ({
               </span>
             </div>
             {/* plans */}
-            <div className="flex gap-x-[40px]">
+            <div className="flex gap-y-[12px] max-lg:flex-col lg:gap-x-[40px]">
               {plans?.map((plan, index) => (
                 <div
                   key={index}
-                  className="flex h-[448px] w-[294px] flex-col items-center rounded-[8px] border-[1px] border-border px-[12px] py-[32px]"
+                  className="flex h-[244px] w-full flex-col items-center rounded-[8px] border-[1px] border-border px-[12px] py-[16px] lg:h-[448px] lg:w-[294px] lg:py-[32px]"
                 >
-                  <div className="flex flex-col items-center gap-y-[48px]">
-                    <div className="flex flex-col items-center gap-y-[24px]">
+                  <div className="flex flex-col items-center gap-y-[24px] lg:gap-y-[48px]">
+                    <div className="flex flex-col items-center gap-y-[12px] lg:gap-y-[24px]">
                       <div className="">
-                        <h4 className="text-center text-[20px] font-[600] leading-[29px] text-blackPrimary">
+                        <h4 className="text-center text-[14px] font-[600] leading-[20.3px] text-blackPrimary lg:text-[20px] lg:leading-[29px]">
                           {plan.title}
                         </h4>
-                        <p className="text-center text-[12px] font-[400] leading-[17.4px] text-blackPrimary">
+                        <p className="text-center text-[10px] font-[400] leading-[14.5px] text-blackPrimary lg:text-[12px] lg:leading-[17.4px]">
                           {plan.desc}
                         </p>
                       </div>
                       {/* Price */}
                       <div className="flex w-full items-center justify-center border-b-[1px] border-border">
-                        <h1 className="text-[48px] font-[700] leading-[69.6px] text-greenPrimary">
+                        <h1 className="text-[32px] font-[700] leading-[46.4px] text-greenPrimary lg:text-[48px] lg:leading-[69.6px]">
                           ${plan.price}
                         </h1>
-                        <sub className="text-[18px] font-[400] text-blackPrimary">
+                        <sub className="text-[12px] font-[400] text-blackPrimary lg:text-[18px]">
                           /{plan.duration}
                         </sub>
                       </div>
                       {/* features */}
                       <div className="flex flex-col gap-y-[12px]">
-                        <p className="text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
+                        <p className="text-center text-[12px] font-[400] leading-[20.3px] text-blackPrimary lg:text-[14px]">
                           {plan.features}
                         </p>
-                        <p className="text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
+                        <p className="text-center text-[12px] font-[400] leading-[20.3px] text-blackPrimary lg:text-[14px]">
                           Cancel Anytime
                         </p>
                       </div>
@@ -121,11 +122,11 @@ const PricingModal = ({
             </div>
           </div>
           {/* Features */}
-          <div className="flex flex-wrap justify-center gap-[24px]">
+          <div className="flex gap-[24px] max-lg:flex-col lg:flex-wrap lg:justify-center">
             {features?.map((feat, index) => (
               <div key={index} className="flex items-center gap-x-[12px]">
-                <CheckmarkCircle03Icon className="text-[32px] text-greenPrimary" />
-                <span className="text-[16px] font-[600] leading-[19.2px] tracking-[-2%] text-blackPrimary">
+                <CheckmarkCircle03Icon className="text-[20px] text-greenPrimary lg:text-[32px]" />
+                <span className="text-[14px] font-[600] leading-[19.2px] tracking-[-2%] text-blackPrimary lg:text-[16px]">
                   {feat}
                 </span>
               </div>
@@ -133,37 +134,53 @@ const PricingModal = ({
           </div>
         </div>
         {/* Footer */}
-        <div className="mt-[16px] flex w-full justify-between border-t-[1px] border-border py-[25px]">
-          <div className="flex gap-x-[17px] border-r-[1px] border-border py-[4.5px]">
-            <div className="flex shrink-0">
-              <span>Powered by</span>
-              <Image
-                src={stripe}
-                width={58}
-                height={24}
-                alt=""
-                className=""
-              />{" "}
+        <div className="mt-[24px] flex w-full justify-between border-t-[1px] border-border py-[25px] lg:mt-[16px]">
+          <div className="flex w-full gap-x-[17px] py-[4.5px] max-lg:flex-col max-lg:items-start">
+            <div className="flex w-full items-center justify-start lg:justify-between">
+              {/* Col - 1 */}
+              <div className="flex gap-x-[17px] max-lg:flex-col lg:divide-x-[1px] lg:divide-border">
+                {/* Powered by */}
+                <div className="flex shrink-0 items-center">
+                  <span className="max-lg:text-[12px]">Powered by</span>
+                  <Image
+                    src={stripe}
+                    width={58}
+                    height={24}
+                    alt=""
+                    className="max-lg:h-[16px] max-lg:w-[38px]"
+                  />{" "}
+                </div>
+                {/* Links */}
+                <div className="flex gap-x-[12px] max-lg:mt-[12px] max-lg:shrink-0 lg:gap-x-[17px] lg:px-[17px]">
+                  <span className="text-[12px] font-[600] leading-[17.4px] text-[#787C83] lg:text-[16px] lg:leading-[23.2px]">
+                    Home
+                  </span>
+                  <span className="text-[12px] font-[600] leading-[17.4px] text-[#787C83] lg:text-[16px] lg:leading-[23.2px]">
+                    Legal
+                  </span>
+                  <span className="text-[12px] font-[600] leading-[17.4px] text-[#787C83] max-lg:shrink-0 lg:text-[16px] lg:leading-[23.2px]">
+                    Condition of Use
+                  </span>
+                </div>
+              </div>
+              {/* Mastercard & Visa */}
+              <div className="flex gap-x-[4px] self-start py-[4.5px] max-lg:h-fit lg:items-center">
+                <Image
+                  width={120.81}
+                  height={25}
+                  alt=""
+                  className="max-lg:h-[19px]"
+                  src={mastercard}
+                />
+                <Image
+                  width={50.35}
+                  height={19}
+                  alt=""
+                  className="max-lg:h-[16px]"
+                  src={visa}
+                />
+              </div>
             </div>
-            <span className="text-[16px] font-[600] leading-[23.2px] text-[#787C83]">
-              Home
-            </span>
-            <span className="text-[16px] font-[600] leading-[23.2px] text-[#787C83]">
-              Legal
-            </span>
-            <span className="text-[16px] font-[600] leading-[23.2px] text-[#787C83]">
-              Condition of Use
-            </span>
-          </div>
-          <div className="flex items-center gap-x-[4px] py-[4.5px]">
-            <Image
-              width={120.81}
-              height={25}
-              alt=""
-              className=""
-              src={mastercard}
-            />
-            <Image width={50.35} height={19} alt="" className="" src={visa} />
           </div>
         </div>
       </div>

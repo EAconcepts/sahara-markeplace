@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import Activities from "./(components)/actvities";
@@ -9,10 +9,10 @@ import Testimonies from "./(components)/testimonies";
 import PricingModal from "./(components)/modals/pricing-modal";
 
 const SellerHome = () => {
-    const [showPricing, setShowPricing]= useState<boolean>(false)
+  const [showPricing, setShowPricing] = useState<boolean>(false);
 
   return (
-    <div className="my-[24px] lg:my-[40px] flex flex-col">
+    <div className="my-[24px] flex flex-col lg:my-[40px]">
       <div className="">
         <Hero />
       </div>
@@ -20,15 +20,15 @@ const SellerHome = () => {
         <Activities />
       </div>
       <div className="mt-[40px]">
-        <Features/>
+        <Features />
       </div>
       <div className="mt-[40px]">
-        <Testimonies/>
+        <Testimonies />
       </div>
       <div className="lg:mt-[40px]">
-        <Faqs/>
+        <Faqs />
       </div>
-     {showPricing &&<PricingModal setShowPricing={setShowPricing}/>}
+      {showPricing && <PricingModal setShowPricing={setShowPricing} />}
     </div>
   );
 };
