@@ -9,10 +9,10 @@ import Testimonies from "./(components)/testimonies";
 import PricingModal from "./(components)/modals/pricing-modal";
 
 const SellerHome = () => {
-    const [showPricing, setShowPricing]= useState<boolean>(true)
+    const [showPricing, setShowPricing]= useState<boolean>(false)
 
   return (
-    <div className="my-[40px] flex flex-col">
+    <div className="my-[24px] lg:my-[40px] flex flex-col">
       <div className="">
         <Hero />
       </div>
@@ -25,7 +25,7 @@ const SellerHome = () => {
       <div className="mt-[40px]">
         <Testimonies/>
       </div>
-      <div className="mt-[40px]">
+      <div className="lg:mt-[40px]">
         <Faqs/>
       </div>
      {showPricing &&<PricingModal setShowPricing={setShowPricing}/>}

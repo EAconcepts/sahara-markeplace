@@ -9,12 +9,14 @@ import call from "@/assets/images/call.svg";
 import discount from "@/assets/images/discount-offers.svg";
 
 const Banner = () => {
+  // 100% African products, Authentic Sustainability and Healthy products, Free delivery for orders above $35, and 30 Days return policy
   const features = [
     { icon: africanCheck, title: "100% African products" },
-    { icon: packageDelivery, title: "Free delivery for orders above $30" },
-    { icon: delivery, title: "90 Days return policy " },
-    { icon: discount, title: "Daily offers over 50%" },
-    { icon: call, title: "24/7 Dedicated support" },
+    { icon: discount, title: "Authentic Sustainability and Healthy products" },
+    { icon: packageDelivery, title: "Free delivery for orders above $35" },
+    { icon: delivery, title: "30 Days return policy " },
+    
+    // { icon: call, title: "24/7 Dedicated support" },
   ];
   return (
     <div className="w-full overflow-hidden rounded-[200px] bg-[#F9E79F99]">

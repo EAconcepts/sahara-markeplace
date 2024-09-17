@@ -35,7 +35,7 @@ const Pagination: FC<PaginationProps> = ({
 
   return (
     <div className="mt-4 flex items-center justify-end gap-x-[24px]">
-        <p className="text-[14px] font-[600] leading-[20.3px] text-black">Page 1 of 3</p>
+        <p className="text-[14px] font-[600] leading-[20.3px] text-black">Page {currentPage && currentPage} of {totalPages && totalPages}</p>
         <div className="flex space-x-1">{renderPageNumbers()}</div>
       <Button
         onClick={() => {

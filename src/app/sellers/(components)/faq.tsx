@@ -33,8 +33,8 @@ const Faqs = () => {
     },
   ];
   return (
-    <div className="flex flex-col gap-y-[32px] px-[96px] py-[40px] font-openSans">
-      <h2 className="text-[28px] font-[700] leading-[40.6px] tracking-[2%] text-blackPrimary">
+    <div className="flex flex-col gap-y-[32px] px-[24px] lg:px-[96px] py-[40px] font-openSans">
+      <h2 className="text-[20px] lg:text-[28px] font-[700] leading-[29px] lg:leading-[40.6px] tracking-[2%] text-blackPrimary">
         Frequently Asked Questions
       </h2>
       <div className="flex flex-col gap-y-[24px]">
@@ -54,7 +54,7 @@ export const Faq = ({ faq }: { faq: any }) => {
         onClick={() => setShowFaq((prev) => !prev)}
         className="flex w-full items-center justify-between border-b-[1px] border-border pb-[20.5px] pt-[12.5px]"
       >
-        <span className={`text-[16px] font-[400] leading-[19.2px] tracking-[-2%] text-blackPrimary ${showFaq && 'font-[600]'}`}>
+        <span className={`text-[14px] lg:text-[16px] font-[400] leading-[16.8px] lg:leading-[19.2px] tracking-[-2%] text-blackPrimary ${showFaq && 'font-[600]'}`}>
           {faq.qstn}
         </span>
         {showFaq ? (
@@ -65,7 +65,7 @@ export const Faq = ({ faq }: { faq: any }) => {
       </div>
       {showFaq && (
         <div className="py-[12px]">
-          <pre className="font-openSans break-words text-wrap text-[16px] font-[400] leading-[23.2px] tracking-[-2%] text-blackPrimary">
+          <pre className="font-openSans break-words text-wrap text-[14px] lg:text-[16px] font-[400] leading-[20.3px] lg:leading-[23.2px] tracking-[-2%] text-blackPrimary">
             {faq.answer}
           </pre>
         </div>

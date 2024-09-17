@@ -14,26 +14,26 @@ const Testimonies = () => {
         {img: testimony3, name: "Ola Onika", brand: "OlaCut Designs"},
     ]
   return (
-    <div className="flex flex-col gap-y-[64px] px-[96px] py-[40px] font-openSans">
+    <div className="flex flex-col gap-y-[32px] lg:gap-y-[64px] px-[24px] lg:px-[96px] py-[40px] font-openSans">
       <div className="flex flex-col gap-y-[8px]">
-        <h4 className="text-[28px] font-[700] leading-[40.06px] tracking-[2%]">
+        <h4 className="text-[20px] lg:text-[28px] font-[700] leading-[29px] lg:leading-[40.06px] tracking-[2%]">
           Sahara Eagle Testimonies
         </h4>
-        <p className="text-[16px] font-[400] leading-[23.2px] tracking-[2%] text-blackPrimary">
+        <p className="text-[14px] lg:text-[16px] font-[400] leading-[20.3px] lg:leading-[23.2px] tracking-[2%] text-blackPrimary">
           Don&apos;t just take our words for it, hear from fellow sellers on the
           platform.
         </p>
       </div>
-      <div className="flex justify-between">
+      <div className="flex max-lg:flex-col lg:justify-between">
        { testimonies?.slice(0,3).map((testi, index)=>(
 
-        <div key={index} className="relative flex h-[480px]">
+        <div key={index} className="relative [&:not(:first-child)]:hidden  flex h-[480px]">
             <Image
               src={testi.img}
               width={400}
               height={480}
               alt=""
-              className="h-[480px] w-[400px] shrink-0 object-cover rounded-[12px]"
+              className="h-[458px] lg:h-[480px] w-full lg:w-[400px] shrink-0 object-cover rounded-[12px]"
             />
           
           <div className="flex absolute pb-[32px] bg-gradient-to-t from-black to-[#00000000] w-full  bottom-0  left-0 justify-between px-[32px]">

@@ -7,16 +7,20 @@ import React from "react";
 import logo from "@/assets/images/logo-sahara.png";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter } from "next/navigation";
+import { Menu01Icon, Menu03Icon } from "hugeicons-react";
 
 const Topnav = () => {
   const { token } = useAuth();
   const router = useRouter();
   const path = usePathname();
-  if(path.startsWith("/sellers/auth")|| path.startsWith("/sellers/dashboard")){
-    return null
+  if (
+    path.startsWith("/sellers/auth") ||
+    path.startsWith("/sellers/dashboard")
+  ) {
+    return null;
   }
   return (
-    <div className="flex h-[80px] items-center justify-between border-b-[1px] border-border bg-white px-[96px]">
+    <div className="flex h-[80px] items-center justify-between border-b-[1px] border-border bg-white px-[24px] lg:px-[96px]">
       <Link href={"/sellers"}>
         <Image
           src={logo}
@@ -26,7 +30,7 @@ const Topnav = () => {
           className="size-[48px] lg:size-[80px]"
         />
       </Link>
-      <nav className="flex gap-x-[20px] text-[14px] font-[400] text-blackPrimary max-lg:mt-[12px] max-lg:leading-[19.07px] lg:gap-x-[32px] lg:p-[8px]">
+      <nav className="hidden gap-x-[20px] text-[14px] font-[400] text-blackPrimary max-lg:mt-[12px] max-lg:leading-[19.07px] lg:flex lg:gap-x-[32px] lg:p-[8px]">
         <Link
           href={"/sellers"}
           className={`hidden font-openSans lg:block lg:text-[16px] lg:leading-[21.79px] ${path == "/sellers" && "font-[700] text-greenPrimary"}`}
@@ -52,11 +56,14 @@ const Topnav = () => {
           Pricing
         </Link>
       </nav>
-
+      {/* Mobile Menu */}
+      <div className="lg:hidden">
+        <Menu01Icon className="size-[24px] text-[#292D32]" />
+      </div>
       {!token && (
         <Button
           onClick={() => router.push("/sellers/auth/signin")}
-          className="rounded-[8px] bg-greenPrimary px-[24px] py-[12px] font-openSans lg:text-[16px] lg:leading-[21.79px]"
+          className="hidden rounded-[8px] bg-greenPrimary px-[24px] py-[12px] font-openSans lg:block lg:text-[16px] lg:leading-[21.79px]"
         >
           Login to account
         </Button>
