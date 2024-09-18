@@ -25,6 +25,7 @@ const CartCard = ({product, showQuantity= true, showStore=true, imgClass}:{showQ
     onSuccess: ((data:any)=>{
       console.log(data)
       queryClient.invalidateQueries({ queryKey: ['cart']})
+      queryClient.refetchQueries({queryKey:['cart']})
       toast.success(data?.data?.message)
     }),
     onError:((error:any)=>{
@@ -44,7 +45,7 @@ const CartCard = ({product, showQuantity= true, showStore=true, imgClass}:{showQ
         width={152}
         height={152}
         alt=""
-        className={twMerge("size-[130.5px] lg:size-[152px] rounded-[4px]", imgClass)}
+        className={twMerge("max-lg:size-[130.5px] lg:shrink-0 lg:size-[152px] object-cover rounded-[4px]", imgClass)}
       />
       {/* Details */}
       <div className="flex w-full flex-col gap-y-[16px]">

@@ -20,9 +20,8 @@ const ProductCard = ({ product }: { product: any }) => {
     Authorization: `Bearer ${token}`,
   }
   const queryClient= useQueryClient()
-  // const cartMutation = useMutation({
-  //   // eslint-disable-next-line
-  //   mutationFn  : (product:any, quantity:number) =>
+  // const queries = queryClient.getQueryCache().getAll();
+  // console.log(queries)
   const addtocart = async (product: any, quantity: number) => {
     try {
       const data = await axios.post(`${apiUrl}/add-to-cart`, {
@@ -35,8 +34,8 @@ const ProductCard = ({ product }: { product: any }) => {
         toast.success(data?.data?.message);
       } else {
         toast.success(data?.data?.message || "Added to cart successfully!");
-        queryClient.invalidateQueries({ queryKey: ["cart"] });
-
+        queryClient.refetchQueries({ queryKey: ['cart']})
+        // queryClient.invalidateQueries({ queryKey: ['cart'] });
       }
     } catch (error: any) {
       // onError: (error) => {
@@ -52,7 +51,7 @@ const ProductCard = ({ product }: { product: any }) => {
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   return (
     <div
-      onClick={() => router.push(`/product-details/${product?.url || 2}`)}
+      onClick={() => router.push(`/product-details/${product?.url}`)}
       className="flex flex-col pb-[12px] xs:w-[170px] max-lg:w[140px] w-full lgw-[294px]"
     >
       <Image

@@ -14,14 +14,21 @@ import axios from "axios";
 import Loader from "./(components)/loader";
 import Header from "./(components)/header";
 import ProductHeader from "./(components)/product-header";
+import { Router } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 export default function Home() {
   const { data } = useGet("cata/prod", "products");
   const { data: blogPosts } = useGet("blog-posts", "blogpost");
+  const [underPrice, setUnderPrice] = useState([])
   let blogs = blogPosts?.data?.data?.posts;
   // console.log(blogPosts)
-
-
+  const router = useRouter()
+ 
+  useEffect(()=>{
+    getUnderPrice(data, 400, setUnderPrice)
+  },[data])
   return (
     <main className="max-lg:px-[24px] lg:mt-[40px] lg:px-[96px] lg:pb-[32px] lg:pt-[12px]">
       <Hero />
@@ -39,19 +46,19 @@ export default function Home() {
       </div>
       <div className="mt-[40px]">
         {/* {data?.data?.products ?  */}
-
+{/* Deals Under price */}
         <Registry
-          heading={"Shop by Registry"}
-          products={data?.data?.data?.products?.slice(10, 16)}
+          heading={"Deals Under $400.00"}
+          products={underPrice?.slice(0, 4)}
         />
         {/* : <Loader/>} */}
       </div>
-      <div className="mt-[40px] hidden">
+      {/* <div className="mt-[40px] hidden">
         <SpecialTreats />
-      </div>
+      </div> */}
       {/* Blogs */}
       <div className="mt-[40px] pt-[16px]">
-      <ProductHeader heading="Blogs" showBtn={true} />
+      <ProductHeader heading="Blogs" showBtn={true} onClick={()=>router.push('/blogs')} />
 
         {blogs ? (
           <div className="mt-[32px] grid lg:grid-cols-4 grid-cols-2 gap-[16px] max-lg:flex-wrap lg:gap-[24px]">
@@ -71,4 +78,11 @@ export default function Home() {
       </div>
     </main>
   );
+}
+
+
+export  const getUnderPrice=(data:any, price:number, setUnderPrice:Dispatch<SetStateAction<never[]>>)=>{
+  const filtered =  data?.data?.data?.products?.filter((product:any)=>Number(product?.price) <price)
+  console.log(filtered)
+  setUnderPrice(filtered)
 }

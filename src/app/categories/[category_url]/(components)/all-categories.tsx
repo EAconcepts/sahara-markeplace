@@ -7,7 +7,7 @@ import Link from "next/link";
 import React from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-const AllCategories = ({ products }: { products: any }) => {
+const AllCategories = ({ products, underPrice }: { products: any; underPrice?:never[] }) => {
   // console.log(products)
   return (
     <div className="flex gap-x-[24px] max-lg:flex-col">
@@ -39,7 +39,7 @@ const AllCategories = ({ products }: { products: any }) => {
             {/* top heading / sort */}
             <div className="flex justify-between">
               <p className="font-openSans text-[16px] font-[600] text-[#101928]">
-                {products?.products?.length} Products
+                {underPrice ? underPrice.length : products?.products?.length} Products
               </p>
               {/* Sort */}
               {/* <div className="flex items-center gap-x-[8px]">
@@ -81,7 +81,10 @@ const AllCategories = ({ products }: { products: any }) => {
             {/* </div> */}
             {/* Products */}
             <div className="mt-[32px] grid gap-x-[24px] gap-y-[24px] max-lg:grid-cols-2 lg:grid-cols-3">
-              {products?.products?.map((product: any, index: number) => (
+              {underPrice ? underPrice.map((product: any, index: number) => (
+                <ProductCard key={index} product={product} />
+              )) 
+              : products?.products?.map((product: any, index: number) => (
                 <ProductCard key={index} product={product} />
               ))}
             </div>

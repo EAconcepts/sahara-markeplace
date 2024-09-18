@@ -43,6 +43,7 @@ const Topbar = ({links, settingsLink}:{links?:any; settingsLink?:string}) => {
         <FavouriteIcon />
         {/* <ShoppingCart01Icon/> */}
         {/* Cart */}
+        {userType =='user' &&
         <div
           onClick={() => setShowCart((prev) => !prev)}
           className="relative hidden lg:block"
@@ -59,6 +60,7 @@ const Topbar = ({links, settingsLink}:{links?:any; settingsLink?:string}) => {
             />
           )}
         </div>
+        }
         {/* Cart  Mobile*/}
           {userType =='user' &&
         <div

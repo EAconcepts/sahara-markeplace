@@ -5,13 +5,15 @@ import React from "react";
 import { FaGreaterThan } from "react-icons/fa";
 import ProductCard from "./productCard";
 import ProductHeader from "./product-header";
+import { useRouter } from "next/navigation";
 
 const Products = ({ products, heading }: any) => {
   // console.log(products)
+  const router = useRouter()
   return (
     <div className="flex flex-col pt-[16px]">
         {/* Header */}
-      <ProductHeader heading={heading}/>
+      <ProductHeader heading={heading} onClick={()=>router.push('/categories')}/>
       <div className="grid lg:grid-cols-4 grid-cols-2 w-full max-lg:gap-x-[16px] sm:grid-cols-3 max-lg:justifybetween lg:gap-x-[24px] mt-[32px]">
         {products?.slice(0,4).map((product:any, index:any) => (
           <ProductCard key={index} product={product} />

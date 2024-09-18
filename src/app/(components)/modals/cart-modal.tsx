@@ -41,7 +41,7 @@ export const CartModal = ({carts, setShowCart, className}:{carts:any; setShowCar
         </div> 
         <div className='mt-[16px] flex flex-col gap-y-[28px] border-b-[2px] border-[#E4E7EC] pb-[28px]'>
             {carts?.map((cart:any)=>(
-                <CartCard product={cart} key={cart.id}  showQuantity={true} />
+                <CartCard  product={cart} key={cart.id}  showQuantity={true} />
             ))}
         </div>
         {/* Sub total */}

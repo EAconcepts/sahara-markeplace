@@ -30,7 +30,6 @@ const Header = () => {
   const router = useRouter()
   // console.log(userType)
   const { data } = useGet("my-cart", "cart");
-  // console.log(data)
   const {searchQuery, setSearchQuery} = useCheckout()
   if (
     path.startsWith("/dashboard") ||

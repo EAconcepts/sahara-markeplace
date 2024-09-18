@@ -21,7 +21,7 @@ const Topnav = () => {
   }
   return (
     <div className="flex h-[80px] items-center justify-between border-b-[1px] border-border bg-white px-[24px] lg:px-[96px]">
-      <Link href={"/sellers"}>
+      <Link href={"/"}>
         <Image
           src={logo}
           width={80}
@@ -38,19 +38,19 @@ const Topnav = () => {
           Home
         </Link>
         <Link
-          href={"/sellers/grow"}
+          href={"#"}
           className={`font-openSans max-lg:hidden lg:text-[16px] lg:leading-[21.79px] ${path == "/sellers/grow" && "font-[700] text-greenPrimary"}`}
         >
           Grow
         </Link>
         <Link
-          href={"/sellers/learn"}
+          href={"#"}
           className={`font-openSans lg:text-[16px] lg:leading-[21.79px] ${path == "/sellers/learn" && "font-[700] text-greenPrimary"}`}
         >
           Learn
         </Link>
         <Link
-          href={"sellers/pricing"}
+          href={"#"}
           className={`font-openSans lg:text-[16px] lg:leading-[21.79px] ${path == "/sellers/pricing" && "font-[700] text-greenPrimary"}`}
         >
           Pricing
@@ -63,7 +63,7 @@ const Topnav = () => {
       {!token && (
         <Button
           onClick={() => router.push("/sellers/auth/signin")}
-          className="hidden rounded-[8px] bg-greenPrimary px-[24px] py-[12px] font-openSans lg:block lg:text-[16px] lg:leading-[21.79px]"
+          className="hidden rounded-[8px] bg-greenPrimary px-[24px] py-[12px] font-openSans lg:flex lg:items-center lg:text-[16px] lg:leading-[21.79px]"
         >
           Login to account
         </Button>
