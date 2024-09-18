@@ -29,7 +29,7 @@ const OrderDetails = () => {
       </div>
       {/* Order Details */}
       <div className="mt-[32px]">
-        <Details />
+        <Details order={order}/>
         {/* <Updates/> */}
       </div>
     </div>

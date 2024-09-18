@@ -7,7 +7,9 @@ import Delivery from "./delivery";
 import { Button } from "@/components/ui/button";
 import { newArrivals } from "@/app/(components)/reviews";
 
-const Details = () => {
+const Details = ({order}:{order?:any}) => {
+  console.log(order)
+  const imgBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
   return (
     <div className="flex w-full max-lg:flex-col max-lg:gap-y-[16px] lg:justify-between gap-x-[16px]">
       <div className="flex w-full flex-col gap-y-[24px] rounded-[12px] border-[1px] py-[16px]">
@@ -30,15 +32,15 @@ const Details = () => {
             </tr>
           </thead>
           <tbody className="">
-            {newArrivals?.slice(0, 3).map((product: any, index: number) => (
+            {/* {newArrivals?.slice(0, 3).map((product: any, index: number) => ( */}
               <tr
-                key={index}
+                // key={index}
                 className="h-[105px] border-b border-border font-openSans"
               >
                 {/* Image */}
                 <td className="w-[120px] shrink grow-0 px-[20px] py-[8px]">
                   <Image
-                    src={product.image}
+                    src={`${imgBaseUrl}/${order?.products?.image}`}
                     width={80}
                     height={80}
                     alt=""
@@ -49,22 +51,22 @@ const Details = () => {
                 <td className="px-[24px]">
                   <div className="flex flex-col gap-y-[8px]">
                     <p className="text-[14px] font-[400] leading-[16.8px] text-blackPrimary">
-                      {product.title}
+                      {order?.products?.name}
                     </p>
                     <p className="text-[12px] font-[400] leading-[14.4px] text-[#787C83]">
                       Quantity{" "}
                       <span className="text-[14px] leading-[16.8px] text-blackPrimary">
-                        : 2
+                        : {order?.products?.quantity}
                       </span>
                     </p>
                   </div>
                 </td>
                 {/* Amount */}
                 <td className="px-[24px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                  $ {product.price}
+                  $ {order?.products?.price}
                 </td>
               </tr>
-            ))}
+            {/* ))} */}
           </tbody>
         </table>
         {/* Sub total */}
@@ -74,7 +76,7 @@ const Details = () => {
               Sub-total:
             </span>
             <span className="text-[14px] font-[600] leading-[16.8px] text-blackPrimary">
-              $492.97
+              ${order?.products?.price}
             </span>
           </div>
           <div className="flex justify-between">
@@ -82,7 +84,7 @@ const Details = () => {
               Discount:
             </span>
             <span className="text-[14px] font-[600] leading-[16.8px] text-blackPrimary">
-              -$49.30
+              -$0.00
             </span>
           </div>
           <div className="flex justify-between">
@@ -90,7 +92,7 @@ const Details = () => {
               Total:
             </span>
             <span className="text-[14px] font-[600] leading-[16.8px] text-blackPrimary">
-              $443.67
+              ${order?.products?.price}
             </span>
           </div>
           <p className="text-success w-fit self-end rounded-[24px] bg-[#00875133] px-[16px] py-[4px] text-center text-[14px] font-[400] leading-[20.3px]">
@@ -99,7 +101,7 @@ const Details = () => {
         </div>
       </div>
       <div className="">
-        <Delivery />
+        <Delivery order={order} />
       </div>
     </div>
   );
