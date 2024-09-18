@@ -32,7 +32,7 @@ const Dashboard = () => {
           ) : data?.data?.data?.orders.length > 0 ? (
             <div className="mt[24px] lg:mt-[16px] flex flex-col gap-[16px] lg:gap-y-[24px] idden">
               {data?.data?.data?.orders?.slice(0,3)?.map((order: any) => (
-                <OrderCard date={order?.created_at} product={order?.products} key={order?.id} />
+                <OrderCard date={order?.created_at} product={order?.products} key={order?.id} id={order?.id} />
               ))}
             </div>
           ) : data?.data?.data?.orders?.length==0 &&(

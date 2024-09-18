@@ -47,7 +47,7 @@ const MyOrders = () => {
         <tbody className="divide-y divide-border px-[15px]">
           {data?.data?.data?.orders?.map((order: any) => (
             <tr
-              onClick={() => router.push(`/dashboard/my-orders/SE2392922`)}
+              onClick={() => router.push(`/dashboard/my-orders/${order?.id}`)}
               key={order?.id}
               className="h-[58px] gap-x-[24px] px-[15px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary"
             >

@@ -1,12 +1,13 @@
 import Image from 'next/image'
+import Link from 'next/link';
 import React from 'react'
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
 
-const OrderCard = ({product, date}:{product:any; date:String}) => {
+const OrderCard = ({product, date, id}:{product:any; date:String; id?:number}) => {
     const imgBaseUrl =process.env.NEXT_PUBLIC_IMAGE_URL
 
   return (
-    <div className='flex justify-between w-full font-openSans items-center'>
+    <Link href={`/dashboard/my-orders/${id}`} className='flex justify-between w-full font-openSans items-center'>
         <div className="flex gap-[12px] lg:gap-[24px]">
             <Image width={44} height={59} alt={product?.name} src={`${imgBaseUrl}/${product?.image}`}  className='object-cover w-[44px] lg:size-[64px] h-[59px] rounded-[2px] '/>
             <div className='flex gap-[4px] lg:gap-[16px] items-center'>
@@ -28,7 +29,7 @@ const OrderCard = ({product, date}:{product:any; date:String}) => {
             <IoEllipsisHorizontalSharp className='text-blackPrimary' />
             </div>
         </div>
-    </div>
+    </Link>
   )
 }
 

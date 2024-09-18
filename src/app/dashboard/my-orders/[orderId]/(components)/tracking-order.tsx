@@ -1,7 +1,7 @@
 import { ArrowRight01Icon, CheckmarkCircle01Icon } from "hugeicons-react";
 import React from "react";
 
-const TrackingOrder = () => {
+const TrackingOrder = ({order}:{order:any}) => {
   return (
     <>
       {/* Heading */}
