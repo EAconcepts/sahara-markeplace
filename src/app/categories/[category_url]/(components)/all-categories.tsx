@@ -8,7 +8,7 @@ import React from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 const AllCategories = ({ products, underPrice }: { products: any; underPrice?:never[] }) => {
-  console.log(products)
+  console.log(underPrice)
   return (
     <div className="flex gap-x-[24px] max-lg:flex-col">
       {/* Categories */}
@@ -23,7 +23,7 @@ const AllCategories = ({ products, underPrice }: { products: any; underPrice?:ne
           {products?.categories?.map((catg: any) => (
             <Link
               href={`/categories/${catg.name}`}
-              className="border-b-[1px] border-border pb-[24px] text-start"
+              className="border-b-[1p`x] border-border pb-[24px] text-start"
               key={catg?.id}
             >
               {catg.name}
@@ -39,7 +39,7 @@ const AllCategories = ({ products, underPrice }: { products: any; underPrice?:ne
             {/* top heading / sort */}
             <div className="flex justify-between">
               <p className="font-openSans text-[16px] font-[600] text-[#101928]">
-                {underPrice ? underPrice.length : products?.products?.length} Products
+                {underPrice && underPrice?.length > 0 ? underPrice.length : products?.products?.length} Products
               </p>
               {/* Sort */}
               {/* <div className="flex items-center gap-x-[8px]">
@@ -81,7 +81,7 @@ const AllCategories = ({ products, underPrice }: { products: any; underPrice?:ne
             {/* </div> */}
             {/* Products */}
             <div className="mt-[32px] grid gap-x-[24px] gap-y-[24px] max-lg:grid-cols-2 lg:grid-cols-3">
-              {underPrice ? underPrice.map((product: any, index: number) => (
+              {underPrice && underPrice.length >0 ? underPrice.map((product: any, index: number) => (
                 <ProductCard key={index} product={product} />
               )) 
               : products?.products?.map((product: any, index: number) => (
