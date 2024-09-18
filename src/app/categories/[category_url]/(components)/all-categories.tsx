@@ -8,7 +8,7 @@ import React from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 const AllCategories = ({ products, underPrice }: { products: any; underPrice?:never[] }) => {
-  // console.log(products)
+  console.log(products)
   return (
     <div className="flex gap-x-[24px] max-lg:flex-col">
       {/* Categories */}
@@ -33,7 +33,7 @@ const AllCategories = ({ products, underPrice }: { products: any; underPrice?:ne
       </aside>
       <div className="mt-[16px] h-[1px] w-full bg-border lg:hidden"></div>
       {/* Products */}
-      {products ? (
+      {products || underPrice ? (
         <main className="flex w-full flex-col max-lg:mt-[16px]">
           <div className="flex flex-col">
             {/* top heading / sort */}

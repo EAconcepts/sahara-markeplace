@@ -17,6 +17,7 @@ import ProductHeader from "./(components)/product-header";
 import { Router } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { getUnderPrice } from "@/lib/utils";
 
 export default function Home() {
   const { data } = useGet("cata/prod", "products");
@@ -81,8 +82,3 @@ export default function Home() {
 }
 
 
-export  const getUnderPrice=(data:any, price:number, setUnderPrice:Dispatch<SetStateAction<never[]>>)=>{
-  const filtered =  data?.data?.data?.products?.filter((product:any)=>Number(product?.price) <price)
-  console.log(filtered)
-  setUnderPrice(filtered)
-}
