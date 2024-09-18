@@ -17,9 +17,10 @@ export const CheckoutProvider=({children}:{children:React.ReactNode})=>{
     city:'',
     postal:''
       })
+      const [searchQuery, setSearchQuery] = useState("")
 
     return(
-        <CheckoutContext.Provider value={{shippingInfo, setShippingInfo}}>
+        <CheckoutContext.Provider value={{shippingInfo, setShippingInfo, searchQuery, setSearchQuery}}>
 {children}
         </CheckoutContext.Provider>
     )

@@ -11,7 +11,7 @@ import Link from "next/link";
 import { RiMenu2Line } from "react-icons/ri";
 import { CartModal } from "./modals/cart-modal";
 import Topnav from "./topnav";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useGet } from "@/utils/useGet.";
 import { useAuth } from "@/utils/useAuth";
 import Sidemenu from "../dashboard/(components)/sidemenu";
@@ -20,15 +20,18 @@ import {
   navlinks,
   sellersNavLinks,
 } from "../sellers/dashboard/(components)/navlinks";
+import { useCheckout } from "@/utils/useCheckout";
 
 const Header = () => {
   const [showCart, setShowCart] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const path = usePathname();
   const { userType, token } = useAuth();
+  const router = useRouter()
   // console.log(userType)
   const { data } = useGet("my-cart", "cart");
   // console.log(data)
+  const {searchQuery, setSearchQuery} = useCheckout()
   if (
     path.startsWith("/dashboard") ||
     path.startsWith("/sellers") ||
@@ -36,12 +39,15 @@ const Header = () => {
   ) {
     return null;
   }
+  
   const dashbLinks =
     userType == "user"
       ? navlinks
       : userType == "seller"
         ? sellersNavLinks
         : adminNavLinks;
+
+        
   return (
     <div className={`${showCart && "sticky top-0 z-40 w-full"}`}>
       <Topnav />
@@ -62,11 +68,16 @@ const Header = () => {
               <MdOutlineKeyboardArrowDown />
             </Link>
             {/* Search box */}
-            <form className="invisible flex h-[36px] items-center gap-x-[12px] rounded-[24px] border-[0.5px] border-[#8E97A6] bg-white px-[12px] py-[8px] max-lg:hidden lg:w-[375px]">
-              <CiSearch className="text-[24px] text-[#8E97A6]" />
+            <form onSubmit={(e)=>{
+                  e.preventDefault()
+                  router.push(`/search/${searchQuery}`)
+              }} className=" flex h-[36px] items-center gap-x-[12px] rounded-[24px] border-[0.5px] border-[#8E97A6] bg-white px-[12px] py-[8px] max-lg:hidden lg:w-[375px]">
+              <CiSearch  className="text-[24px] text-[#8E97A6]" />
               <input
                 type="text"
                 placeholder="Search here..."
+                value={searchQuery}
+                onChange={(e)=>setSearchQuery(e.target.value)}
                 className="w-full focus:outline-none"
               />
             </form>
