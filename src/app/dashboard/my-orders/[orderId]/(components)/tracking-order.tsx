@@ -1,3 +1,4 @@
+import { convertDate } from "@/utils/utils";
 import { ArrowRight01Icon, CheckmarkCircle01Icon } from "hugeicons-react";
 import React from "react";
 
@@ -27,20 +28,20 @@ const TrackingOrder = ({order}:{order?:any}) => {
               Ordered
             </h6>
             <span className="shrink-0 text-[8px] lg:text-[14px] font-[400] leading-[16.8px]">
-              10th Jun. 2024
+             {order && convertDate(order?.created_at)}
             </span>
           </div>
         </div>
         <div className="bg-success h-[1px] w-full"></div>
         {/* Ready */}
         <div className="relative flex flex-col">
-          <CheckmarkCircle01Icon className="fill-success size-[38px] shrink-0 text-white" />
+          <CheckmarkCircle01Icon className={`${order?.ready =='1' ?'fill-success' :'fill-[#8E97A6] text-white'} size-[38px] shrink-0 text-white`} />
           <div className="absolute bottom-[-44px] left-0 flex w-max flex-col">
             <h6 className="font-openSans text-[10px] lg:text-[16px] font-[600] leading-[19.2px] tracking-[-2%] text-black">
               Ready
             </h6>
             <span className="text-[8px] lg:text-[14px] font-[400] leading-[16.8px]">
-              11th Jun. 2024
+              .....
             </span>
           </div>
         </div>
@@ -66,7 +67,7 @@ const TrackingOrder = ({order}:{order?:any}) => {
               Estimated Delivery
             </h6>
             <span className="text-[8px] lg:text-[14px] font-[400] leading-[16.8px]">
-              21st Jun. 2024
+             .....
             </span>
           </div>
         </div>

@@ -95,8 +95,8 @@ const Details = ({order}:{order?:any}) => {
               ${order?.products?.price}
             </span>
           </div>
-          <p className="text-success w-fit self-end rounded-[24px] bg-[#00875133] px-[16px] py-[4px] text-center text-[14px] font-[400] leading-[20.3px]">
-            Payment Made
+          <p className={`${order?.payment == '1' ? 'text-success' : 'text-failure'} w-fit self-end rounded-[24px] bg-[#00875133] px-[16px] py-[4px] text-center text-[14px] font-[400] leading-[20.3px]`}>
+            {order?.payment == "1" ? "Payment Made" : "Payment Not Made"}
           </p>
         </div>
       </div>
