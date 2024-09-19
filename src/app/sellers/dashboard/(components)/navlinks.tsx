@@ -71,17 +71,24 @@ export const navlinks: NavlinksProps[] = [
 ];
 
 export const adminNavLinks: NavlinksProps[] = [
-  { icon: DashboardSquare03Icon, title: "Dashboard", path: "admin/dashboard" },
+  { icon: DashboardSquare03Icon, title: "Dashboard", path: "/admin/dashboard" },
   {
     icon: Message01Icon,
     title: "Products",
-    path: "admin/dashboard/product-listings",
+    path: "#",
+    sublinks: [
+      { title: "Product List", path: "/admin/dashboard/products",icon: PackageIcon, },
+      // { title: "Categories", path: "#",icon: FolderLibraryIcon, },
+      { title: "Categories", path: "/admin/dashboard/products/categories", icon: PackageAddIcon, },
+      { title: "Requests", path: "#", icon: PackageAddIcon, },
+      { title: "Recipes", path: "#", icon: PackageAddIcon, },
+    ],
   },
-  { icon: PackageIcon, title: "Order list", path: "admin/dashboard/my-orders" },
+  { icon: PackageIcon, title: "Order list", path: "/admin/dashboard/my-orders" },
   {
     icon: PackageIcon,
     title: "Transactions",
-    path: "admin/dashboard/my-orders",
+    path: "/admin/dashboard/my-orders",
   },
   { icon: UserMultiple02Icon, title: "Customers", path: "/admin/dashboard/customers" },
   { icon: UserAccountIcon, title: "Sellers", path: "/admin/dashboard/sellers" },
@@ -93,15 +100,15 @@ export const adminNavLinks: NavlinksProps[] = [
   {
     icon: News01Icon,
     title: "Blogs",
-    path: "/admin/dashboard/discounts",
+    path: "#",
     value: 10,
   },
   {
     icon: DiscountIcon,
     title: "Coupons/Discounts",
-    path: "admin/dashboard/discounts",
+    path: "#",
     value: 10,
   },
-  { icon: Message01Icon, title: "Reviews", path: "/admin/dashboard/reviews" },
+  { icon: Message01Icon, title: "Reviews", path: "#" },
   { icon: Settings02Icon, title: "Settings", path: "/admin/dashboard/settings" },
 ];

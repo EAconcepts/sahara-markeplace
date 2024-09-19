@@ -1,13 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { FC } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  className?:string
 }
 
-const Pagination: FC<PaginationProps> = ({
+const Pagination: FC<PaginationProps> = ({className,
   currentPage,
   totalPages,
   onPageChange,
@@ -34,9 +36,10 @@ const Pagination: FC<PaginationProps> = ({
   };
 
   return (
-    <div className="mt-4 flex items-center justify-end gap-x-[24px]">
+    <div className={twMerge("mt-4 flex items-center justify-end gap-x-[24px]", className)}>
         <p className="text-[14px] font-[600] leading-[20.3px] text-black">Page {currentPage && currentPage} of {totalPages && totalPages}</p>
         <div className="flex space-x-1">{renderPageNumbers()}</div>
+        <div className="flex items-center gap-x-[24px]">
       <Button
         onClick={() => {
           onPageChange(currentPage - 1);
@@ -66,6 +69,7 @@ const Pagination: FC<PaginationProps> = ({
       >
         Next
       </button>
+      </div>
     </div>
   );
 };
