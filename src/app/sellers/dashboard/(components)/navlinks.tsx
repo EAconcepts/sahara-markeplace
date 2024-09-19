@@ -81,7 +81,7 @@ export const adminNavLinks: NavlinksProps[] = [
       // { title: "Categories", path: "#",icon: FolderLibraryIcon, },
       { title: "Categories", path: "/admin/dashboard/products/categories", icon: PackageAddIcon, },
       { title: "Requests", path: "#", icon: PackageAddIcon, },
-      { title: "Recipes", path: "#", icon: PackageAddIcon, },
+      { title: "Recipes", path: "/admin/dashboard/products/recipes", icon: PackageAddIcon, },
     ],
   },
   { icon: PackageIcon, title: "Order list", path: "/admin/dashboard/my-orders" },
