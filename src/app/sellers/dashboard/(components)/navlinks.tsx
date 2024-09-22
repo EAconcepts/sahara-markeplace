@@ -38,9 +38,17 @@ export const sellersNavLinks: NavlinksProps[] = [
     path: "#",
     // showSublinks: false,
     sublinks: [
-      { title: "Product List", path: "/sellers/dashboard/product-listings",icon: PackageIcon, },
+      {
+        title: "Product List",
+        path: "/sellers/dashboard/product-listings",
+        icon: PackageIcon,
+      },
       // { title: "Categories", path: "#",icon: FolderLibraryIcon, },
-      { title: "Add Products", path: "/sellers/dashboard/add-product", icon: PackageAddIcon, },
+      {
+        title: "Add Products",
+        path: "/sellers/dashboard/add-product",
+        icon: PackageAddIcon,
+      },
     ],
   },
   {
@@ -77,30 +85,46 @@ export const adminNavLinks: NavlinksProps[] = [
     title: "Products",
     path: "#",
     sublinks: [
-      { title: "Product List", path: "/admin/dashboard/products",icon: PackageIcon, },
+      {
+        title: "Product List",
+        path: "/admin/dashboard/products",
+        icon: PackageIcon,
+      },
       // { title: "Categories", path: "#",icon: FolderLibraryIcon, },
-      { title: "Categories", path: "/admin/dashboard/products/categories", icon: PackageAddIcon, },
-      { title: "Requests", path: "#", icon: PackageAddIcon, },
-      { title: "Recipes", path: "/admin/dashboard/products/recipes", icon: PackageAddIcon, },
+      {
+        title: "Categories",
+        path: "/admin/dashboard/products/categories",
+        icon: PackageAddIcon,
+      },
+      { title: "Requests", path: "#", icon: PackageAddIcon },
+      {
+        title: "Recipes",
+        path: "/admin/dashboard/products/recipes",
+        icon: PackageAddIcon,
+      },
     ],
   },
-  { icon: PackageIcon, title: "Order list", path: "/admin/dashboard/my-orders" },
+  { icon: PackageIcon, title: "Order list", path: "/admin/dashboard/orders" },
   {
     icon: PackageIcon,
     title: "Transactions",
     path: "/admin/dashboard/my-orders",
   },
-  { icon: UserMultiple02Icon, title: "Customers", path: "/admin/dashboard/customers" },
+  {
+    icon: UserMultiple02Icon,
+    title: "Customers",
+    path: "/admin/dashboard/customers",
+  },
   { icon: UserAccountIcon, title: "Sellers", path: "/admin/dashboard/sellers" },
   {
     icon: AlignBoxMiddleLeftIcon,
     title: "Applications",
-    path: "/admin/dashboard/my-orders",
+    path: "#",
   },
   {
     icon: News01Icon,
     title: "Blogs",
-    path: "#",
+    path: "/admin/dashboard/blogs",
     value: 10,
   },
   {
@@ -110,5 +134,5 @@ export const adminNavLinks: NavlinksProps[] = [
     value: 10,
   },
   { icon: Message01Icon, title: "Reviews", path: "#" },
-  { icon: Settings02Icon, title: "Settings", path: "/admin/dashboard/settings" },
+  { icon: Settings02Icon, title: "Settings", path: "#" },
 ];

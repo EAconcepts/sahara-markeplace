@@ -1,3 +1,5 @@
+'use client'
+
 import { Header } from "@/app/dashboard/(components)/header";
 import { AddCircleIcon } from "hugeicons-react";
 import { SearchForm } from "../(components)/searchForm";
@@ -5,12 +7,14 @@ import { SortBy } from "../(components)/SortBy";
 import Image from "next/image";
 import Rating from "@/app/(components)/rating";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 
 const Recipes=()=>{
+    const router = useRouter()
     return(
         <div className="mt-[12px] flex flex-col w-full pt-[24px] gap-[32px]">
-            <Header title="Recipes" btnText="Add New Recipe" BtnIcon={AddCircleIcon} btnClass="rounded-[8px] py-[12px] px-[24px]"/>
+            <Header title="Recipes" btnText="Add New Recipe" BtnIcon={AddCircleIcon} onBtnClick={()=>router.push('/admin/dashboard/products/recipes/add-recipe')} btnClass="rounded-[8px] py-[12px] px-[24px]"/>
             <section className="flex flex-col gap-[16px]">
                 {/* Search & Sort */}
                 <div className="flex items-center justify-between px-[12px]">

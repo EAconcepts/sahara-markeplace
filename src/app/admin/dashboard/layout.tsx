@@ -1,7 +1,7 @@
 import Sidemenu from "@/app/dashboard/(components)/sidemenu";
-import Topbar from "@/app/dashboard/(components)/topbar";
 import { adminNavLinks } from "@/app/sellers/dashboard/(components)/navlinks";
 import React from "react";
+import Topbar from "./(components)/Topbar";
 
 export default function AdminLayout({children}:{children:React.ReactNode}){
 
