@@ -35,8 +35,9 @@ const Signup = () => {
   const handleSignup = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(userDetails);
-    if(userDetails.password ===userDetails.confirm_password){
-    registerMutation.mutate()};
+    if (userDetails.password === userDetails.confirm_password) {
+      registerMutation.mutate();
+    }
   };
   const registerMutation = useMutation({
     mutationFn: () => axios.post(`${baseUrl}/vendor-register`, userDetails),
@@ -54,15 +55,15 @@ const Signup = () => {
   });
 
   return (
-    <div className="flex w-full flex-col pt-[40px] lg:pb-[300px] max-lg:px-[24px]">
-      <div className="flex max-lg:flex-col w-full gap-x-[24px] lg:px-[96px]">
+    <div className="flex w-full flex-col pt-[40px] max-lg:px-[24px] lg:pb-[300px]">
+      <div className="flex w-full gap-x-[24px] max-lg:flex-col lg:px-[96px]">
         <div className="shrink- w-full">
           <AuthCard image={img} header="Join the Movement" />
         </div>
         {/* signup form */}
         <form
           onSubmit={handleSignup}
-          className="shrink0 flex w-full max-lg:mt-[40px] flex-col lg:px-[40px] font-openSans"
+          className="shrink0 flex w-full flex-col font-openSans max-lg:mt-[40px] lg:px-[40px]"
         >
           <h4 className="text-center text-[24px] font-[600] leading-[28.8px] text-blackPrimary">
             Sign Up
@@ -171,7 +172,12 @@ const Signup = () => {
                 <textarea
                   id="description"
                   name="description"
-                  onChange={(e)=>setUserDetails((prev)=>({...prev, description: e.target.value}))}
+                  onChange={(e) =>
+                    setUserDetails((prev) => ({
+                      ...prev,
+                      description: e.target.value,
+                    }))
+                  }
                   value={userDetails.description}
                   placeholder="description"
                   className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
@@ -188,7 +194,12 @@ const Signup = () => {
                 <textarea
                   id="address"
                   name="address"
-                  onChange={(e)=>setUserDetails((prev)=>({...prev, address: e.target.value}))}
+                  onChange={(e) =>
+                    setUserDetails((prev) => ({
+                      ...prev,
+                      address: e.target.value,
+                    }))
+                  }
                   value={userDetails.address}
                   placeholder="address"
                   className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
@@ -237,17 +248,17 @@ const Signup = () => {
           <Button
             disabled={registerMutation.isPending}
             type="submit"
-            className="mt-[40px] max-lg:h-[48px] lg:h-[55px] rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20"
+            className="mt-[40px] rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20 max-lg:h-[48px] lg:h-[55px] lg:w-full"
           >
             {registerMutation.isPending ? "Signing up..." : " Sign up"}
           </Button>
-          <div className="mt-[24px] max-lg:text-[14px] flex items-center justify-center gap-x-[12px] lg:text-[20px]">
+          <div className="mt-[24px] flex items-center justify-center gap-x-[12px] max-lg:text-[14px] lg:text-[20px]">
             <span className="font-[400] leading-[29px] text-[#787C83]">
               Already have an account?
             </span>{" "}
             <button
               type="button"
-              onClick={()=>router.push("/sellers/auth/signin")}
+              onClick={() => router.push("/sellers/auth/signin")}
               className="font-[700] leading-[24px] text-[#7D9A37]"
             >
               Sign in

@@ -20,31 +20,34 @@ import { useRouter } from "next/navigation";
 const SellersDashboard = () => {
   // const recentOrders = [];
   const { data } = useGet("vendor/dashboard", "vendorDashboard");
-  const { data: recentOrders, updatedAt } = useGet("vendor/orders", "vendorOrders");
+  const { data: recentOrders, updatedAt } = useGet(
+    "vendor/orders",
+    "vendorOrders",
+  );
   console.log(data);
   console.log(recentOrders);
   const { user } = useAuth();
   // console.log(user)
-  const router = useRouter()
+  const router = useRouter();
   return (
     <div className="font-openSans max-lg:px-[24px]">
       {/* updated */}
-      <LastUpdated queryKey="vendorOrders"  updatedAt={updatedAt} />
+      <LastUpdated queryKey="vendorOrders" updatedAt={updatedAt} />
       <div className="mt-[12px] py-[16px]">
         {/* Header */}
         <div>
           <Header title="Dashboard" />
         </div>
         {/* Total sales, order, all products */}
-        <div className="mt-[32px] flex max-w-full justify-between gap-x-[16px] max-lg:overflow-x-scroll">
+        <div className="mt-[32px] flex max-w-full justify-between gap-x-[16px] max-lg:overflow-x-scroll lg:overflow-hidden">
           {/* Total sales */}
           <div className="flex flex-col gap-y-[20px] rounded-[12px] border-[1px] border-border max-lg:w-[200px] max-lg:shrink-0 max-lg:px-[12px] max-lg:pb-[16px] max-lg:pt-[12px] lg:w-full lg:p-[16px]">
             <h4 className="text-[14px] font-[600] leading-[29px] text-black lg:text-[20px]">
               Total Sales
             </h4>
-            <div className="flex items-center gap-x-[8px] py-[4px]">
-              <h2 className="text-[28px] font-[600] leading-[48px] text-black lg:text-[48px]">
-                $0
+            <div className="flex items-center gap-x-[8px] py-[4px] lg:flex-wrap">
+              <h2 className="ltext-[28px] font-[600] leading-[48px] text-black md:text-[32px] lg:text-[48px]">
+                ${data?.data?.data?.total_sales.toLocaleString()}
               </h2>
               <div className="flex h-fit gap-x-[2px] rounded-[4px] border-[1px] border-[#1EB53A] bg-[#1EB53A33] px-[12px] py-[4px]">
                 <ChartLineData02Icon className="size-[12px] text-[#006600] lg:size-[14px]" />
@@ -56,12 +59,12 @@ const SellersDashboard = () => {
           </div>
           {/* New orders */}
           <div className="flex w-full justify-between rounded-[12px] border-[1px] border-border px-[12px] max-lg:pb-[16px] max-lg:pt-[12px] lg:items-center lg:p-[16px]">
-            <div className="flex w-full flex-col gap-y-[20px]">
+            <div className="flex w-full flex-col gap-y-[20px] lg:flex-wrap">
               <h4 className="text-[14px] font-[700] leading-[29px] text-black lg:text-[20px]">
                 New Orders
               </h4>
               <div className="flex items-center gap-x-[8px] py-[4px]">
-                <h2 className="text-[28px] font-[600] leading-[48px] text-black lg:text-[48px]">
+                <h2 className="text-[28px] font-[600] leading-[48px] text-black md:text-[32px] lg:text-[48px]">
                   $0
                 </h2>
                 {/* Percentage */}
@@ -81,9 +84,9 @@ const SellersDashboard = () => {
               <h4 className="text-[16px] font-[700] leading-[29px] text-black lg:text-[20px]">
                 All Products
               </h4>
-              <div className="flex items-center gap-x-[8px] py-[4px]">
-                <h2 className="text-[28px] font-[600] leading-[48px] text-black lg:text-[48px]">
-                  $0
+              <div className="flex items-center gap-x-[8px] py-[4px] lg:flex-wrap">
+                <h2 className="text-[28px] font-[600] leading-[48px] text-black md:text-[32px] lg:text-[48px]">
+                  ${data?.data?.data?.total_products.toLocaleString()}
                 </h2>
                 {/* Percentage */}
                 <div className="flex h-fit gap-x-[2px] rounded-[4px] border-[1px] border-[#1EB53A] bg-[#1EB53A33] px-[12px] py-[4px]">
@@ -111,9 +114,9 @@ const SellersDashboard = () => {
               <h5 className="px-[12px] text-[16px] font-[600] leading-[24px] text-blackPrimary lg:text-[20px]">
                 Recent Orders
               </h5>
-              {recentOrders?.data?.data?.orders?.length > 0 ? (
+              {data?.data?.data?.orders?.length > 0 ? (
                 <div className="mt-[12px] w-full lg:mt-[24px]">
-                  <RecentOrders />
+                  <RecentOrders orders={data?.data?.data?.orders} />
                 </div>
               ) : (
                 <p className="flex h-[147px] w-full items-center justify-center px-[12px] text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
@@ -129,14 +132,20 @@ const SellersDashboard = () => {
                 </h5>
                 <div className="flex items-center justify-end px-[12px]">
                   {/* Sort */}
-                  <div className=" flex hidden items-center gap-x-[2px] text-[10px] font-[400] leading-[14.5px] tracking-[-0.5%] text-black">
+                  {/* Not implemented Yet */}
+                  <div className="fle hidden items-center gap-x-[2px] text-[10px] font-[400] leading-[14.5px] tracking-[-0.5%] text-black">
                     <span>Sort by:</span>
                     <select className="font-[600] text-black">
                       <option className="font-[600]">Top Selling</option>
                       <option className="font-[600]">Best Selling</option>
                     </select>
                   </div>
-                  <button onClick={()=>router.push("/sellers/dashboard/product-listings")} className="flex items-center gap-x-[2px]">
+                  <button
+                    onClick={() =>
+                      router.push("/sellers/dashboard/product-listings")
+                    }
+                    className="flex items-center gap-x-[2px]"
+                  >
                     <span className="text-[12px] font-[400] leading-[17.4px] tracking-[-0.5%] text-black">
                       See all
                     </span>
@@ -144,39 +153,37 @@ const SellersDashboard = () => {
                   </button>
                 </div>
               </div>
-              {
-                data?.data?.data?.products?.length >0 ?
-            
-              <div className="mt-[24px]">
-                <Listings products={data?.data?.data?.products} />
-              </div>
-              :
-              <p className="flex max-lg:h-[44px] h-full w-full items-center px-[12px] text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                You have no product listings yet
-              </p>
-}
+              {data?.data?.data?.products?.length > 0 ? (
+                <div className="mt-[24px]">
+                  <Listings products={data?.data?.data?.products} />
+                </div>
+              ) : (
+                <p className="flex h-full w-full items-center px-[12px] text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary max-lg:h-[44px]">
+                  You have no product listings yet
+                </p>
+              )}
             </div>
           </div>
           {/* Ratings */}
-          <div className="flex max-lg:mt-[16px] lg:min-w-[380px] flex-col gap-y-[16px]">
+          <div className="flex flex-col gap-y-[16px] max-lg:mt-[16px] lg:min-w-[380px]">
             {/* Ratings and Quotes */}
             <div className="gapy-[32px] flex h-[187px] flex-col rounded-[10px] border-[1px] border-border py-[16px]">
               <div className="flex flex-col gap-y-[12px]">
-                <h5 className="px-[12px] text-[16px] lg:text-[20px] font-[600] leading-[24px] text-blackPrimary">
+                <h5 className="px-[12px] text-[16px] font-[600] leading-[24px] text-blackPrimary lg:text-[20px]">
                   Ratings and Review
                 </h5>
               </div>
               <div className="mt-[24px]"></div>
-              <p className="flex max-lg:justify-center h-full w-full items-center px-[12px] text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
+              <p className="flex h-full w-full items-center px-[12px] text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary max-lg:justify-center">
                 You have not ratings yet
               </p>
             </div>
             {/* Quotes */}
             <div className="gapy-[32px] flex h-[203px] flex-col rounded-[10px] border-[1px] border-border py-[16px]">
-              <h5 className="px-[12px] text-[16px] lg:text-[20px] font-[600] leading-[24px] text-blackPrimary">
+              <h5 className="px-[12px] text-[16px] font-[600] leading-[24px] text-blackPrimary lg:text-[20px]">
                 Quotes
               </h5>
-              <p className="flex h-full w-full items-center px-[12px] text-center text-[12px] lg:text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
+              <p className="flex h-full w-full items-center px-[12px] text-center text-[12px] font-[400] leading-[20.3px] text-blackPrimary lg:text-[14px]">
                 You have not added a post yet
               </p>
             </div>

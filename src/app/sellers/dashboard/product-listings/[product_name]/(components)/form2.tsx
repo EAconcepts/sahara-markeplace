@@ -1,5 +1,4 @@
-'use client'
-
+"use client";
 
 import { Input } from "@/components/ui/input";
 import {
@@ -14,10 +13,20 @@ import {
 import { Cancel01Icon, Delete03Icon } from "hugeicons-react";
 import React, { ChangeEvent, Dispatch } from "react";
 
-const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any; prdtDetails:any, setPrdtDetails:Dispatch<any>; handleChange:(e:ChangeEvent<HTMLInputElement>)=>void}) => {
+const Form2 = ({
+  product,
+  setPrdtDetails,
+  prdtDetails,
+  handleChange,
+}: {
+  product: any;
+  prdtDetails: any;
+  setPrdtDetails: Dispatch<any>;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}) => {
   return (
-    <div className="flex w-full flex-col gap-y-[24px] h-full rounded-[12px] border-[1px] border-border px-[16px] py-[24px] font-openSans">
-      <div className="flex flex-col gap-y-[16px]">
+    <div className="flex h-full w-full flex-col gap-y-[24px] rounded-[12px] border-[1px] border-border px-[16px] py-[24px] font-openSans">
+      <div className="flex flex-col gap-y-[16px] lg:w-full">
         {/* Variation */}
         <div className="flex flex-col gap-y-[8px]">
           <h6 className="font-openSans text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
@@ -29,11 +38,12 @@ const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any
               className="rounded-[6px] border-border p-[12px]"
               placeholder="Size"
             />
-            <Cancel01Icon className="absolute right-[12px] top-[14px] lg:top-[-50%] lg:translate-y-[50%] size-[20px] text-[#8E97A6]" />
+            <Cancel01Icon className="absolute right-[12px] top-[14px] size-[20px] text-[#8E97A6] lg:top-[-50%] lg:translate-y-[50%]" />
           </div>
         </div>
-        <div className=" flex flex-col">
-          <div className="hidden lex gap-x-[16px]">
+        <div className="flex flex-col lg:w-full lg:gap-y-[24px]">
+          {/* NOT IMPLEMENTED */}
+          <div className="lex hidden gap-x-[16px]">
             <h6 className="w-[127px] text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Options
             </h6>
@@ -42,42 +52,50 @@ const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any
             </h6>
           </div>
           {/* Size */}
-          <div className="hidden lex flex-col gap-y-[16px] max-lg:mt-[12px]">
+          {/* YET TO BE IMPLEMENTED */}
+          <div className="lex hidden flex-col gap-y-[16px] max-lg:mt-[12px]">
             {["S", "M", "L", "XL", "XXL", "2XL", "3XL"].map((size, index) => (
-              <div className="flex max-lg:justify-between gap-x-[16px]" key={index}>
-                <p className="h-[44px] lg:w-[127px] rounded-[6px] border-[1px] border-border p-[12px]">
+              <div
+                className="flex gap-x-[16px] max-lg:justify-between"
+                key={index}
+              >
+                <p className="h-[44px] rounded-[6px] border-[1px] border-border p-[12px] lg:w-[127px]">
                   {size}
                 </p>
                 <Input
                   type="number"
-                  className="lg:w-[194px] max-lg:w-[80px] border-[1px] border-border p-[12px]"
+                  className="border-[1px] border-border p-[12px] max-lg:w-[80px] lg:w-[194px]"
                   placeholder="8.00"
                 />
                 <Select>
                   <SelectTrigger className="max-lg:w-[80px] max-lg:text-[12px]">
-                    <SelectValue placeholder="USD" className="max-lg:text-[12px]" />
+                    <SelectValue
+                      placeholder="USD"
+                      className="max-lg:text-[12px]"
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectLabel>Fruits</SelectLabel>
-                      <SelectItem value="apple">Apple</SelectItem>
+                      <SelectLabel>---</SelectLabel>
+                      <SelectItem value="---">---</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
-                <Delete03Icon className="lg:h-[32.67px] max-lg:size-[16px] lg:w-[19px] text-[#E8112D]" />
+                <Delete03Icon className="text-[#E8112D] max-lg:size-[16px] lg:h-[32.67px] lg:w-[19px]" />
               </div>
             ))}
           </div>
+          {/* YET TO BE IMPLEMENTED */}
           {/* Color */}
-          <div className="flex flex-col gap-y-[16px] max-lg:mt-[12px]">
-            <div className="relative h-[44px] max-lg:flex max-lg:justify-between w-full rounded-[6px] p-[12px]">
+          <div className="lex hidden flex-col gap-y-[16px] max-lg:mt-[12px]">
+            <div className="relative h-[44px] w-full rounded-[6px] p-[12px] max-lg:flex max-lg:justify-between">
               <span className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
                 Color
               </span>
-              <Cancel01Icon className="lg:absolute right-[12px] top-[-12px] size-[20px] text-[#8E97A6]" />
+              <Cancel01Icon className="right-[12px] top-[-12px] size-[20px] text-[#8E97A6] lg:absolute" />
             </div>
             {/* Colors */}
-            <div className="max-lg:hidden grid grid-cols-3 gap-[16px]">
+            <div className="grid grid-cols-3 gap-[16px] max-lg:hidden">
               {/*color Option */}
               <div className="flex flex-col gap-y-[8px]">
                 <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
@@ -85,7 +103,7 @@ const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any
                 </h6>
                 <Input
                   type="text"
-                  className="lg:w-[194px] rounded-[6px] border-[1px] p-[12px]"
+                  className="rounded-[6px] border-[1px] p-[12px] lg:w-[194px]"
                   placeholder="Gold"
                 />
                 <Delete03Icon className="h-[32.67px] w-[19px] text-[#E8112D]" />
@@ -97,7 +115,7 @@ const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any
                 </h6>
                 <Input
                   type="text"
-                  className="lg:w-[194px] rounded-[6px] border-[1px] p-[12px]"
+                  className="rounded-[6px] border-[1px] p-[12px] lg:w-[194px]"
                   placeholder="Red"
                 />
                 <Delete03Icon className="h-[32.67px] w-[19px] text-[#E8112D]" />
@@ -105,30 +123,30 @@ const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any
             </div>
           </div>
           {/* Shipping & Delivery */}
-          <div className="flex flex-col gap-y-[8px]">
+          <div className="flex flex-col gap-y-[8px] lg:w-full lg:gap-[16px]">
             <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Shipping and Delivery
             </h6>
-            <div className="flex flex-col gap-y-[16px]">
-              <div className="grid grid-cols-2 gap-x-[16px]">
-                <div className="flex flex-col gap-y-[8px]">
+            <div className="flex flex-col gap-y-[16px] lg:w-full">
+              <div className="grid grid-cols-2 gap-x-[16px] lg:w-full lg:grid-cols-[calc(70%-16px)_30%]">
+                <div className="flex flex-col gap-y-[8px] lg:w-[100%] lg:shrink-0">
                   <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                     Package Weight
                   </h6>
                   <Input
                     type="number"
                     placeholder="2"
-                    className="w-full rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary"
+                    className="w-full rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary lg:shrink-0"
                   />
                 </div>
                 <Select>
-                  <SelectTrigger className="h-[44px] w-[120px] self-end rounded-[6px] border-[1px] border-border">
+                  <SelectTrigger className="border[1px] h-[44px] w-[120px] self-end rounded-[6px] border-border lg:w-full">
                     <SelectValue placeholder="kg" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectLabel>Fruits</SelectLabel>
-                      <SelectItem value="apple">Apple</SelectItem>
+                      <SelectLabel>Weight</SelectLabel>
+                      <SelectItem value="kg">KG</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -136,7 +154,7 @@ const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any
             </div>
             {/* Shipping fee */}
             <div className="flex flex-col gap-y-[16px]">
-              <div className="grid grid-cols-2 gap-x-[16px]">
+              <div className="grid grid-cols-2 gap-x-[16px] lg:grid-cols-[calc(70%-16px)_30%]">
                 <div className="flex flex-col gap-y-[8px]">
                   <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                     Shipping Fee
@@ -148,7 +166,7 @@ const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any
                   />
                 </div>
                 <Select>
-                  <SelectTrigger className="h-[44px] w-[120px] self-end rounded-[6px] border-[1px] border-border">
+                  <SelectTrigger className="h-[44px] w-[120px] self-end rounded-[6px] border-[1px] border-border lg:w-full">
                     <SelectValue placeholder="USD" />
                   </SelectTrigger>
                   <SelectContent>
@@ -163,9 +181,9 @@ const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any
             </div>
           </div>
           {/* Price & Discount */}
-          <div className="flex flex-col gap-y-[12px]">
+          <div className="flex flex-col gap-y-[12px] lg:w-full lg:gap-[16px]">
             {/* price & Discount */}
-            <div className="max-lg grid grid-cols-3  max-lg:mt-[8px] gap-x-[16px]">
+            <div className="max-lg grid grid-cols-3 gap-x-[16px] max-lg:mt-[8px]">
               {/* Price */}
               <div className="flex flex-col gap-y-[8px]">
                 <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
@@ -173,24 +191,24 @@ const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any
                 </h6>
                 <Input
                   type="number"
-                  name={'price'}
-                  value={prdtDetails?.price || product?.price}
+                  name={"price"}
+                  value={prdtDetails?.price}
                   onChange={handleChange}
                   className="rounded-[6px] border-[1px] border-border p-[12px]"
                   // placeholder="103.99"
                 />
               </div>
               {/* Currency */}
-              <div className="flex self-end flex-col gap-y-[8px]">
+              <div className="flex flex-col gap-y-[8px] self-end lg:w-full">
                 <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary"></h6>
                 <Select>
-                  <SelectTrigger className="h-[44px] lg:w-[120px] rounded-[6px] border-[1px] border-border">
+                  <SelectTrigger className="h-[44px] rounded-[6px] border-[1px] border-border lg:w-full">
                     <SelectValue placeholder="USD" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectLabel>Fruits</SelectLabel>
-                      <SelectItem value="apple">Apple</SelectItem>
+                      <SelectLabel>currency</SelectLabel>
+                      <SelectItem value="usd">USD</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -208,22 +226,22 @@ const Form2 = ({product, setPrdtDetails, prdtDetails, handleChange}:{product:any
               </div>
             </div>
             {/* Quantity discount price */}
-            <div className="grid max-lg:hidden grid-cols-2 gap-x-[16px]">
+            <div className="grid grid-cols-2 gap-x-[16px] max-lg:hidden lg:w-full lg:grid-cols-[calc(70%-16px)_30%]">
               <div className="flex flex-col gap-y-[8px]">
                 <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                   Quantity Discount Price (over 5 items)
                 </h6>
                 <Input
                   type="number"
-                  className="rounded-[6px] border-[1px] border-border p-[12px]"
-                  placeholder="95.99"
+                  className="rounded-[6px] border-[1px] border-border p-[12px] lg:w-full"
+                  placeholder="0.00"
                 />
               </div>
               {/* Currency */}
-              <div className="flex flex-col gap-y-[8px]">
+              <div className="flex flex-col gap-y-[8px] lg:self-end">
                 <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary"></h6>
                 <Select>
-                  <SelectTrigger className="h-[44px] w-[120px] rounded-[6px] border-[1px] border-border">
+                  <SelectTrigger className="h-[44px] w-[120px] rounded-[6px] border-[1px] border-border lg:w-full">
                     <SelectValue placeholder="USD" />
                   </SelectTrigger>
                   <SelectContent>
