@@ -125,7 +125,7 @@ export const adminNavLinks: NavlinksProps[] = [
     icon: News01Icon,
     title: "Blogs",
     path: "/admin/dashboard/blogs",
-    value: 10,
+    // value: 10,
   },
   {
     icon: DiscountIcon,

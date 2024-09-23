@@ -12,17 +12,17 @@ export default function SettingsLayout({
   const settingsLinks = [
     { title: "Personal Information", link: "personal-info" },
     { title: "Change Password", link: "change-password" },
-    { title: "Shipping Address", link: "billing-info" },
-    { title: "Payment Method", link: "change-password" },
+    { title: "Shipping Address", link: "shipping-address" },
+    { title: "Payment Method", link: "payment-method" },
     { title: "Notifications", link: "notifications" },
   ];
   const path = usePathname();
-//   console.log(path);
+  //   console.log(path);
   return (
-    <div className="w-full mt-[8px] h-full flex flex-col gap-y-[32px] py-[16px] font-openSans overflow-y-hidden">
+    <div className="mt-[8px] flex h-full w-full flex-col gap-y-[32px] overflow-y-hidden py-[16px] font-openSans">
       <Header title="Settings" />
-      <div className="w-full flex gap-[24px] h-full overflow-y-hidden">
-        <aside className="shrink-0 flex flex-col border-r-[1px] py-[12px] pl-[12px]">
+      <div className="flex h-full w-full gap-[24px] overflow-y-hidden">
+        <aside className="flex shrink-0 flex-col border-r-[1px] py-[12px] pl-[12px]">
           <div className="flex flex-col gap-y-[12px] px-[8px]">
             {settingsLinks.map((item, index) => (
               <Link
@@ -33,15 +33,16 @@ export default function SettingsLayout({
                 {item.title}
               </Link>
             ))}
-            <button className=" text-start px-[16px] py-[12px] text-[14px] font-[400] leading-[20.3px] text-[#E8112D]">
+            <Link
+              href={"delete-account"}
+              className="px-[16px] py-[12px] text-start text-[14px] font-[400] leading-[20.3px] text-[#E8112D]"
+            >
               Delete Account
-            </button>
+            </Link>
           </div>
         </aside>
         {/* Main settings screen */}
-        <main className="w-full overflow-y-scroll">
-            {children}
-        </main>
+        <main className="w-full overflow-y-scroll">{children}</main>
       </div>
     </div>
   );
