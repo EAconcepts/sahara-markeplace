@@ -56,12 +56,12 @@ export const sellersNavLinks: NavlinksProps[] = [
     title: "My Orders",
     path: "/sellers/dashboard/my-orders",
   },
-  // {
-  //   icon: FavouriteIcon,
-  //   title: "Reviews",
-  //   path: "/sellers/dashboard/reviews",
-  //   value: 10,
-  // },
+  {
+    icon: FavouriteIcon,
+    title: "Reviews",
+    path: "/sellers/dashboard/reviews",
+    // value: 10,
+  },
   // { icon: DiscountIcon, title: "Quotes", path: "#" },
 ];
 

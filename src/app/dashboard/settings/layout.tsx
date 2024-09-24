@@ -34,7 +34,7 @@ export default function SettingsLayout({
               </Link>
             ))}
             <Link
-              href={"delete-account"}
+              href={"/dashboard/settings/delete-account"}
               className="px-[16px] py-[12px] text-start text-[14px] font-[400] leading-[20.3px] text-[#E8112D]"
             >
               Delete Account

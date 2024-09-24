@@ -21,16 +21,16 @@ import { MenuCard } from "./sidem-menu-card";
 const Sidemenu = ({
   links,
   settingsLink,
-  setShowMenu
+  setShowMenu,
 }: {
   links: NavlinksProps[];
   settingsLink?: string;
-  setShowMenu?: React.Dispatch<React.SetStateAction<boolean>>
+  setShowMenu?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { user, logout, userType } = useAuth();
   const path = usePathname();
   const router = useRouter();
-// console.log(settingsLink)
+  // console.log(settingsLink)
   const handleLogout = () => {
     logout();
     if (userType === "seller") {
@@ -42,11 +42,17 @@ const Sidemenu = ({
     }
   };
   return (
-    <div className="max-lg:w-ful max-lg:flex max-lg:flex-col max-lg:z-[999] lg:border-r-[1px] lg:border-border px-[24px] pt-[12px]">
+    <div className="max-lg:w-ful px-[24px] pt-[12px] max-lg:z-[999] max-lg:flex max-lg:flex-col lg:border-r-[1px] lg:border-border">
       {/* X close */}
-      <Cancel01Icon onClick={()=>setShowMenu && setShowMenu(false)} className="self-end text-black size-[20px] lg:hidden mt-[24px]"/>
+      <Cancel01Icon
+        onClick={() => setShowMenu && setShowMenu(false)}
+        className="mt-[24px] size-[20px] self-end text-black lg:hidden"
+      />
       {/* logo */}
-      <Link href={"/"} className="hidden lg:flex items-center gap-x-[4px] lg:pl-[24px]">
+      <Link
+        href={"/"}
+        className="hidden items-center gap-x-[4px] lg:flex lg:pl-[24px]"
+      >
         <Image
           src={logo}
           width={56}
@@ -61,11 +67,11 @@ const Sidemenu = ({
       {/* Menu */}
       <div className="mt-[32px] flex w-full flex-col items-start gap-y-[4px] border-b-[1px] border-border pb-[12px] font-openSans text-[14px] font-[400] leading-[20.3px]">
         {links?.map((menu: any, index: number) => (
-                  <MenuCard key={index} menu={menu}  setShowMenu={setShowMenu}/>
+          <MenuCard key={index} menu={menu} setShowMenu={setShowMenu} />
         ))}
       </div>
 
-      <div className="lg:mt-[200px] flex flex-col">
+      <div className="flex flex-col lg:mt-[200px]">
         <div className="flex flex-col gap-y-[12px] pb-[12px] pl-[8px]">
           {/* <button className="flex items-center gap-x-[12px] px-[16px] py-[12px]">
             <MarketingIcon />{" "}
@@ -80,9 +86,10 @@ const Sidemenu = ({
             </span>
           </button> */}
           <button
-            onClick={() =>{
-              setShowMenu && setShowMenu(false); 
-              settingsLink && router.push(settingsLink)}}
+            onClick={() => {
+              setShowMenu && setShowMenu(false);
+              settingsLink && router.push(settingsLink);
+            }}
             className="flex items-center gap-x-[12px] px-[16px] py-[12px]"
           >
             <Settings02Icon />{" "}

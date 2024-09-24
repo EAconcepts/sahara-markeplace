@@ -21,7 +21,7 @@ import axios from "axios";
 import { ChangeEvent, useRef, useState } from "react";
 import { toast } from "sonner";
 
-const UserSettings = () => {
+const UserSettings = ({ url }: { url?: string }) => {
   const { user, token } = useAuth();
 
   const [userDetails, setUserDetails] = useState({
@@ -34,48 +34,52 @@ const UserSettings = () => {
     state: user?.state || "",
     zip_code: user?.zip_code || "",
     profile_photo: user?.profile_photo || "",
-  })
-  const [imageUrl, setImage] =useState<string>("")
-  const imageRef = useRef<any>(null)
+  });
+  const [imageUrl, setImage] = useState<string>("");
+  const imageRef = useRef<any>(null);
 
-  const headers ={
-    Authorization: `Bearer ${token}`
-  }
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL
-  const profileMutation= useMutation({
-    mutationFn: ()=>axios.post(`${baseUrl}/user/profile/update`,userDetails, {headers}),
-    onSuccess:((data)=>{
-      console.log(data)
-      toast.success("Profile updated successfully!")
-    }),
-    onError:((error)=>{
-      console.log(error)
-      toast.error("An error occured!")
-    })
-  })
-  const handleUpdate=()=>{
-    console.log(userDetails)
-    profileMutation.mutate()
-  }
-  const handleChange=(e:ChangeEvent<HTMLInputElement>)=>{
-    const {name, value} = e.target
-    setUserDetails((prevVals:any)=>({...prevVals, [name]:value}))
-    }
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const profileMutation = useMutation({
+    mutationFn: () =>
+      axios.post(
+        `${baseUrl}${url ? url : "/user/profile/update"}`,
+        userDetails,
+        { headers },
+      ),
+    onSuccess: (data) => {
+      console.log(data);
+      toast.success("Profile updated successfully!");
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error("An error occured!");
+    },
+  });
+  const handleUpdate = () => {
+    console.log(userDetails);
+    profileMutation.mutate();
+  };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserDetails((prevVals: any) => ({ ...prevVals, [name]: value }));
+  };
 
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    console.log(file);
+    const formdata = new FormData();
+    file && formdata.append("image", file);
 
-  const handleImageUpload=(e:ChangeEvent<HTMLInputElement>)=>{
-    const file = e.target.files && e.target.files[0]
-    console.log(file)
-    const formdata = new FormData()
-    file && formdata.append( "image", file)
-
-    const imageUrl = file && URL.createObjectURL(file)
-    console.log(imageUrl)
-    imageUrl && setImage(imageUrl)
-  }
-  const handleSelectImage=()=>{
-    imageRef && imageRef.current?.click()
-  }
+    const imageUrl = file && URL.createObjectURL(file);
+    console.log(imageUrl);
+    imageUrl && setImage(imageUrl);
+  };
+  const handleSelectImage = () => {
+    imageRef && imageRef.current?.click();
+  };
   return (
     <div className="flex flex-col gap-y-[32px] px-[24px] py-[28px] font-openSans">
       {/* Logo Image upload */}
@@ -89,7 +93,10 @@ const UserSettings = () => {
               This image will be displayed on your profile
             </p>
           </div>
-          <Button onClick={handleSelectImage} className="flex w-fit gap-[10px] rounded-[8px] border-[1.5px] border-greenPrimary bg-white px-[12px] py-[8px] text-[14px] font-[600] leading-[20.3px] text-greenPrimary">
+          <Button
+            onClick={handleSelectImage}
+            className="flex w-fit gap-[10px] rounded-[8px] border-[1.5px] border-greenPrimary bg-white px-[12px] py-[8px] text-[14px] font-[600] leading-[20.3px] text-greenPrimary"
+          >
             <Image
               src={image}
               width={20}
@@ -99,7 +106,13 @@ const UserSettings = () => {
             />
             <span>Upload Photo</span>
           </Button>
-          <Input ref={imageRef} type="file" hidden className="hidden" onChange={handleImageUpload}/>
+          <Input
+            ref={imageRef}
+            type="file"
+            hidden
+            className="hidden"
+            onChange={handleImageUpload}
+          />
         </div>
         {/* image */}
         <div className="flex size-[120px] items-center justify-center rounded-full bg-[#E4E7EC]">
@@ -108,7 +121,7 @@ const UserSettings = () => {
             width={72}
             height={72}
             alt="image"
-            className={`${imageUrl ?' size-[120px] rounded-full' :'size-[72px] '} object-cover  `}
+            className={`${imageUrl ? "size-[120px] rounded-full" : "size-[72px]"} object-cover`}
           />
         </div>
       </div>
@@ -213,13 +226,14 @@ const UserSettings = () => {
               </SelectContent>
             </Select>
           </div>
-         
         </div>
       </div>
-        <Button onClick={handleUpdate} className="rounded-[8px] bg-[#E4E7EC] px-[16px] py-[8px] w-fit text-[14px] font-[600] leading-[20.3px] text-[#8E97A6]">
-          Save Changes
-        </Button>
-       
+      <Button
+        onClick={handleUpdate}
+        className="w-fit rounded-[8px] bg-[#E4E7EC] px-[16px] py-[8px] text-[14px] font-[600] leading-[20.3px] text-[#8E97A6]"
+      >
+        Save Changes
+      </Button>
     </div>
   );
 };

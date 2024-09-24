@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-const DeleteAccount = () => {
+const DeleteAccount = ({ url }: { url?: string }) => {
   return (
     <div className="flex w-full flex-col gap-[20px] px-[24px] pt-[28px] font-openSans">
       <div className="flex flex-col gap-[8px]">

@@ -1,21 +1,28 @@
-'use client'
+"use client";
 
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
-export const MenuCard = ({ menu, setShowMenu }: { menu?: any; setShowMenu?: React.Dispatch<React.SetStateAction<boolean>> }) => {
+export const MenuCard = ({
+  menu,
+  setShowMenu,
+}: {
+  menu?: any;
+  setShowMenu?: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [isOpen, setIsopen] = useState(false);
   const router = useRouter();
   const path = usePathname();
   return (
-    <div className="max-lg:w-full" >
+    <div className="w-full">
       <Button
-        onClick={() => { router.push(menu?.path)
-          setIsopen((prev)=>!prev);
-         !menu?.sublinks && setShowMenu && setShowMenu(false)
+        onClick={() => {
+          router.push(menu?.path);
+          setIsopen((prev) => !prev);
+          !menu?.sublinks && setShowMenu && setShowMenu(false);
         }}
-        className={`relative ${path == menu?.path ? "bg-greenPrimary text-white max-lg:w-full" : "bg-transparent text-blackPrimary"} flex h-[44px] w-full items-center justify-between rounded-[4px] px-[16px] py-[12px]`}
+        className={`relative ${path == menu?.path ? "w-full bg-greenPrimary text-white" : "bg-transparent text-blackPrimary"} flex h-[44px] w-full items-center justify-between rounded-[4px] px-[16px] py-[12px]`}
       >
         <div className="flex items-center gap-x-[12px]">
           {menu?.icon && <menu.icon />}
@@ -36,8 +43,8 @@ export const MenuCard = ({ menu, setShowMenu }: { menu?: any; setShowMenu?: Reac
           {menu?.sublinks?.map((sub: any, index: number) => (
             <div
               onClick={() => {
-                router.push(sub.path)
-               setShowMenu && setShowMenu(false)
+                router.push(sub.path);
+                setShowMenu && setShowMenu(false);
               }}
               className="flex items-center gap-x-[12px]"
               key={index}
