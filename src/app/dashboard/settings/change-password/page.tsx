@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 interface ChangePasswordProps {
   url?: string;
 }
-const ChangePassword: React.FC<ChangePasswordProps> = ({
+export const ChangePassword: React.FC<ChangePasswordProps> = ({
   url = "",
 }: {
   url?: string;
