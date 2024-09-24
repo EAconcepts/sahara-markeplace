@@ -116,7 +116,7 @@ const SellersDashboard = () => {
               </h5>
               {data?.data?.data?.orders?.length > 0 ? (
                 <div className="mt-[12px] w-full lg:mt-[24px]">
-                  <RecentOrders orders={data?.data?.data?.orders} />
+                  <RecentOrders orders={recentOrders?.data?.data?.trx} />
                 </div>
               ) : (
                 <p className="flex h-[147px] w-full items-center justify-center px-[12px] text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary">

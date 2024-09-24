@@ -21,7 +21,7 @@ const Calendarr = () => {
         </div>
       </div>
       {showCalendar && (
-        <div className="absolute right-0 top-[40px]">
+        <div className="absolute right-0 top-[40px] z-40 bg-white">
           {" "}
           <Calendar />
         </div>

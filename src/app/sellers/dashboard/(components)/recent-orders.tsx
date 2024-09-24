@@ -27,20 +27,20 @@ const RecentOrders = ({ orders }: { orders: any }) => {
             <td className="">
               <div className="flex flex-col px-[12px] py-[17.5px] lg:px-[24px]">
                 <p className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary max-lg:line-clamp-1">
-                  Hand Painted Danshiki Black
+                  {order?.products?.name}
                 </p>
                 <p className="font-[400 ] text-[12px] leading-[17.4px] text-[#787C83]">
-                  #SE2024003
+                  #{order?.trx_id}
                 </p>
               </div>
             </td>
             <td className="px-[12px] py-[16px] text-[14px] leading-[20.3px] text-blackPrimary lg:px-[24px]">
-              2
+              {order?.quantity}
             </td>
             <td
               className={`${""} px-[12px] py-[16px] text-[14px] font-[600] leading-[20.3px] text-[#A07E53] lg:px-[24px]`}
             >
-              Shipped
+              {order?.shipping == "1" ? " Shipped" : " Not Shipped"}
             </td>
             <td
               className={`px-[24px] py-[16px] text-[14px] font-[600] leading-[20.3px] text-[#A07E53]`}
