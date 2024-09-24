@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const ChangePassword = ({ url }: { url?: string }) => {
+const ChangePassword = ({ url = "" }: { url?: string }) => {
   return (
     <div className="flex flex-col gap-[32px] px-[24px] py-[28px] font-openSans">
       <div className="flex w-[80%] flex-col gap-[24px]">
