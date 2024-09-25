@@ -1,14 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface ChangePasswordProps {
-  url?: string;
-}
-export const ChangePassword: React.FC<ChangePasswordProps> = ({
-  url = "",
-}: {
-  url?: string;
-}) => {
+export const ChangePassword = ({ url = "" }: { url?: string }) => {
   return (
     <div className="flex flex-col gap-[32px] px-[24px] py-[28px] font-openSans">
       <div className="flex w-[80%] flex-col gap-[24px]">
@@ -61,4 +54,8 @@ export const ChangePassword: React.FC<ChangePasswordProps> = ({
   );
 };
 
-export default ChangePassword;
+const Changepassword = () => {
+  return <ChangePassword url="/dashboard/settings/change-password" />;
+};
+
+export default Changepassword;
