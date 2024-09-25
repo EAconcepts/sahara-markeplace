@@ -1,4 +1,4 @@
-import ChangePassword from "@/app/dashboard/settings/change-password/page";
+import { ChangePassword } from "@/app/dashboard/settings/change-password/(components)/changePassword";
 
 const ChangeSellerPassword = () => {
   return (
