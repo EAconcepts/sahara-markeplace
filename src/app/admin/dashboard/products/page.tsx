@@ -1,10 +1,7 @@
-'use client'
+"use client";
 
 import { Header } from "@/app/dashboard/(components)/header";
-import {
- 
-  Search01Icon,
-} from "hugeicons-react";
+import { Search01Icon } from "hugeicons-react";
 import { TotalProducts } from "./(components)/totalProducts";
 import { PrdCatgry } from "./(components)/prdCategories";
 import {
@@ -19,8 +16,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { PrdtCard } from "./(components)/prdtCard";
 import Pagination from "@/app/sellers/dashboard/(components)/pagination";
+import { useGet } from "@/utils/useGet.";
+import Loader from "@/app/(components)/loader";
 
 const ProductListnigs = () => {
+  const { data, isPending } = useGet("admin/products", "adminProducts");
+  console.log(data);
+
   return (
     <div className="mt-[12px] flex w-full flex-col lg:gap-[32px] lg:py-[16px]">
       <Header title="Products" />
@@ -53,7 +55,7 @@ const ProductListnigs = () => {
           </h3>
           <div className="flex items-center justify-between">
             <span className="text-[14px] font-[600] leading-[16.8px] text-blackPrimary">
-              Showing 1 of 600
+              Showing 1 of {data?.data?.data?.products?.length}
             </span>
             <form className="flex h-[36px] w-[363px] items-center rounded-[8px] border-[0.5px] border-[#8E97A6] bg-white px-[12px] py-[8px]">
               <Search01Icon className="size-[16px] text-[#8E97A6]" />
@@ -84,11 +86,20 @@ const ProductListnigs = () => {
         </div>
         {/* Products */}
         <div className="grid grid-cols-2 gap-x-[16px] gap-y-[32px] lg:grid-cols-4">
-          {[0, 2, 3, 3, 4, 4].map((product, index) => (
-            <PrdtCard key={index} product={product} />
-          ))}
+          {!isPending ? (
+            data?.data?.data?.products?.map((product: any) => (
+              <PrdtCard key={product?.id} product={product} />
+            ))
+          ) : (
+            <Loader />
+          )}
         </div>
-        <Pagination className="justify-between" currentPage={1} onPageChange={()=>{}} totalPages={1}/>
+        <Pagination
+          className="justify-between"
+          currentPage={1}
+          onPageChange={() => {}}
+          totalPages={1}
+        />
       </section>
     </div>
   );

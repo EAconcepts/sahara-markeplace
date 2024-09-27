@@ -28,6 +28,7 @@ const Sidemenu = ({
   setShowMenu?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { user, logout, userType } = useAuth();
+  console.log(userType);
   const path = usePathname();
   const router = useRouter();
   // console.log(settingsLink)
@@ -71,7 +72,9 @@ const Sidemenu = ({
         ))}
       </div>
 
-      <div className="flex flex-col lg:mt-[200px]">
+      <div
+        className={`flex flex-col lg:mt-[200px] ${userType == "admin" && "lg:mt-0"}`}
+      >
         <div className="flex flex-col gap-y-[12px] pb-[12px] pl-[8px]">
           {/* <button className="flex items-center gap-x-[12px] px-[16px] py-[12px]">
             <MarketingIcon />{" "}
@@ -102,14 +105,20 @@ const Sidemenu = ({
         {/* logout */}
         <div className="mt-[10px] flex w-full items-center justify-between px-[24px] py-[32px]">
           <div className="flex items-center gap-x-[12px]">
-            <UserCircleIcon />
+            {userType !== "admin" && <UserCircleIcon />}
             <div className="flex flex-col">
               <h6 className="text-[14px] font-[700] leading-[20.3px] text-blackPrimary">
                 {user?.first_name} {user?.last_name}
               </h6>
-              <span className="text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
-                Verify email
-              </span>
+              {userType !== "admin" ? (
+                <span className="text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
+                  Verify email
+                </span>
+              ) : (
+                <span className="text-[14px] font-[400] leading-[20.3px] text-failure">
+                  Logout
+                </span>
+              )}
             </div>
           </div>
           <Logout02Icon onClick={handleLogout} />

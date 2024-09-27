@@ -1,3 +1,5 @@
+"use client";
+
 import { Header } from "@/app/dashboard/(components)/header";
 import LastUpdated from "@/app/sellers/dashboard/(components)/last-updated";
 import { ArrowRight01Icon, ChartLineData02Icon } from "hugeicons-react";
@@ -9,6 +11,8 @@ import Image from "next/image";
 import image from "@/assets/images/details2.png";
 import RecentOrders from "./(components)/recent-orders";
 import TotalSalesCard from "./(components)/total-sales-card";
+import { useGet } from "@/utils/useGet.";
+import Loader from "@/app/(components)/loader";
 
 const AdminDashboard = () => {
   const stats = [
@@ -41,6 +45,8 @@ const AdminDashboard = () => {
       status: "down",
     },
   ];
+  const { data, isPending } = useGet("admin/orders", "adminOrders");
+  console.log(data);
   return (
     <div className="font-openSans">
       {/* Last Updated */}
@@ -90,7 +96,7 @@ const AdminDashboard = () => {
                         </span>
                       </div>
                     </div>
-                    <p className="rounded-[4px] h-fit border-[1px] border-border px-[8px] py-[4px]">
+                    <p className="h-fit rounded-[4px] border-[1px] border-border px-[8px] py-[4px]">
                       512 Sales
                     </p>
                   </div>
@@ -98,9 +104,9 @@ const AdminDashboard = () => {
               </div>
             </div>
             {/* Recent Orders */}
-            <div className="flex w-full flex-col gap-[24px] border-[1px] rounded-[10px] border-border py-[24px]">
-                {/* Heading */}
-              <div className="flex justify-between items-center px-[12px]">
+            <div className="flex w-full flex-col gap-[24px] rounded-[10px] border-[1px] border-border py-[24px]">
+              {/* Heading */}
+              <div className="flex items-center justify-between px-[12px]">
                 <h4 className="text-[20px] font-[600] leading-[24px] text-blackPrimary">
                   Recent Orders
                 </h4>
@@ -109,11 +115,14 @@ const AdminDashboard = () => {
                     See alll
                   </span>
                   <ArrowRight01Icon className="size-[16px] text-[#666666]" />
-
                 </div>
               </div>
               {/* Table */}
-              <RecentOrders/>
+              {isPending ? (
+                <Loader />
+              ) : (
+                <RecentOrders products={data?.data?.data?.trx} />
+              )}
             </div>
           </div>
         </main>
