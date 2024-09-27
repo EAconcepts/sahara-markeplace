@@ -34,7 +34,7 @@ const Orders = ({ orders }: { orders: any }) => {
               {/* Image */}
               <td className="w-fit pl-[15px] pr-[24px] max-lg:hidden">
                 <Image
-                  src={`${imgBaseUrl}/${order?.products.image}`}
+                  src={`${imgBaseUrl}/${order?.products?.image}`}
                   width={44}
                   height={44}
                   alt=""
@@ -43,14 +43,16 @@ const Orders = ({ orders }: { orders: any }) => {
               </td>
               {/* Priduct name */}
               <td className="line-clamp-1 w-fit px-[24px] py-[15px] font-[400] leading-[16.8px] text-blackPrimary lg:text-[14px]">
-                {order?.products.name}
+                {order?.products?.name}
               </td>
               {/* Date */}
               <td className="px-[24px] max-lg:hidden">
                 {convertDate(order?.created_at)}
               </td>
               {/* Customer */}
-              <td className="px-[24px] max-lg:hidden">Juan Anabel</td>
+              <td className="px-[24px] max-lg:hidden">
+                {order?.user?.first_name} {order?.user?.last_name}
+              </td>
               {/* quantity */}
               <td className="py-[15px] pl-[16px] font-[400] leading-[20.3px] text-blackPrimary lg:text-[14px]">
                 {order?.quantity}

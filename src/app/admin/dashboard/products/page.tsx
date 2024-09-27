@@ -22,6 +22,10 @@ import Loader from "@/app/(components)/loader";
 const ProductListnigs = () => {
   const { data, isPending } = useGet("admin/products", "adminProducts");
   console.log(data);
+  const { data: dashbd } = useGet("admin/dashboard", "adminDshbd");
+  console.log("dashboard", dashbd);
+  const { data: categories } = useGet("admin/category", "adminCategory");
+  console.log("category", categories);
 
   return (
     <div className="mt-[12px] flex w-full flex-col lg:gap-[32px] lg:py-[16px]">
@@ -32,15 +36,11 @@ const ProductListnigs = () => {
           {/* Total Sales & Products */}
           <div className="flex w-[40%] shrink-0 flex-col lg:gap-[16px]">
             {/* Total Sales */}
-            <TotalProducts
-              heading={"Total Sales"}
-              total={44680.79}
-              percent={9}
-            />
+            <TotalProducts heading={"Total Sales"} total={0} percent={9} />
             {/* Total Products */}
             <TotalProducts
               heading={"Total Products"}
-              total={24056}
+              total={0}
               percent={1.03}
             />
           </div>

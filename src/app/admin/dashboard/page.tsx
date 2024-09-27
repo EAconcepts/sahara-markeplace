@@ -15,40 +15,41 @@ import { useGet } from "@/utils/useGet.";
 import Loader from "@/app/(components)/loader";
 
 const AdminDashboard = () => {
+  const { data, isPending } = useGet("admin/orders", "adminOrders");
+  console.log("orders", data);
+  const { data: dashbd } = useGet("admin/dashboard", "adminDshbd");
+  console.log("dashboard", dashbd);
   const stats = [
     {
       title: "Total Sales",
       icon: totalSales,
       value: "$44,680.79",
-      percent: "9%",
+      percent: "0%",
       status: "up",
     },
     {
       title: "Total Order",
       icon: totalOrders,
-      value: "4680",
-      percent: "3%",
+      value: dashbd?.data?.data?.orders,
+      percent: "0%",
       status: "up",
     },
     {
       title: "Total Delivery",
       icon: totalDelivery,
-      value: "5112",
-      percent: "11%",
+      value: "0",
+      percent: "0%",
       status: "up",
     },
     {
-      title: "NEw Customers",
+      title: "New Customers",
       icon: newCustomers,
-      value: "63",
-      percent: "35%",
+      value: dashbd?.data?.data?.users?.length,
+      percent: "0%",
       status: "down",
     },
   ];
-  const { data, isPending } = useGet("admin/orders", "adminOrders");
-  console.log(data);
-  const { data: dashbd } = useGet("admin/dashboard", "adminDshbd");
-  console.log("dashboard", dashbd);
+  const imgBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   return (
     <div className="font-openSans">
       {/* Last Updated */}
@@ -79,30 +80,32 @@ const AdminDashboard = () => {
                 Top Selling Products
               </h3>
               <div className="flex flex-col gap-y-[16px]">
-                {[1, 2, 3, 4].map((product, index) => (
-                  <div className="flex justify-between" key={index}>
-                    <div className="flex items-center gap-x-[8px]">
-                      <Image
-                        src={image}
-                        width={48}
-                        height={48}
-                        alt=""
-                        className="rounded-[4px] lg:size-[48px]"
-                      />
-                      <div className="flex flex-col gap-y-[8px]">
-                        <h6 className="text-[14px] font-[600] leading-[20.3px] text-black">
-                          Marli Tassel Tee
-                        </h6>
-                        <span className="text-[12px] font-[300] leading-[17.4px] text-black">
-                          Category: Fashion
-                        </span>
+                {dashbd?.data?.data?.products
+                  ?.slice(0, 5)
+                  ?.map((product: any) => (
+                    <div className="flex justify-between" key={product?.id}>
+                      <div className="flex items-center gap-x-[8px]">
+                        <Image
+                          src={`${imgBaseUrl}/${product?.image}`}
+                          width={48}
+                          height={48}
+                          alt={product?.name}
+                          className="rounded-[4px] object-cover lg:size-[48px]"
+                        />
+                        <div className="flex flex-col gap-y-[8px]">
+                          <h6 className="text-[14px] font-[600] leading-[20.3px] text-black">
+                            {product?.name}
+                          </h6>
+                          <span className="text-[12px] font-[300] leading-[17.4px] text-black">
+                            Category: {product?.category}
+                          </span>
+                        </div>
                       </div>
+                      <p className="h-fit rounded-[4px] border-[1px] border-border px-[8px] py-[4px]">
+                        512 Sales
+                      </p>
                     </div>
-                    <p className="h-fit rounded-[4px] border-[1px] border-border px-[8px] py-[4px]">
-                      512 Sales
-                    </p>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
             {/* Recent Orders */}
