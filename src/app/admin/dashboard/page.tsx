@@ -47,6 +47,8 @@ const AdminDashboard = () => {
   ];
   const { data, isPending } = useGet("admin/orders", "adminOrders");
   console.log(data);
+  const { data: dashbd } = useGet("admin/dashboard", "adminDshbd");
+  console.log("dashboard", dashbd);
   return (
     <div className="font-openSans">
       {/* Last Updated */}
@@ -112,7 +114,7 @@ const AdminDashboard = () => {
                 </h4>
                 <div className="flex items-center">
                   <span className="text-[12px] font-[400] leading-[17.4px] tracking-[-0.5%] text-black">
-                    See alll
+                    See all
                   </span>
                   <ArrowRight01Icon className="size-[16px] text-[#666666]" />
                 </div>
