@@ -102,7 +102,7 @@ const AdminDashboard = () => {
                         </div>
                       </div>
                       <p className="h-fit rounded-[4px] border-[1px] border-border px-[8px] py-[4px]">
-                        512 Sales
+                        0 Sales
                       </p>
                     </div>
                   ))}

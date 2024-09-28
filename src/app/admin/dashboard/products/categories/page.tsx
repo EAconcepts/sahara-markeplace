@@ -1,14 +1,51 @@
 "use client";
 
+import Loader from "@/app/(components)/loader";
 import { Header } from "@/app/dashboard/(components)/header";
+import { useAuth } from "@/utils/useAuth";
 import { useGet } from "@/utils/useGet.";
+import {
+  QueryClient,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
+import axios from "axios";
+import { error } from "console";
 import { AddCircleIcon, Delete02Icon } from "hugeicons-react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const Categories = () => {
   const router = useRouter();
-  const { data, isPending } = useGet("admin/category", "adminCategories");
-  console.log(data);
+  const { data, isPending, refetch } = useGet(
+    "admin/category",
+    "adminCategories",
+  );
+  console.log(refetch);
+  const { token, baseUrl } = useAuth();
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const queryClient = useQueryClient();
+  const deleteMutation = useMutation({
+    mutationFn: (category_id) =>
+      axios.get(`${baseUrl}/admin/delete-category/${category_id}`, { headers }),
+    onSuccess: (data) => {
+      console.log(data);
+      toast.success("Category deleted successfully");
+      // refetch();
+      queryClient.refetchQueries({ queryKey: ["adminCategories"] });
+    },
+    onError: (error: any) => {
+      console.log(error);
+      toast.error(error?.response?.data?.message || "An error occured");
+    },
+  });
+  const handleDelete = (category_id: any) => {
+    // deleteMutation.mutate(category_id);
+    queryClient.refetchQueries({ queryKey: ["adminCategories"] });
+    // refetch();
+  };
   return (
     <div className="mt-[12px] flex w-full flex-col gap-[32px] font-openSans">
       <Header
@@ -32,38 +69,43 @@ const Categories = () => {
             </tr>
           </thead>
           <tbody>
-            {[1, 2, 4, 5, 6].map((catg, index) => (
-              <tr key={index} className="">
-                <td className="px-[24px] py-[17.5px] text-start">
-                  <div className="flex flex-col">
-                    <span className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
-                      Men&apos;s Wear
-                    </span>
-                    <span className="text-[12px] font-[400] leading-[17.4px] text-[#787C83]">
-                      Fashion
-                    </span>
-                  </div>
-                </td>
-                <td className="line-clamp-2 max-w-[360px] px-[24px] py-[17.5px] text-start text-[12px] font-[400] leading-[17.4px] text-blackPrimary">
-                  Suits & Trousers, Shirts, Coats & Jackets, Shorts, Jeans,
-                  Agbada, Dashiki, Senators, Isiagu, Kaftan, Jalabia
-                </td>
-                <td className="px-[24px] py-[17.5px] text-start">2880</td>
-                <td className="px-[24px] py-[17.5px] text-start">
-                  <div className="flex items-end gap-[12px]">
-                    <span>$24,732.70</span>
-                    <span className="font-inter text-[12px] font-[400] leading-[14.5px] text-success">
-                      +0.00%
-                    </span>
-                  </div>
-                </td>
-                <td className="px-[24px] py-[17.5px] text-start">
-                  <button className="">
-                    <Delete02Icon className="size-[20px] text-failure" />
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {isPending ? (
+              <Loader />
+            ) : (
+              data?.data?.data?.cat?.map((catg: any) => (
+                <tr key={catg?.id} className="">
+                  <td className="px-[24px] py-[17.5px] text-start">
+                    <div className="flex flex-col">
+                      <span className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+                        {catg?.name}
+                      </span>
+                      <span className="text-[12px] font-[400] leading-[17.4px] text-[#787C83]">
+                        {catg?.type}
+                      </span>
+                    </div>
+                  </td>
+                  <td className="line-clamp-2 max-w-[360px] px-[24px] py-[17.5px] text-start text-[12px] font-[400] leading-[17.4px] text-blackPrimary">
+                    {catg?.description || "No description available"}
+                  </td>
+                  <td className="px-[24px] py-[17.5px] text-start">
+                    {catg?.products}
+                  </td>
+                  <td className="px-[24px] py-[17.5px] text-start">
+                    <div className="flex items-end gap-[12px]">
+                      <span>$0</span>
+                      <span className="font-inter text-[12px] font-[400] leading-[14.5px] text-success">
+                        +0.00%
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-[24px] py-[17.5px] text-start">
+                    <button className="" onClick={() => handleDelete(catg?.id)}>
+                      <Delete02Icon className="size-[20px] text-failure" />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

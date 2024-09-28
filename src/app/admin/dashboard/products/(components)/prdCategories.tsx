@@ -28,7 +28,7 @@ export const PrdCatgry = () => {
             <span className="shrink-0">{categ?.name}</span>
             <div className="h-[1px] w-full border-[1px] border-b border-dashed"></div>
 
-            <span className="shrink-0">0 Items </span>
+            <span className="shrink-0">{categ?.products} Items </span>
           </div>
         ))}
         {/* </div> */}

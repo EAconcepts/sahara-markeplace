@@ -36,12 +36,16 @@ const ProductListnigs = () => {
           {/* Total Sales & Products */}
           <div className="flex w-[40%] shrink-0 flex-col lg:gap-[16px]">
             {/* Total Sales */}
-            <TotalProducts heading={"Total Sales"} total={0} percent={9} />
+            <TotalProducts
+              heading={"Total Sales"}
+              total={dashbd.data?.data?.sales}
+              percent={0}
+            />
             {/* Total Products */}
             <TotalProducts
               heading={"Total Products"}
-              total={0}
-              percent={1.03}
+              total={dashbd.data?.data?.sales}
+              percent={0}
             />
           </div>
           {/* Product categories */}

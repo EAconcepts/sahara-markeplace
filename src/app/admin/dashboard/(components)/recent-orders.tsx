@@ -29,7 +29,7 @@ const RecentOrders = ({ products }: { products?: any }) => {
           >
             <td className="">
               <p className="line-clamp-1 px-[24px] py-[12px] text-[14px] font-[400] leading-[16.8px] tracking-[-2%] text-blackPrimary">
-                {order?.product?.name}
+                {order?.products?.name}
               </p>
             </td>
             <td className="px-[24px] py-[16px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary">

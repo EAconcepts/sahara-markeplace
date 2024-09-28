@@ -38,5 +38,10 @@ export const useGet: any = (url: string, queryKey: String) => {
     // toast.error(getQuery.error.message || "An error occured!")
     console.log(getQuery.error);
   }
-  return { data, updatedAt, isPending: getQuery.isPending };
+  return {
+    data,
+    updatedAt,
+    isPending: getQuery.isPending,
+    refetch: getQuery.refetch,
+  };
 };
