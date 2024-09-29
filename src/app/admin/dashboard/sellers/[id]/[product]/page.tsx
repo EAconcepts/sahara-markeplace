@@ -1,3 +1,5 @@
+"use client";
+
 import { PrdtDetails } from "@/app/sellers/dashboard/product-listings/[product_name]/(components)/Prdt_details";
 import { useParams } from "next/navigation";
 
