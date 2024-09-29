@@ -1,5 +1,6 @@
 "use client";
 
+import Calendarr from "@/app/(components)/calendar";
 import Loader from "@/app/(components)/loader";
 import { Header } from "@/app/dashboard/(components)/header";
 import LastUpdated from "@/app/sellers/dashboard/(components)/last-updated";
@@ -19,12 +20,16 @@ import { ArrowRight01Icon, Calendar03Icon } from "hugeicons-react";
 
 const OrderList = () => {
   const orderStatus = [{}];
-  const { data, isPending } = useGet("admin/orders", "adminOrders");
+  const { data, isPending, updatedAt } = useGet("admin/orders", "adminOrders");
   console.log(data);
+  const fufilled = () => {
+    return data?.data?.data?.trx.filter((order: any) => order?.status === "1")
+      .length;
+  };
   return (
     <div className="font-openSans max-lg:px-[24px]">
       {/* Last updated */}
-      <LastUpdated />
+      <LastUpdated queryKey="adminOrders" updatedAt={updatedAt} />
       <div className="flex flex-col gap-y-[32px] py-[16px] lg:mt-[32px]">
         {/* Header */}
         <Header title="Orders" />
@@ -37,7 +42,7 @@ const OrderList = () => {
                 Total Order
               </h4>
               {/* Calendar */}
-              <div className="flex items-center gap-x-[4px] rounded-[8px] border-[1px] border-border px-[12px] py-[6px] lg:gap-x-[8px] lg:py-[8px]">
+              <div className="fle hidden items-center gap-x-[4px] rounded-[8px] border-[1px] border-border px-[12px] py-[6px] lg:gap-x-[8px] lg:py-[8px]">
                 <Calendar03Icon className="size-[14px] text-[#8E97A6] lg:size-[16px]" />
                 <div className="flex items-center gap-x-[4px]">
                   <span className="text-[12px] font-[400] leading-[20.3px] text-[#8E97A6] lg:text-[14px]">
@@ -45,11 +50,11 @@ const OrderList = () => {
                   </span>
                   <ArrowRight01Icon className="size-[16px] rotate-[-90deg] text-[#8E97A6]" />
                 </div>
-                {/* <Calendar /> */}
               </div>
+              <Calendarr />
             </div>
             <h1 className="text-[32px] font-[700] leading-[46px] tracking-[-2%] text-[#101928] lg:text-[48px] lg:leading-[57.6px]">
-              125
+              {data?.data?.data?.trxx}
             </h1>
             <div className="flex items-center gap-x-[10px] divide-x-[1px] divide-border lg:gap-x-[12px]">
               {/* New Orders */}
@@ -60,7 +65,7 @@ const OrderList = () => {
                 {/* Value */}
                 <div className="flex items-center gap-x-[4px] lg:items-end">
                   <h2 className="text-[16px] font-[600] leading-[57.6px] tracking-[-2%] text-blackPrimary lg:text-[48px]">
-                    16
+                    {data?.data?.data?.trxx}
                   </h2>
                   <p className="text-[10px] font-[400] leading-[19.36px] text-success lg:pb-[8px] lg:text-[16px]">
                     +0.00%
@@ -75,7 +80,7 @@ const OrderList = () => {
                 {/* Value */}
                 <div className="flex items-end gap-x-[4px]">
                   <h2 className="text-[16px] font-[600] leading-[57.6px] tracking-[-2%] text-blackPrimary lg:text-[48px]">
-                    75
+                    {fufilled()}
                   </h2>
                   <p className="pb-[8px] text-[10px] font-[400] leading-[19.36px] text-success lg:text-[16px]">
                     +0.00%
@@ -90,7 +95,7 @@ const OrderList = () => {
                 {/* Value */}
                 <div className="flex items-end gap-x-[4px]">
                   <h2 className="text-[16px] font-[600] leading-[57.6px] tracking-[-2%] text-blackPrimary lg:text-[48px]">
-                    4
+                    0
                   </h2>
                   <p className="pb-[8px] text-[10px] font-[400] leading-[19.36px] text-success lg:text-[16px]">
                     +0.00%
@@ -105,7 +110,7 @@ const OrderList = () => {
                 {/* Value */}
                 <div className="fw-full lex items-end gap-x-[4px]">
                   <h2 className="text-[16px] font-[600] leading-[57.6px] tracking-[-2%] text-blackPrimary lg:text-[48px]">
-                    12
+                    0
                   </h2>
                   <p className="pb-[8px] text-[10px] font-[400] leading-[19.36px] text-success lg:text-[16px]">
                     +0.00%

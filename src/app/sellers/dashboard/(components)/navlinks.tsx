@@ -108,7 +108,7 @@ export const adminNavLinks: NavlinksProps[] = [
   {
     icon: PackageIcon,
     title: "Transactions",
-    path: "/admin/dashboard/my-orders",
+    path: "/admin/dashboard/transactions",
   },
   {
     icon: UserMultiple02Icon,

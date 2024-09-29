@@ -21,7 +21,7 @@ const Categories = () => {
     "admin/category",
     "adminCategories",
   );
-  console.log(refetch);
+  // console.log(refetch);
   const { token, baseUrl } = useAuth();
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -33,8 +33,8 @@ const Categories = () => {
     onSuccess: (data) => {
       console.log(data);
       toast.success("Category deleted successfully");
-      // refetch();
       queryClient.refetchQueries({ queryKey: ["adminCategories"] });
+      refetch();
     },
     onError: (error: any) => {
       console.log(error);
@@ -42,8 +42,8 @@ const Categories = () => {
     },
   });
   const handleDelete = (category_id: any) => {
-    // deleteMutation.mutate(category_id);
-    queryClient.refetchQueries({ queryKey: ["adminCategories"] });
+    deleteMutation.mutate(category_id);
+    // queryClient.refetchQueries({ queryKey: ["adminCategories"] });
     // refetch();
   };
   return (
