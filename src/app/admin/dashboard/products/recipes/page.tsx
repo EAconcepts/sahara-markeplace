@@ -78,6 +78,11 @@ const Recipes = () => {
                     {recipe?.content}
                   </p>
                   <Button
+                    onClick={() =>
+                      router.push(
+                        `/admin/dashboard/products/recipes/edit-recipe/${recipe?.id}`,
+                      )
+                    }
                     variant={"outline"}
                     className="h-[32px] rounded-[8px] border-[1px] border-border px-[16px] py-[6px] text-[14px] font-[600] leading-[20.3px] text-black"
                   >

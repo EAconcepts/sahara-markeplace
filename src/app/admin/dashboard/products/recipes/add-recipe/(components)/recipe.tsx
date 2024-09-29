@@ -21,25 +21,40 @@ import Image from "next/image";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
-const AddRecipe = () => {
+const AddRecipe = ({ id }: { id: any }) => {
   const [recipeDetails, setRecipeDetails] = useState({
     title: "",
     content: "",
     type: "recipie",
     image: "",
+    sid: id || "",
   });
   const [image, setImage] = useState("");
   const { token, baseUrl } = useAuth();
   const headers = {
     Authorization: "Bearer " + token,
   };
-
+  const { data, isPending } = useGet("blog-posts", "recipes");
+  console.log(data);
+  const extractRecipe = (blogs: any) => {
+    console.log(blogs);
+    const recipes = blogs?.filter((blog: any) => blog?.type == "recipie");
+    // console.log(recipes)
+    return recipes;
+  };
+  useEffect(() => {
+    const recipes = extractRecipe(data?.data?.data?.posts);
+    const recipe = recipes?.find((recipe: any) => recipe?.id.toString() === id);
+    console.log(recipe);
+    setRecipeDetails(recipe);
+  }, [data]);
   const recipeMutation = useMutation({
     mutationFn: () => {
       formdata.append("title", recipeDetails.title);
       formdata.append("content", recipeDetails.content);
       formdata.append("type", recipeDetails.type);
-      return axios.post(`${baseUrl}/admin/add-blog`, formdata, {
+      formdata.append("sid", recipeDetails?.sid);
+      return axios.post(`${baseUrl}/admin/edit-blog`, formdata, {
         headers,
       });
     },
@@ -177,7 +192,7 @@ const AddRecipe = () => {
                     content: e.target.value,
                   });
                 }}
-                className="h-[64px] w-full rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
+                className="min-h-[77sspx] w-full rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
               />
             </div>
             {/* Ingredients */}
@@ -271,7 +286,7 @@ const AddRecipe = () => {
           {/* Method of prep */}
           <div className="flex w-full gap-[12px]">
             <Button className="h-[44px] w-[fit] rounded-[4px] border-greenPrimary px-[24px] py-[12px] text-[14px] font-[400] leading-[20.3px]">
-              Publish Recipe
+              Update Recipe
             </Button>
             <Button
               variant={"outline"}

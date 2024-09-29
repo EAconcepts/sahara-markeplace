@@ -1,12 +1,13 @@
-import ProductDetails from "@/app/sellers/dashboard/product-listings/[product_name]/page";
+import { PrdtDetails } from "@/app/sellers/dashboard/product-listings/[product_name]/(components)/Prdt_details";
+import { useParams } from "next/navigation";
 
-const SellerProductDetails=()=>{
-
-    return(
-        <div>
-            <ProductDetails/>
-        </div>
-    )
-}
+const SellerProductDetails = () => {
+  const { product } = useParams();
+  return (
+    <div>
+      <PrdtDetails product_name={product} />
+    </div>
+  );
+};
 
 export default SellerProductDetails;
