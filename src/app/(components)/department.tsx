@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import React from "react";
@@ -6,32 +6,35 @@ import { VscArrowSmallRight } from "react-icons/vsc";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 
-const Department = ({categories}:{categories:any}) => {
- 
-  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+const Department = ({ categories }: { categories: any }) => {
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   return (
-    <div className="pt-[16px]">
-      <h3 className="font-[700] text-[30px] leading-[43.5px] font-playfair text-blackPrimary">
+    <div className="pt-[16px] max-lg:w-full">
+      <h3 className="font-playfair text-[30px] font-[700] leading-[43.5px] text-blackPrimary">
         Choose Department
       </h3>
-      <div className="flex flex-wrap gap-[24px] mt-[32px] ">
-        {categories?.slice(0,6).map((dept:any) => (
-          <Link href={`/categories/${encodeURIComponent(dept?.name)}`} className="relative border lg:w-[347px] first:w-[504px] last:w-[504px]" key={dept?.id}>
+      <div className="mt-[32px] flex flex-wrap gap-[24px] max-lg:w-full">
+        {categories?.slice(0, 6).map((dept: any) => (
+          <Link
+            href={`/categories/${encodeURIComponent(dept?.name)}`}
+            className="relative first:w-[504px] last:w-[504px] max-lg:w-full max-lg:first:w-full max-lg:last:w-full lg:w-[347px]"
+            key={dept?.id}
+          >
             <Image
               src={`${imageBaseUrl}/${dept?.image}`}
               alt={dept?.name}
               width={504}
               height={240}
               className={twMerge(
-                ` rounded-[8px] max-lg:h-[200px] lg:w-[504p lg:h-[240px] object-cover`,
-                dept?.className
+                `lg:w-[504p overflow-hidden rounded-[8px] border object-cover max-lg:h-[200px] max-lg:max-w-full lg:h-[240px]`,
+                dept?.className,
               )}
             />
-            <div className="flex w-full justify-between items-center absolute  bottom-[12px] px-[36px]">
-              <span className="text-white  text-[16px] lg:text-[24px] leading-[34.8px] font-[700] font-openSans">
+            <div className="absolute bottom-[12px] flex w-full items-center justify-between px-[36px]">
+              <span className="font-openSans text-[16px] font-[700] leading-[34.8px] text-white lg:text-[24px]">
                 {dept?.name}
               </span>
-              <VscArrowSmallRight className="text-white text-[24px] lg:text-[36px]" />
+              <VscArrowSmallRight className="text-[24px] text-white lg:text-[36px]" />
             </div>
           </Link>
         ))}

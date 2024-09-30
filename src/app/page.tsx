@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <main className="max-lg:px-[24px] lg:mt-[40px] lg:px-[96px] lg:pb-[32px] lg:pt-[12px]">
       <Hero />
-      <div className="mt-[40px]">
+      <div className="mt-[40px] max-lg:w-full">
         {data?.data?.data?.categories ? (
           <Department categories={data?.data?.data?.categories} />
         ) : (
