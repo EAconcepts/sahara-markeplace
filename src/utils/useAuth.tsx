@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -6,41 +6,44 @@ import { toast } from "sonner";
 interface AuthProps {
   token: string | null;
   user: any | null;
-  userType: string | null
+  userType: string | null;
   login: (token: string, user: any) => void;
   logout: () => void;
   baseUrl: string;
+  imgUrl: string;
 }
 export const AuthContext = createContext<any>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const userData =
     typeof window !== "undefined" && localStorage.getItem("user");
   const tkn = typeof window !== "undefined" && localStorage.getItem("token");
-  const user_type = typeof window !== "undefined" && localStorage.getItem("userType");
+  const user_type =
+    typeof window !== "undefined" && localStorage.getItem("userType");
   const [token, setToken] = useState(tkn || null);
   const [user, setUser] = useState((userData && JSON.parse(userData)) || null);
-  const [userType, setUserType] = useState<string | null>(user_type || null) 
+  const [userType, setUserType] = useState<string | null>(user_type || null);
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const imgUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
-  const login = (token: string, user: any, userType:string) => {
-    if (typeof window !== 'undefined') {
-      token && localStorage.setItem("token", token );
-      userType && localStorage.setItem("userType", userType );
+  const login = (token: string, user: any, userType: string) => {
+    if (typeof window !== "undefined") {
+      token && localStorage.setItem("token", token);
+      userType && localStorage.setItem("userType", userType);
       setToken(token);
       setUserType(userType);
-     user && localStorage.setItem("user", JSON.stringify(user));
+      user && localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
     }
   };
   const logout = () => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       localStorage.removeItem("token");
       setToken(null);
-      setUser(null)
-      setUserType(null)
+      setUser(null);
+      setUserType(null);
       localStorage.removeItem("user");
       localStorage.removeItem("userType");
-      toast.success('Logout Successful!')
+      toast.success("Logout Successful!");
     }
   };
 
@@ -52,9 +55,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ token, user, userType, baseUrl, login, logout }}>
+    <AuthContext.Provider
+      value={{ token, user, userType, baseUrl, imgUrl, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
-export const useAuth = () =>useContext(AuthContext)
+export const useAuth = () => useContext(AuthContext);

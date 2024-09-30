@@ -29,7 +29,7 @@ export const PrdtDetails = ({ product_name }: { product_name?: any }) => {
     category: data?.data?.data?.product?.category || "",
     sid: data && data?.data?.data?.product?.id,
   });
-  const { token, baseUrl } = useAuth();
+  const { token, baseUrl, userType } = useAuth();
   console.log(data);
   const headers = {
     Authorization: "Bearer " + token,
@@ -57,14 +57,18 @@ export const PrdtDetails = ({ product_name }: { product_name?: any }) => {
       formdata.append("image", prdtDetails?.image && prdtDetails?.image);
       formdata.append("quantity", prdtDetails?.quantity);
       formdata.append("category", prdtDetails.category);
-      return axios.post(`${baseUrl}/vendor/update-product`, formdata, {
+      return axios.post(`${baseUrl}/${userType}/update-product`, formdata, {
         headers,
       });
     },
     onSuccess: (data) => {
       console.log(data);
       toast.success("product updated successfully!");
-      router.push("/sellers/dashboard/product-listings");
+      if (userType == "vendor") {
+        router.push("/sellers/dashboard/product-listings");
+      } else if (userType == "admin") {
+        router.back();
+      }
     },
     onError: (error) => {
       console.log(error);
@@ -83,7 +87,7 @@ export const PrdtDetails = ({ product_name }: { product_name?: any }) => {
   const queryClient = useQueryClient();
   const deleteMutation = useMutation({
     mutationFn: (id) =>
-      axios.get(`${baseUrl}/vendor/delete-product/${id}`, { headers }),
+      axios.get(`${baseUrl}/${userType}/delete-product/${id}`, { headers }),
     onSuccess: (data) => {
       console.log(data);
       // Refresh the product list after deletion

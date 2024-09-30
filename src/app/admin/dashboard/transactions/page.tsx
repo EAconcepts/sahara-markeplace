@@ -9,9 +9,12 @@ import { useRouter } from "next/navigation";
 import masterCard from "@/assets/images/mastercard.svg";
 import { HiOutlineEllipsisVertical } from "react-icons/hi2";
 import Pagination from "@/app/sellers/dashboard/(components)/pagination";
+import { useGet } from "@/utils/useGet.";
 
 const Transactions = () => {
   const router = useRouter();
+  const { data, isPending } = useGet("admin/vendors-subscription", "vendorSub");
+  console.log("subscription", data);
   return (
     <div className="mt-[8px] flex w-full flex-col gap-[24px]">
       <LastUpdated />
@@ -42,69 +45,75 @@ const Transactions = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-border px-[15px]">
-              {[1, 3, 4, 5].map((product: any, index: number) => (
-                <tr
-                  onClick={() => router.push(`/dashboard/my-orders/SE2392922`)}
-                  key={index}
-                  className="h-[73px] gap-x-[24px] px-[15px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary"
-                >
-                  {/* Tx ID */}
-                  <td className="px-[24px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                    #166
-                  </td>
-                  {/* Transactions */}
-                  <td className="w-fit px-[24px] text-[14px] font-[400] leading-[16.8px] text-blackPrimary">
-                    <div className="flex flex-col gap-[8px]">
-                      <span>Store Subscription</span>
-                      <span className="text-[12px] font-[400] leading-[17.4px] text-[#787C83]">
-                        Afritique-Benin
-                      </span>
-                    </div>
-                  </td>
-                  {/* Date Created*/}
-                  <td className="px-[24px]">Jun 20, 2024</td>
-
-                  {/* Method */}
-                  <td className="py-[15px] pl-[16px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                    <div className="flex items-center gap-[6px]">
-                      <Image
-                        src={masterCard}
-                        width={38.88}
-                        height={24}
-                        alt="mastercard"
-                        className="h-[24px] w-[38.88px] object-cover"
-                      />
-                      <span className="text-[14px] font-[600] leading-[16.8px] text-blackPrimary">
-                        Mastercard
-                      </span>
-                    </div>
-                  </td>
-                  {/* Amount */}
-                  <td className="px-[24px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                    $79.99
-                  </td>
-
-                  {/* Status */}
-                  <td className="pr-[15px]">
-                    <div className="flex items-center gap-x-[32px] align-middle">
-                      <span className="w-fit shrink-0 rounded-[24px] bg-[#F9E79F66] px-[16px] py-[4px] font-[600]">
-                        Paid
-                      </span>
-                      <div className="flex size-[24px] items-center justify-center rounded-[8px] border-[1px] border-border">
-                        <HiOutlineEllipsisVertical className="text-[14px] text-blackPrimary" />
+              {data?.data?.data?.users?.subscriptions?.map(
+                (product: any, index: number) => (
+                  <tr
+                    onClick={() =>
+                      router.push(`/dashboard/my-orders/SE2392922`)
+                    }
+                    key={index}
+                    className="h-[73px] gap-x-[24px] px-[15px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary"
+                  >
+                    {/* Tx ID */}
+                    <td className="px-[24px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
+                      #166
+                    </td>
+                    {/* Transactions */}
+                    <td className="w-fit px-[24px] text-[14px] font-[400] leading-[16.8px] text-blackPrimary">
+                      <div className="flex flex-col gap-[8px]">
+                        <span>Store Subscription</span>
+                        <span className="text-[12px] font-[400] leading-[17.4px] text-[#787C83]">
+                          Afritique-Benin
+                        </span>
                       </div>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                    {/* Date Created*/}
+                    <td className="px-[24px]">Jun 20, 2024</td>
+
+                    {/* Method */}
+                    <td className="py-[15px] pl-[16px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
+                      <div className="flex items-center gap-[6px]">
+                        <Image
+                          src={masterCard}
+                          width={38.88}
+                          height={24}
+                          alt="mastercard"
+                          className="h-[24px] w-[38.88px] object-cover"
+                        />
+                        <span className="text-[14px] font-[600] leading-[16.8px] text-blackPrimary">
+                          Mastercard
+                        </span>
+                      </div>
+                    </td>
+                    {/* Amount */}
+                    <td className="px-[24px] text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
+                      $79.99
+                    </td>
+
+                    {/* Status */}
+                    <td className="pr-[15px]">
+                      <div className="flex items-center gap-x-[32px] align-middle">
+                        <span className="w-fit shrink-0 rounded-[24px] bg-[#F9E79F66] px-[16px] py-[4px] font-[600]">
+                          Paid
+                        </span>
+                        <div className="flex size-[24px] items-center justify-center rounded-[8px] border-[1px] border-border">
+                          <HiOutlineEllipsisVertical className="text-[14px] text-blackPrimary" />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ),
+              )}
             </tbody>
           </table>
-          <Pagination
-            className="justify-end"
-            onPageChange={() => {}}
-            totalPages={3}
-            currentPage={1}
-          />
+          {data?.data?.data?.users?.subscriptions?.length > 10 && (
+            <Pagination
+              className="justify-end"
+              onPageChange={() => {}}
+              totalPages={3}
+              currentPage={1}
+            />
+          )}
         </div>
       </div>
     </div>

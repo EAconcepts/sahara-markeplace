@@ -21,8 +21,43 @@ import { Search01Icon } from "hugeicons-react";
 import { Input } from "@/components/ui/input";
 import SellerProductCard from "./(components)/Seller-products";
 import { newArrivals } from "@/app/(components)/reviews";
+import { useGet } from "@/utils/useGet.";
+import { useParams, useRouter } from "next/navigation";
+import { useAuth } from "@/utils/useAuth";
+import Loader from "@/app/(components)/loader";
+import { useEffect, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 
 const SellerDetails = () => {
+  const { id } = useParams();
+  // const [details, setDetails] = useState()
+  const { data, isPending } = useGet(`admin/vendor-details/${id}`);
+  console.log("seller details", data);
+  const { imgUrl, token, baseUrl } = useAuth();
+  let details = data?.data?.data;
+  const router = useRouter();
+  // useEffect(()=>{
+  //   setDetails(data?.data?.data)
+  // },[data])
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const handleSearch = () => {};
+  const deleteMutation = useMutation({
+    mutationFn: () =>
+      axios.get(`${baseUrl}/admin/delete-vendor/${id}`, { headers }),
+    onSuccess: (data) => {
+      console.log(data);
+      console.log("Vendor deleted successfully");
+      router.push("/admin/dashboard/sellers");
+    },
+    onError: (error) => {
+      console.log(error);
+      console.log("Failed to delete vendor");
+    },
+  });
+  const handleDelete = () => {};
   return (
     <div className="font-openSans">
       {/* Breadcrumb */}
@@ -35,8 +70,12 @@ const SellerDetails = () => {
             <Button className="h-[36px] rounded-[4px] border-[1px] border-[#8E97A6] bg-white px-[12px] py-[8px] text-[14px] font-[600] text-blackPrimary">
               Suspend
             </Button>
-            <Button className="h-[36px] rounded-[4px] border-[1px] border-[#8E97A6] bg-white px-[12px] py-[8px] text-[14px] font-[600] text-blackPrimary">
-              Delete
+            <Button
+              disabled={deleteMutation.isPending}
+              onClick={() => deleteMutation.mutate()}
+              className="h-[36px] rounded-[4px] border-[1px] border-[#8E97A6] bg-white px-[12px] py-[8px] text-[14px] font-[600] text-blackPrimary"
+            >
+              {deleteMutation.isPending ? "Deleting" : "Delete"}
             </Button>
           </div>
         </div>
@@ -46,7 +85,11 @@ const SellerDetails = () => {
             {/* Name */}
             <div className="flex w-full items-center gap-[8px] rounded-[12px] border-[1px] border-border p-[16px]">
               <Image
-                src={image}
+                src={
+                  details?.vendor?.image
+                    ? `${imgUrl}/${details?.vendor?.image}`
+                    : image
+                }
                 width={120}
                 height={120}
                 alt=""
@@ -54,7 +97,7 @@ const SellerDetails = () => {
               />
               <div className="flex flex-col">
                 <h3 className="text-[32px] font-[600] leading-[46.4px] text-blackPrimary">
-                  Afritique-Benin
+                  {details?.company}
                 </h3>
                 <span className="text-[14px] font-[400] leading-[20.3px] text-success">
                   Verified
@@ -70,12 +113,7 @@ const SellerDetails = () => {
                 Description
               </h3>
               <p className="text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
-                Afritique is your one-stop shop for all things African! We
-                celebrate the vibrant cultures, rich traditions, and stunning
-                fashions of the African continent. Immerse yourself in our
-                collection of unique and stylish clothing, exquisite home wears,
-                and authentic accessories. Afritique is more than just a store;
-                it&apos; a cultural experience.{" "}
+                {details?.vendor?.description}
               </p>
             </div>
             <div className="flex gap-x-[16px]">
@@ -86,7 +124,7 @@ const SellerDetails = () => {
                 </h5>
                 <div className="flex items-center gap-x-[7px]">
                   <h2 className="font-inter text-[20px] font-[600] leading-[24px] tracking-[-2%] text-blackPrimary">
-                    164
+                    {details?.orders?.length}
                   </h2>
                   <span className="font-inter font-[400] leading-[14.52px] text-success">
                     +0.00%
@@ -100,7 +138,7 @@ const SellerDetails = () => {
                 </h5>
                 <div className="flex items-center gap-x-[7px]">
                   <h2 className="font-inter text-[20px] font-[600] leading-[24px] tracking-[-2%] text-blackPrimary">
-                    $3,600
+                    $0
                   </h2>
                   <span className="font-inter font-[400] leading-[14.52px] text-success">
                     +0.00%
@@ -114,7 +152,7 @@ const SellerDetails = () => {
                 </h5>
                 <div className="flex items-center gap-x-[7px]">
                   <h2 className="font-inter text-[20px] font-[600] leading-[24px] tracking-[-2%] text-blackPrimary">
-                    102
+                    {details?.products?.length}
                   </h2>
                 </div>
               </div>
@@ -128,20 +166,25 @@ const SellerDetails = () => {
               </h2>
               <div className="flex gap-x-[7px]">
                 <Image
-                  src={image}
-                  sizes={"80px"}
+                  src={
+                    details?.vendor?.image
+                      ? `${imgUrl}/${details?.vendor?.image}`
+                      : image
+                  }
+                  width={80}
+                  height={80}
                   alt=""
                   className="size-[80px] object-cover"
                 />
                 <div className="flex flex-col gap-y-[4px]">
                   <h5 className="font-openSans text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
-                    Nia Taraji
+                    {details?.vendor?.first_name} {details?.vendor?.last_name}
                   </h5>
                   <p className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                    Username@gmail.com
+                    {details?.vendor?.email}
                   </p>
                   <p className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                    +1 (234) 555 - 66234
+                    {details?.vendor?.phone}
                   </p>
                 </div>
               </div>
@@ -153,25 +196,29 @@ const SellerDetails = () => {
               </h2>
               <div className="flex gap-x-[12px]">
                 <div className="flex flex-col gap-y-[4px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
-                  <span className="">Country:</span>
-                  <span className="text-[14px] text-[#787C83]">Address:</span>
-                </div>
-                <div className="flex flex-col gap-y-[4px]">
-                  <div className="flex gap-x-[12px]">
-                    <span className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                      Benin
-                    </span>
-                    <Image
-                      src={usa}
-                      width={24}
-                      height={16}
-                      alt=""
-                      className="h-[16px] w-[24px]"
-                    />
+                  {/* Country */}
+                  <div className="flex gap-[12px]">
+                    <span className="text-[14px] text-[#787C83]">Country:</span>
+                    <div className="flex gap-x-[12px]">
+                      <span className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
+                        {details?.vendor?.country}
+                      </span>
+                      <Image
+                        src={usa}
+                        width={24}
+                        height={16}
+                        alt=""
+                        className="hidden h-[16px] w-[24px]"
+                      />
+                    </div>
                   </div>
-                  <p className="text-wrap text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                    01 BP 35 Cotonou, Marche central de Porto-Novo
-                  </p>
+                  {/* Address */}
+                  <div className="flex gap-[12px]">
+                    <span className="">Address:</span>
+                    <p className="text-wrap text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
+                      {details?.vendor?.address}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -189,9 +236,12 @@ const SellerDetails = () => {
             {/* Search  */}
             <div className="flex items-center justify-between px-[12px]">
               <span className="text-[14px] font-[600] leading-[16.8px] text-blackPrimary">
-                Showing 1 of 12
+                Showing {details?.products?.length}
               </span>
-              <form className="flex h-[36px] w-[363px] items-center gap-[8px] rounded-[8px] border-[0.5px] border-[#8E97A6] bg-white px-[12px] py-[8px]">
+              <form
+                onSubmit={handleSearch}
+                className="flex h-[36px] w-[363px] items-center gap-[8px] rounded-[8px] border-[0.5px] border-[#8E97A6] bg-white px-[12px] py-[8px]"
+              >
                 <Search01Icon className="size-[16px] text-[#8E97A6]" />
                 <Input
                   type="search"
@@ -201,7 +251,7 @@ const SellerDetails = () => {
               </form>
               <div className="flex items-center gap-x-[16px]">
                 <span className="text-[14px] font-[600] leading-[16.8px] text-blackPrimary">
-                  Showing 1 of 500
+                  Showing {details?.products?.length} result(s)
                 </span>
                 {/* sort */}
                 <Select>
@@ -216,8 +266,8 @@ const SellerDetails = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectLabel>Fruits</SelectLabel>
-                      <SelectItem value="apple">Apple</SelectItem>
+                      <SelectLabel>--</SelectLabel>
+                      <SelectItem value="--">--</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -226,9 +276,13 @@ const SellerDetails = () => {
           </div>
           {/* Products */}
           <div className="flex flex-wrap justify-between gap-x-[16px] gap-y-[32px]">
-            {newArrivals?.map((product, index) => (
-              <SellerProductCard key={index} product={product} />
-            ))}
+            {isPending ? (
+              <Loader />
+            ) : (
+              details?.products?.map((product: any) => (
+                <SellerProductCard key={product?.id} product={product} />
+              ))
+            )}
           </div>
           {/* Pagination */}
           <div></div>

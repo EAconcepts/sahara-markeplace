@@ -88,18 +88,20 @@ const Sidemenu = ({
               Help & Support
             </span>
           </button> */}
-          <button
-            onClick={() => {
-              setShowMenu && setShowMenu(false);
-              settingsLink && router.push(settingsLink);
-            }}
-            className="flex items-center gap-x-[12px] px-[16px] py-[12px]"
-          >
-            <Settings02Icon />{" "}
-            <span className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-              Settings
-            </span>
-          </button>
+          {userType != "admin" && (
+            <button
+              onClick={() => {
+                setShowMenu && setShowMenu(false);
+                settingsLink && router.push(settingsLink);
+              }}
+              className="flex items-center gap-x-[12px] px-[16px] py-[12px]"
+            >
+              <Settings02Icon />{" "}
+              <span className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
+                Settings
+              </span>
+            </button>
+          )}
           <div className="h-[1px] w-full bg-border"></div>
         </div>
         {/* logout */}

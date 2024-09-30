@@ -116,23 +116,27 @@ export const adminNavLinks: NavlinksProps[] = [
     path: "/admin/dashboard/customers",
   },
   { icon: UserAccountIcon, title: "Sellers", path: "/admin/dashboard/sellers" },
-  {
-    icon: AlignBoxMiddleLeftIcon,
-    title: "Applications",
-    path: "#",
-  },
+  // {
+  //   icon: AlignBoxMiddleLeftIcon,
+  //   title: "Applications",
+  //   path: "#",
+  // },
   {
     icon: News01Icon,
     title: "Blogs",
     path: "/admin/dashboard/blogs",
     // value: 10,
   },
-  {
-    icon: DiscountIcon,
-    title: "Coupons/Discounts",
-    path: "#",
-    value: 10,
-  },
-  { icon: Message01Icon, title: "Reviews", path: "#" },
-  { icon: Settings02Icon, title: "Settings", path: "#" },
+  // {
+  //   icon: DiscountIcon,
+  //   title: "Coupons/Discounts",
+  //   path: "#",
+  //   value: 10,
+  // },
+  { icon: Message01Icon, title: "Reviews", path: "/admin/dashboard/reviews" },
+  // {
+  //   icon: Settings02Icon,
+  //   title: "Settings",
+  //   path: "/admin/dashboard/settings",
+  // },
 ];

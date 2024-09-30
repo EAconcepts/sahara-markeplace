@@ -51,18 +51,18 @@ const Topbar = ({
         />
       </Link>
       <div className="flex items-center gap-x-[24px]">
-        <div className="relative">
+        <div className="relative hidden">
           <span className="py[1px] px[3px] absolute -top-[4px] right-0 size-[16px] self-center rounded-full bg-failure text-center text-[10px] text-white">
             0
           </span>
           <Notification02Icon className="size-[24px] text-blackPrimary" />
         </div>
-        <div className="flex items-center gap-[8px]">
+        <Link href={"#"} className="flex items-center gap-[8px]">
           <span className="text-[16px] font-[600] leading-[23.2px] text-blackPrimary">
             Admin
           </span>
-          <UserCircleIcon className="hidden lg:block size-[36px]" />
-        </div>
+          <UserCircleIcon className="hidden size-[36px] lg:block" />
+        </Link>
         <Menu11Icon
           onClick={() => setShowMenu((prev) => true)}
           className="lg:hidden"

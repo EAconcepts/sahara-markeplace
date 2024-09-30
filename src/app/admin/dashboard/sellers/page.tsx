@@ -18,9 +18,10 @@ import {
 import { useRouter } from "next/navigation";
 import { useGet } from "@/utils/useGet.";
 import Pagination from "@/app/sellers/dashboard/(components)/pagination";
+import Loader from "@/app/(components)/loader";
 
 const Sellers = () => {
-  const { data: dashbd } = useGet("admin/dashboard", "adminDshbd");
+  const { data: dashbd, isPending } = useGet("admin/dashboard", "adminDshbd");
   const imgUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   console.log("dashboard", dashbd);
   const router = useRouter();
@@ -64,42 +65,48 @@ const Sellers = () => {
           </div>
         </div>
         <div className="flex flex-wrap gap-x-[16px] gap-y-[24px]">
-          {dashbd?.data?.data?.users?.map((seller: any) => (
-            <div
-              className="flex h-[250px] w-[247px] flex-col items-center gap-[12px] rounded-[12px] border-[1px] border-border p-[24px]"
-              key={seller?.id}
-            >
-              <div className="relative w-fit">
-                <Image
-                  src={`${imgUrl}/${seller?.image}` || avatar}
-                  width={80}
-                  height={80}
-                  alt=""
-                  className="size-[80px] rounded-full"
-                />
-                <CheckmarkCircle01Icon className="absolute bottom-0 right-0 size-[24px] rounded-full border-none bg-success text-white" />
-              </div>
-              <div className="flex flex-col gap-[16px]">
-                <div className="flex flex-col gap-y-[2px]">
-                  <h4 className="text-center text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
-                    {seller?.first_name} {seller?.last_name}
-                  </h4>
-                  <p className="text-center text-[12px] font-[400] leading-[17.4px] text-[#787C83]">
-                    {seller?.email}
-                  </p>
-                  <p className="text-center text-[12px] font-[400] leading-[17.4px] text-[#787C83]">
-                    Subscribed to Professional Plan
-                  </p>
-                </div>
-              </div>
-              <Button
-                onClick={() => router.push("/admin/dashboard/sellers/2")}
-                className="gap-[8px] rounded-[8px] border-[1px] border-border bg-white px-[16px] py-[8px] text-center text-[14px] font-[600] leading-[20.3px] text-black"
+          {isPending ? (
+            <Loader />
+          ) : (
+            dashbd?.data?.data?.users?.map((seller: any) => (
+              <div
+                className="flex h-[250px] w-[247px] flex-col items-center gap-[12px] rounded-[12px] border-[1px] border-border p-[24px]"
+                key={seller?.id}
               >
-                View Profile
-              </Button>
-            </div>
-          ))}
+                <div className="relative w-fit">
+                  <Image
+                    src={`${imgUrl}/${seller?.image}` || avatar}
+                    width={80}
+                    height={80}
+                    alt=""
+                    className="size-[80px] rounded-full"
+                  />
+                  <CheckmarkCircle01Icon className="absolute bottom-0 right-0 size-[24px] rounded-full border-none bg-success text-white" />
+                </div>
+                <div className="flex flex-col gap-[16px]">
+                  <div className="flex flex-col gap-y-[2px]">
+                    <h4 className="text-center text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+                      {seller?.first_name} {seller?.last_name}
+                    </h4>
+                    <p className="text-center text-[12px] font-[400] leading-[17.4px] text-[#787C83]">
+                      {seller?.email}
+                    </p>
+                    <p className="text-center text-[12px] font-[400] leading-[17.4px] text-[#787C83]">
+                      Subscribed to Professional Plan
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  onClick={() =>
+                    router.push(`/admin/dashboard/sellers/${seller?.id}`)
+                  }
+                  className="gap-[8px] rounded-[8px] border-[1px] border-border bg-white px-[16px] py-[8px] text-center text-[14px] font-[600] leading-[20.3px] text-black"
+                >
+                  View Profile
+                </Button>
+              </div>
+            ))
+          )}
         </div>
         {/* Pagination */}
         <div className="border-t-[1px] border-border">
