@@ -37,7 +37,7 @@ const Sidemenu = ({
     if (userType === "seller") {
       router.replace("/sellers/auth/signin");
     } else if (userType === "admin") {
-      router.replace("admin/auth/signin");
+      router.replace("/admin/auth/signin");
     } else {
       router.replace("/auth/signin");
     }

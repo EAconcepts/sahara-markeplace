@@ -5,7 +5,7 @@ import { useGet } from "@/utils/useGet.";
 
 export const PrdCatgry = () => {
   const { data } = useGet("admin/category", "adminCategory");
-  console.log("category", data);
+  // console.log("category", data);
   return (
     <div className="flex w-full flex-col gap-[24px] rounded-[12px] border-[1px] border-border px-[14px] py-[24px]">
       <div className="flex justify-between">

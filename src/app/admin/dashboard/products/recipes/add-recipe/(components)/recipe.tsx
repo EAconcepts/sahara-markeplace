@@ -21,7 +21,7 @@ import Image from "next/image";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
-const AddRecipe = ({ id }: { id: any }) => {
+const Recipe = ({ id }: { id: any }) => {
   const [recipeDetails, setRecipeDetails] = useState({
     title: "",
     content: "",
@@ -301,4 +301,4 @@ const AddRecipe = ({ id }: { id: any }) => {
   );
 };
 
-export default AddRecipe;
+export default Recipe;

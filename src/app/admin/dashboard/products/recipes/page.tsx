@@ -10,19 +10,40 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useGet } from "@/utils/useGet.";
 import Loader from "@/app/(components)/loader";
+import { FormEvent, useEffect, useState } from "react";
+import axios from "axios";
+import { useAuth } from "@/utils/useAuth";
 
 const Recipes = () => {
   const router = useRouter();
+  const [blogs, setBlogs] = useState([]);
   const { data, isPending } = useGet("blog-posts", "recipes");
-  console.log(data);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  // console.log(data);
+  const { token, baseUrl, imgUrl } = useAuth();
   const extractRecipe = (blogs: any) => {
     console.log(blogs);
     const recipes = blogs?.filter((blog: any) => blog?.type == "recipie");
     // console.log(recipes)
     return recipes;
   };
-  const imgUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+  useEffect(() => {
+    if (searchQuery == "") {
+      setBlogs(extractRecipe(data?.data?.data?.posts));
+    }
+  }, [data, searchQuery]);
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
 
+  const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const res = await axios.post(`${baseUrl}/search-recipe`, searchQuery, {
+      headers,
+    });
+    console.log(res);
+    setBlogs(res.data.data.results);
+  };
   return (
     <div className="mt-[12px] flex w-full flex-col gap-[32px] pt-[24px]">
       <Header
@@ -37,10 +58,14 @@ const Recipes = () => {
       <section className="flex flex-col gap-[16px]">
         {/* Search & Sort */}
         <div className="flex items-center justify-between px-[12px]">
-          <SearchForm />
+          <SearchForm
+            handleSearch={handleSearch}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
           <div className="flex items-center gap-[16px]">
             <span className="text-[14px] font-[600] leading-[16.8px] text-blackPrimary">
-              Showing {extractRecipe(data?.data?.data?.posts)?.length} result(s)
+              Showing {blogs?.length} result(s)
             </span>
             <SortBy />
           </div>
@@ -49,8 +74,8 @@ const Recipes = () => {
         <div className="grid w-full grid-cols-2 gap-x-[16px] gap-y-[32px] px-[16px] pt-[16px] lg:grid-cols-3">
           {isPending ? (
             <Loader />
-          ) : (
-            extractRecipe(data?.data?.data?.posts)?.map((recipe: any) => (
+          ) : blogs?.length > 0 ? (
+            blogs?.map((recipe: any) => (
               <div
                 key={recipe?.id}
                 className="flex h-[348px] w-full flex-col gap-[16px] rounded-[12px] border-[1px] border-border p-[16px]"
@@ -91,6 +116,8 @@ const Recipes = () => {
                 </div>
               </div>
             ))
+          ) : (
+            <p>No blog posts found!</p>
           )}
         </div>
       </section>

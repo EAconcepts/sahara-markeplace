@@ -18,15 +18,42 @@ import { PrdtCard } from "./(components)/prdtCard";
 import Pagination from "@/app/sellers/dashboard/(components)/pagination";
 import { useGet } from "@/utils/useGet.";
 import Loader from "@/app/(components)/loader";
+import { FormEvent, useEffect, useState } from "react";
+import { SearchForm } from "./(components)/searchForm";
+import axios from "axios";
+import { useAuth } from "@/utils/useAuth";
 
 const ProductListnigs = () => {
   const { data, isPending } = useGet("admin/products", "adminProducts");
-  console.log(data);
+  // console.log(data);
   const { data: dashbd } = useGet("admin/dashboard", "adminDshbd");
-  console.log("dashboard", dashbd);
+  // console.log("dashboard", dashbd);
   const { data: categories } = useGet("admin/category", "adminCategory");
-  console.log("category", categories);
-
+  // console.log("category", categories);
+  const [products, setProducts] = useState([]);
+  const [search, setSearchQuery] = useState<string>("");
+  const { token, baseUrl } = useAuth();
+  useEffect(() => {
+    if (search == "") {
+      setProducts(data?.data?.data?.products);
+    }
+  }, [search, data]);
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(search);
+    const response = await axios.post(
+      `${baseUrl}/search-results`,
+      { search },
+      {
+        headers,
+      },
+    );
+    console.log(response);
+    setProducts(response?.data?.data?.products);
+  };
   return (
     <div className="mt-[12px] flex w-full flex-col lg:gap-[32px] lg:py-[16px]">
       <Header title="Products" />
@@ -59,16 +86,13 @@ const ProductListnigs = () => {
           </h3>
           <div className="flex items-center justify-between">
             <span className="text-[14px] font-[600] leading-[16.8px] text-blackPrimary">
-              Showing 1 of {data?.data?.data?.products?.length}
+              Showing {products?.length} result(s)
             </span>
-            <form className="flex h-[36px] w-[363px] items-center rounded-[8px] border-[0.5px] border-[#8E97A6] bg-white px-[12px] py-[8px]">
-              <Search01Icon className="size-[16px] text-[#8E97A6]" />
-              <input
-                type="text"
-                className="h-full w-full border-none font-inter text-[14px] leading-[20.3px] text-[#8E97A6] placeholder:text-[14px] placeholder:font-[400] placeholder:text-[#8E97A6]"
-                placeholder="Search"
-              />
-            </form>
+            <SearchForm
+              search={search}
+              handleSearch={handleSearch}
+              setSearchQuery={setSearchQuery}
+            />
             <Select>
               <SelectTrigger className="h-full w-[203px] self-end rounded-[6px] border-none px-[8px] py-[12px]">
                 <span className="text-[12px] font-[400] leading-[17.4px] text-[#787C83]">
@@ -91,7 +115,7 @@ const ProductListnigs = () => {
         {/* Products */}
         <div className="grid grid-cols-2 gap-x-[16px] gap-y-[32px] lg:grid-cols-4">
           {!isPending ? (
-            data?.data?.data?.products?.map((product: any) => (
+            products?.map((product: any) => (
               <PrdtCard key={product?.id} product={product} />
             ))
           ) : (

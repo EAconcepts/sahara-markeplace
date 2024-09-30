@@ -13,11 +13,11 @@ export const PrdtCard = ({ product }: { product: any }) => {
         width={215}
         height={180}
         alt="prd"
-        className="h-[180px] w-full object-cover"
+        className="h-[170px] max-h-[170px] w-full object-cover"
       />
-      <div className="flex flex-col gap-[16px]">
+      <div className="flex flex-col items-center gap-[16px]">
         <div className="flex flex-col gap-[4px]">
-          <p className="text-center text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+          <p className="line-clamp-1 text-center text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
             {product?.name}
           </p>
           <h4 className="text-center text-[16px] font-[700] leading-[23.2px] text-blackPrimary">
@@ -26,7 +26,7 @@ export const PrdtCard = ({ product }: { product: any }) => {
         </div>
         <Button
           variant={"outline"}
-          className="w-fit rounded-[8px] border-[1px] px-[16px] py-[6px] text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
+          className="w-fit self-center rounded-[8px] border-[1px] px-[16px] py-[6px] text-[14px] font-[600] leading-[20.3px] text-blackPrimary"
         >
           View Product
         </Button>
