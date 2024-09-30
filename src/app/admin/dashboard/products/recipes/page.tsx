@@ -60,7 +60,7 @@ const Recipes = () => {
         <div className="flex items-center justify-between px-[12px]">
           <SearchForm
             handleSearch={handleSearch}
-            searchQuery={searchQuery}
+            search={searchQuery}
             setSearchQuery={setSearchQuery}
           />
           <div className="flex items-center gap-[16px]">
