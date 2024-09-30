@@ -25,6 +25,7 @@ const Recipes = () => {
     console.log(blogs);
     const recipes = blogs?.filter((blog: any) => blog?.type == "recipie");
     // console.log(recipes)
+    // setBlogs(recipes);
     return recipes;
   };
   useEffect(() => {
@@ -38,9 +39,13 @@ const Recipes = () => {
 
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await axios.post(`${baseUrl}/search-recipe`, searchQuery, {
-      headers,
-    });
+    const res = await axios.post(
+      `${baseUrl}/search-recipe`,
+      { search: searchQuery, type: "recipe" },
+      {
+        headers,
+      },
+    );
     console.log(res);
     setBlogs(res.data.data.results);
   };

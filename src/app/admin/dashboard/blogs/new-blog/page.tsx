@@ -9,16 +9,18 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { Cancel01Icon } from "hugeicons-react";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
+import { toast } from "sonner";
 
 const NewBlog = () => {
   const { imgUrl, token, baseUrl } = useAuth();
-
+  const router = useRouter();
   const [blogDetails, setBlogDetails] = useState({
     title: "",
     content: "",
     image: "",
+    type: "blog",
   });
   const headers = {
     Authorization: "Bearer " + token,
@@ -38,13 +40,18 @@ const NewBlog = () => {
     mutationFn: () => {
       formData.append("title", blogDetails.title);
       formData.append("content", blogDetails.content);
+      formData.append("type", blogDetails.type);
       return axios.post(`${baseUrl}/admin/add-blog`, formData, { headers });
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      router.push("/admin/dashboard/blogs");
     },
   });
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!blogDetails.title || !blogDetails.content || !blogDetails.image) {
-      alert("Please fill all the fields");
+      toast.error("Please fill all the fields");
       return;
     }
     console.log(blogDetails);
@@ -53,7 +60,7 @@ const NewBlog = () => {
   return (
     <div className="flex w-full flex-col gap-[32px] pt-[24px] font-openSans">
       <Header title="New Blog" />
-      <form className="flex gap-[16px]">
+      <form onSubmit={handleSubmit} className="flex gap-[16px]">
         {/* Col-1 */}
         <div className="flex w-full flex-col gap-[24px]">
           <div className="flex flex-col gap-[8px]">
@@ -68,8 +75,9 @@ const NewBlog = () => {
               }
               className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary"
             />
-            {blogDetails?.title}
+            {/* {blogDetails?.title} */}
           </div>
+          <input type="file" hidden ref={imgRef} onChange={handleImageChange} />
           {blogDetails.image && (
             <div className="flex w-full flex-col gap-[16px] rounded-[12px] border-[1px] border-border p-[16px]">
               <div className="flex w-full justify-between px-[8px]">
@@ -83,12 +91,6 @@ const NewBlog = () => {
                   className="size-[20px] text-failure"
                 />
               </div>
-              <input
-                type="file"
-                hidden
-                ref={imgRef}
-                onChange={handleImageChange}
-              />
 
               <Image
                 src={`${blogDetails?.image}`}
@@ -101,7 +103,10 @@ const NewBlog = () => {
           )}
 
           <Button
-            onClick={() => imgRef.current && imgRef.current.click()}
+            type="button"
+            onClick={() => {
+              imgRef.current && imgRef.current.click();
+            }}
             className="w-fiit h-[32px] rounded-[4px] border-border px-[16px] py-[6px] text-[14px] leading-[20.3px] text-[#787C83]"
             variant={"outline"}
           >
@@ -140,8 +145,12 @@ const NewBlog = () => {
             </div>
 
             <div className="flex gap-[12px]">
-              <Button className="h-[44px] w-fit rounded-[4px] px-[24px] py-[12px]">
-                Publish Blog
+              <Button
+                disabled={newBlogMutation.isPending}
+                type="submit"
+                className="h-[44px] w-fit rounded-[4px] px-[24px] py-[12px]"
+              >
+                {newBlogMutation.isPending ? "Publishing" : "Publish Blog"}
               </Button>
             </div>
           </div>

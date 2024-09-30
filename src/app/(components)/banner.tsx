@@ -15,7 +15,7 @@ const Banner = () => {
     { icon: discount, title: "Authentic Sustainability and Healthy products" },
     { icon: packageDelivery, title: "Free delivery for orders above $35" },
     { icon: delivery, title: "30 Days return policy " },
-    
+
     // { icon: call, title: "24/7 Dedicated support" },
   ];
   return (
@@ -33,7 +33,7 @@ const Banner = () => {
               alt={feat.title}
               className="size-[24px]"
             />
-            <span className="font-openSans text-[16px] font-[400] leading-[23.2px]">
+            <span className="shrink-0 font-openSans text-[16px] font-[400] leading-[23.2px]">
               {feat.title}
             </span>
           </div>

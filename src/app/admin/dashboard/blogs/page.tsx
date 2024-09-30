@@ -8,11 +8,44 @@ import { SortBy } from "../products/(components)/SortBy";
 import Loader from "@/app/(components)/loader";
 import BlogCard from "@/app/blogs/[url]/(components)/blog-card";
 import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
+import { useAuth } from "@/utils/useAuth";
+import axios from "axios";
 
 const Blogs = () => {
   const { data, isPending } = useGet("blog-posts", "blogs");
-  // console.log(data);
+  const [blogs, setBlogs] = useState([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const { token, baseUrl, imgUrl } = useAuth();
+
+  const extractRecipe = (blogs: any) => {
+    console.log(blogs);
+    const recipes = blogs?.filter((blog: any) => blog?.type == "blog");
+    return recipes;
+  };
   const router = useRouter();
+
+  useEffect(() => {
+    if (searchQuery == "") {
+      setBlogs(extractRecipe(data?.data?.data?.posts));
+    }
+  }, [data, searchQuery]);
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+
+  const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const res = await axios.post(
+      `${baseUrl}/search-recipe`,
+      { search: searchQuery, type: "blog" },
+      {
+        headers,
+      },
+    );
+    console.log(res);
+    setBlogs(res.data.data.results);
+  };
   return (
     <div className="flex flex-col gap-[32px] py-[24px]">
       <Header
@@ -25,17 +58,19 @@ const Blogs = () => {
       <div className="flex flex-col gap-[16px]">
         {/* Search */}
         <div className="flex w-full justify-between pl-[12px]">
-          <SearchForm />
+          <SearchForm
+            handleSearch={handleSearch}
+            search={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
           <div className="flex gap-[16px]">
-            <span>Showing {data?.data?.data?.length} result(s) </span>
+            <span>Showing {blogs?.length} result(s) </span>
             <SortBy />
           </div>
         </div>
         <section className="flex gap-[16px] p-[24px] max-lg:flex-col lg:flex-wrap lg:gap-x-[16px] lg:gap-y-[32px] lg:px-[96px] lg:py-[56px]">
-          {data ? (
-            data?.data?.data?.posts
-              ?.filter((post: any) => post?.type == "blog")
-              ?.map((blog: any) => <BlogCard key={blog?.id} blog={blog} />)
+          {blogs ? (
+            blogs?.map((blog: any) => <BlogCard key={blog?.id} blog={blog} />)
           ) : (
             <Loader />
           )}

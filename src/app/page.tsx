@@ -22,14 +22,14 @@ import { getUnderPrice } from "@/lib/utils";
 export default function Home() {
   const { data } = useGet("cata/prod", "products");
   const { data: blogPosts } = useGet("blog-posts", "blogpost");
-  const [underPrice, setUnderPrice] = useState([])
+  const [underPrice, setUnderPrice] = useState([]);
   let blogs = blogPosts?.data?.data?.posts;
   // console.log(blogPosts)
-  const router = useRouter()
- 
-  useEffect(()=>{
-    getUnderPrice(data, 400, setUnderPrice)
-  },[data])
+  const router = useRouter();
+
+  useEffect(() => {
+    getUnderPrice(data, 400, setUnderPrice);
+  }, [data]);
   return (
     <main className="max-lg:px-[24px] lg:mt-[40px] lg:px-[96px] lg:pb-[32px] lg:pt-[12px]">
       <Hero />
@@ -47,7 +47,7 @@ export default function Home() {
       </div>
       <div className="mt-[40px]">
         {/* {data?.data?.products ?  */}
-{/* Deals Under price */}
+        {/* Deals Under price */}
         <Registry
           heading={"Deals Under $400.00"}
           products={underPrice?.slice(0, 4)}
@@ -59,10 +59,14 @@ export default function Home() {
       </div> */}
       {/* Blogs */}
       <div className="mt-[40px] pt-[16px]">
-      <ProductHeader heading="Blogs" showBtn={true} onClick={()=>router.push('/blogs')} />
+        <ProductHeader
+          heading="Blogs"
+          showBtn={true}
+          onClick={() => router.push("/blogs")}
+        />
 
         {blogs ? (
-          <div className="mt-[32px] grid lg:grid-cols-4 grid-cols-2 gap-[16px] max-lg:flex-wrap lg:gap-[24px]">
+          <div className="mt-[32px] grid grid-cols-2 gap-[16px] max-lg:flex-wrap lg:grid-cols-4 lg:gap-[24px]">
             {blogs?.map((story: any) => (
               <BlogCard key={story?.id} story={story} />
             ))}
@@ -80,5 +84,3 @@ export default function Home() {
     </main>
   );
 }
-
-
