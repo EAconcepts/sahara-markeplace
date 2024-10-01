@@ -29,8 +29,10 @@ const NewBlog = () => {
   const imgRef: any = useRef(null);
 
   const handleImageChange = () => {
+    console.log("hiiii");
     const file = imgRef.current.files[0];
     formData.append("image", file);
+    console.log(file);
     const imageUrl = file && URL.createObjectURL(file);
     console.log(imageUrl);
     imageUrl && setBlogDetails((prev: any) => ({ ...prev, image: imageUrl }));

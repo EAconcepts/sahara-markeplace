@@ -23,7 +23,7 @@ const AdminDashboard = () => {
     {
       title: "Total Sales",
       icon: totalSales,
-      value: "$44,680.79",
+      value: `$${dashbd?.data?.data?.sales?.toLocaleString()}`,
       percent: "0%",
       status: "up",
     },
