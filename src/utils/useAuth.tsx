@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { toast } from "sonner";
 
 interface AuthProps {
@@ -11,6 +18,8 @@ interface AuthProps {
   logout: () => void;
   baseUrl: string;
   imgUrl: string;
+  vendorRedirect: boolean;
+  setVendorRedirect: Dispatch<SetStateAction<boolean>>;
 }
 export const AuthContext = createContext<any>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -22,6 +31,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState(tkn || null);
   const [user, setUser] = useState((userData && JSON.parse(userData)) || null);
   const [userType, setUserType] = useState<string | null>(user_type || null);
+  const [vendorRedirect, setVendorRedirect] = useState<boolean>(false);
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const imgUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
@@ -56,7 +66,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ token, user, userType, baseUrl, imgUrl, login, logout }}
+      value={{
+        token,
+        user,
+        userType,
+        baseUrl,
+        imgUrl,
+        vendorRedirect,
+        login,
+        logout,
+        setVendorRedirect,
+      }}
     >
       {children}
     </AuthContext.Provider>

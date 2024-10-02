@@ -15,7 +15,8 @@ const Topnav = () => {
   const path = usePathname();
   if (
     path.startsWith("/sellers/auth") ||
-    path.startsWith("/sellers/dashboard")
+    path.startsWith("/sellers/dashboard") ||
+    path.startsWith("/sellers/payment")
   ) {
     return null;
   }

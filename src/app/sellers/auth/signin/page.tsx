@@ -20,7 +20,8 @@ const Signin = () => {
   const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  const { login } = useAuth();
+  const { login, vendorRedirect } = useAuth();
+  console.log("to redirect to payment", vendorRedirect);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserDetails((prev) => ({ ...prev, [name]: value }));
@@ -40,7 +41,11 @@ const Signin = () => {
         login(token, user, "seller");
         toast.success("Signin successful!");
         setTimeout(() => {
-          router.push("/sellers/dashboard");
+          if (vendorRedirect) {
+            router.push("/sellers/payment");
+          } else {
+            router.push("/sellers/dashboard");
+          }
         }, 1000);
       }
     },

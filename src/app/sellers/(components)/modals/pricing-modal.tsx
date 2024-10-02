@@ -11,6 +11,7 @@ import stripe from "@/assets/images/stripe.svg";
 import mastercard from "@/assets/images/mastercard.svg";
 import { Welcome } from "@/app/(components)/Welcome";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/utils/useAuth";
 
 const PricingModal = ({
   setShowPricing,
@@ -41,6 +42,7 @@ const PricingModal = ({
     "Dedicated seller support.",
   ];
   const router = useRouter();
+  const { setVendorRedirect } = useAuth();
   return (
     <div className="fixed inset-0 z-10 w-full overflow-y-scroll bg-white font-openSans">
       <div className="px-[24px] lg:px-[96px]">
@@ -115,7 +117,10 @@ const PricingModal = ({
                       </div>
                     </div>
                     <Button
-                      onClick={() => router.push("/sellers/auth/signin")}
+                      onClick={() => {
+                        setVendorRedirect(true);
+                        router.push("/sellers/auth/signin");
+                      }}
                       className="flex w-fit items-center gap-x-[10px] rounded-[8px] bg-greenPrimary px-[24px] py-[16px] text-white"
                     >
                       <span>Get Started</span>
