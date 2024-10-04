@@ -11,37 +11,42 @@ import { PiShoppingCart } from "react-icons/pi";
 import { toast } from "sonner";
 import usa from "@/assets/images/usa.svg";
 import { useAuth } from "@/utils/useAuth";
+import { useCheckout } from "@/utils/useCheckout";
+import { useGet } from "@/utils/useGet.";
 
 const ProductCard = ({ product }: { product: any }) => {
   const router = useRouter();
-  const {token} = useAuth()
+  const { token, baseUrl } = useAuth();
+  const { cartItems, setCartItems } = useCheckout();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const headers ={
+  const headers = {
     Authorization: `Bearer ${token}`,
-  }
-  const queryClient= useQueryClient()
-  // const queries = queryClient.getQueryCache().getAll();
-  // console.log(queries)
+  };
+
+  const refetchCart = async () => {
+    const response = await axios.get(`${baseUrl}/my-cart`, { headers });
+    setCartItems(response.data?.data?.cart);
+  };
   const addtocart = async (product: any, quantity: number) => {
     try {
-      const data = await axios.post(`${apiUrl}/add-to-cart`, {
-        product,
-        quantity,
-      }, {headers});
-      // onSuccess: (data) => {
-      // console.log(data);
+      const data = await axios.post(
+        `${apiUrl}/add-to-cart`,
+        {
+          product,
+          quantity,
+        },
+        { headers },
+      );
       if (data?.data?.message == "You need to login first") {
         toast.success(data?.data?.message);
       } else {
+        setCartItems(data?.data?.data?.cart);
         toast.success(data?.data?.message || "Added to cart successfully!");
-        queryClient.refetchQueries({ queryKey: ['cart']})
-        // queryClient.invalidateQueries({ queryKey: ['cart'] });
+        refetchCart();
       }
     } catch (error: any) {
-      // onError: (error) => {
       console.log(error);
       toast.error(error?.response?.data?.message || error.message);
-      // },
     }
   };
   const handleAddToCart = (id: string) => {
@@ -52,14 +57,14 @@ const ProductCard = ({ product }: { product: any }) => {
   return (
     <div
       onClick={() => router.push(`/product-details/${product?.url}`)}
-      className="flex flex-col pb-[12px] xs:w-[170px] max-lg:w[140px] w-full lgw-[294px]"
+      className="xs:w-[170px] max-lg:w[140px] lgw-[294px] flex w-full flex-col pb-[12px]"
     >
       <Image
         src={`${imageBaseUrl}/${product?.image}`}
         width={294}
         alt={product?.name}
         height={180}
-        className="rounded-tl-[8px] rounded-tr-[8px] object-cover max-lg:w[153px] w-full max-lg:h-[160px] lg:h-[160px] lg:w-[294px"
+        className="max-lg:w[153px] lg:w-[294px w-full rounded-tl-[8px] rounded-tr-[8px] object-cover max-lg:h-[160px] lg:h-[160px]"
       />
       <div className="mt-[12px] flex flex-col max-lg:mt-[16px] lg:pr-[16px]">
         {/* product name & price */}
@@ -100,10 +105,10 @@ const ProductCard = ({ product }: { product: any }) => {
         <Button
           onClick={(e) => {
             e.stopPropagation();
-            if(token){
-            handleAddToCart(product?.id);
-            }else{
-              router.push('/auth/signin')
+            if (token) {
+              handleAddToCart(product?.id);
+            } else {
+              router.push("/auth/signin");
             }
           }}
           variant={"outline"}

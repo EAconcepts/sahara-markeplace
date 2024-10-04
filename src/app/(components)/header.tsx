@@ -27,10 +27,15 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const path = usePathname();
   const { userType, token } = useAuth();
-  const router = useRouter()
+  const router = useRouter();
   // console.log(userType)
   const { data } = useGet("my-cart", "cart");
-  const {searchQuery, setSearchQuery} = useCheckout()
+  const { searchQuery, setSearchQuery, cartItems, setCartItems } =
+    useCheckout();
+  useEffect(() => {
+    // refetch();
+    setCartItems(data?.data?.data?.cart);
+  }, [data]);
   if (
     path.startsWith("/dashboard") ||
     path.startsWith("/sellers") ||
@@ -38,7 +43,7 @@ const Header = () => {
   ) {
     return null;
   }
-  
+
   const dashbLinks =
     userType == "user"
       ? navlinks
@@ -46,7 +51,6 @@ const Header = () => {
         ? sellersNavLinks
         : adminNavLinks;
 
-        
   return (
     <div className={`${showCart && "sticky top-0 z-40 w-full"}`}>
       <Topnav />
@@ -62,21 +66,27 @@ const Header = () => {
             />
           </Link>
           <div className="flex items-center gap-x-[24px]">
-            <Link href={'/categories'} className="flex gap-x-[8px] max-lg:hidden">
+            <Link
+              href={"/categories"}
+              className="flex gap-x-[8px] max-lg:hidden"
+            >
               <span>All Categories</span>
               <MdOutlineKeyboardArrowDown />
             </Link>
             {/* Search box */}
-            <form onSubmit={(e)=>{
-                  e.preventDefault()
-                  router.push(`/search/${searchQuery}`)
-              }} className=" flex h-[36px] items-center gap-x-[12px] rounded-[24px] border-[0.5px] border-[#8E97A6] bg-white px-[12px] py-[8px] max-lg:hidden lg:w-[375px]">
-              <CiSearch  className="text-[24px] text-[#8E97A6]" />
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                router.push(`/search/${searchQuery}`);
+              }}
+              className="flex h-[36px] items-center gap-x-[12px] rounded-[24px] border-[0.5px] border-[#8E97A6] bg-white px-[12px] py-[8px] max-lg:hidden lg:w-[375px]"
+            >
+              <CiSearch className="text-[24px] text-[#8E97A6]" />
               <input
                 type="text"
                 placeholder="Search here..."
                 value={searchQuery}
-                onChange={(e)=>setSearchQuery(e.target.value)}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full focus:outline-none"
               />
             </form>
@@ -104,40 +114,45 @@ const Header = () => {
                 <CiHeart />
               </div>
               {/* Cart */}
-              {userType =='user' &&
-              <div
-                onClick={() => setShowCart((prev) => !prev)}
-                className="relative max-lg:hidden"
-              >
-                <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
-                  {data?.data?.data?.cart?.length || 0}
-                </span>
-                <PiShoppingCartLight />
-              </div>
-}
+              {userType == "user" && (
+                <div
+                  onClick={() => setShowCart((prev) => !prev)}
+                  className="relative max-lg:hidden"
+                >
+                  <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
+                    {cartItems?.length || 0}
+                  </span>
+                  <PiShoppingCartLight />
+                </div>
+              )}
               {/* Cart Mobile*/}
-              {userType ==='user' &&             
-              <Link href={"/cart"} className="relative lg:hidden">
-                <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
-                  {data?.data?.data?.cart?.length || 0}
-                </span>
-                <PiShoppingCartLight />
-              </Link>
-              }
+              {userType === "user" && (
+                <Link href={"/cart"} className="relative lg:hidden">
+                  <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
+                    {cartItems?.length || 0}
+                  </span>
+                  <PiShoppingCartLight />
+                </Link>
+              )}
               {/* Mobile menu */}
-            {token&&   <div>
-                <RiMenu2Line
-                  onClick={() => setShowMenu(true)}
-                  className="text-[22px]"
-                />
-                {showMenu && (
-                  <div className="fixed inset-0 h-screen w-full bg-white lg:hidden">
-                    <div className="h-full overflow-y-scroll">
-                      <Sidemenu setShowMenu={setShowMenu} links={dashbLinks} />
+              {token && (
+                <div>
+                  <RiMenu2Line
+                    onClick={() => setShowMenu(true)}
+                    className="text-[22px]"
+                  />
+                  {showMenu && (
+                    <div className="fixed inset-0 h-screen w-full bg-white lg:hidden">
+                      <div className="h-full overflow-y-scroll">
+                        <Sidemenu
+                          setShowMenu={setShowMenu}
+                          links={dashbLinks}
+                        />
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>}
+                  )}
+                </div>
+              )}
             </div>
           </div>
           {/* Account */}
@@ -157,9 +172,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {showCart && (
-        <CartModal carts={data?.data?.data?.cart} setShowCart={setShowCart} />
-      )}
+      {showCart && <CartModal carts={cartItems} setShowCart={setShowCart} />}
     </div>
   );
 };

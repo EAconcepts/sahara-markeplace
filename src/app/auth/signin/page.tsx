@@ -45,7 +45,7 @@ const Signin = () => {
         }, 1000);
       }
     },
-    onError: (error:any) => {
+    onError: (error: any) => {
       console.log(error);
       toast.error(error?.response?.data?.message || "Signin failed!");
     },
@@ -53,7 +53,7 @@ const Signin = () => {
 
   return (
     <div className="flex w-full flex-col pt-[40px] max-lg:pb-[81px] lg:pb-[300px]">
-      <div className="lg:flex w-full gap-x-[24px] lg:px-[96px] max-lg:px-[24px]">
+      <div className="w-full gap-x-[24px] max-lg:px-[24px] lg:flex lg:px-[96px]">
         <AuthCard
           image={image}
           header="Welcome Back!"
@@ -62,7 +62,7 @@ const Signin = () => {
         {/* signin form */}
         <form
           onSubmit={handleSignin}
-          className="flex lg:w-[90%] max-lg:w-full max-lg:mt-[40px] flex-col lg:px-[40px] font-openSans"
+          className="flex flex-col font-openSans max-lg:mt-[40px] max-lg:w-full lg:w-[90%] lg:px-[40px]"
         >
           <h4 className="text-center text-[24px] font-[600] leading-[28.8px] text-blackPrimary">
             Sign In
@@ -86,7 +86,7 @@ const Signin = () => {
                 onChange={handleChange}
                 value={userDetails.email}
                 placeholder="email address"
-                className="h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:h-[48px]"
               />
             </div>
             {/*  Password  */}
@@ -104,7 +104,7 @@ const Signin = () => {
                 value={userDetails.password}
                 type="password"
                 placeholder="password"
-                className="h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:h-[48px]"
               />
             </div>
           </div>
@@ -122,11 +122,11 @@ const Signin = () => {
           <Button
             type="submit"
             disabled={loginMutation.isPending}
-            className="mt-[40px] h-[55px] rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20"
+            className="mt-[40px] h-[55px] rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20 lg:w-full"
           >
             {loginMutation.isPending ? "Signing in..." : " Sign In"}
           </Button>
-          <div className="mt-[24px] flex items-center justify-center gap-x-[8px] lg:gap-x-[12px] text-[14px] lg:text-[20px]">
+          <div className="mt-[24px] flex items-center justify-center gap-x-[8px] text-[14px] lg:gap-x-[12px] lg:text-[20px]">
             <span className="font-[400] leading-[29px] text-[#787C83]">
               Don&apos;t have an account yet?
             </span>{" "}

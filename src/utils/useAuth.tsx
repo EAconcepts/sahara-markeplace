@@ -32,6 +32,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState((userData && JSON.parse(userData)) || null);
   const [userType, setUserType] = useState<string | null>(user_type || null);
   const [vendorRedirect, setVendorRedirect] = useState<boolean>(false);
+  const [vendorSub, setVendorSub] = useState({
+    plan: '',
+    duration: ''
+  })
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const imgUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 

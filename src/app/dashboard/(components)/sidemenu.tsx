@@ -38,7 +38,7 @@ const Sidemenu = ({
       router.replace("/sellers/auth/signin");
     } else if (userType === "admin") {
       router.replace("/admin/signin");
-    } else {
+    } else if (userType == "user") {
       router.replace("/auth/signin");
     }
   };
@@ -105,7 +105,10 @@ const Sidemenu = ({
           <div className="h-[1px] w-full bg-border"></div>
         </div>
         {/* logout */}
-        <div className="mt-[10px] flex w-full items-center justify-between px-[24px] py-[32px]">
+        <div
+          onClick={handleLogout}
+          className="mt-[10px] flex w-full items-center justify-between px-[24px] py-[32px]"
+        >
           <div className="flex items-center gap-x-[12px]">
             {userType !== "admin" && <UserCircleIcon />}
             <div className="flex flex-col">
@@ -123,7 +126,7 @@ const Sidemenu = ({
               )}
             </div>
           </div>
-          <Logout02Icon onClick={handleLogout} />
+          <Logout02Icon />
         </div>
       </div>
     </div>
