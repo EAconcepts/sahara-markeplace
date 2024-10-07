@@ -12,8 +12,11 @@ import phone from "@/assets/images/phone.svg";
 import message from "@/assets/images/message.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useGet } from "@/utils/useGet.";
 
 const Footer = () => {
+  const { data } = useGet("cata/prod", "products");
+  console.log(data);
   const socials = [
     { icon: twitter, url: "#" },
     { icon: linkedIn, url: "#" },
@@ -76,19 +79,19 @@ const Footer = () => {
             </h5>
             <div className="mt-[24px] flex flex-col gap-y-[16px]">
               <Link
-                href={"#"}
+                href={"/"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Home
               </Link>
               <Link
-                href={"#"}
+                href={"/about"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 About
               </Link>
               <Link
-                href={"#"}
+                href={"/blogs"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Blog
@@ -122,31 +125,15 @@ const Footer = () => {
               Departments
             </h5>
             <div className="mt-[24px] flex flex-col gap-y-[16px]">
-              <Link
-                href={"#"}
-                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
-              >
-                Fashion
-              </Link>
-              <Link
-                href={"#"}
-                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
-              >
-                Art & Culture
-              </Link>
-              <Link
-                href={"#"}
-                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
-              >
-                Food Items & Groceries
-              </Link>
-
-              <Link
-                href={"#"}
-                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
-              >
-                Beauty & Personal Care
-              </Link>
+              {data?.data?.data?.categories?.slice(0, 4)?.map((catg: any) => (
+                <Link
+                  key={catg?.id}
+                  href={`/categories/${catg?.name}`}
+                  className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
+                >
+                  {catg?.name}
+                </Link>
+              ))}
             </div>
           </div>
           {/* Legal */}
@@ -156,25 +143,25 @@ const Footer = () => {
             </h5>
             <div className="mt-[24px] flex flex-col gap-y-[16px]">
               <Link
-                href={"#"}
+                href={"/terms-&-condtions"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Condition of Use
               </Link>
               <Link
-                href={"#"}
+                href={"/terms-&-condition"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Privacy Policy
               </Link>
               <Link
-                href={"#"}
+                href={"/terms-&-condition"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Consumer Data and Privacy disclosure
               </Link>
               <Link
-                href={"#"}
+                href={"/terms-&-condition"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Delivery Information
@@ -205,11 +192,11 @@ const Footer = () => {
               </span>
             </div>
             {/* Phone */}
-            <div className="justify-between lg:gap-x-[32px] lg:items-center flex max-lg:flex-col gap-[16px]">
+            <div className="flex justify-between gap-[16px] max-lg:flex-col lg:items-center lg:gap-x-[32px]">
               {/* Call */}
-              <div className="flex gap-x-[8px] items-start">
+              <div className="flex items-start gap-x-[8px]">
                 <Image src={phone} width={20} height={20} alt="" className="" />
-                <div className="flex max-lg:flex-col lg:gap-x-[4px] max-lg:gap-[8px]">
+                <div className="flex max-lg:flex-col max-lg:gap-[8px] lg:gap-x-[4px]">
                   <span className="font-openSans text-[14px] font-[600]">
                     1-800-965-8849 (U.S & Canada)
                   </span>
@@ -222,7 +209,10 @@ const Footer = () => {
                 </div>
               </div>
               {/* Email */}
-              <Link href={"mailto:info@saharaeagles.com"} className="flex lg:items-center gap-x-[8px]">
+              <Link
+                href={"mailto:info@saharaeagles.com"}
+                className="flex gap-x-[8px] lg:items-center"
+              >
                 <Image
                   src={message}
                   width={20}
@@ -236,11 +226,10 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-         
         </div>
-         <p className="text-[14px] lg:text-center lg:mt-[24px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:mt-[24px]">
-            Copyrights © 2024 Sahara Eagles. All rights reserved.
-          </p>
+        <p className="text-[14px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:mt-[24px] lg:mt-[24px] lg:text-center">
+          Copyrights © 2024 Sahara Eagles. All rights reserved.
+        </p>
       </div>
     </footer>
   );

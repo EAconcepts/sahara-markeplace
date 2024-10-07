@@ -24,7 +24,7 @@ export default function Home() {
   const { data: blogPosts } = useGet("blog-posts", "blogpost");
   const [underPrice, setUnderPrice] = useState([]);
   let blogs = blogPosts?.data?.data?.posts;
-  console.log(blogPosts);
+  // console.log(blogPosts);
   const router = useRouter();
 
   useEffect(() => {
