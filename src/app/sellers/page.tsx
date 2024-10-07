@@ -10,9 +10,9 @@ import PricingModal from "./(components)/modals/pricing-modal";
 import { useAuth } from "@/utils/useAuth";
 
 const SellerHome = () => {
-  const { token, userType } = useAuth();
+  const { token, userType, showPricing, setShowPricing } = useAuth();
+  // console.log(showPricing);
 
-  const [showPricing, setShowPricing] = useState<boolean>(false);
   useEffect(() => {
     if ((token && userType !== "seller") || !token) setShowPricing(true);
   }, [token, userType]);

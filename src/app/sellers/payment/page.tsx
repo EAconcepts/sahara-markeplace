@@ -4,17 +4,66 @@ import { Welcome } from "@/app/(components)/Welcome";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/utils/useAuth";
+import { useGet } from "@/utils/useGet.";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const Payment = () => {
-  const { setVendorRedirect } = useAuth();
+  const { data } = useGet("blog-posts", "blogpost");
+
+  const { setVendorRedirect, vendorSub, baseUrl, token, user } = useAuth();
+  const [price, setPrice] = useState<number>();
+  console.log(vendorSub);
   useEffect(() => {
     setVendorRedirect(false);
   }, []);
   const router = useRouter();
+  const getPrice = () => {
+    if (vendorSub?.duration == "Monthly") {
+      console.log(vendorSub?.plan);
+      return Number(vendorSub?.plan);
+    } else {
+      return Number(vendorSub?.plan) * 12;
+    }
+  };
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  useEffect(() => {
+    setPrice(getPrice());
+  }, [vendorSub]);
+  const payment = useMutation({
+    mutationFn: () =>
+      axios.post(
+        `${baseUrl}/vendor/make-subscription`,
+        {
+          amount:
+            Number(price) * Number(data?.data?.data?.set?.conversion_rate),
+          duration: vendorSub?.duration,
+        },
+        { headers },
+      ),
+    onSuccess: (data) => {
+      console.log(data);
+      toast.success(data?.data?.message);
+      setTimeout(() => {
+        window.open(data?.data?.data, "_blank");
+        router.push("/sellers/dashboard");
+      }, 2000);
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error("Payment failed!");
+    },
+  });
+  const handlePayment = () => {
+    payment.mutate();
+  };
   return (
     <div>
       <div className="flex w-full font-openSans max-lg:flex-col lg:gap-[24px]">
@@ -34,13 +83,18 @@ const Payment = () => {
               </button>
               <div className="flex flex-col gap-[8px]">
                 <h6 className="font-openSans text-[16px] leading-[19.2px] text-black lg:text-[24px] lg:leading-[28.8px]">
-                  Subscribe to the Professional Selling Plan
+                  Subscribe to the{" "}
+                  {vendorSub?.plan == "0.85"
+                    ? "Individual Plan"
+                    : "Professional Selling Plan"}
                 </h6>
-                <div className="flex items-center lg:items-end lg:gap-[4px]">
+                <div className="flex items-center lg:gap-[4px]">
                   <h3 className="text-[32px] font-[700] leading-[46.4px] text-greenPrimary lg:text-[48px] lg:leading-[69.6px]">
-                    $29.99
+                    ${vendorSub?.plan}
                   </h3>
-                  <sub className="text-[16px]">/month</sub>
+                  <sub className="text-[16px]">
+                    /{vendorSub?.duration == "Monthly" ? "month" : "year"}
+                  </sub>
                 </div>
               </div>
             </div>
@@ -55,16 +109,21 @@ const Payment = () => {
                     <div className="size-[24px] shrink-0 rounded-full bg-[#A27A4D] lg:size-[48px]"></div>
                     <div className="flex flex-col gap-[2px] lg:gap-[4px]">
                       <h6 className="text-[14px] font-[600] leading-[29px] text-blackPrimary lg:text-[20px]">
-                        Professional Selling Plan
+                        {vendorSub?.plan == "0.85"
+                          ? "Individual Plan"
+                          : "Professional Selling Plan"}
                       </h6>
                       <span className="text-[12px] font-[400] leading-[20.3px] text-[#787C83] lg:text-[14px]">
-                        Annual Billing
+                        {vendorSub?.duration == "Monthly"
+                          ? "Monthly"
+                          : "Annual"}{" "}
+                        Billing
                       </span>
                     </div>
                   </div>
                   {/* Price */}
                   <h3 className="text-[16px] font-[700] leading-[34.8px] text-blackPrimary lg:text-[24px]">
-                    $359.88
+                    ${price}
                   </h3>
                 </div>
               </div>
@@ -76,7 +135,7 @@ const Payment = () => {
                   Subtotal
                 </h4>
                 <h4 className="text-[16px] font-[700] leading-[34.8px] text-blackPrimary lg:text-[24px]">
-                  $359.88
+                  ${price}
                 </h4>
               </div>
               <Input
@@ -90,7 +149,7 @@ const Payment = () => {
                 Total
               </h4>
               <h4 className="text-[16px] font-[700] leading-[34.8px] text-blackPrimary lg:text-[24px]">
-                $359.88
+                ${price}
               </h4>
             </div>
             {/* Footer */}
@@ -126,12 +185,13 @@ const Payment = () => {
               Email
             </label>
             <Input
-              placeholder="username@gmail.com"
+              disabled
+              placeholder={user?.email}
               className="h-[56px] w-full rounded-[6px] bg-[#E4E7EC] p-[16px] text-[16px] font-[600] leading-[23.2px] text-blackPrimary"
             />
           </div>
           {/* Card Info */}
-          <div className="flex flex-col gap-[24px]">
+          <div className="hidden flex-col gap-[24px]">
             <h5 className="text-[14px] font-[600] leading-[21.6px] tracking-[-2%] text-blackPrimary lg:text-[18px]">
               Enter Card Information
             </h5>
@@ -154,7 +214,11 @@ const Payment = () => {
               {/* Expiry & cvv */}
             </div>
           </div>
-          <Button className="h-[44px] w-full rounded-[12px] bg-greenPrimary text-[14px] font-[600] leading-[20.3px]">
+          <Button
+            onClick={handlePayment}
+            disabled={payment.isPending}
+            className="h-[44px] w-full rounded-[12px] bg-greenPrimary text-[14px] font-[600] leading-[20.3px]"
+          >
             Subscribe
           </Button>
           <p className="pb-[12px] text-[12px] font-[400] leading-[17.4px] text-[#787C83]">

@@ -42,7 +42,26 @@ const PricingModal = ({
     "Dedicated seller support.",
   ];
   const router = useRouter();
-  const { setVendorRedirect } = useAuth();
+  const { setVendorRedirect, vendorsub, setVendorSub, userType } = useAuth();
+  const handleSubscribe = (index: number) => {
+    if (index == 0) {
+      setVendorSub((prev: any) => ({
+        ...prev,
+        plan: "0.85",
+      }));
+    } else if (index == 1) {
+      setVendorSub((prev: any) => ({
+        ...prev,
+        plan: "29.99",
+      }));
+    }
+    if (userType == "seller") {
+      router.push("sellers/payment");
+    } else {
+      setVendorRedirect(true);
+      router.push("/sellers/auth/signin");
+    }
+  };
   return (
     <div className="fixed inset-0 z-10 w-full overflow-y-scroll bg-white font-openSans">
       <div className="px-[24px] lg:px-[96px]">
@@ -75,7 +94,23 @@ const PricingModal = ({
               <span className="text-[12px] font-[400] leading-[17.4px] text-[#8E97A6]">
                 Monthly Billing
               </span>
-              <Switch className="h-[20px] w-[49px]" />
+              <Switch
+                // checked={true}
+                onCheckedChange={(e) => {
+                  if (e) {
+                    setVendorSub((prev: any) => ({
+                      ...prev,
+                      duration: "Yearly",
+                    }));
+                  } else {
+                    setVendorSub((prev: any) => ({
+                      ...prev,
+                      duration: "Monthly",
+                    }));
+                  }
+                }}
+                className="h-[20px] w-[49px]"
+              />
               <span className="text-[14px] font-[600] leading-[20.3px] text-black">
                 Annual Billing
               </span>
@@ -117,10 +152,7 @@ const PricingModal = ({
                       </div>
                     </div>
                     <Button
-                      onClick={() => {
-                        setVendorRedirect(true);
-                        router.push("/sellers/auth/signin");
-                      }}
+                      onClick={() => handleSubscribe(index)}
                       className="flex w-fit items-center gap-x-[10px] rounded-[8px] bg-greenPrimary px-[24px] py-[16px] text-white"
                     >
                       <span>Get Started</span>

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { CheckmarkCircle03Icon } from "hugeicons-react";
 import Image from "next/image";
@@ -14,17 +14,17 @@ const Features = () => {
     "Identify demand and boost sales using tools like Product Opportunity Features, Fulfillment Analytics, and  Marketplace Product Guidance",
   ];
   return (
-    <div className="flex px-[24px] lg:px-[96px] py-[40px]">
+    <div id="learn" className="flex px-[24px] py-[40px] lg:px-[96px]">
       <div className="flex flex-col gap-y-[32px]">
-        <h3 className="text-[20px] lg:text-[28px] font-[700] leading-[29px] lg:leading-[40.6px] tracking-[2%] text-blackPrimary">
+        <h3 className="text-[20px] font-[700] leading-[29px] tracking-[2%] text-blackPrimary lg:text-[28px] lg:leading-[40.6px]">
           Sahara Eagle offers numerous tools designed to assist you in
           accomplishing critical selling tasks and expanding your business.
         </h3>
         <div className="flex flex-col gap-y-[24px]">
           {features?.map((feat, index) => (
             <div key={index} className="flex items-center gap-x-[16px]">
-              <CheckmarkCircle03Icon className="size-[24px] lg:size-[32px] shrink-0 text-black" />
-              <p className="text-[14px] lg:text-[16px] font-[400] leading-[16.8px] lg:leading-[19.2px] tracking-[-2%] text-blackPrimary">
+              <CheckmarkCircle03Icon className="size-[24px] shrink-0 text-black lg:size-[32px]" />
+              <p className="text-[14px] font-[400] leading-[16.8px] tracking-[-2%] text-blackPrimary lg:text-[16px] lg:leading-[19.2px]">
                 {feat}
               </p>
             </div>
@@ -36,7 +36,7 @@ const Features = () => {
         width={516}
         height={478}
         alt="girl"
-        className="h-[478px] max-lg:hidden w-[516px] shrink-0 object-cover"
+        className="h-[478px] w-[516px] shrink-0 object-cover max-lg:hidden"
       />
     </div>
   );

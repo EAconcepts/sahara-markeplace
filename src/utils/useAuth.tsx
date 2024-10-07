@@ -20,6 +20,18 @@ interface AuthProps {
   imgUrl: string;
   vendorRedirect: boolean;
   setVendorRedirect: Dispatch<SetStateAction<boolean>>;
+  vendorSub: {
+    plan: string;
+    duration: string;
+  };
+  setVendorSub: Dispatch<
+    SetStateAction<{
+      plan: string;
+      duration: string;
+    }>
+  >;
+  showPricing: boolean;
+  setShowPricing: Dispatch<SetStateAction<boolean>>;
 }
 export const AuthContext = createContext<any>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -32,10 +44,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState((userData && JSON.parse(userData)) || null);
   const [userType, setUserType] = useState<string | null>(user_type || null);
   const [vendorRedirect, setVendorRedirect] = useState<boolean>(false);
+  const [showPricing, setShowPricing] = useState<boolean>(false);
+
   const [vendorSub, setVendorSub] = useState({
-    plan: '',
-    duration: ''
-  })
+    plan: "",
+    duration: "Monthly",
+  });
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const imgUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
@@ -77,9 +91,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         baseUrl,
         imgUrl,
         vendorRedirect,
+        vendorSub,
+        showPricing,
         login,
         logout,
         setVendorRedirect,
+        setVendorSub,
+        setShowPricing,
       }}
     >
       {children}

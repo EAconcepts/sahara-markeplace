@@ -10,7 +10,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { Menu01Icon, Menu03Icon } from "hugeicons-react";
 
 const Topnav = () => {
-  const { token, userType } = useAuth();
+  const { token, userType, showPricing, setShowPricing } = useAuth();
+  // console.log(showPricing);
   const router = useRouter();
   const path = usePathname();
   if (
@@ -39,20 +40,20 @@ const Topnav = () => {
           Home
         </Link>
         <Link
-          href={"#"}
+          href={"#grow"}
           className={`font-openSans max-lg:hidden lg:text-[16px] lg:leading-[21.79px] ${path == "/sellers/grow" && "font-[700] text-greenPrimary"}`}
         >
           Grow
         </Link>
         <Link
-          href={"#"}
+          href={"#learn"}
           className={`font-openSans lg:text-[16px] lg:leading-[21.79px] ${path == "/sellers/learn" && "font-[700] text-greenPrimary"}`}
         >
           Learn
         </Link>
         <Link
           href={"#"}
-          onClick={() => {}}
+          onClick={() => setShowPricing(true)}
           className={`font-openSans lg:text-[16px] lg:leading-[21.79px] ${path == "/sellers/pricing" && "font-[700] text-greenPrimary"}`}
         >
           Pricing
@@ -62,7 +63,7 @@ const Topnav = () => {
       <div className="lg:hidden">
         <Menu01Icon className="size-[24px] text-[#292D32]" />
       </div>
-      {userType != "vendor" && (
+      {(!token || userType != "seller") && (
         <Button
           onClick={() => router.push("/sellers/auth/signin")}
           className="hidden rounded-[8px] bg-greenPrimary px-[24px] py-[12px] font-openSans lg:flex lg:items-center lg:text-[16px] lg:leading-[21.79px]"
