@@ -265,11 +265,11 @@ const About = () => {
                   <h4 className="text-[20px] font-[600] leading-[29px] text-blackPrimary lg:text-[30px]">
                     {team.name}
                   </h4>
-                  <span className="text-[16px] font-[600] leading-[23.2px] text-greenPrimary">
+                  <span className="text-[16px] font-[600] leading-[23.2px] text-greenPrimary lg:text-[20px]">
                     {team.role}
                   </span>
                 </div>
-                <p className="text-[14px] font-[400] leading-[22.4px] text-blackPrimary">
+                <p className="text-[14px] font-[400] leading-[22.4px] text-blackPrimary lg:text-[16px]">
                   {team.bio}
                 </p>
                 {/* Socials */}

@@ -39,7 +39,7 @@ export const MenuCard = ({
         )}
       </Button>
       {isOpen && menu?.sublinks && (
-        <div className="flex flex-col gap-y-[8px] pl-[44px]">
+        <div className="flex cursor-pointer flex-col gap-y-[8px] pl-[44px]">
           {menu?.sublinks?.map((sub: any, index: number) => (
             <div
               onClick={() => {

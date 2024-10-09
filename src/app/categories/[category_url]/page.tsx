@@ -19,6 +19,7 @@ const Fashion = () => {
     `category/${decodeURIComponent(category_url.toString())}`,
     decodeURIComponent(category_url.toString()),
   );
+  const { data: blogposts } = useGet("blog-posts", "blogpost");
   console.log(data);
   const categories = data?.data?.data?.categories;
   const { data: products } = useGet("cata/prod", "underPrice");
@@ -47,14 +48,20 @@ const Fashion = () => {
           imageClass="lg:absolute max-lg:w-[50%] lg:left-[23%] lg:h-[254px object-cover"
         />
         <div className="mt-[40px]">
-          <AllCategories products={data?.data?.data ?? products?.data?.data } underPrice={underPrice} />
+          <AllCategories
+            products={data?.data?.data ?? products?.data?.data}
+            underPrice={underPrice}
+          />
         </div>
         <div className="my-[40px] py-[16px]">
           <ProductHeader heading="Blog" showBtn={true} />
           <div className="mt-[32px] grid grid-cols-2 max-lg:gap-[16px] lg:grid-cols-4 lg:gap-[24px]">
-            {blogs?.map((story, index) => (
-              <BlogCard key={index} story={story} />
-            ))}
+            {blogposts &&
+              blogposts?.data?.data?.posts
+                ?.filter((post: any) => post?.type == "blog")
+                ?.map((story: any, index: number) => (
+                  <BlogCard key={index} story={story} />
+                ))}
           </div>
         </div>
       </div>
