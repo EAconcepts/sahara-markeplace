@@ -34,7 +34,7 @@ const Categories = () => {
       console.log(data);
       toast.success("Category deleted successfully");
       queryClient.refetchQueries({ queryKey: ["adminCategories"] });
-      refetch();
+      // refetch();
     },
     onError: (error: any) => {
       console.log(error);
