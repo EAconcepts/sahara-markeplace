@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { useAuth } from "./useAuth";
+import axios from "axios";
 
 const CheckoutContext = createContext<any>(undefined);
 export const CheckoutProvider = ({
@@ -22,6 +23,15 @@ export const CheckoutProvider = ({
   });
   const [searchQuery, setSearchQuery] = useState("");
   const [cartItems, setCartItems] = useState([]);
+  const { baseUrl, token } = useAuth();
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+
+  const refetchCart = async () => {
+    const response = await axios.get(`${baseUrl}/my-cart`, { headers });
+    setCartItems(response.data?.data?.cart);
+  };
 
   return (
     <CheckoutContext.Provider
@@ -32,6 +42,7 @@ export const CheckoutProvider = ({
         setSearchQuery,
         cartItems,
         setCartItems,
+        refetchCart,
       }}
     >
       {children}

@@ -143,25 +143,25 @@ const Footer = () => {
             </h5>
             <div className="mt-[24px] flex flex-col gap-y-[16px]">
               <Link
-                href={"/terms-&-condtions"}
+                href={"/terms-&-conditions"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Condition of Use
               </Link>
               <Link
-                href={"/terms-&-condition"}
+                href={"/terms-&-conditions"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Privacy Policy
               </Link>
               <Link
-                href={"/terms-&-condition"}
+                href={"/terms-&-conditions"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Consumer Data and Privacy disclosure
               </Link>
               <Link
-                href={"/terms-&-condition"}
+                href={"/terms-&-conditions"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Delivery Information

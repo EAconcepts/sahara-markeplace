@@ -124,7 +124,7 @@ const Signin = () => {
           <Button
             type="submit"
             disabled={loginMutation.isPending}
-            className="mt-[40px] h-[55px] rounded-[12px] bg-[#7D9A37] py-[16px] text-[14px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20 lg:w-full lg:text-[16px]"
+            className="mt-[40px] h-[55px] w-full rounded-[12px] bg-[#7D9A37] py-[16px] text-[14px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20 lg:text-[16px]"
           >
             {loginMutation.isPending ? "Signing in..." : " Login"}
           </Button>

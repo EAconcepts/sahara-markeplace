@@ -12,7 +12,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useAuth } from "@/utils/useAuth";
 import { Welcome } from "@/app/(components)/Welcome";
-const Signin = () => {
+const ForgotPassword = () => {
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
@@ -65,11 +65,11 @@ const Signin = () => {
           className="flex flex-col font-openSans max-lg:mt-[40px] max-lg:w-full lg:w-[90%] lg:px-[40px]"
         >
           <h4 className="text-center text-[24px] font-[600] leading-[28.8px] text-blackPrimary">
-            Sign In
+            Reset Password
           </h4>
-          <p className="mt-[8px] text-center text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
+          {/* <p className=" mt-[8px] text-center text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
             Login into your account
-          </p>
+          </p> */}
           <div className="mt-[32px] flex w-full flex-col gap-y-[24px]">
             {/* Email & Phone */}
             <div className="flex flex-col gap-y-[4px]">
@@ -146,4 +146,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default ForgotPassword;

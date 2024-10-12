@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { OtherLinks } from "./components/other-links";
+import { ConditionOfUse } from "./components/condition";
 
 interface LinksProps {
   title: string;
@@ -136,7 +137,7 @@ const TermsCondition = () => {
       </div>
       <section className="flex gap-[56px] px-[24px] max-lg:flex-col lg:px-[96px] lg:py-[56px]">
         {/* Links */}
-        <div className="flex w-[20%] flex-col gap-[20px]">
+        <div className="flex w-[30%] flex-col gap-[20px]">
           {/* Condition for use */}
           <div className="flex flex-col gap-[8px]">
             <h5 className="text-[20px] font-[600] leading-[29px] text-greenPrimary">
@@ -188,7 +189,11 @@ const TermsCondition = () => {
         </div>
         {/* Contents */}
         <main className="flex w-full flex-col gap-[48px]">
-          {active == "condition" && <OtherLinks />}
+          {active == "condition" ? (
+            <ConditionOfUse />
+          ) : (
+            active == "otherLinks" && <OtherLinks />
+          )}
         </main>
       </section>
     </div>
