@@ -18,12 +18,12 @@ const Form1 = ({
   prdtDetails,
   setPrdtDetails,
   handleChange,
-  formdata
+  formdata,
 }: {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   setPrdtDetails?: Dispatch<any>;
   prdtDetails: any;
-  formdata?:any
+  formdata?: any;
 }) => {
   const [image, setImage] = useState<string>("");
   const imageRef = useRef<any>(null);
@@ -32,7 +32,7 @@ const Form1 = ({
     const file = e.target.files && e.target.files[0];
     console.log(file);
     // const formdata = new FormData();
-   setPrdtDetails && setPrdtDetails((prev:any)=>({...prev, image:file}))
+    setPrdtDetails && setPrdtDetails((prev: any) => ({ ...prev, image: file }));
     file && formdata.append("image", file);
 
     const imageUrl = file && URL.createObjectURL(file);
@@ -71,8 +71,8 @@ const Form1 = ({
                 hidden
                 ref={imageRef}
               />
-              <CloudUploadIcon className="max-lg:size-[20px] lg:text-[20px] text-[#787C83]" />
-              <h4 className="text-center text-[12px] lg:text-[14px] font-[600] leading-[20.3px] text-[#787C83]">
+              <CloudUploadIcon className="text-[#787C83] max-lg:size-[20px] lg:text-[20px]" />
+              <h4 className="text-center text-[12px] font-[600] leading-[20.3px] text-[#787C83] lg:text-[14px]">
                 Upload
               </h4>
               <p className="text-center text-[10px] font-[600] leading-[14.5px] text-[#787C83]">
