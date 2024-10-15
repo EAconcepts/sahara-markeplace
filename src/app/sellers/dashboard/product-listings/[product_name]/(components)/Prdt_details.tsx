@@ -146,7 +146,7 @@ export const PrdtDetails = ({ product_name }: { product_name?: any }) => {
             </Button>
             <Button
               type="button"
-              onClick={() => handleDelete(prdtDetails?.id)}
+              onClick={() => handleDelete(prdtDetails?.sid)}
               className="h-[47px] rounded-[8px] border-[1px] border-[#E8112D] bg-[#E8112D33] px-[24px] py-[12px] text-blackPrimary"
             >
               Delete Product
