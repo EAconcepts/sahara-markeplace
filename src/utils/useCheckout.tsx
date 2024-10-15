@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./useAuth";
 import axios from "axios";
+import { useGet } from "./useGet.";
 
 const CheckoutContext = createContext<any>(undefined);
 export const CheckoutProvider = ({
@@ -27,7 +28,10 @@ export const CheckoutProvider = ({
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-
+  const { data } = useGet("/my-cart", "cart");
+  useEffect(() => {
+    setCartItems(data?.data?.data?.cart);
+  }, [data]);
   const refetchCart = async () => {
     const response = await axios.get(`${baseUrl}/my-cart`, { headers });
     setCartItems(response.data?.data?.cart);

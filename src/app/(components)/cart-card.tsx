@@ -22,7 +22,7 @@ const CartCard = ({
   showStore?: boolean;
   product?: any;
 }) => {
-  const [quantity, setQuantity] = useState<number>(1);
+  const [quantity, setQuantity] = useState<number>(Number(product?.quantity));
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   const { token } = useAuth();
   const { refetchCart } = useCheckout();
@@ -48,6 +48,27 @@ const CartCard = ({
     },
   });
 
+  const updateMutation = useMutation({
+    mutationFn: () =>
+      axios.post(
+        `${baseUrl}/update-cart`,
+        { cart_id: product?.id, quantity },
+        { headers },
+      ),
+    onSuccess: (data) => {
+      console.log(data);
+      toast.success(data?.data?.data?.message || "Cart updated successfully");
+      refetchCart();
+    },
+    onError: (error: any) => {
+      console.log(error);
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Couldn't update cart",
+      );
+    },
+  });
   const deleteItem = async (id: number) => {
     deleteMutation.mutate(id);
   };
@@ -89,7 +110,7 @@ const CartCard = ({
                 {product?.product?.name}
               </h4>
               <h4 className="font-openSans text-[16px] font-[700] leading-[26.1px] text-blackPrimary lg:text-[18px]">
-                ${product?.product?.price}
+                ${product?.product?.price * product?.quantity}
               </h4>
             </div>
             {/* sizes */}
@@ -105,26 +126,28 @@ const CartCard = ({
             {/* quantity */}
             <div className="flex w-fit items-center gap-[24px] gap-x-[12px] rounded-[40px] border-[1px] border-[#E4E7EC] px-[16px] py-[8px] lg:gap-x-[27.5px] lg:px-[17.5px] lg:py-[12.5px]">
               <TbMinus
-                onClick={() =>
+                onClick={() => {
                   setQuantity((prev: number) => {
                     if (prev == 1) {
                       return prev;
                     } else return prev - 1;
-                  })
-                }
+                  });
+                  updateMutation.mutate();
+                }}
                 className="text-[18px] text-[#8E97A6] lg:text-[24px]"
               />
               <span className="font-openSans text-[14px] font-[600] leading-[19.2px] tracking-[2%] text-[#7D9A37] lg:text-[16px] lg:leading-[24px]">
-                {product?.quantity}
+                {quantity}
               </span>
               <TbPlus
-                onClick={() =>
-                  setQuantity((prev: number) => {
-                    if (prev == product?.quantity) {
+                onClick={() => {
+                  setQuantity((prev) => {
+                    if (prev == product?.product?.quantity) {
                       return prev;
                     } else return prev + 1;
-                  })
-                }
+                  });
+                  updateMutation.mutate();
+                }}
                 className="text-[18px] text-greenPrimary lg:text-[24px]"
               />
             </div>
