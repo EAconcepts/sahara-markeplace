@@ -74,6 +74,7 @@ const Recipes = () => {
             </Button>
           </form>
         </div>
+        {/* Keywords */}
         <div className="flex w-full flex-wrap justify-around gap-[12px] gap-y-[16px] lg:px-[56px]">
           {keywords.map((keyword, index) => (
             <span
@@ -87,7 +88,7 @@ const Recipes = () => {
       </div>
       {/* Recipes */}
       {data ? (
-        <div className="lg:W-full grid grid-cols-1 gap-y-[24px] px-[24px] py-[40px] lg:grid-cols-4 lg:justify-around lg:gap-y-[32px] lg:px-[96px]">
+        <div className="lg:W-full grid hidden grid-cols-1 gap-y-[24px] px-[24px] py-[40px] lg:grid-cols-4 lg:justify-around lg:gap-y-[32px] lg:px-[96px]">
           {data &&
             extractRecipe(data?.data?.data?.posts).map((recipe: any) => (
               <div
@@ -129,7 +130,9 @@ const Recipes = () => {
       ) : (
         isPending && <Loader />
       )}
-
+      <div className="py-[64px] text-center text-[24px] font-[600]">
+        Coming Soon...
+      </div>
       {/* Newsletter */}
       <div className="lg:px-[96px]">
         <Newsletter />

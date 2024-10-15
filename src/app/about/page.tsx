@@ -225,7 +225,8 @@ const About = () => {
         <h3 className="text-center text-[20px] font-[600] leading-[29px] text-blackPrimary">
           Why Choose Sahara Eagles
         </h3>
-        <div className="flex w-full flex-wrap justify-center gap-x-[16px] gap-y-[40px] lg:px-[104px]">
+        {/* Main */}
+        <div className="flex hidden w-full flex-wrap justify-center gap-x-[16px] gap-y-[40px] lg:px-[104px]">
           {feat.map((ft, index) => (
             <div
               key={index}
@@ -243,6 +244,9 @@ const About = () => {
               </p>
             </div>
           ))}
+        </div>
+        <div className="py-[64px] text-center text-[24px] font-[600]">
+          Coming Soon...
         </div>
       </div>
       {/* Meet The Team */}

@@ -12,10 +12,16 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useAuth } from "@/utils/useAuth";
 import { Welcome } from "@/app/(components)/Welcome";
+import { StepOne } from "./(components)/step1";
+import { StepTwo } from "./(components)/step2";
+import { StepThree } from "./(components)/step3";
 const ForgotPassword = () => {
-  const [userDetails, setUserDetails] = useState({
+  const [step, setStep] = useState<number>(1);
+  const [resetDetails, setResetDetails] = useState({
     email: "",
     password: "",
+    confirmPassword: "",
+    token: "",
   });
 
   const router = useRouter();
@@ -24,124 +30,111 @@ const ForgotPassword = () => {
   const { login } = useAuth();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUserDetails((prev) => ({ ...prev, [name]: value }));
+    setResetDetails((prev) => ({ ...prev, [name]: value }));
   };
-  const handleSignin = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(userDetails);
-    loginMutation.mutate();
-  };
-  const loginMutation = useMutation({
-    mutationFn: () => axios.post(`${baseUrl}/user-login`, userDetails),
+
+  const step1Mutation = useMutation({
+    mutationFn: () =>
+      axios.post(`${baseUrl}/reset-password/initiate`, {
+        email: resetDetails.email,
+      }),
     onSuccess: (data) => {
-      console.log("Signin successful!", data);
-      if (data.status === 200) {
-        const token = data.data.data.token;
-        const user = data.data.data.user;
-        login(token, user, "user");
-        toast.success("Signin successful!");
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 1000);
-      }
+      console.log("initiate", data);
+      setStep(2);
+      toast.success(" successful!");
     },
     onError: (error: any) => {
       console.log(error);
-      toast.error(error?.response?.data?.message || "Signin failed!");
+      toast.error(error?.response?.data?.message || "Password Reset failed!");
+    },
+  });
+  const step2Mutation = useMutation({
+    mutationFn: () =>
+      axios.post(`${baseUrl}/reset-password/verify-token`, {
+        email: resetDetails.email,
+        token: resetDetails.token,
+      }),
+    onSuccess: (data) => {
+      console.log("step 2", data);
+      setStep(3);
+      toast.success(data?.data?.message);
+    },
+    onError: (error: any) => {
+      console.log(error);
+      toast.error(error?.response?.data?.message || "Password Reset failed!");
+    },
+  });
+  const step3Mutation = useMutation({
+    mutationFn: () =>
+      axios.post(`${baseUrl}/reset-password/send`, {
+        email: resetDetails.email,
+        token: resetDetails.token,
+        password: resetDetails.password,
+        password_confirmation: resetDetails.confirmPassword,
+      }),
+    onSuccess: (data) => {
+      console.log("step 3", data);
+      // setStep(2);
+      toast.success(data?.data?.message);
+      router.push("/auth/signin");
+    },
+    onError: (error: any) => {
+      console.log(error);
+      toast.error(error?.response?.data?.message || "Password Reset failed!");
     },
   });
 
   return (
     <div className="flex w-full flex-col pt-[40px] max-lg:pb-[81px] lg:pb-[300px]">
-      <div className="w-full gap-x-[24px] max-lg:px-[24px] lg:flex lg:px-[96px]">
+      <div className="w-full gap-x-[24px] max-lg:px-[24px] lg:flex lg:items-center lg:px-[96px]">
         <AuthCard
           image={image}
           header="Welcome Back!"
           imgClassName="-mt-[120px] h-full max-lg:hidden"
         />
         {/* signin form */}
-        <form
-          onSubmit={handleSignin}
-          className="flex flex-col font-openSans max-lg:mt-[40px] max-lg:w-full lg:w-[90%] lg:px-[40px]"
-        >
+        <form className="flex flex-col font-openSans max-lg:mt-[40px] max-lg:w-full lg:w-[90%] lg:px-[40px]">
           <h4 className="text-center text-[24px] font-[600] leading-[28.8px] text-blackPrimary">
             Reset Password
           </h4>
-          {/* <p className=" mt-[8px] text-center text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
-            Login into your account
-          </p> */}
-          <div className="mt-[32px] flex w-full flex-col gap-y-[24px]">
-            {/* Email & Phone */}
-            <div className="flex flex-col gap-y-[4px]">
-              <label
-                htmlFor="email"
-                className="text-[14px] font-[600] leading-[20.3px] [before:content-'**'] before:text-[#E8112D]"
-              >
-                Email Address
-              </label>
-              <Input
-                type="text"
-                id="email"
-                name="email"
-                onChange={handleChange}
-                value={userDetails.email}
-                placeholder="email address"
-                className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:h-[48px]"
+          <p className="mt-[8px] text-center text-[14px] font-[400] leading-[20.3px] text-[#787C83]">
+            Enter details to reset password
+          </p>
+          {step == 1 ? (
+            <StepOne
+              props={{
+                onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                  setResetDetails((prev) => ({
+                    ...prev,
+                    email: e.target.value,
+                  })),
+                mutation: step1Mutation,
+                email: resetDetails.email,
+              }}
+            />
+          ) : step == 2 ? (
+            <StepTwo
+              props={{
+                onChange: handleChange,
+                resetDetails,
+                mutation: step2Mutation,
+              }}
+            />
+          ) : (
+            step == 3 && (
+              <StepThree
+                props={{
+                  onChange: handleChange,
+                  mutation: step3Mutation,
+                  resetDetails,
+                }}
               />
-            </div>
-            {/*  Password  */}
-            <div className="flex flex-col gap-y-[4px]">
-              <label
-                htmlFor="password"
-                className="text-[14px] font-[600] leading-[20.3px] [before:content-'**'] before:text-[#E8112D]"
-              >
-                Password
-              </label>
-              <Input
-                id="password"
-                name="password"
-                onChange={handleChange}
-                value={userDetails.password}
-                type="password"
-                placeholder="password"
-                className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:h-[48px]"
-              />
-            </div>
-          </div>
-          <div className="mt-[40px] flex items-center justify-between">
-            <div className="flex items-center gap-x-[8px]">
-              <Input type="checkbox" className="size-[24px]" />
-              <label className="text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
-                Keep me logged in
-              </label>
-            </div>
-            <button className="text-[14px] font-[600] leading-[20.3px] text-[#7D9A37]">
-              Forgot passowrd?
-            </button>
-          </div>
-          <Button
-            type="submit"
-            disabled={loginMutation.isPending}
-            className="mt-[40px] h-[55px] w-full rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20"
-          >
-            {loginMutation.isPending ? "Signing in..." : " Sign In"}
-          </Button>
-          <div className="mt-[24px] flex items-center justify-center gap-x-[8px] text-[14px] lg:gap-x-[12px] lg:text-[20px]">
-            <span className="font-[400] leading-[29px] text-[#787C83]">
-              Don&apos;t have an account yet?
-            </span>{" "}
-            <button
-              type="button"
-              onClick={() => router.push("/auth/signup")}
-              className="font-[700] leading-[24px] text-[#7D9A37]"
-            >
-              Sign up
-            </button>
-          </div>
+            )
+          )}
         </form>
       </div>
       {/* footer */}
-      <Welcome />
+      {/* <Welcome /> */}
     </div>
   );
 };

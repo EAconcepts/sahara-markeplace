@@ -20,27 +20,27 @@ const Signup = () => {
     password: "",
     confirm_password: "",
   });
-  
-const router = useRouter()
+
+  const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserDetails((prev) => ({ ...prev, [name]: value }));
   };
   const handleSignup = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(userDetails)
+    console.log(userDetails);
     registerMutation.mutate();
   };
   const registerMutation = useMutation({
     mutationFn: () => axios.post(`${baseUrl}/register-status`, userDetails),
     onSuccess: (data) => {
       console.log("Signup successful!", data);
-      if(data.status===200){
-      toast.success("Signup successful!");
-        router.push('/auth/signin')
-    }
+      if (data.status === 200) {
+        toast.success("Signup successful!");
+        router.push("/auth/signin");
+      }
     },
     onError: (error) => {
       console.log(error);
@@ -50,12 +50,16 @@ const router = useRouter()
 
   return (
     <div className="flex w-full flex-col pt-[40px] max-lg:pb-[80px] lg:pb-[300px]">
-      <div className="flex max-lg:flex-col w-full gap-x-[24px] max-lg:px-[24px] lg:px-[96px]">
-        <AuthCard image={image} header="Join the EAGLES"  imgClassName="max-lg:hidden" />
+      <div className="flex w-full gap-x-[24px] max-lg:flex-col max-lg:px-[24px] lg:px-[96px]">
+        <AuthCard
+          image={image}
+          header="Join the EAGLES"
+          imgClassName="max-lg:hidden"
+        />
         {/* signup form */}
         <form
           onSubmit={handleSignup}
-          className="flex w-full flex-col max-lg:mt-[40px] lg:px-[40px] font-openSans"
+          className="flex w-full flex-col font-openSans max-lg:mt-[40px] lg:px-[40px]"
         >
           <h4 className="text-center text-[24px] font-[600] leading-[28.8px] text-blackPrimary">
             Sign Up
@@ -64,7 +68,7 @@ const router = useRouter()
             Create your Eagle&apos;s account
           </p>
           <div className="mt-[24px] flex w-full flex-col gap-y-[16px]">
-            <div className="grid w-full grid-cols-2 gap-x-[16px] lg:gap-x-[24px] gap-y-[4px] font-openSans">
+            <div className="grid w-full grid-cols-2 gap-x-[16px] gap-y-[4px] font-openSans lg:gap-x-[24px]">
               <label
                 htmlFor="first_name"
                 className="text-[14px] font-[600] leading-[20.3px] [before:content-'**'] before:text-[#E8112D]"
@@ -84,7 +88,7 @@ const router = useRouter()
                 name="first_name"
                 onChange={handleChange}
                 value={userDetails.first_name}
-                className="h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:h-[48px]"
               />
               <Input
                 type="text"
@@ -93,7 +97,7 @@ const router = useRouter()
                 name="last_name"
                 onChange={handleChange}
                 value={userDetails.last_name}
-                className="h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:h-[48px]"
               />
             </div>
             {/* Email & Phone */}
@@ -112,7 +116,7 @@ const router = useRouter()
                   onChange={handleChange}
                   value={userDetails.email}
                   placeholder="email address"
-                  className="h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                  className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:h-[48px]"
                 />
               </div>
               {/* Phone */}
@@ -130,7 +134,7 @@ const router = useRouter()
                   onChange={handleChange}
                   value={userDetails.phone}
                   placeholder="phone"
-                  className="h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                  className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:h-[48px]"
                 />
               </div>
             </div>
@@ -151,7 +155,7 @@ const router = useRouter()
                   onChange={handleChange}
                   value={userDetails.password}
                   placeholder="password"
-                  className="h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                  className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:h-[48px]"
                 />
               </div>
               {/* Phone */}
@@ -169,15 +173,15 @@ const router = useRouter()
                   value={userDetails.confirm_password}
                   type="password"
                   placeholder="confirm password"
-                  className="h-[56px] max-lg:h-[48px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6]"
+                  className="h-[56px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] bg-white p-[16px] font-[400] leading-[20.3px] text-[#8E97A6] max-lg:h-[48px]"
                 />
               </div>
             </div>
           </div>
           <Button
-          disabled={registerMutation.isPending}
+            disabled={registerMutation.isPending}
             type="submit"
-            className="mt-[40px] max-lg:h-[48px] h-[55px] rounded-[12px] bg-[#7D9A37] disabled:bg-[#7D9A37]/20 hover:bg-[#7D9A37]/50 py-[16px] text-[16px] font-[600] leading-[23.2px] text-white"
+            className="mt-[40px] h-[55px] w-full rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20 max-lg:h-[48px]"
           >
             {registerMutation.isPending ? "Signing up..." : " Sign up"}
           </Button>
@@ -189,7 +193,7 @@ const router = useRouter()
               type="button"
               className="font-[700] leading-[24px] text-[#7D9A37]"
             >
-             Sign in
+              Sign in
             </button>
           </div>
         </form>
