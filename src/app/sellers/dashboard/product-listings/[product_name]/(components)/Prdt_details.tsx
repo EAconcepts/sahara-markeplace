@@ -57,9 +57,13 @@ export const PrdtDetails = ({ product_name }: { product_name?: any }) => {
       formdata.append("image", prdtDetails?.image && prdtDetails?.image);
       formdata.append("quantity", prdtDetails?.quantity);
       formdata.append("category", prdtDetails.category);
-      return axios.post(`${baseUrl}/${userType}/update-product`, formdata, {
-        headers,
-      });
+      return axios.post(
+        `${baseUrl}/${userType == "seller" ? "vendor" : userType}/update-product`,
+        formdata,
+        {
+          headers,
+        },
+      );
     },
     onSuccess: (data) => {
       console.log(data);
@@ -87,7 +91,10 @@ export const PrdtDetails = ({ product_name }: { product_name?: any }) => {
   const queryClient = useQueryClient();
   const deleteMutation = useMutation({
     mutationFn: (id) =>
-      axios.get(`${baseUrl}/${userType}/delete-product/${id}`, { headers }),
+      axios.get(
+        `${baseUrl}/${userType == "seller" ? "vendor" : userType}/delete-product/${id}`,
+        { headers },
+      ),
     onSuccess: (data) => {
       console.log(data);
       // Refresh the product list after deletion
