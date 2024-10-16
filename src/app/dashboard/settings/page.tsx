@@ -28,12 +28,14 @@ const UserSettings = ({ url }: { url?: string }) => {
     first_name: user?.first_name || "",
     last_name: user?.last_name || "",
     email: user?.email || "",
-    phone_number: user?.phone_number || "",
+    phone: user?.phone_number || "",
     address: user?.address || "",
     city: user?.city || "",
     state: user?.state || "",
     zip_code: user?.zip_code || "",
     profile_photo: user?.profile_photo || "",
+    gender: "",
+    dob: "",
   });
   const [imageUrl, setImage] = useState<string>("");
   const imageRef = useRef<any>(null);
@@ -80,6 +82,7 @@ const UserSettings = ({ url }: { url?: string }) => {
   const handleSelectImage = () => {
     imageRef && imageRef.current?.click();
   };
+  console.log(userDetails);
   return (
     <div className="flex flex-col gap-y-[32px] px-[24px] py-[28px] font-openSans">
       {/* Logo Image upload */}
@@ -136,10 +139,10 @@ const UserSettings = ({ url }: { url?: string }) => {
             <Input
               type="text"
               name="first_name"
-              value={user?.first_name}
+              value={userDetails?.first_name}
               onChange={handleChange}
               className="h-[44px] w-full rounded-[6px] border-[1px] border-border p-[12px]"
-              placeholder={user?.first_name}
+              placeholder={userDetails?.first_name}
             />
           </div>
           {/* Last name */}
@@ -150,10 +153,10 @@ const UserSettings = ({ url }: { url?: string }) => {
             <Input
               type="text"
               name="last_name"
-              value={user?.last_name}
+              value={userDetails?.last_name}
               onChange={handleChange}
               className="h-[44px] w-full rounded-[6px] border-[1px] border-border p-[12px]"
-              placeholder={user?.last_name}
+              placeholder={userDetails?.last_name}
             />
           </div>
         </div>
@@ -167,7 +170,7 @@ const UserSettings = ({ url }: { url?: string }) => {
               type="email"
               disabled
               className="h-[44px] w-full rounded-[6px] border-[1px] border-[#E4E7EC] p-[12px] text-[14px] leading-[20.3px] disabled:bg-[#E4E7EC] disabled:text-[#787C83]"
-              placeholder={user?.email}
+              placeholder={userDetails?.email}
             />
             <button className="self-start text-[14px] font-[400] leading-[20.3px] text-[#7D9A37]">
               Verify your account
@@ -181,13 +184,13 @@ const UserSettings = ({ url }: { url?: string }) => {
           </label>
           <div className="gap-x[12px] flex rounded-[6px] border-[1px] border-border p-[12px]">
             <Select>
-              <SelectTrigger className="h-[44px] w-fit rounded-[6px] border-none">
+              <SelectTrigger className="hidden h-[44px] w-fit rounded-[6px] border-none">
                 <SelectValue placeholder="US" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
+                  <SelectLabel>--</SelectLabel>
+                  <SelectItem value="---">--</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -195,6 +198,9 @@ const UserSettings = ({ url }: { url?: string }) => {
               type="tel"
               className="h-[44px] w-full border-none text-[14px] font-[400] leading-[20.3px] text-blackPrimary"
               placeholder="+1 23455246337"
+              value={userDetails.phone}
+              name="phone"
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -205,23 +211,33 @@ const UserSettings = ({ url }: { url?: string }) => {
               Date of Birth
             </label>
             <Input
-              type="text"
+              type="date"
               className="h-[44px] w-full rounded-[6px] border-[1px] border-border p-[12px]"
-              placeholder="placeholder"
+              // placeholder="placeholder"
+              value={userDetails.dob}
+              onChange={(e) =>
+                setUserDetails((prev) => ({ ...prev, dob: e.target.value }))
+              }
             />
           </div>
           <div className="flex w-full flex-col gap-y-[8px]">
             <label className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Gender
             </label>
-            <Select>
+            <Select
+              value={userDetails.gender}
+              onValueChange={(e) =>
+                setUserDetails((prev) => ({ ...prev, gender: e }))
+              }
+            >
               <SelectTrigger className="h-[44px] w-full rounded-[6px] border-[1px] border-border">
-                <SelectValue placeholder="--Select--" />
+                <SelectValue placeholder="Gender" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
+                  <SelectLabel>Gender</SelectLabel>
+                  <SelectItem value="male">Male</SelectItem>
+                  <SelectItem value="female">Female</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -230,7 +246,7 @@ const UserSettings = ({ url }: { url?: string }) => {
       </div>
       <Button
         onClick={handleUpdate}
-        className="w-fit rounded-[8px] bg-[#E4E7EC] px-[16px] py-[8px] text-[14px] font-[600] leading-[20.3px] text-[#8E97A6]"
+        className="bg[#E4E7EC] text[#8E97A6] w-fit rounded-[8px] px-[16px] py-[8px] text-[14px] font-[600] leading-[20.3px]"
       >
         Save Changes
       </Button>
