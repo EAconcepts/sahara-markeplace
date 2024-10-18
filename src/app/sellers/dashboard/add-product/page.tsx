@@ -11,8 +11,17 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
+export interface prdtDetailsProps {
+  name: string;
+  price: string;
+  image: string;
+  quantity: number;
+  description: string;
+  category: string;
+}
+
 const AddProduct = () => {
-  const [prdtDetails, setPrdtDetails] = useState<any>({
+  const [prdtDetails, setPrdtDetails] = useState<prdtDetailsProps>({
     name: "",
     price: "",
     image: "",
@@ -50,7 +59,7 @@ const AddProduct = () => {
       formdata.append("name", prdtDetails.name);
       formdata.append("price", prdtDetails.price);
       formdata.append("image", prdtDetails.image);
-      formdata.append("quantity", prdtDetails.quantity);
+      formdata.append("quantity", prdtDetails.quantity.toString());
       formdata.append("category", prdtDetails.category);
       return axios.post(`${baseUrl}/vendor/add-product`, formdata, { headers });
     },

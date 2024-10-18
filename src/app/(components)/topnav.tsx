@@ -43,7 +43,7 @@ const Topnav = () => {
           href={"/sellers"}
           className="font-openSans lg:text-[16px] lg:leading-[21.79px]"
         >
-          Sellers Account
+          Vendor Account
         </Link>
         <Link
           href={"faqs"}

@@ -10,9 +10,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useGet } from "@/utils/useGet.";
 import { CloudUploadIcon } from "hugeicons-react";
 import Image from "next/image";
-import React, { ChangeEvent, Dispatch, useRef, useState } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useRef,
+  useState,
+} from "react";
+import { prdtDetailsProps } from "../page";
 
 const Form1 = ({
   prdtDetails,
@@ -21,12 +29,16 @@ const Form1 = ({
   formdata,
 }: {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  setPrdtDetails?: Dispatch<any>;
-  prdtDetails: any;
+  setPrdtDetails: Dispatch<SetStateAction<prdtDetailsProps>>;
+  prdtDetails: prdtDetailsProps;
   formdata?: any;
 }) => {
   const [image, setImage] = useState<string>("");
   const imageRef = useRef<any>(null);
+
+  const { data } = useGet("vendor/dashboard", "dashb");
+  // console.log(data);
+  const categories = data?.data?.data?.categories;
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -160,14 +172,23 @@ const Form1 = ({
               <h4 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Product Category
               </h4>
-              <Select>
+              <Select
+                value={prdtDetails.category}
+                onValueChange={(e) =>
+                  setPrdtDetails((prev) => ({ ...prev, category: e }))
+                }
+              >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="--Select--" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>--</SelectLabel>
-                    <SelectItem value="apple">--</SelectItem>
+                    <SelectLabel>Categories</SelectLabel>
+                    {categories?.map((catg: any) => (
+                      <SelectItem key={catg?.id} value={catg?.name}>
+                        {catg?.name}
+                      </SelectItem>
+                    ))}
                   </SelectGroup>
                 </SelectContent>
               </Select>
