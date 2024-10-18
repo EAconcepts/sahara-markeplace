@@ -18,6 +18,12 @@ export interface prdtDetailsProps {
   quantity: number;
   description: string;
   category: string;
+  tags: string;
+  availability?: boolean;
+  weight?: number | null;
+  weight_unit?: string;
+  discount_price?: string;
+  discount_quantity?: string;
 }
 
 const AddProduct = () => {
@@ -28,6 +34,12 @@ const AddProduct = () => {
     quantity: 1,
     description: "",
     category: "",
+    tags: "",
+    availability: true,
+    weight: null,
+    weight_unit: "",
+    discount_price: "string",
+    discount_quantity: "string",
   });
 
   const { token } = useAuth();

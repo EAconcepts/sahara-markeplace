@@ -199,20 +199,17 @@ const Form1 = ({
             <h4 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Tags
             </h4>
-            <Select>
-              <SelectTrigger className="">
-                <SelectValue placeholder="--Select--" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>--</SelectLabel>
-                  <SelectItem value="apple">--</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+            <Input
+              type="text"
+              name="tags"
+              value={prdtDetails.tags}
+              onChange={handleChange}
+              placeholder="Product Material"
+              className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
+            />
           </div>
           {/* Registry */}
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <h4 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Registry
             </h4>
@@ -227,7 +224,7 @@ const Form1 = ({
                 </SelectGroup>
               </SelectContent>
             </Select>
-          </div>
+          </div> */}
           {/* Quantity & Availability */}
           <div className="flex w-full justify-between gap-x-[32px]">
             {/* Quantity */}
