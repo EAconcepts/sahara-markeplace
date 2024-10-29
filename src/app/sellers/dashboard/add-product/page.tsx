@@ -24,6 +24,7 @@ export interface prdtDetailsProps {
   weight_unit?: string;
   discount_price?: string;
   discount_quantity?: string;
+  options: { size: ""; colours: ""; materials: "" };
 }
 
 const AddProduct = () => {
@@ -40,6 +41,11 @@ const AddProduct = () => {
     weight_unit: "",
     discount_price: "string",
     discount_quantity: "string",
+    options: {
+      size: "",
+      colours: "",
+      materials: "",
+    },
   });
 
   const { token } = useAuth();

@@ -30,12 +30,17 @@ const Header = () => {
   const router = useRouter();
   // console.log(userType)
   const { data } = useGet("my-cart", "cart");
-  const { searchQuery, setSearchQuery, cartItems, setCartItems } =
+  const { searchQuery, setSearchQuery, cartItems, setCartItems, carts } =
     useCheckout();
   useEffect(() => {
     // refetch();
-    setCartItems(data?.data?.data?.cart);
-  }, [data]);
+    if (token) {
+      setCartItems(data?.data?.data?.cart);
+    } else {
+      setCartItems(carts);
+      console.log(cartItems);
+    }
+  }, [data, carts]);
   if (
     path.startsWith("/dashboard") ||
     path.startsWith("/sellers") ||
@@ -114,7 +119,7 @@ const Header = () => {
                 <CiHeart />
               </div>
               {/* Cart */}
-              {userType == "user" && (
+              {userType !== "admin" && userType !== "seller" && (
                 <div
                   onClick={() => setShowCart((prev) => !prev)}
                   className="relative max-lg:hidden"
@@ -126,7 +131,7 @@ const Header = () => {
                 </div>
               )}
               {/* Cart Mobile*/}
-              {userType === "user" && (
+              {userType !== "admin" && userType !== "seller" && (
                 <Link href={"/cart"} className="relative lg:hidden">
                   <span className="absolute right-0 top-0 flex size-[12px] items-center justify-center rounded-full bg-red-400 text-[10px] text-white">
                     {cartItems?.length || 0}

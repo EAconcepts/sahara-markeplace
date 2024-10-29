@@ -147,31 +147,6 @@ const Form1 = ({
               <h4 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                 Product Category
               </h4>
-              <Input
-                type="text"
-                name="category"
-                value={prdtDetails.category}
-                onChange={handleChange}
-                placeholder="Product Material"
-                className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
-              />
-              {/* <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="--Select--" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Fruits</SelectLabel>
-                    <SelectItem value="apple">Apple</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select> */}
-            </div>
-            {/* Sub-Category */}
-            <div className="flex w-full flex-col">
-              <h4 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
-                Product Category
-              </h4>
               <Select
                 value={prdtDetails.category}
                 onValueChange={(e) =>
@@ -192,6 +167,21 @@ const Form1 = ({
                   </SelectGroup>
                 </SelectContent>
               </Select>
+            </div>
+            {/* Sub-Category */}
+            <div className="flex w-full flex-col">
+              <h4 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+                Product Sub Category
+              </h4>
+
+              <Input
+                type="text"
+                name="category"
+                value={prdtDetails.category}
+                onChange={handleChange}
+                placeholder="Product Sub Category"
+                className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"
+              />
             </div>
           </div>
           {/* Tags */}

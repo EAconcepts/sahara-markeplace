@@ -17,15 +17,19 @@ import { useGet } from "@/utils/useGet.";
 const ProductCard = ({ product }: { product: any }) => {
   const router = useRouter();
   const { token, baseUrl } = useAuth();
-  const { cartItems, setCartItems } = useCheckout();
+  const { cartItems, setCartItems, carts, setCarts, refetchCart } =
+    useCheckout();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-
-  const refetchCart = async () => {
-    const response = await axios.get(`${baseUrl}/my-cart`, { headers });
-    setCartItems(response.data?.data?.cart);
+  console.log(carts);
+  const refetchCar = async () => {
+    // const response = await axios.get(`${baseUrl}/my-cart`, { headers });
+    // setCartItems(response.data?.data?.cart);
+    // const set = new Set(carts);
+    // setCarts(set);
+    // console.log(carts);
   };
   const addtocart = async (product: any, quantity: number) => {
     try {
@@ -51,7 +55,13 @@ const ProductCard = ({ product }: { product: any }) => {
   };
   const handleAddToCart = (id: string) => {
     // console.log(id);
+
     addtocart(id, 1);
+  };
+  const updateCart = () => {
+    if (!token) {
+      setCartItems();
+    }
   };
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   return (
@@ -108,7 +118,17 @@ const ProductCard = ({ product }: { product: any }) => {
             if (token) {
               handleAddToCart(product?.id);
             } else {
-              router.push("/auth/signin");
+              const exists = carts.some((item: any) => item.id === product?.id);
+              if (!exists) {
+                console.log(carts);
+                const newCart = [...carts, product];
+                localStorage.setItem("cart", JSON.stringify(newCart));
+                setCarts((prev: any) => [...prev, product]);
+                refetchCart();
+              } else {
+                toast.warning("product already added to cart");
+              }
+              // router.push("/auth/signin");
             }
           }}
           variant={"outline"}

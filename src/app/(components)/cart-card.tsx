@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Delete03Icon } from "hugeicons-react";
 import { useCheckout } from "@/utils/useCheckout";
+import Link from "next/link";
 
 const CartCard = ({
   product,
@@ -25,7 +26,7 @@ const CartCard = ({
   const [quantity, setQuantity] = useState<number>(Number(product?.quantity));
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   const { token } = useAuth();
-  const { refetchCart } = useCheckout();
+  const { refetchCart, carts, setCarts } = useCheckout();
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -72,19 +73,26 @@ const CartCard = ({
   const deleteItem = async (id: number) => {
     deleteMutation.mutate(id);
   };
+  const deleteCart = (id: number) => {
+    const deleted = carts.filter((item: any) => item.id !== id);
+    setCarts(deleted);
+    refetchCart();
+  };
   // console.log(product)
   return (
     <div className="flex w-full gap-x-[12px]">
-      <Image
-        src={`${imageBaseUrl}/${product?.product?.image} `}
-        width={152}
-        height={152}
-        alt=""
-        className={twMerge(
-          "rounded-[4px] object-cover max-lg:size-[130.5px] lg:size-[152px] lg:shrink-0",
-          imgClass,
-        )}
-      />
+      <Link href={`/product-details/${product?.url}`}>
+        <Image
+          src={`${imageBaseUrl}/${token ? product?.product?.image : product?.image} `}
+          width={152}
+          height={152}
+          alt=""
+          className={twMerge(
+            "rounded-[4px] object-cover max-lg:size-[130.5px] lg:size-[152px] lg:shrink-0",
+            imgClass,
+          )}
+        />
+      </Link>
       {/* Details */}
       <div className="flex w-full flex-col gap-y-[16px]">
         <div className="flex flex-col">
@@ -107,10 +115,13 @@ const CartCard = ({
           <div className="flex w-full flex-col gap-y-[8px]">
             <div className="flex w-full justify-between">
               <h4 className="font-openSans text-[14px] font-[600] leading-[19.2px] text-blackPrimary lg:text-[16px]">
-                {product?.product?.name}
+                {token ? product?.product?.name : product?.name}
               </h4>
               <h4 className="font-openSans text-[16px] font-[700] leading-[26.1px] text-blackPrimary lg:text-[18px]">
-                ${product?.product?.price * product?.quantity}
+                $
+                {token
+                  ? product?.product?.price * product?.quantity
+                  : product?.price * product?.quantity}
               </h4>
             </div>
             {/* sizes */}
@@ -137,7 +148,7 @@ const CartCard = ({
                 className="text-[18px] text-[#8E97A6] lg:text-[24px]"
               />
               <span className="font-openSans text-[14px] font-[600] leading-[19.2px] tracking-[2%] text-[#7D9A37] lg:text-[16px] lg:leading-[24px]">
-                {quantity}
+                {token ? quantity : 1}
               </span>
               <TbPlus
                 onClick={() => {
@@ -153,7 +164,13 @@ const CartCard = ({
             </div>
             {/* trash */}
             <Delete03Icon
-              onClick={() => deleteItem(product?.id)}
+              onClick={() => {
+                if (token) {
+                  deleteItem(product?.id);
+                } else {
+                  deleteCart(product?.id);
+                }
+              }}
               className="size-[16px] text-[#787C83] lg:size-[20px]"
             />
           </div>

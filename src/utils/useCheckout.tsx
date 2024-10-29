@@ -3,6 +3,10 @@ import { useAuth } from "./useAuth";
 import axios from "axios";
 import { useGet } from "./useGet.";
 
+// export interface cartProps{
+//   id: number;
+//   quantity: number;
+// }
 const CheckoutContext = createContext<any>(undefined);
 export const CheckoutProvider = ({
   children,
@@ -24,17 +28,31 @@ export const CheckoutProvider = ({
   });
   const [searchQuery, setSearchQuery] = useState("");
   const [cartItems, setCartItems] = useState([]);
+  const cart = localStorage.getItem("cart");
+
+  const [carts, setCarts] = useState((cart && JSON.parse(cart)) || []);
   const { baseUrl, token } = useAuth();
   const headers = {
     Authorization: `Bearer ${token}`,
   };
   const { data } = useGet("/my-cart", "cart");
   useEffect(() => {
-    setCartItems(data?.data?.data?.cart);
-  }, [data]);
+    if (token) {
+      setCartItems(data?.data?.data?.cart);
+    } else {
+      console.log(cartItems);
+    }
+  }, [data, carts]);
+
   const refetchCart = async () => {
-    const response = await axios.get(`${baseUrl}/my-cart`, { headers });
-    setCartItems(response.data?.data?.cart);
+    console.log("from refetching cart");
+    if (token) {
+      const response = await axios.get(`${baseUrl}/my-cart`, { headers });
+      setCartItems(response.data?.data?.cart);
+    } else {
+      // localStorage.setItem("cart", JSON.stringify(carts));
+      setCartItems(carts);
+    }
   };
 
   return (
@@ -47,6 +65,8 @@ export const CheckoutProvider = ({
         cartItems,
         setCartItems,
         refetchCart,
+        carts,
+        setCarts,
       }}
     >
       {children}

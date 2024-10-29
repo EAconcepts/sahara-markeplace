@@ -5,14 +5,20 @@ import CartCard from "../cart-card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
+import { useAuth } from "@/utils/useAuth";
 
-export const getTotalPrice = (carts: any) => {
+export const getTotalPrice = (carts: any, token: string) => {
   let totalPrice = 0;
-  carts?.forEach(
-    (item: any) =>
-      (totalPrice += Number(item?.product?.price) * Number(item?.quantity)),
-  );
-  return totalPrice;
+  if (token) {
+    carts?.forEach(
+      (item: any) =>
+        (totalPrice += Number(item?.product?.price) * Number(item?.quantity)),
+    );
+    return totalPrice;
+  } else {
+    carts?.forEach((item: any) => (totalPrice += Number(item?.price) * 1));
+    return totalPrice;
+  }
 };
 
 export const CartModal = ({
@@ -25,6 +31,7 @@ export const CartModal = ({
   className?: string;
 }) => {
   const router = useRouter();
+  const { token } = useAuth();
 
   return (
     <div className="fixed inset-0 z-40 flex w-full flex-col items-end bg-black/80">
@@ -68,7 +75,7 @@ export const CartModal = ({
               Subtotal:
             </span>
             <h4 className="text-[18px] font-[700] leading-[26.1px] text-blackPrimary">
-              ${getTotalPrice(carts).toLocaleString()}
+              ${getTotalPrice && getTotalPrice(carts, token).toLocaleString()}
             </h4>
           </div>
           <div className="pt-[24px]">

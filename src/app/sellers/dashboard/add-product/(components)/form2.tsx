@@ -57,7 +57,7 @@ const Form2 = ({
             {/* Additional price */}
             <div className="flex w-full max-lg:w-[112px] gap-x-[16px] max-lg:shrink-0">
               <div className="flex w-full flex-col gap-x-[8px] max-lg:shrink-0">
-                <h6 className=" text-[12px] lg:text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+                <h6 className=" text-[Tit12px] lg:text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
                   Additional Price
                 </h6>
                 <Input type="text" placeholder="0.00" className="max-lg:w-[80px] lg:w-full max-lg:text-[12px]" />
