@@ -12,6 +12,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useAuth } from "@/utils/useAuth";
 import { Welcome } from "@/app/(components)/Welcome";
+import { useCheckout } from "@/utils/useCheckout";
 const Signin = () => {
   const [userDetails, setUserDetails] = useState({
     email: "",
@@ -22,15 +23,55 @@ const Signin = () => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const { login } = useAuth();
+  const { carts, refetchCart } = useCheckout();
+  console.log(carts);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserDetails((prev) => ({ ...prev, [name]: value }));
   };
+
+  // call Login Mutation
   const handleSignin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(userDetails);
     loginMutation.mutate();
   };
+
+  // Update cart items upon login
+  const updateCart = async (token: string, user_type: string) => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    if (user_type == "user" && token) {
+      try {
+        const responses = await Promise.all(
+          carts &&
+            carts?.length > 0 &&
+            carts?.map((cart: any, index: number) => {
+              axios.post(
+                `${baseUrl}/add-to-cart`,
+                {
+                  product: cart?.id,
+                  quantity: 1,
+                },
+                { headers },
+              );
+              console.log("iteration ", index);
+            }),
+        );
+        console.log("all reqs completed");
+        localStorage.removeItem("cart");
+        refetchCart();
+      } catch (err) {
+        toast.error("Failed to update cart.");
+        console.log(err);
+      }
+      console.log("hiiii");
+    }
+  };
+
+  // Login Mutation
   const loginMutation = useMutation({
     mutationFn: () => axios.post(`${baseUrl}/user-login`, userDetails),
     onSuccess: (data) => {
@@ -39,6 +80,7 @@ const Signin = () => {
         const token = data.data.data.token;
         const user = data.data.data.user;
         login(token, user, "user");
+        updateCart(token, "user");
         toast.success("Signin successful!");
         setTimeout(() => {
           router.push("/dashboard");

@@ -81,7 +81,12 @@ export const CartModal = ({
           <div className="pt-[24px]">
             <Button
               onClick={() => {
-                router.push("/checkout");
+                if (token) {
+                  router.push("/checkout");
+                } else {
+                  router.push("/auth/signin");
+                }
+
                 setShowCart(false);
               }}
               disabled={!carts || carts?.length == 0}

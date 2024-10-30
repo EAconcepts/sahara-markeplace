@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./useAuth";
 import axios from "axios";
@@ -8,6 +10,7 @@ import { useGet } from "./useGet.";
 //   quantity: number;
 // }
 const CheckoutContext = createContext<any>(undefined);
+
 export const CheckoutProvider = ({
   children,
 }: {
@@ -35,12 +38,14 @@ export const CheckoutProvider = ({
   const headers = {
     Authorization: `Bearer ${token}`,
   };
+
+  //Update cart items
   const { data } = useGet("/my-cart", "cart");
   useEffect(() => {
     if (token) {
       setCartItems(data?.data?.data?.cart);
     } else {
-      console.log(cartItems);
+      // console.log(cartItems);
     }
   }, [data, carts]);
 

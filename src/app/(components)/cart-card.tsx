@@ -75,8 +75,10 @@ const CartCard = ({
   };
   const deleteCart = (id: number) => {
     const deleted = carts.filter((item: any) => item.id !== id);
+    localStorage.setItem("cart", JSON.stringify(deleted));
     setCarts(deleted);
     refetchCart();
+    toast.success("Deleted Successfully!");
   };
   // console.log(product)
   return (
@@ -120,8 +122,10 @@ const CartCard = ({
               <h4 className="font-openSans text-[16px] font-[700] leading-[26.1px] text-blackPrimary lg:text-[18px]">
                 $
                 {token
-                  ? product?.product?.price * product?.quantity
-                  : product?.price * product?.quantity}
+                  ? (
+                      product?.product?.price * product?.quantity
+                    ).toLocaleString()
+                  : (product?.price * 1).toLocaleString()}
               </h4>
             </div>
             {/* sizes */}

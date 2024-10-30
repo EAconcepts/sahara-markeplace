@@ -9,6 +9,8 @@ import {
   useState,
 } from "react";
 import { toast } from "sonner";
+import { useCheckout } from "./useCheckout";
+import axios from "axios";
 
 interface AuthProps {
   token: string | null;
@@ -32,6 +34,7 @@ interface AuthProps {
   >;
   showPricing: boolean;
   setShowPricing: Dispatch<SetStateAction<boolean>>;
+  updateCart: () => void;
 }
 export const AuthContext = createContext<any>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -52,6 +55,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   });
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const imgUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+  // const { carts = [] } = useCheckout();
+  // console.log(carts);
 
   const login = (token: string, user: any, userType: string) => {
     if (typeof window !== "undefined") {

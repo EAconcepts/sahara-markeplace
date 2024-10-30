@@ -23,7 +23,7 @@ const ProductCard = ({ product }: { product: any }) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  console.log(carts);
+  // console.log(carts);
   const refetchCar = async () => {
     // const response = await axios.get(`${baseUrl}/my-cart`, { headers });
     // setCartItems(response.data?.data?.cart);
@@ -125,8 +125,9 @@ const ProductCard = ({ product }: { product: any }) => {
                 localStorage.setItem("cart", JSON.stringify(newCart));
                 setCarts((prev: any) => [...prev, product]);
                 refetchCart();
+                toast.success("Product added to cart!");
               } else {
-                toast.warning("product already added to cart");
+                toast.warning("Product already added to cart");
               }
               // router.push("/auth/signin");
             }
