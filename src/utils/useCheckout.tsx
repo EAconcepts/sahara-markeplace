@@ -31,7 +31,7 @@ export const CheckoutProvider = ({
   });
   const [searchQuery, setSearchQuery] = useState("");
   const [cartItems, setCartItems] = useState([]);
-  const cart = localStorage.getItem("cart");
+  const cart = typeof window !== "undefined" && localStorage.getItem("cart");
 
   const [carts, setCarts] = useState((cart && JSON.parse(cart)) || []);
   const { baseUrl, token } = useAuth();

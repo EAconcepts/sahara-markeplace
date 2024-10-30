@@ -61,7 +61,7 @@ const Signin = () => {
             }),
         );
         console.log("all reqs completed");
-        localStorage.removeItem("cart");
+        typeof window !== "undefined" && localStorage.removeItem("cart");
         refetchCart();
       } catch (err) {
         toast.error("Failed to update cart.");
