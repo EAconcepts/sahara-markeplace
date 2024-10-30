@@ -27,7 +27,7 @@ const Cart = () => {
   const { refetchCart, cartItems } = useCheckout();
 
   useEffect(() => {
-    cartItems && setTotal(getTotalPrice(cartItems).toLocaleString());
+    cartItems && setTotal(getTotalPrice(cartItems, token).toLocaleString());
   }, [cartItems]);
 
   return (
