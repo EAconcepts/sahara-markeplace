@@ -57,17 +57,16 @@ const Signin = () => {
                 },
                 { headers },
               );
-              console.log("iteration ", index);
+              // console.log("iteration ", index);
             }),
         );
-        console.log("all reqs completed");
+        // console.log("all reqs completed");
         typeof window !== "undefined" && localStorage.removeItem("cart");
         refetchCart();
       } catch (err) {
         toast.error("Failed to update cart.");
         console.log(err);
       }
-      console.log("hiiii");
     }
   };
 
@@ -75,7 +74,7 @@ const Signin = () => {
   const loginMutation = useMutation({
     mutationFn: () => axios.post(`${baseUrl}/user-login`, userDetails),
     onSuccess: (data) => {
-      console.log("Signin successful!", data);
+      // console.log("Signin successful!", data);s
       if (data.status === 200) {
         const token = data.data.data.token;
         const user = data.data.data.user;
@@ -88,8 +87,10 @@ const Signin = () => {
       }
     },
     onError: (error: any) => {
-      console.log(error);
-      toast.error(error?.response?.data?.message || "Signin failed!");
+      // console.log(error);
+      toast.error(
+        error?.response?.data?.message || error?.message || "Signin failed!",
+      );
     },
   });
 

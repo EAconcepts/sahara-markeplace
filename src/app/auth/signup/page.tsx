@@ -36,15 +36,18 @@ const Signup = () => {
   const registerMutation = useMutation({
     mutationFn: () => axios.post(`${baseUrl}/register-status`, userDetails),
     onSuccess: (data) => {
-      console.log("Signup successful!", data);
+      // console.log("Signup successful!", data);
       if (data.status === 200) {
         toast.success("Signup successful!");
         router.push("/auth/signin");
       }
     },
-    onError: (error) => {
-      console.log(error);
-      toast.error("Signup failed!");
+    onError: (error: any) => {
+      toast.error(
+        error?.response?.data?.message || error?.message || "Signin failed!",
+      );
+      // console.log(error);
+      // toast.error("Signup failed!");
     },
   });
 

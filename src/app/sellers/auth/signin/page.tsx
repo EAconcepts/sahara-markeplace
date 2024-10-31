@@ -34,7 +34,7 @@ const Signin = () => {
   const loginMutation = useMutation({
     mutationFn: () => axios.post(`${baseUrl}/vendor-login`, userDetails),
     onSuccess: (data) => {
-      console.log("Signin successful!", data);
+      // console.log("Signin successful!", data);
       if (data.status === 200) {
         const token = data.data.data.token;
         const user = data.data.data.user;
@@ -50,7 +50,7 @@ const Signin = () => {
       }
     },
     onError: (error: any) => {
-      console.log(error);
+      // console.log(error);
       toast.error(error?.response?.data?.message || "Signin failed!");
     },
   });

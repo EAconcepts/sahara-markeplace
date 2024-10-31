@@ -48,9 +48,13 @@ const Signup = () => {
         router.push("/sellers/auth/signin");
       }
     },
-    onError: (error) => {
-      console.log(error);
-      toast.error("Signup failed!");
+    onError: (error: any) => {
+      toast.error(
+        error?.response?.data?.message || error?.message || "Signin failed!",
+      );
+
+      // console.log(error);
+      // toast.error("Signup failed!");
     },
   });
 

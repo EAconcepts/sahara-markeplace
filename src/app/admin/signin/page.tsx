@@ -20,7 +20,7 @@ const AdminSignin = () => {
   const loginMutation = useMutation({
     mutationFn: () => axios.post(`${baseUrl}/admin-login`, adminDetails),
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       toast.success(data?.data?.data?.message || "Login Successful!");
       login(
         data?.data?.data?.token,
@@ -32,7 +32,7 @@ const AdminSignin = () => {
       }, 1000);
     },
     onError: (error: any) => {
-      console.log(error);
+      // console.log(error);
       toast.error(error?.response?.data?.message || "Login Failed!");
     },
   });
