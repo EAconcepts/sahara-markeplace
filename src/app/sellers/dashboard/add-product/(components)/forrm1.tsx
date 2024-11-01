@@ -176,8 +176,8 @@ const Form1 = ({
 
               <Input
                 type="text"
-                name="category"
-                value={prdtDetails.category}
+                name="sub_category"
+                value={prdtDetails.sub_category}
                 onChange={handleChange}
                 placeholder="Product Sub Category"
                 className="rounded-[6px] border-[1px] border-border p-[12px] text-[14px] font-[400] leading-[20.3px] text-[#787C83]"

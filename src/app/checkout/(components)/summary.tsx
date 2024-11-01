@@ -45,7 +45,7 @@ const OrderSummary = ({ onClick }: { onClick?: () => void }) => {
                 Subtotal:{" "}
               </span>
               <h5 className="font-[600] leading-[23.2px] text-blackPrimary">
-                ${getTotalPrice(data?.data?.dat?.cart, token).toLocaleString()}
+                ${getTotalPrice(data?.data?.data?.cart, token).toLocaleString()}
               </h5>
             </div>
             {/* Tax */}

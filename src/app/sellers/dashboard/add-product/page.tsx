@@ -18,6 +18,7 @@ export interface prdtDetailsProps {
   quantity: number;
   description: string;
   category: string;
+  sub_category: string;
   tags: string;
   availability?: boolean;
   weight?: number | null;
@@ -35,6 +36,7 @@ const AddProduct = () => {
     quantity: 1,
     description: "",
     category: "",
+    sub_category: "",
     tags: "",
     availability: true,
     weight: null,

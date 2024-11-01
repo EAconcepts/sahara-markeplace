@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useAuth } from "@/utils/useAuth";
 import { Welcome } from "@/app/(components)/Welcome";
 import AuthCard from "./(components)/authcard";
+import Link from "next/link";
 const Signin = () => {
   const [userDetails, setUserDetails] = useState({
     email: "",
@@ -117,9 +118,12 @@ const Signin = () => {
                 Keep me logged in
               </label>
             </div>
-            <button className="text-[14px] font-[600] leading-[20.3px] text-[#7D9A37]">
+            <Link
+              href={"/auth/forgot-password"}
+              className="text-[14px] font-[600] leading-[20.3px] text-[#7D9A37]"
+            >
               Forgot passowrd?
-            </button>
+            </Link>
           </div>
           <Button
             type="submit"

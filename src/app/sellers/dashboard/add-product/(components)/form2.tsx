@@ -46,28 +46,39 @@ const Form2 = ({
             </Select>
           </div>
           {/* Options / Additional Price /  */}
-          <div className="grid w-full lg:border grid-cols-3  max-lg:place-items-stretch gap-x-[12px] lg:gap-x-[16px]">
+          <div className="grid w-full grid-cols-3 gap-x-[12px] max-lg:place-items-stretch lg:gap-x-[16px] lg:border">
             {/* Options */}
             <div className="flex w-fit flex-col gap-x-[8px]">
-              <h6 className="text-[12px] lg:text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+              <h6 className="text-[12px] font-[600] leading-[20.3px] text-blackPrimary lg:text-[14px]">
                 Options
               </h6>
-              <Input type="text" placeholder="Options" className="w-[90px] text-[10px] lg:text-[12px] lg:w-[127px]" />
+              <Input
+                type="text"
+                placeholder="Options"
+                className="w-[90px] text-[10px] lg:w-[127px] lg:text-[12px]"
+              />
             </div>
             {/* Additional price */}
-            <div className="flex w-full max-lg:w-[112px] gap-x-[16px] max-lg:shrink-0">
+            <div className="flex w-full gap-x-[16px] max-lg:w-[112px] max-lg:shrink-0">
               <div className="flex w-full flex-col gap-x-[8px] max-lg:shrink-0">
-                <h6 className=" text-[Tit12px] lg:text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
+                <h6 className="font-[600] leading-[20.3px] text-[Tit12px] text-blackPrimary lg:text-[14px]">
                   Additional Price
                 </h6>
-                <Input type="text" placeholder="0.00" className="max-lg:w-[80px] lg:w-full max-lg:text-[12px]" />
+                <Input
+                  type="text"
+                  placeholder="0.00"
+                  className="max-lg:w-[80px] max-lg:text-[12px] lg:w-full"
+                />
               </div>
             </div>
             {/* USD */}
             <div className="flex w-fit flex-col justify-end gap-x-[8px]">
               <Select>
-                <SelectTrigger className="lg:w-[120px] max-lg:text-[12px] w-fit">
-                  <SelectValue placeholder="USD" className="text-[#787C83] lg:text-[12px]" />
+                <SelectTrigger className="w-fit max-lg:text-[12px] lg:w-[120px]">
+                  <SelectValue
+                    placeholder="USD"
+                    className="text-[#787C83] lg:text-[12px]"
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
@@ -81,7 +92,7 @@ const Form2 = ({
           </div>
         </div>
         {/* Add Another option */}
-        <div className="max-lg:hidden flex h-[44px] w-full items-center justify-center gap-y-[12px] rounded-[6px] border-[1px] border-dashed border-[#8E97A6] p-[12px]">
+        <div className="flex hidden h-[44px] w-full items-center justify-center gap-y-[12px] rounded-[6px] border-[1px] border-dashed border-[#8E97A6] p-[12px] max-lg:hidden">
           <span className="text-center text-[14px] font-[400] leading-[20.3px] text-blackPrimary">
             Add Another Option
           </span>
@@ -179,7 +190,7 @@ const Form2 = ({
             </Select>
           </div>
           {/* Discount */}
-          <div className="flex lg:w-full flex-col gap-y-[8px]">
+          <div className="flex flex-col gap-y-[8px] lg:w-full">
             <h6 className="text-[14px] font-[600] leading-[20.3px] text-blackPrimary">
               Discount
             </h6>
