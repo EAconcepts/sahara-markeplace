@@ -19,7 +19,7 @@ import Pagination from "@/app/sellers/dashboard/(components)/pagination";
 
 const CustomerMgt = () => {
   const { data: dashbd } = useGet("admin/dashboard", "adminDshbd");
-  console.log("dashboard", dashbd);
+  // console.log("dashboard", dashbd);
   return (
     <div className="flex w-full flex-col gap-[32px] py-[16px] font-openSans">
       <Header title="Customer Management" />

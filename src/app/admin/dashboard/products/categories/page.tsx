@@ -31,13 +31,13 @@ const Categories = () => {
     mutationFn: (category_id) =>
       axios.get(`${baseUrl}/admin/delete-category/${category_id}`, { headers }),
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       toast.success("Category deleted successfully");
       queryClient.refetchQueries({ queryKey: ["adminCategories"] });
       // refetch();
     },
     onError: (error: any) => {
-      console.log(error);
+      // console.log(error);
       toast.error(error?.response?.data?.message || "An error occured");
     },
   });

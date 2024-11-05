@@ -38,7 +38,7 @@ const Header = () => {
       setCartItems(data?.data?.data?.cart);
     } else {
       setCartItems(carts);
-      console.log(cartItems);
+      // console.log(cartItems);
     }
   }, [data, carts]);
   if (

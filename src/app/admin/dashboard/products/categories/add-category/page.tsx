@@ -30,19 +30,19 @@ const AddCategory = () => {
     mutationFn: () =>
       axios.post(`${baseUrl}/admin/add-category`, formData, { headers }),
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       toast.success("Category added successfully!");
       router.push("/admin/dashboard/products/categories");
     },
     onError: (error: any) => {
-      console.log(error);
+      // console.log(error);
       toast.error("Error adding category!");
     },
   });
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(category);
+    // console.log(category);
     formData.append("name", category.name);
     formData.append("subcategory", category.sub_category);
     image && formData.append("image", image);
@@ -54,7 +54,7 @@ const AddCategory = () => {
     setImage(file);
     formData.append("image", file);
     const imageUrl = file && URL.createObjectURL(file);
-    console.log(imageUrl);
+    // console.log(imageUrl);
     imageUrl && setCategory((prev: any) => ({ ...prev, image: imageUrl }));
   };
   const handleUpload = () => {

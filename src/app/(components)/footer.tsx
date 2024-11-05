@@ -16,7 +16,7 @@ import { useGet } from "@/utils/useGet.";
 
 const Footer = () => {
   const { data } = useGet("cata/prod", "products");
-  console.log(data);
+  // console.log(data);
   const socials = [
     { icon: twitter, url: "#" },
     { icon: linkedIn, url: "#" },

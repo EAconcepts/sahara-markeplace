@@ -45,7 +45,7 @@ const BlogDetails = () => {
     setImage(file);
     formData.append("image", file);
     const imageUrl = file && URL.createObjectURL(file);
-    console.log(imageUrl);
+    // console.log(imageUrl);
     imageUrl && setBlogDetails((prev: any) => ({ ...prev, image: imageUrl }));
   };
 
@@ -56,16 +56,16 @@ const BlogDetails = () => {
       formData.append("type", blogDetails.type);
       formData.append("image", image);
       formData.append("sid", blogDetails.sid);
-      console.log(blogDetails);
+      // console.log(blogDetails);
       return axios.post(`${baseUrl}/admin/update-blog`, formData, { headers });
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       toast.success("Blog post updated successfully");
       router.push("/admin/dashboard/blogs");
     },
     onError: (error) => {
-      console.log(error);
+      // console.log(error);
       toast.error("Error updating blog post");
     },
   });
@@ -87,12 +87,12 @@ const BlogDetails = () => {
       });
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       toast.success("Blog post deleted successfully");
       router.push("/admin/dashboard/blogs");
     },
     onError: (error) => {
-      console.log(error);
+      // console.log(error);
       toast.error("Error deleting blog post");
     },
   });

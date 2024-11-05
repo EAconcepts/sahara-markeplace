@@ -44,30 +44,31 @@ const AddRecipe = () => {
       });
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       toast.success(`Recipe added successfully!`);
     },
-    onError: (error) => console.log(error),
+    onError: (error: any) =>
+      toast.error(error?.response?.data?.message || error?.message),
   });
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setRecipeDetails({ ...recipeDetails, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(recipeDetails);
+    // console.log(recipeDetails);
     recipeMutation.mutate();
   };
   const imageRef: any = useRef(null);
   const formdata = new FormData();
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
-    console.log(file);
+    // console.log(file);
     // const formdata = new FormData();
     setRecipeDetails((prev: any) => ({ ...prev, image: file }));
     file && formdata.append("image", file);
 
     const imageUrl = file && URL.createObjectURL(file);
-    console.log(imageUrl);
+    // console.log(imageUrl);
     imageUrl && setImage(imageUrl);
   };
   const handleUpload = () => {

@@ -16,9 +16,9 @@ import Loader from "@/app/(components)/loader";
 
 const AdminDashboard = () => {
   const { data, isPending } = useGet("admin/orders", "adminOrders");
-  console.log("orders", data);
+  // console.log("orders", data);
   const { data: dashbd } = useGet("admin/dashboard", "adminDshbd");
-  console.log("dashboard", dashbd);
+  // console.log("dashboard", dashbd);
   const stats = [
     {
       title: "Total Sales",

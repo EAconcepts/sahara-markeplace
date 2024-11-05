@@ -46,7 +46,7 @@ const Recipes = () => {
         headers,
       },
     );
-    console.log(res);
+    // console.log(res);
     setBlogs(res.data.data.results);
   };
   return (

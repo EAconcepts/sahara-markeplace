@@ -21,7 +21,7 @@ import { ArrowRight01Icon, Calendar03Icon } from "hugeicons-react";
 const OrderList = () => {
   const orderStatus = [{}];
   const { data, isPending, updatedAt } = useGet("admin/orders", "adminOrders");
-  console.log(data);
+  // console.log(data);
   const fufilled = () => {
     return data?.data?.data?.trx.filter((order: any) => order?.status === "1")
       .length;

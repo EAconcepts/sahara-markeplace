@@ -37,14 +37,14 @@ const CartCard = ({
     mutationFn: (id: number) =>
       axios.get(`${baseUrl}/delete-cart-item/${id}`, { headers }),
     onSuccess: (data: any) => {
-      console.log(data);
+      // console.log(data);
       queryClient.invalidateQueries({ queryKey: ["cart"] });
       queryClient.refetchQueries({ queryKey: ["cart"] });
       toast.success(data?.data?.message);
       refetchCart();
     },
     onError: (error: any) => {
-      console.log(error);
+      // console.log(error);
       toast.error(error?.response?.data?.message || error?.message);
     },
   });
@@ -57,12 +57,12 @@ const CartCard = ({
         { headers },
       ),
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       toast.success(data?.data?.data?.message || "Cart updated successfully");
       refetchCart();
     },
     onError: (error: any) => {
-      console.log(error);
+      // console.log(error);
       toast.error(
         error?.response?.data?.message ||
           error?.message ||

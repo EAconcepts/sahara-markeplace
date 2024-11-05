@@ -43,7 +43,7 @@ const ProductListnigs = () => {
   };
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(search);
+    // console.log(search);
     const response = await axios.post(
       `${baseUrl}/search-results`,
       { search },
@@ -51,7 +51,7 @@ const ProductListnigs = () => {
         headers,
       },
     );
-    console.log(response);
+    // console.log(response);
     setProducts(response?.data?.data?.products);
   };
   return (

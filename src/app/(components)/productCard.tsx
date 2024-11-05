@@ -120,7 +120,7 @@ const ProductCard = ({ product }: { product: any }) => {
             } else {
               const exists = carts.some((item: any) => item.id === product?.id);
               if (!exists) {
-                console.log(carts);
+                // console.log(carts);
                 const newCart = [...carts, product];
                 localStorage.setItem("cart", JSON.stringify(newCart));
                 setCarts((prev: any) => [...prev, product]);

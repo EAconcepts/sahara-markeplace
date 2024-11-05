@@ -45,7 +45,7 @@ const Recipe = ({ id }: { id: any }) => {
   useEffect(() => {
     const recipes = extractRecipe(data?.data?.data?.posts);
     const recipe = recipes?.find((recipe: any) => recipe?.id.toString() === id);
-    console.log(recipe);
+    // console.log(recipe);
     setRecipeDetails(recipe);
   }, [data]);
   const recipeMutation = useMutation({
@@ -59,7 +59,7 @@ const Recipe = ({ id }: { id: any }) => {
       });
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       toast.success(`Recipe added successfully!`);
     },
     onError: (error) => console.log(error),

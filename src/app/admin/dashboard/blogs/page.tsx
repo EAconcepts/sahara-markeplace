@@ -19,7 +19,7 @@ const Blogs = () => {
   const { token, baseUrl, imgUrl } = useAuth();
 
   const extractRecipe = (blogs: any) => {
-    console.log(blogs);
+    // console.log(blogs);
     const recipes = blogs?.filter((blog: any) => blog?.type == "blog");
     return recipes;
   };
@@ -43,7 +43,7 @@ const Blogs = () => {
         headers,
       },
     );
-    console.log(res);
+    // console.log(res);
     setBlogs(res.data.data.results);
   };
   return (

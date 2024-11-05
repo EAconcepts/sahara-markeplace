@@ -29,12 +29,11 @@ const NewBlog = () => {
   const imgRef: any = useRef(null);
 
   const handleImageChange = () => {
-    console.log("hiiii");
     const file = imgRef.current.files[0];
     formData.append("image", file);
-    console.log(file);
+    // console.log(file);
     const imageUrl = file && URL.createObjectURL(file);
-    console.log(imageUrl);
+    // console.log(imageUrl);
     imageUrl && setBlogDetails((prev: any) => ({ ...prev, image: imageUrl }));
   };
 
@@ -46,7 +45,7 @@ const NewBlog = () => {
       return axios.post(`${baseUrl}/admin/add-blog`, formData, { headers });
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       router.push("/admin/dashboard/blogs");
     },
   });
@@ -56,7 +55,7 @@ const NewBlog = () => {
       toast.error("Please fill all the fields");
       return;
     }
-    console.log(blogDetails);
+    // console.log(blogDetails);
     newBlogMutation.mutate();
   };
   return (
