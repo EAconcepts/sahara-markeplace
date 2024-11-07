@@ -24,7 +24,7 @@ const Signin = () => {
 
   const { login } = useAuth();
   const { carts, refetchCart } = useCheckout();
-  console.log(carts);
+  // console.log(carts);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -47,6 +47,7 @@ const Signin = () => {
       try {
         const responses = await Promise.all(
           carts &&
+            typeof carts === "object" &&
             carts?.length > 0 &&
             carts?.map((cart: any, index: number) => {
               axios.post(
@@ -64,7 +65,7 @@ const Signin = () => {
         typeof window !== "undefined" && localStorage.removeItem("cart");
         refetchCart();
       } catch (err) {
-        toast.error("Failed to update cart.");
+        // toast.error("Failed to update cart.");
         console.log(err);
       }
     }

@@ -16,7 +16,7 @@ export const ChangePassword = ({
   endpoint?: string;
 }) => {
   const [details, setDetails] = useState({
-    oldpassword: "",
+    password: "",
     newpassword: "",
     cnewpassword: "",
   });
@@ -57,8 +57,8 @@ export const ChangePassword = ({
           </label>
           <Input
             type="password"
-            name="oldpassword"
-            value={details.oldpassword}
+            name="password"
+            value={details.password}
             onChange={handleChange}
             className="h-[44px] w-full text-[14px] font-[400] leading-[20.3px] placeholder:text-[#787C83]"
           />
