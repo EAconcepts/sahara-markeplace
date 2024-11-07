@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import image from "@/assets/images/image.svg";
+import imageSvg from "@/assets/images/image.svg";
 import avatar from "@/assets/images/avatar.svg";
 import imageBig from "@/assets/images/image-big.svg";
 import Image from "next/image";
@@ -22,8 +22,8 @@ import { ChangeEvent, useRef, useState } from "react";
 import { toast } from "sonner";
 
 const UserSettings = ({ url }: { url?: string }) => {
-  const { user, token } = useAuth();
-
+  const { user, token, setUser, imgUrl } = useAuth();
+  // console.log(imgUrl, user?.image);
   const [userDetails, setUserDetails] = useState({
     first_name: user?.first_name || "",
     last_name: user?.last_name || "",
@@ -34,25 +34,44 @@ const UserSettings = ({ url }: { url?: string }) => {
     state: user?.state || "",
     zip_code: user?.zip_code || "",
     profile_photo: user?.profile_photo || "",
-    gender: "",
-    dob: "",
+    gender: user?.gender || "",
+    dob: user?.dob || "",
   });
-  const [imageUrl, setImage] = useState<string>("");
+  const [imageUrl, setImage] = useState<string>(user?.image || "");
   const imageRef = useRef<any>(null);
+  const [image, setimage] = useState<any>();
 
   const headers = {
     Authorization: `Bearer ${token}`,
   };
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const profileMutation = useMutation({
-    mutationFn: () =>
-      axios.post(
+    mutationFn: () => {
+      const formData = new FormData();
+      formData.append("first_name", userDetails?.first_name);
+      formData.append("last_name", userDetails?.last_name);
+      formData.append("email", userDetails?.email);
+      formData.append("phone", userDetails?.phone);
+      formData.append("address", userDetails?.address);
+      formData.append("city", userDetails?.city);
+      formData.append("city", userDetails?.city);
+      formData.append("state", userDetails?.state);
+      formData.append("zip_code", userDetails?.zip_code);
+      formData.append("image", image);
+      formData.append("gender", userDetails?.gender);
+      formData.append("dob", userDetails?.dob);
+      return axios.post(
         `${baseUrl}${url ? url : "/user/profile/update"}`,
-        userDetails,
+        formData,
         { headers },
-      ),
+      );
+    },
     onSuccess: (data) => {
       console.log(data);
+      const userData = data?.data?.data;
+      // console.log(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
+      setUser(userData);
       toast.success("Profile updated successfully!");
     },
     onError: (error) => {
@@ -71,18 +90,19 @@ const UserSettings = ({ url }: { url?: string }) => {
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
-    console.log(file);
+    // console.log(file);
     const formdata = new FormData();
     file && formdata.append("image", file);
+    file && setimage(file);
 
     const imageUrl = file && URL.createObjectURL(file);
-    console.log(imageUrl);
+    // console.log(imageUrl);
     imageUrl && setImage(imageUrl);
   };
   const handleSelectImage = () => {
     imageRef && imageRef.current?.click();
   };
-  console.log(userDetails);
+  // console.log(imgUrl);
   return (
     <div className="flex flex-col gap-y-[32px] px-[24px] py-[28px] font-openSans">
       {/* Logo Image upload */}
@@ -101,11 +121,11 @@ const UserSettings = ({ url }: { url?: string }) => {
             className="flex w-fit gap-[10px] rounded-[8px] border-[1.5px] border-greenPrimary bg-white px-[12px] py-[8px] text-[14px] font-[600] leading-[20.3px] text-greenPrimary"
           >
             <Image
-              src={image}
+              src={imageSvg}
               width={20}
               height={20}
               alt="img"
-              className="sie-[20px]"
+              className="size-[20px]"
             />
             <span>Upload Photo</span>
           </Button>
@@ -119,13 +139,27 @@ const UserSettings = ({ url }: { url?: string }) => {
         </div>
         {/* image */}
         <div className="flex size-[120px] items-center justify-center rounded-full bg-[#E4E7EC]">
-          <Image
-            src={imageUrl || avatar}
-            width={72}
-            height={72}
-            alt="image"
-            className={`${imageUrl ? "size-[120px] rounded-full" : "size-[72px]"} object-cover`}
-          />
+          {image ? (
+            <Image
+              // src={avatar}
+              src={imageUrl || avatar}
+              width={72}
+              height={72}
+              alt="image"
+              className={`${imageUrl ? "size-[120px] rounded-full" : "size-[72px]"} object-cover`}
+            />
+          ) : (
+            user?.image && (
+              <Image
+                // src={avatar}
+                src={`${imgUrl}/${imageUrl}`}
+                width={72}
+                height={72}
+                alt="image"
+                className={`${imageUrl ? "size-[120px] rounded-full" : "size-[72px]"} object-cover`}
+              />
+            )
+          )}
         </div>
       </div>
       <div className="h-[1px] w-full bg-border"></div>
@@ -245,10 +279,11 @@ const UserSettings = ({ url }: { url?: string }) => {
         </div>
       </div>
       <Button
+        disabled={profileMutation.isPending}
         onClick={handleUpdate}
         className="bg[#E4E7EC] text[#8E97A6] w-fit rounded-[8px] px-[16px] py-[8px] text-[14px] font-[600] leading-[20.3px]"
       >
-        Save Changes
+        {profileMutation.isPending ? "Saving..." : "  Save Changes"}
       </Button>
     </div>
   );

@@ -119,7 +119,7 @@ const Signin = () => {
               </label>
             </div>
             <Link
-              href={"/auth/forgot-password"}
+              href={"/sellers/auth/forgot-password"}
               className="text-[14px] font-[600] leading-[20.3px] text-[#7D9A37]"
             >
               Forgot passowrd?

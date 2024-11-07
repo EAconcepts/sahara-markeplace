@@ -10,7 +10,7 @@ export default function SettingsLayout({
   children: React.ReactNode;
 }) {
   const settingsLinks = [
-    { title: "Personal Information", link: "personal-info" },
+    { title: "Personal Information", link: "" },
     { title: "Change Password", link: "change-password" },
     { title: "Shipping Address", link: "shipping-address" },
     { title: "Payment Method", link: "payment-method" },

@@ -98,6 +98,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         vendorRedirect,
         vendorSub,
         showPricing,
+        setUser,
         login,
         logout,
         setVendorRedirect,
