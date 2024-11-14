@@ -50,7 +50,7 @@ export const StepThree = ({ props }: { props: any }) => {
           Password
         </label>
         <Input
-          type="text"
+          type="password"
           id="password"
           name="password"
           onChange={props.onChange}
@@ -68,7 +68,7 @@ export const StepThree = ({ props }: { props: any }) => {
           Password
         </label>
         <Input
-          type="text"
+          type="password"
           id="confirmPassword"
           name="confirmPassword"
           onChange={props.onChange}
@@ -79,7 +79,8 @@ export const StepThree = ({ props }: { props: any }) => {
       </div>
 
       <Button
-        type="submit"
+        type="button"
+        onClick={() => props.mutation.mutate()}
         disabled={props.mutation.isPending}
         className="mt-[40px] h-[55px] w-full rounded-[12px] bg-[#7D9A37] py-[16px] text-[16px] font-[600] leading-[23.2px] text-white hover:bg-[#7D9A37]/50 disabled:bg-[#7D9A37]/20"
       >

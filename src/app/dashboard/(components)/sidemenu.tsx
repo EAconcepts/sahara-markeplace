@@ -107,7 +107,7 @@ const Sidemenu = ({
         {/* logout */}
         <div
           onClick={handleLogout}
-          className="mt-[10px] flex w-full items-center justify-between px-[24px] py-[32px]"
+          className="mt-[10px] flex w-full cursor-pointer items-center justify-between px-[24px] py-[32px]"
         >
           <div className="flex items-center gap-x-[12px]">
             {userType !== "admin" && <UserCircleIcon />}
