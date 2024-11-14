@@ -2,8 +2,9 @@
 import { convertDate } from "@/utils/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { HiOutlineEllipsisVertical } from "react-icons/hi2";
+import ToolTip from "./orders-tooltip";
 
 const Orders = ({ orders }: { orders: any }) => {
   const router = useRouter();
@@ -27,7 +28,9 @@ const Orders = ({ orders }: { orders: any }) => {
         {orders &&
           orders?.map((order: any, index: number) => (
             <tr
-              onClick={() => router.push(`/dashboard/my-orders/SE2392922`)}
+              onClick={() =>
+                router.push(`/sellers/dashboard/my-orders/${order?.id}`)
+              }
               key={index}
               className="h-[58px] px-[15px] text-[10px] font-[400] leading-[20.3px] text-blackPrimary lg:gap-x-[24px] lg:text-[14px]"
             >
@@ -67,9 +70,7 @@ const Orders = ({ orders }: { orders: any }) => {
                   <span className="w-fit shrink-0 rounded-[24px] bg-[#F9E79F66] px-[16px] py-[4px] font-[600]">
                     {order?.status == "1" ? "Fulfilled" : "Unfufilled"}
                   </span>
-                  <div className="flex size-[24px] items-center justify-center rounded-[8px] border-[1px] border-border max-lg:hidden">
-                    <HiOutlineEllipsisVertical className="text-[14px] text-blackPrimary" />
-                  </div>
+                  <ToolTip order={order} />
                 </div>
               </td>
             </tr>

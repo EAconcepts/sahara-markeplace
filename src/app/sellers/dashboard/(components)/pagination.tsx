@@ -6,10 +6,11 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  className?:string
+  className?: string;
 }
 
-const Pagination: FC<PaginationProps> = ({className,
+const Pagination: FC<PaginationProps> = ({
+  className,
   currentPage,
   totalPages,
   onPageChange,
@@ -34,41 +35,48 @@ const Pagination: FC<PaginationProps> = ({className,
     }
     return pages;
   };
-
+  console.log(totalPages);
   return (
-    <div className={twMerge("mt-4 flex items-center justify-end gap-x-[24px]", className)}>
-        <p className="text-[14px] font-[600] leading-[20.3px] text-black">Page {currentPage && currentPage} of {totalPages && totalPages}</p>
-        <div className="flex space-x-1">{renderPageNumbers()}</div>
-        <div className="flex items-center gap-x-[24px]">
-      <Button
-        onClick={() => {
-          onPageChange(currentPage - 1);
-          console.log(currentPage);
-        }}
-        disabled={currentPage === 1}
-        className={`w-fit rounded-[8px] border-[1px] bg-transparent px-[12px] py-[8px] text-[14px] font-[600px] leading-[20.3px] text-blackPrimary ${
-          currentPage === 1
-            ? "cursor-not-allowed opacity-50"
-            : "hover:bg-opacity-40"
-        }`}
-      >
-        Previous
-      </Button>
-      
-      <button
-        onClick={() => {
-          onPageChange(currentPage + 1);
-          console.log(currentPage);
-        }}
-        disabled={currentPage === totalPages}
-        className={`w-fit rounded-[8px] border-[1px] bg-greenPrimary px-[12px] py-[8px] text-[14px] font-[600px] leading-[20.3px] text-white ${
-          currentPage === totalPages
-            ? "cursor-not-allowed opacity-50"
-            : "hover:bg-opacity-50"
-        }`}
-      >
-        Next
-      </button>
+    <div
+      className={twMerge(
+        "mt-4 flex items-center justify-end gap-x-[24px]",
+        className,
+      )}
+    >
+      <p className="text-[14px] font-[600] leading-[20.3px] text-black">
+        Page {currentPage && currentPage} of {totalPages && totalPages}
+      </p>
+      <div className="flex space-x-1">{renderPageNumbers()}</div>
+      <div className="flex items-center gap-x-[24px]">
+        <Button
+          onClick={() => {
+            onPageChange(currentPage - 1);
+            console.log(currentPage);
+          }}
+          disabled={currentPage === 1}
+          className={`w-fit rounded-[8px] border-[1px] bg-transparent px-[12px] py-[8px] text-[14px] font-[600px] leading-[20.3px] text-blackPrimary ${
+            currentPage === 1
+              ? "cursor-not-allowed opacity-50"
+              : "hover:bg-opacity-40"
+          }`}
+        >
+          Previous
+        </Button>
+
+        <button
+          onClick={() => {
+            onPageChange(currentPage + 1);
+            console.log(currentPage);
+          }}
+          disabled={currentPage === totalPages}
+          className={`w-fit rounded-[8px] border-[1px] bg-greenPrimary px-[12px] py-[8px] text-[14px] font-[600px] leading-[20.3px] text-white ${
+            currentPage === totalPages
+              ? "cursor-not-allowed opacity-50"
+              : "hover:bg-opacity-50"
+          }`}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

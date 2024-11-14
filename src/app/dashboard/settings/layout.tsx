@@ -13,7 +13,7 @@ export default function SettingsLayout({
     { title: "Personal Information", link: "" },
     { title: "Change Password", link: "change-password" },
     { title: "Shipping Address", link: "shipping-address" },
-    { title: "Payment Method", link: "payment-method" },
+    // { title: "Payment Method", link: "payment-method" },
     { title: "Notifications", link: "notifications" },
   ];
   const path = usePathname();

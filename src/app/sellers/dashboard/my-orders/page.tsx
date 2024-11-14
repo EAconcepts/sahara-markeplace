@@ -19,12 +19,26 @@ import { useGet } from "@/utils/useGet.";
 import Loader from "@/app/(components)/loader";
 import Pagination from "../(components)/pagination";
 import Calendarr from "@/app/(components)/calendar";
+import { useState } from "react";
 // import { newArrivals } from "@/app/page";
 
 const MyOrders = () => {
   const orderStatus = [{}];
   const { data, isPending } = useGet("vendor/orders", "vendorOrders");
-  console.log(data);
+  // console.log(data);
+  const [currentPage, setCurrentPage] = useState(1);
+  const objectsPerPage = 15;
+  const totalPages =
+    data && Math.ceil(data?.data?.data?.trx?.length / objectsPerPage);
+  const startIndex = (currentPage - 1) * objectsPerPage;
+  const endIndex = startIndex + objectsPerPage;
+  let currentObjects =
+    data && data?.data?.data?.trx.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="font-openSans max-lg:px-[24px]">
       {/* Last updated */}
@@ -44,7 +58,7 @@ const MyOrders = () => {
               <Calendarr />
             </div>
             <h1 className="text-[32px] font-[700] leading-[46px] tracking-[-2%] text-[#101928] lg:text-[48px] lg:leading-[57.6px]">
-              {data?.data?.data?.trxx}
+              {data?.data?.data?.trx?.length}
             </h1>
             <div className="flex items-center gap-x-[10px] divide-x-[1px] divide-border lg:gap-x-[12px]">
               {/* New Orders */}
@@ -133,15 +147,15 @@ const MyOrders = () => {
           {/* Orders */}
           {isPending ? (
             <Loader />
-          ) : data?.data?.data?.trx.length > 0 ? (
+          ) : currentObjects.length > 0 ? (
             <div className="flex flex-col gap-y-[16px]">
-              <Orders orders={data?.data?.data?.trx} />
+              <Orders orders={currentObjects} />
               {/* Pagination */}
               <div className="">
                 <Pagination
-                  totalPages={Math.ceil(data?.data?.data?.trxx / 10)}
-                  currentPage={1}
-                  onPageChange={(page) => console.log(page)}
+                  totalPages={totalPages}
+                  currentPage={currentPage}
+                  onPageChange={handlePageChange}
                 />
               </div>
             </div>
