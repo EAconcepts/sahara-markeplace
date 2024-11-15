@@ -40,8 +40,14 @@ const OrderList = () => {
 
   // console.log(data);
   const fufilled = () => {
-    return data?.data?.data?.trx.filter((order: any) => order?.status === "1")
-      .length;
+    return data?.data?.data?.trx.filter(
+      (order: any) => order?.current === "delivered",
+    ).length;
+  };
+  const newOrder = () => {
+    return data?.data?.data?.trx.filter(
+      (order: any) => order?.current === "pending",
+    ).length;
   };
   return (
     <div className="font-openSans max-lg:px-[24px]">
@@ -82,7 +88,7 @@ const OrderList = () => {
                 {/* Value */}
                 <div className="flex items-center gap-x-[4px] lg:items-end">
                   <h2 className="text-[16px] font-[600] leading-[57.6px] tracking-[-2%] text-blackPrimary lg:text-[48px]">
-                    {data?.data?.data?.trxx}
+                    {newOrder()}
                   </h2>
                   <p className="text-[10px] font-[400] leading-[19.36px] text-success lg:pb-[8px] lg:text-[16px]">
                     +0.00%
