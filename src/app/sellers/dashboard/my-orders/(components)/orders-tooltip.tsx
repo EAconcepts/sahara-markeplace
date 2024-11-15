@@ -7,8 +7,8 @@ import React, { useState } from "react";
 import { HiOutlineEllipsisVertical } from "react-icons/hi2";
 import { toast } from "sonner";
 
-const ToolTip = ({ order }: { order?: any }) => {
-  //   console.log(order);
+const ToolTip = ({ order, refetch }: { order?: any; refetch: any }) => {
+  // console.log(refetch);
   const [showToolTip, setShowToolTip] = useState(false);
   const statuses = ["pending", "ready", "shipped", "delivered"];
   const { token, baseUrl } = useAuth();
@@ -36,6 +36,7 @@ const ToolTip = ({ order }: { order?: any }) => {
     onSuccess: (data) => {
       console.log(data);
       toast.success("Order status updated successfully!");
+      refetch();
     },
     onError: (error: any) => {
       toast.error(error?.response?.data?.message);

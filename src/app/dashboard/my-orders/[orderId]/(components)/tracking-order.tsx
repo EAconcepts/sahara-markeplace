@@ -3,7 +3,7 @@ import { ArrowRight01Icon, CheckmarkCircle01Icon } from "hugeicons-react";
 import React from "react";
 
 const TrackingOrder = ({ order }: { order?: any }) => {
-  console.log(order);
+  // console.log(order);
   return (
     <>
       {/* Heading */}
@@ -36,7 +36,7 @@ const TrackingOrder = ({ order }: { order?: any }) => {
         {/* Ready */}
         <div className="relative flex flex-col">
           <CheckmarkCircle01Icon
-            className={`${order?.current == "ready" ? "fill-success" : "fill-[#8E97A6] text-white"} size-[38px] shrink-0 text-white`}
+            className={`${order?.current == "ready" || order?.current == "shipped" || order?.current == "delivered" ? "fill-success" : "fill-[#8E97A6] text-white"} size-[38px] shrink-0 text-white`}
           />
           <div className="absolute bottom-[-44px] left-0 flex w-max flex-col">
             <h6 className="font-openSans text-[10px] font-[600] leading-[19.2px] tracking-[-2%] text-black lg:text-[16px]">
@@ -51,7 +51,7 @@ const TrackingOrder = ({ order }: { order?: any }) => {
         <div className="h-[1px] w-full bg-success"></div>
         <div className="relative flex flex-col">
           <CheckmarkCircle01Icon
-            className={`${order?.current == "shipped" ? "fill-success" : "fill-[#8E97A6] text-white"} size-[38px] shrink-0 fill-[#F9C74F] text-white`}
+            className={`${order?.current == "shipped" || order?.current == "delivered" ? "fill-success" : "fill-[#8E97A6] text-white"} size-[38px] shrink-0 fill-[#F9C74F] text-white`}
           />
           <div className="absolute bottom-[-44px] left-0 flex w-max flex-col max-lg:left-[-18px]">
             <h6 className="font-openSans text-[10px] font-[600] leading-[19.2px] tracking-[-2%] text-black lg:text-[16px]">
@@ -65,10 +65,14 @@ const TrackingOrder = ({ order }: { order?: any }) => {
         {/* Delivery */}
         <div className="h-[1px] w-full bg-[#8E97A6]"></div>
         <div className="relative flex flex-col">
-          <CheckmarkCircle01Icon className="size-[38px] shrink-0 fill-[#8E97A6] text-white" />
+          <CheckmarkCircle01Icon
+            className={`${order?.current == "delivered" && "fill-success"} size-[38px] shrink-0 fill-[#8E97A6] text-white`}
+          />
           <div className="absolute bottom-[-44px] right-0 flex w-max flex-col text-end">
             <h6 className="font-openSans text-[10px] font-[600] leading-[19.2px] tracking-[-2%] text-black lg:text-[16px]">
-              Estimated Delivery
+              {order?.current == "delivered"
+                ? "Delivered"
+                : " Estimated Delivery"}
             </h6>
             <span className="text-[8px] font-[400] leading-[16.8px] lg:text-[14px]">
               .....

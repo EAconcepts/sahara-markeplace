@@ -24,8 +24,8 @@ import { useState } from "react";
 
 const MyOrders = () => {
   const orderStatus = [{}];
-  const { data, isPending } = useGet("vendor/orders", "vendorOrders");
-  // console.log(data);
+  const { data, isPending, refetch } = useGet("vendor/orders", "vendorOrders");
+  console.log(data);
   const [currentPage, setCurrentPage] = useState(1);
   const objectsPerPage = 15;
   const totalPages =
@@ -147,9 +147,9 @@ const MyOrders = () => {
           {/* Orders */}
           {isPending ? (
             <Loader />
-          ) : currentObjects.length > 0 ? (
+          ) : currentObjects?.length > 0 ? (
             <div className="flex flex-col gap-y-[16px]">
-              <Orders orders={currentObjects} />
+              <Orders orders={currentObjects} refetch={refetch} />
               {/* Pagination */}
               <div className="">
                 <Pagination

@@ -5,10 +5,20 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { HiOutlineEllipsisVertical } from "react-icons/hi2";
 import ToolTip from "./orders-tooltip";
+import { QueryClient } from "@tanstack/react-query";
 
-const Orders = ({ orders }: { orders: any }) => {
+const Orders = ({ orders, refetch }: { orders: any; refetch: any }) => {
   const router = useRouter();
   const imgBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+  console.log(refetch);
+  const queryClient = new QueryClient();
+  // console.log(queryClient.getQueryCache());
+  // console.log(
+  //   queryClient.getQueriesData({
+  //     queryKey: ["vendorOrders", "vendor/orders", "vendor"],
+  //   }),
+  // );
+
   return (
     <table className="mt-[32px] w-full font-openSans">
       <thead className="">
@@ -67,10 +77,12 @@ const Orders = ({ orders }: { orders: any }) => {
               {/* Status */}
               <td className="pr-[15px]">
                 <div className="flex items-center gap-x-[32px] align-middle">
-                  <span className="w-fit shrink-0 rounded-[24px] bg-[#F9E79F66] px-[16px] py-[4px] font-[600]">
-                    {order?.status == "1" ? "Fulfilled" : "Unfufilled"}
+                  <span
+                    className={`w-fit shrink-0 rounded-[24px] ${order?.current == "pending" ? "bg-[#F9E79F66]" : order?.current == "shipped" ? "bg-yellow-200" : order?.current == "delivered" ? "bg-success text-white" : "bg-[#8E97A6] text-white"} px-[16px] py-[4px] text-center font-[600] lg:w-[100px]`}
+                  >
+                    {order?.current}
                   </span>
-                  <ToolTip order={order} />
+                  <ToolTip order={order} refetch={refetch} />
                 </div>
               </td>
             </tr>
