@@ -3,15 +3,16 @@
 import { useAuth } from "@/utils/useAuth";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HiOutlineEllipsisVertical } from "react-icons/hi2";
 import { toast } from "sonner";
 
 const ToolTip = ({ order, refetch }: { order?: any; refetch: any }) => {
   // console.log(refetch);
+  const tooltipRef: React.LegacyRef<HTMLDivElement> | undefined = useRef(null);
   const [showToolTip, setShowToolTip] = useState(false);
   const statuses = ["pending", "ready", "shipped", "delivered"];
-  const { token, baseUrl } = useAuth();
+  const { token, baseUrl, userType } = useAuth();
   const [data, setData] = useState({
     current: "",
     sid: order && order?.id,
@@ -19,6 +20,20 @@ const ToolTip = ({ order, refetch }: { order?: any; refetch: any }) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
+
+  useEffect(() => {
+    const clickOutside = (e: any) => {
+      if (
+        tooltipRef.current &&
+        !tooltipRef.current.contains(e.target as Node)
+      ) {
+        setShowToolTip(false);
+        // console.log("outside click");
+      }
+    };
+    document.addEventListener("click", clickOutside);
+    return () => document.removeEventListener("click", clickOutside);
+  }, [tooltipRef, setShowToolTip]);
   const handleStatusUpdate = (
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
     status: any,
@@ -31,7 +46,11 @@ const ToolTip = ({ order, refetch }: { order?: any; refetch: any }) => {
   };
   const statusMutation = useMutation({
     mutationFn: (status: string) => {
-      return axios.post(`${baseUrl}/vendor/update-order`, data, { headers });
+      return axios.post(
+        `${baseUrl}${userType == "admin" ? "/admin/update-order" : "/vendor/update-order"}`,
+        data,
+        { headers },
+      );
     },
     onSuccess: (data) => {
       console.log(data);
@@ -45,7 +64,10 @@ const ToolTip = ({ order, refetch }: { order?: any; refetch: any }) => {
   });
   return (
     <div>
-      <div className="relative flex size-[24px] items-center justify-center rounded-[8px] border-[1px] border-border max-lg:hidden">
+      <div
+        ref={tooltipRef}
+        className="relative flex size-[24px] items-center justify-center rounded-[8px] border-[1px] border-border max-lg:hidden"
+      >
         <HiOutlineEllipsisVertical
           onClick={(e) => {
             e.stopPropagation();
@@ -54,9 +76,13 @@ const ToolTip = ({ order, refetch }: { order?: any; refetch: any }) => {
           className="text-[14px] text-blackPrimary"
         />
         {showToolTip && (
-          <div className="absolute left-[20px] top-[-8px] flex flex-col gap-[16px] bg-white p-[8px] text-black">
+          <div className="absolute right-[26px] top-[-4px] flex flex-col items-center gap-[16px] rounded-md border-[1px] border-border bg-white py-[8px] text-black shadow-lg lg:w-[130px]">
             {statuses?.map((status: any, index: number) => (
-              <span onClick={(e) => handleStatusUpdate(e, status)} key={index}>
+              <span
+                className="hover:bg-slate-400"
+                onClick={(e) => handleStatusUpdate(e, status)}
+                key={index}
+              >
                 {status}
               </span>
             ))}

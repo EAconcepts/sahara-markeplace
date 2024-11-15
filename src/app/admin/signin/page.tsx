@@ -39,7 +39,7 @@ const AdminSignin = () => {
 
   const handleAdminLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(adminDetails);
+    // console.log(adminDetails);
     loginMutation.mutate();
   };
   return (

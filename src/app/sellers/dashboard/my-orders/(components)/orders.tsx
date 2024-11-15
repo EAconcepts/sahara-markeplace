@@ -6,18 +6,13 @@ import React, { useState } from "react";
 import { HiOutlineEllipsisVertical } from "react-icons/hi2";
 import ToolTip from "./orders-tooltip";
 import { QueryClient } from "@tanstack/react-query";
+import { useAuth } from "@/utils/useAuth";
 
 const Orders = ({ orders, refetch }: { orders: any; refetch: any }) => {
   const router = useRouter();
   const imgBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
-  console.log(refetch);
-  const queryClient = new QueryClient();
-  // console.log(queryClient.getQueryCache());
-  // console.log(
-  //   queryClient.getQueriesData({
-  //     queryKey: ["vendorOrders", "vendor/orders", "vendor"],
-  //   }),
-  // );
+  const { userType } = useAuth();
+  // console.log(refetch);
 
   return (
     <table className="mt-[32px] w-full font-openSans">
@@ -38,9 +33,14 @@ const Orders = ({ orders, refetch }: { orders: any; refetch: any }) => {
         {orders &&
           orders?.map((order: any, index: number) => (
             <tr
-              onClick={() =>
-                router.push(`/sellers/dashboard/my-orders/${order?.id}`)
-              }
+              onClick={() => {
+                if (userType == "vendor") {
+                  router.push(`/sellers/dashboard/my-orders/${order?.id}`);
+                }
+                if (userType == "admin") {
+                  router.push(`/admin/dashboard/orders/${order?.id}`);
+                }
+              }}
               key={index}
               className="h-[58px] px-[15px] text-[10px] font-[400] leading-[20.3px] text-blackPrimary lg:gap-x-[24px] lg:text-[14px]"
             >

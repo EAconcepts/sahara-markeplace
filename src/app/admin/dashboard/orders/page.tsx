@@ -17,10 +17,27 @@ import {
 } from "@/components/ui/select";
 import { useGet } from "@/utils/useGet.";
 import { ArrowRight01Icon, Calendar03Icon } from "hugeicons-react";
+import { useState } from "react";
 
 const OrderList = () => {
-  const orderStatus = [{}];
-  const { data, isPending, updatedAt } = useGet("admin/orders", "adminOrders");
+  // const orderStatus = [{}];
+  const { data, isPending, updatedAt, refetch } = useGet(
+    "admin/orders",
+    "adminOrders",
+  );
+  const [currentPage, setCurrentPage] = useState(1);
+  const objectsPerPage = 15;
+  const totalPages =
+    data && Math.ceil(data?.data?.data?.trx?.length / objectsPerPage);
+  const startIndex = (currentPage - 1) * objectsPerPage;
+  const endIndex = startIndex + objectsPerPage;
+  let currentObjects =
+    data && data?.data?.data?.trx.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   // console.log(data);
   const fufilled = () => {
     return data?.data?.data?.trx.filter((order: any) => order?.status === "1")
@@ -145,13 +162,13 @@ const OrderList = () => {
             <Loader />
           ) : data?.data?.data?.trx.length > 0 || true ? (
             <div className="flex flex-col gap-y-[16px]">
-              <Orders orders={data?.data?.data?.trx || [1, 2, 3]} />
+              <Orders refetch={refetch} orders={currentObjects} />
               {/* Pagination */}
               <div className="">
                 <Pagination
-                  currentPage={1}
-                  totalPages={3}
-                  onPageChange={() => {}}
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
                   className="justify-end"
                 />
               </div>
