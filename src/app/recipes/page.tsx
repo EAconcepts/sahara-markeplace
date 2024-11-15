@@ -26,7 +26,7 @@ const Recipes = () => {
     "Snacks & Sides",
   ];
   const { data, isPending } = useGet("blog-posts", "blogpost");
-  //  console.log(data)
+  console.log(data);
   const extractRecipe = (blogs: any) => {
     // console.log(blogs)
     const recipes = blogs?.filter((blog: any) => blog?.type == "recipie");
@@ -90,7 +90,7 @@ const Recipes = () => {
       {data ? (
         <div className="lg:W-full grid hidden grid-cols-1 gap-y-[24px] px-[24px] py-[40px] lg:grid-cols-4 lg:justify-around lg:gap-y-[32px] lg:px-[96px]">
           {data &&
-            extractRecipe(data?.data?.data?.posts).map((recipe: any) => (
+            extractRecipe(data?.data?.data?.posts)?.map((recipe: any) => (
               <div
                 key={recipe?.id}
                 className="flex h-[360px] flex-col gap-[16px] rounded-[8px] border-[1px] border-border pb-[24px] max-lg:w-full lg:h-[398px] lg:w-[400px]"
