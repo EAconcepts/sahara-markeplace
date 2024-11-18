@@ -83,6 +83,7 @@ const UserSettings = ({ url }: { url?: string }) => {
     console.log(userDetails);
     profileMutation.mutate();
   };
+  
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserDetails((prevVals: any) => ({ ...prevVals, [name]: value }));

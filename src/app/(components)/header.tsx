@@ -41,6 +41,7 @@ const Header = () => {
       // console.log(cartItems);
     }
   }, [data, carts]);
+
   if (
     path.startsWith("/dashboard") ||
     path.startsWith("/sellers") ||

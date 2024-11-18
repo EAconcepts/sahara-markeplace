@@ -16,7 +16,7 @@ export const CheckoutProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { user } = useAuth();
+  const { user, userType } = useAuth();
   const [shippingInfo, setShippingInfo] = useState({
     first_name: user?.first_name || "",
     last_name: user?.last_name || "",
@@ -42,7 +42,7 @@ export const CheckoutProvider = ({
   //Update cart items
   const { data } = useGet("/my-cart", "cart");
   useEffect(() => {
-    if (token) {
+    if (token && userType == "user") {
       setCartItems(data?.data?.data?.cart);
     } else {
       // console.log(cartItems);

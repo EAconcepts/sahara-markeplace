@@ -55,12 +55,12 @@ export const useGet: any = (url: string, queryKey: string) => {
         throw new Error("Unauthorized access to cart");
       }
       const response = await axios.get(`${apiUrl}/${url}`, { headers });
-      return response.data;
+      return response;
     },
   });
 
   return {
-    data: getQuery ?? "",
+    data: getQuery.data ?? "",
     updatedAt: getQuery.data ? new Date().toUTCString() : "",
     isLoading: getQuery.isLoading,
     isError: getQuery.isError,
