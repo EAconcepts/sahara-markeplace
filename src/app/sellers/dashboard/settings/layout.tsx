@@ -14,7 +14,7 @@ export default function SettingsLayout({
   const settingsLinks = [
     { title: "Personal Information", link: "" },
     { title: "Store Settings", link: "store-settings" },
-    { title: "Billing Information", link: "billing-info" },
+    // { title: "Billing Information", link: "billing-info" },
     { title: "Change Password", link: "change-password" },
     { title: "Membership Plan", link: "membership-plan" },
     { title: "Notifications", link: "notifications" },

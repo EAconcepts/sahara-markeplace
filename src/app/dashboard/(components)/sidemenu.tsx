@@ -43,7 +43,7 @@ const Sidemenu = ({
     }
   };
   return (
-    <div className="max-lg:w-ful px-[24px] pt-[12px] max-lg:z-[999] max-lg:flex max-lg:flex-col lg:border-r-[1px] lg:border-border">
+    <div className="max-lg:w-ful px-[24px] pt-[12px] max-lg:z-[999999] max-lg:flex max-lg:flex-col lg:border-r-[1px] lg:border-border">
       {/* X close */}
       <Cancel01Icon
         onClick={() => setShowMenu && setShowMenu(false)}

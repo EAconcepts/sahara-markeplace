@@ -53,7 +53,7 @@ const ToolTip = ({ order, refetch }: { order?: any; refetch: any }) => {
       );
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       toast.success("Order status updated successfully!");
       refetch();
     },
@@ -75,7 +75,7 @@ const ToolTip = ({ order, refetch }: { order?: any; refetch: any }) => {
           }}
           className="text-[14px] text-blackPrimary"
         />
-        {showToolTip && (
+        {showToolTip && (userType == "admin" || userType == "seller") && (
           <div className="absolute right-[26px] top-[-4px] flex flex-col items-center gap-[16px] rounded-md border-[1px] border-border bg-white py-[8px] text-black shadow-lg lg:w-[130px]">
             {statuses?.map((status: any, index: number) => (
               <span

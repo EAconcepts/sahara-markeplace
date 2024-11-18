@@ -17,10 +17,10 @@ import { useAuth } from "@/utils/useAuth";
 import { useRouter } from "next/navigation";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  const { token } = useAuth();
+  const { token, userType } = useAuth();
   const router = useRouter();
   useEffect(() => {
-    if (!token) {
+    if (userType != "user" || (token && userType != "user")) {
       router.push("/auth/signin");
       return;
     }

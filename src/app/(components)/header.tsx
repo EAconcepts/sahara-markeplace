@@ -170,7 +170,7 @@ const Header = () => {
               Sellers Center
             </Link>
             <Link
-              href={`${userType == "seller" ? "/sellers/dashboard" : "/dashboard"}`}
+              href={`${userType == "seller" ? "/sellers/dashboard" : userType == "user" ? "/dashboard" : userType == "admin" ? "/admin/dashboard" : "/auth/signin"}`}
               className="cursor-pointer font-openSans text-[16px] font-[600] leading-[23.2px] text-black"
             >
               My Account
