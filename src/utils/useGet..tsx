@@ -62,7 +62,7 @@ export const useGet: any = (url: string, queryKey: string) => {
   return {
     data: getQuery.data ?? "",
     updatedAt: getQuery.data ? new Date().toUTCString() : "",
-    isLoading: getQuery.isLoading,
+    isPending: getQuery.isLoading,
     isError: getQuery.isError,
     error: getQuery.error,
     refetch: getQuery.refetch,
