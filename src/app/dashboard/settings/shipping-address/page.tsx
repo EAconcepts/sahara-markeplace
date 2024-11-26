@@ -18,14 +18,15 @@ import { ChangeEvent, useState } from "react";
 import { toast } from "sonner";
 
 const ShippingAddress = () => {
+  const { token, baseUrl, user, setUser } = useAuth();
+
   const [addressDetails, setAddressDetails] = useState({
-    address: "",
-    country: "",
-    city: "",
-    state: "",
-    postal: "",
+    address: user?.address ?? "",
+    country: user?.country ?? "",
+    city: user?.city ?? "",
+    state: user?.state ?? "",
+    postal: user?.postal ?? "",
   });
-  const { token, baseUrl, setUser } = useAuth();
   const headers = {
     Authorization: `Bearer ${token}`,
   };

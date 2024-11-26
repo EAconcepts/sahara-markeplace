@@ -90,12 +90,12 @@ const Footer = () => {
               >
                 About
               </Link>
-              <Link
+              {/* <Link
                 href={"/blogs"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Blog
-              </Link>
+              </Link> */}
               <Link
                 href={"#"}
                 className="pr-[33.3px flex gap-x-[12px] font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
@@ -143,12 +143,42 @@ const Footer = () => {
             </h5>
             <div className="mt-[24px] flex flex-col gap-y-[16px]">
               <Link
-                href={"/terms-&-conditions"}
+                href={"#"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
-                Condition of Use
+                Payment
               </Link>
               <Link
+                href={"#"}
+                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
+              >
+                Pricing And Promotions
+              </Link>
+              <Link
+                href={"#"}
+                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
+              >
+                Return Policy
+              </Link>
+              <Link
+                href={"#"}
+                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
+              >
+                Return Policy
+              </Link>
+              <Link
+                href={"#"}
+                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
+              >
+                Conditions for Use
+              </Link>
+              <Link
+                href={"#"}
+                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
+              >
+                Declined Payment
+              </Link>
+              {/* <Link
                 href={"/terms-&-conditions"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
@@ -171,7 +201,7 @@ const Footer = () => {
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 FAQs
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

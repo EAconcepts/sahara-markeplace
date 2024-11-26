@@ -27,12 +27,12 @@ const Topnav = () => {
         >
           Recipes
         </Link>
-        <Link
+        {/* <Link
           href={"/blogs"}
           className="font-openSans max-lg:hidden lg:text-[16px] lg:leading-[21.79px]"
         >
           Blog
-        </Link>
+        </Link> */}
         <Link
           href={"/about"}
           className="font-openSans max-lg:hidden lg:text-[16px] lg:leading-[21.79px]"

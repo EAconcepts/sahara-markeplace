@@ -18,7 +18,7 @@ const Dashboard = () => {
   const { data, isPending } = useGet("user/dashboard", "userDashboard");
   console.log(data);
   return (
-    <div className="lg:pt-[40px] pt-[16px]">
+    <div className="pt-[16px] lg:pt-[40px]">
       <Header title={"Dashboard"} className="max-lg:text-[]" />
       {/* Recent Orders & Default Address */}
       <div className="mt-[32px] flex gap-x-[24px] max-lg:flex-col">
@@ -30,18 +30,27 @@ const Dashboard = () => {
           {isPending ? (
             <Loader />
           ) : data?.data?.data?.orders.length > 0 ? (
-            <div className="mt[24px] lg:mt-[16px] flex flex-col gap-[16px] lg:gap-y-[24px] idden">
-              {data?.data?.data?.orders?.slice(0,3)?.map((order: any) => (
-                <OrderCard date={order?.created_at} product={order?.products} key={order?.id} id={order?.id} />
-              ))}
+            <div className="mt[24px] idden flex flex-col gap-[16px] lg:mt-[16px] lg:gap-y-[24px]">
+              {data?.data?.data?.orders
+                ?.slice(0, 3)
+                ?.map((order: any) => (
+                  <OrderCard
+                    date={order?.created_at}
+                    product={order?.products}
+                    key={order?.id}
+                    id={order?.id}
+                  />
+                ))}
             </div>
-          ) : data?.data?.data?.orders?.length==0 &&(
-            // NO orders yet
-            <div className="flex min-h-[187px] flex-col items-center justify-center rounded-[10px] border-[1px] border-border p-[24px]">
-              <span className="text-[14px] font-[400] leading-[20.3px]">
-                You have place no order yet
-              </span>
-            </div>
+          ) : (
+            data?.data?.data?.orders?.length == 0 && (
+              // NO orders yet
+              <div className="flex min-h-[187px] flex-col items-center justify-center rounded-[10px] border-[1px] border-border p-[24px]">
+                <span className="text-[14px] font-[400] leading-[20.3px]">
+                  You have place no order yet
+                </span>
+              </div>
+            )
           )}
         </div>
         {/* Default Address */}
@@ -57,7 +66,7 @@ const Dashboard = () => {
               <div className="flex items-center gap-x-[8px]">
                 <MapsLocation01Icon className="size-[20px] text-greenPrimary" />
                 <span className="line-clamp-1 font-inter text-[14px] leading-[20.3px] text-[#787C83]">
-                  {user?.address} {user?.city}
+                  {user?.address} {user?.city}, {user?.state} {user?.country}
                 </span>
               </div>
               <div className="flex items-center gap-x-[8px]">
