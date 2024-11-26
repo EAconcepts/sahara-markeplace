@@ -28,7 +28,7 @@ const UserSettings = ({ url }: { url?: string }) => {
     first_name: user?.first_name || "",
     last_name: user?.last_name || "",
     email: user?.email || "",
-    phone: user?.phone_number || "",
+    phone: user?.phone || "",
     address: user?.address || "",
     city: user?.city || "",
     state: user?.state || "",
@@ -83,7 +83,7 @@ const UserSettings = ({ url }: { url?: string }) => {
     console.log(userDetails);
     profileMutation.mutate();
   };
-  
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserDetails((prevVals: any) => ({ ...prevVals, [name]: value }));
@@ -236,6 +236,8 @@ const UserSettings = ({ url }: { url?: string }) => {
               value={userDetails.phone}
               name="phone"
               onChange={handleChange}
+              minLength={10}
+              maxLength={11}
             />
           </div>
         </div>

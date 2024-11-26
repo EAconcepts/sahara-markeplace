@@ -25,7 +25,7 @@ const ShippingAddress = () => {
     state: "",
     postal: "",
   });
-  const { token, baseUrl } = useAuth();
+  const { token, baseUrl, setUser } = useAuth();
   const headers = {
     Authorization: `Bearer ${token}`,
   };
@@ -39,6 +39,9 @@ const ShippingAddress = () => {
     onSuccess: (data) => {
       console.log(data);
       const userData = data?.data?.data;
+      // console.log(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
+      setUser(userData);
       toast.success("Shipping address updated successfully!");
     },
     onError: (error) => {
