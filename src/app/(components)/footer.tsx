@@ -167,7 +167,7 @@ const Footer = () => {
                 Return Policy
               </Link>
               <Link
-                href={"#"}
+                href={""}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Conditions for Use
