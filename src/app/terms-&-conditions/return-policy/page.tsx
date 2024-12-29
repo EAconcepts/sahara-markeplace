@@ -5,7 +5,7 @@ const ReturnPolicy = () => {
     <div className="flex flex-col gap-[24px] px-[96px] py-[24px] text-[14px] font-[400]">
       {/*   Shopping with confidence: */}
       <div>
-        <h3 className="font-[600]">
+        <h3 className="mb-[12px] text-center text-[18px] font-[600] uppercase">
           Shopping with confidence: Your guide to Sahara Eagles Return Policy
         </h3>
         <p>

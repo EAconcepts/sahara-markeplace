@@ -143,37 +143,37 @@ const Footer = () => {
             </h5>
             <div className="mt-[24px] flex flex-col gap-y-[16px]">
               <Link
-                href={"#"}
+                href={"/assets/Payment_Pricing_and_Promotion.pdf"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Payment
               </Link>
               <Link
-                href={"#"}
+                href={"/assets/Payment_Pricing_and_Promotion.pdf"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Pricing And Promotions
               </Link>
               <Link
-                href={"#"}
+                href={"/terms-&-conditions/leadership-principles"}
+                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
+              >
+                Leadership Principles
+              </Link>
+              <Link
+                href={"/terms-&-conditions/return-policy"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Return Policy
               </Link>
               <Link
-                href={"#"}
-                className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
-              >
-                Return Policy
-              </Link>
-              <Link
-                href={""}
+                href={"/terms-&-conditions"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Conditions for Use
               </Link>
               <Link
-                href={"#"}
+                href={"/terms-&-conditions/resolve-declined-payment"}
                 className="font-openSans text-[16px] font-[600] leading-[23.2px] text-white"
               >
                 Declined Payment
