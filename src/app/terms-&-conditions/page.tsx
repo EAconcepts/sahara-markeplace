@@ -14,20 +14,8 @@ const TermsCondition = () => {
   const [active, setActive] = useState<string>("condition");
   const condition = [
     {
-      title: "Applicable Laws",
-      link: "#applicable-laws",
-    },
-    {
-      title: "App Permissions",
-      link: "#app-permissions",
-    },
-    {
-      title: "Disclaimer of Warranties & Limitations of Liability",
-      link: "#disclaimer",
-    },
-    {
-      title: "Disputes",
-      link: "#disputes",
+      title: "Welcome",
+      link: "#welcome",
     },
   ];
   const privacy = [
@@ -36,41 +24,23 @@ const TermsCondition = () => {
       link: "#privacy",
     },
     {
-      title: "App Permissions",
-      link: "#app-permissions",
+      title: "Privacy",
+      link: "#privacy",
     },
-    {
-      title: "Cookies Policy",
-      link: "#cookies",
-    },
-    {
-      title: "Advertising",
-      link: "#advertising",
-    },
-    {
-      title: "Parental Guidance",
-      link: "#parental-guidance",
-    },
-    {
-      title: "State-Specific Privacy",
-      link: "#state-specific-privacy",
-    },
-  ];
-  const otherLinks = [
     {
       title: "Electronic Communications",
-      link: "#electronic-communications",
+      link: "#electronic",
     },
     {
-      title: "Copyrights",
-      link: "#copyrights",
+      title: "Copyright",
+      link: "#copyright",
     },
     {
       title: "Trademarks",
       link: "#trademarks",
     },
     {
-      title: "License & Access",
+      title: "License And Access",
       link: "#license",
     },
     {
@@ -78,36 +48,54 @@ const TermsCondition = () => {
       link: "#your-account",
     },
     {
-      title: "Reviews, Comment, Communications & Other Content",
-      link: "#review",
+      title: "Reviews, Comments and Communications",
+      link: "#reviews",
     },
+  ];
+  const otherLinks = [
     {
-      title: "Intellectual Property Complaints",
-      link: "#intellectual-property-complaints",
+      title: "Intellectual Property Claims",
+      link: "#intellectual-property",
     },
     {
       title: "Risk of Loss",
-      link: "#risk-of-loss",
+      link: "#risk",
     },
     {
-      title: "Returns, refund & Title",
+      title: "Returns, Refunds and Title",
       link: "#returns",
     },
     {
-      title: "Product Description",
+      title: "Product Descriptions",
       link: "#product-description",
     },
     {
-      title: "Pricing",
-      link: "#pricing",
+      title: "App Permissions",
+      link: "#app-permissions",
     },
     {
-      title: "Sactions & Export Policy",
+      title: "Sanctions and Export Policy",
       link: "#sactions",
     },
     {
-      title: "Other Businesses",
-      link: "#other-businesses",
+      title: "Other Business",
+      link: "#other-business",
+    },
+    {
+      title: "Disclaimer of Warranties and Limitation of Liability",
+      link: "#disclaimer",
+    },
+    {
+      title: "Disputes",
+      link: "#disputes",
+    },
+    {
+      title: "Additional Software Terms",
+      link: "#additional-terms",
+    },
+    {
+      title: "Legal Process",
+      link: "#legal",
     },
   ];
   useEffect(() => {

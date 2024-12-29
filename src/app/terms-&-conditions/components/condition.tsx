@@ -4,7 +4,7 @@ export const ConditionOfUse = () => {
   return (
     <div className="flex flex-col gap-[32px] font-openSans">
       {/* Condition of use */}
-      <div id="condition" className="flex flex-col gap-[32px]">
+      <div id="welcome" className="flex flex-col gap-[32px]">
         <div className="flex flex-col gap-[8px]">
           <h3 className="text-[30px] font-[600] leading-[43.5px] text-black">
             Condition of Use
@@ -45,7 +45,7 @@ export const ConditionOfUse = () => {
         </div>
       </div>
       {/* PRIVACY */}
-      <div id="#privacy" className="gap-32px] flex flex-col">
+      <div id="privacy" className="gap-32px] flex flex-col">
         <h3 className="text-[20px] font-[600] leading-[29px] text-black">
           PRIVACY
         </h3>
@@ -55,7 +55,7 @@ export const ConditionOfUse = () => {
         </p>
       </div>
       {/* ELECTRONIC COMMUNICATIONS*/}
-      <div id="app-permissions" className="gap[32px] flex flex-col">
+      <div id="electronic" className="gap[32px] flex flex-col">
         <h3 className="text-[20px] font-[600] leading-[43.5px] text-black">
           ELECTRONIC COMMUNICATIONS
         </h3>
@@ -147,7 +147,7 @@ export const ConditionOfUse = () => {
         </p>
       </div>
       {/* YOUR ACCOUNT */}
-      <div className="account">
+      <div id="your-account">
         <h6 className="text-[20px] font-[600] leading-[29px] text-black">
           YOUR ACCOUNT
         </h6>
@@ -175,7 +175,7 @@ export const ConditionOfUse = () => {
         </p>
       </div>
       {/* REVIEWS, COMMENTS, COMMUNICATIONS, AND OTHER CONTENT */}
-      <div className="reviews">
+      <div id="reviews">
         <h6 className="text-[20px] font-[600] leading-[29px] text-black">
           REVIEWS, COMMENTS, COMMUNICATIONS, AND OTHER CONTENT
         </h6>
@@ -215,7 +215,7 @@ export const ConditionOfUse = () => {
         </p>
       </div>
       {/* INTELLECTUAL PROPERTY COMPLAINTS */}
-      <div className="">
+      <div id="intellectual-property" className="">
         <h6 className="text-[20px] font-[600] leading-[29px] text-black">
           INTELLECTUAL PROPERTY COMPLAINTS
         </h6>
@@ -229,7 +229,7 @@ export const ConditionOfUse = () => {
         </p>
       </div>
       {/* RISK OF LOSS */}
-      <div>
+      <div id="risk">
         <h6 className="text-[20px] font-[600] leading-[29px] text-black">
           RISK OF LOSS
         </h6>
@@ -240,7 +240,7 @@ export const ConditionOfUse = () => {
         </p>
       </div>
       {/* RETURNS, REFUNDS AND TITLE */}
-      <div>
+      <div id="returns">
         <h6 className="text-[20px] font-[600] leading-[29px] text-black">
           RETURNS, REFUNDS AND TITLE
         </h6>
@@ -254,7 +254,7 @@ export const ConditionOfUse = () => {
         </p>
       </div>
       {/* Product Description */}
-      <div>
+      <div id="product-description">
         <h6 className="text-[20px] font-[600] leading-[29px] text-black">
           PRODUCT DESCRIPTIONS
         </h6>
@@ -294,7 +294,7 @@ export const ConditionOfUse = () => {
         </p>
       </div>
       {/* APP PERMISSIONS */}
-      <div className="">
+      <div id="app-permissions">
         <h6 className="text-[20px] font-[600] leading-[29px] text-black">
           APP PERMISSIONS
         </h6>
@@ -306,7 +306,7 @@ export const ConditionOfUse = () => {
         </p>
       </div>
       {/* SANCTIONS AND EXPORT POLICY */}
-      <div className="">
+      <div id="sactions">
         <h6 className="text-[20px] font-[600] leading-[29px] text-black">
           SANCTIONS AND EXPORT POLICY
         </h6>
@@ -376,7 +376,7 @@ export const ConditionOfUse = () => {
         </p>
       </div>
       {/* DISPUTES */}
-      <div className="">
+      <div id="disputes">
         <h6 className="text-[20px] font-[600] leading-[29px] text-black">
           DISPUTES
         </h6>
@@ -425,7 +425,7 @@ export const ConditionOfUse = () => {
         <p>Forney, TX 75126</p>
       </div>
       {/* ADDITIONAL SAHARA EAGLE SOFTWARE TERMS */}
-      <div>
+      <div id="additional-terms">
         <h6 className="text-[20px] font-[600] leading-[29px] text-black">
           ADDITIONAL SAHARA EAGLE SOFTWARE TERMS
         </h6>
@@ -476,7 +476,7 @@ export const ConditionOfUse = () => {
         </ol>
       </div>
       {/* HOW TO SERVE A SUBPOENA OR OTHER LEGAL PROCESS */}
-      <div>
+      <div id="legal">
         <h6 className="text-[20px] font-[600] leading-[29px] text-black">
           HOW TO SERVE A SUBPOENA OR OTHER LEGAL PROCESS
         </h6>
